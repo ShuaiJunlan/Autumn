@@ -1,0 +1,18 @@
+DROP TABLE IF EXISTS af_func;
+CREATE TABLE af_func(
+  id INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '主键，自增',
+  sys INT(8) NOT NULL COMMENT '系统号',
+  namec VARCHAR(16) NOT NULL COMMENT '中文名',
+  disporder INT(4) NOT NULL COMMENT '排列顺序',
+  grp_name VARCHAR(14) NOT NULL COMMENT '父名',
+  plugin VARCHAR(32) DEFAULT NULL DEFAULT 'javascript:;' COMMENT '插件名',
+  CONSTRAINT grp_name_FK_ID_grp_name FOREIGN KEY (grp_name) REFERENCES af_funcgrp(name)
+);
+INSERT INTO af_func(sys, namec, disporder, grp_name) VALUES (01, '子模块1', 1, 'module1');
+INSERT INTO af_func(sys, namec, disporder, grp_name) VALUES (01, '子模块2', 2, 'module1');
+INSERT INTO af_func(sys, namec, disporder, grp_name) VALUES (01, '子模块3', 3, 'module1');
+
+INSERT INTO af_func(sys, namec, disporder, grp_name) VALUES (01, '子模块1', 1, 'module2');
+
+
+COMMIT ;

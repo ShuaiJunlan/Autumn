@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!-- 配置SpringMVC -->
+    <!-- 1：开启SpringMVC注解模式 -->
+    <!--简化配置
+        (1)自动注册DefaultAnnotationHandlerMapping,AnnotationMethodHandlerAdapter
+         (2)提供一系列：数据绑定，数字和日期的format（@NumberFormat,@DaraTimeFormat）,xml,json
+            默认读写支持
+     -->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json; charset=UTF-8</value>
+                        <value>application/x-www-form-urlencoded; charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+
+    <context:component-scan base-package="com.autumnframework.login.controller"/>
+    <context:component-scan base-package="com.autumnframework.login.dao"/>
+    <context:component-scan base-package="com.autumnframework.login.service"/>
+
+    <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <!-- 返回的视图模型数据需要经过jstl来处理 -->
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <!--<context:component-scan base-package="com.fhintern.nesys.model"/>-->
+
+    <!--<context:component-scan base-package="com.fhintern.nesys.interceptor"/>-->
+    <!--<mvc:resources mapping="/images/**" location="/images/" />-->
+    <!--<mvc:resources mapping="/js/**" location="/js/" />-->
+    <!--<mvc:resources mapping="/css/**" location="/css/" />-->
+    <!--<mvc:resources mapping="/frame/**" location="/frame/" />-->
+
+    <!--<mvc:interceptors>-->
+    <!--&lt;!&ndash;配置管理员登录拦截器&ndash;&gt;-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/html/administrator/*.html"/>-->
+            <!--<mvc:mapping path="/source/**"></mvc:mapping>-->
+            <!--<mvc:mapping path="/userNetport/**"/>-->
+            <!--<mvc:mapping path="/topology/**"/>-->
+            <!--<mvc:mapping path="/user/**"/>-->
+            <!--<mvc:exclude-mapping path="/login.html"/>-->
+            <!--<mvc:exclude-mapping path="/userNetport/queryByUserId/*"></mvc:exclude-mapping>-->
+            <!--<mvc:exclude-mapping path="/topology/getTopologyByOne/**"></mvc:exclude-mapping>-->
+            <!--<mvc:exclude-mapping path="/images/**"></mvc:exclude-mapping>-->
+            <!--<mvc:exclude-mapping path="/js/**"></mvc:exclude-mapping>-->
+            <!--<mvc:exclude-mapping path="/css/**"></mvc:exclude-mapping>-->
+            <!--<mvc:exclude-mapping path="/frame/**"></mvc:exclude-mapping>-->
+            <!--<bean class="com.fhintern.nesys.interceptor.AdminLoginInterceptor"></bean>-->
+        <!--</mvc:interceptor>-->
+
+        <!--<mvc:interceptor>-->
+            <!--&lt;!&ndash;配置普通用户登录拦截器&ndash;&gt;-->
+            <!--<mvc:mapping path="/html/user/*.html"/>-->
+            <!--<mvc:mapping path="/topology/getTopologyByOne/**"></mvc:mapping>-->
+            <!--<mvc:exclude-mapping path="/login.html"/>-->
+            <!--<mvc:exclude-mapping path="/userNetport/queryByUserId/**"></mvc:exclude-mapping>-->
+            <!--<mvc:exclude-mapping path="/images/**"></mvc:exclude-mapping>-->
+            <!--<mvc:exclude-mapping path="/js/**"></mvc:exclude-mapping>-->
+            <!--<mvc:exclude-mapping path="/css/**"></mvc:exclude-mapping>-->
+            <!--<mvc:exclude-mapping path="/frame/**"></mvc:exclude-mapping>-->
+            <!--<bean class="com.fhintern.nesys.interceptor.UserLoginInterceptor"></bean>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+    <!-- 2:servlet-mapping 映射路径："/" -->
+    <!-- 静态资源默认servlet配置
+          1:加入对静态资源的处理
+          2:允许使用"/作整体映射"
+    -->
+    <mvc:default-servlet-handler/>
+
+     <!--3:配置html显示viewResolver -->
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+        <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>-->
+        <!--<property name="prefix" value="/"></property>-->
+        <!--<property name="suffix" value=".html"></property>-->
+    <!--</bean>-->
+
+</beans>

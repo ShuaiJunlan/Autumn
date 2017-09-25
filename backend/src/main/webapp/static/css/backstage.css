@@ -1,0 +1,1204 @@
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    -moz-user-select: none;
+}
+
+.layui-layout-admin {
+    display: block;
+    width: 100%;
+    height: 100%;
+    /*overflow: hidden;*/
+    padding: 0px;
+    margin: 0px;
+}
+
+.layui-layout-admin .header-menu {
+    height: 65px;
+    border-bottom: 5px solid #1AA094;
+    top: 0px;
+    left: 0px;
+    z-index: 1001;
+}
+
+.layui-layout-admin .larrycms-left {
+    background: #393D49;
+    top: 70px;
+    left: 0px;
+    border-right: 3px solid #1AA094;
+    z-index: 1000;
+}
+
+.layui-layout-admin #larry-body {
+    top: 70px;
+    left: 203px;
+    height: calc(100% - 100px);
+    height: -moz-calc(100% - 100px);
+    height: -webkit-calc(100% - 100px);
+    margin: 0px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 1000;
+    border: none !important;
+    margin-left: -1px;
+    padding-bottom: 0px;
+    overflow: hidden;
+}
+
+.layui-layout-admin .layui-footer {
+    height: 33px;
+    padding: 5px 0;
+    line-height: 33px;
+    text-align: center;
+    background-color: #2F4056;
+    background: #393D49;
+    color: #666;
+    font-weight: 300;
+    border-top: 1px solid #393D49 !important;
+    z-index: 999;
+    bottom: 0px;
+    left: 203px;
+    z-index: 1000;
+}
+
+.logo {
+    width: 200px;
+    height: 65px;
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+}
+
+.logo img {
+    display: block;
+    width: 150px;
+    height: 35px;
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
+.header-menu .layui-main {
+    height: 70px;
+    top: 0px;
+    margin: 0px;
+}
+
+.header-menu .layui-main .side-menu-switch {
+    display: inline-block;
+    vertical-align: top;
+    width: 52px;
+    height: 65px;
+    margin: 0px;
+    padding: 0px;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+}
+
+.header-menu .layui-main .side-menu-switch span.switch {
+    display: block;
+    width: 27px;
+    height: 30px;
+    margin-top: 17px;
+    margin-left: 5px;
+    padding: 0px;
+    background: url('../img/menu.png') center center no-repeat;
+    background-color: #ffffff;
+    background-size: 100%;
+    cursor: pointer;
+}
+
+.header-menu .layui-main .side-menu-switch span.switch:hover {
+    background: url('../img/menu_o.png') center center no-repeat;
+    background-color: #ffffff;
+    background-size: 100%;
+}
+
+.header-menu .layui-main .larry-top-menu {
+    display: inline-block;
+    vertical-align: top;
+    width: auto;
+    height: 70px;
+    margin: 0px;
+    padding: 0px;
+    top: 0px;
+}
+
+.header-menu .layui-main ul.layui-nav {
+    height: 65px;
+    position: static;
+    padding: 0px;
+    background: transparent;
+}
+
+.header-menu .layui-main ul.layui-nav li.layui-nav-item {
+    line-height: 70px;
+}
+
+.header-menu .layui-main .layui-nav .layui-nav-item:hover {
+    border-bottom-color: #000;
+}
+
+.header-menu .layui-main .layui-nav .layui-nav-item a {
+    color: #D8D8D8;
+    padding-left: 13px;
+    padding-right: 13px;
+    font-size: 14px;
+    line-height: 60px;
+    position: relative;
+    cursor: pointer;
+}
+
+.header-menu .layui-main ul.layui-nav li.layui-nav-item a i {
+    line-height: 70px;
+    padding-right: 1px;
+}
+
+.header-menu .layui-main .layui-nav .layui-this {
+    background-color: #000;
+}
+
+.header-menu .layui-main .layui-nav .layui-nav-item a:hover, .header-menu .layui-main .layui-nav .layui-this a {
+    color: #ffffff;
+}
+
+.header-menu .layui-main ul.layui-nav .layui-this::after {
+    background: #1AA094;
+}
+
+.header-menu .layui-main .layui-nav-bar {
+    background-color: #393D49;
+}
+
+.larry-right-menu {
+    display: block;
+    vertical-align: top;
+    height: 65px;
+    top: 0px;
+    right: 0px;
+    z-index: 3;
+}
+
+.larry-right-menu button.layui-btn {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 18px;
+    margin-right: 5px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.larry-right-menu ul.layui-nav {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.larry-right-menu ul.layui-nav li.layui-nav-item a {
+    display: block;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    line-height: 60px;
+}
+
+.larry-right-menu ul.layui-nav li.layui-nav-item a i {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0px;
+    padding-right: 4px !important;
+}
+
+.larry-right-menu ul.layui-nav li.layui-nav-item a.kuaijiefangshi {
+    padding-right: 15px !important;
+}
+
+.larry-right-menu ul.layui-nav li.layui-nav-item a cite {
+    margin-right: 3px;
+    margin-left: 0px;
+}
+
+.larry-right-menu ul.layui-nav li.layui-nav-item a span.layui-nav-more {
+    display: inline-block;
+    vertical-align: middle;
+    top: 32px;
+    right: 0px;
+    margin-left: 5px;
+}
+
+.larry-right-menu ul.layui-nav li.layui-nav-item a span.layui-nav-mored {
+    top: 25px;
+}
+
+.larry-right-menu ul.layui-nav li.layui-nav-item dl.layui-nav-child {
+    top: 70px;
+    left: 0px;
+    width: 100%;
+    z-index: 99999;
+    padding-top: 8px;
+}
+
+.larry-right-menu ul.layui-nav li.layui-nav-item dl.layui-nav-child dd {
+    line-height: 35px;
+    text-align: center;
+    height: 35px;
+}
+
+.larry-right-menu ul.layui-nav li.layui-nav-item dl.layui-nav-child a {
+    height: 35px;
+    line-height: 35px;
+    padding-top: 0px;
+    text-align: center;
+    color: #333333;
+}
+
+.larry-right-menu ul.layui-nav li.layui-nav-item dl.layui-nav-child a:hover {
+    color: #ffffff;
+    background: #1AA094;
+}
+
+.larry-right-menu ul.layui-nav li.exit i {
+    margin-top: -2px;
+    margin-right: 0px;
+    padding-right: 1px;
+}
+
+.larry-right-menu ul.layui-nav:hover span.layui-nav-bar {
+    display: none;
+}
+
+.larry-right-menu ul.layui-nav li a:hover {
+    background: #000;
+}
+
+.layui-side-scroll {
+    padding-left: 0px;
+}
+
+.layui-side-scroll .user-info {
+    width: 200px;
+    height: auto;
+    padding: 0px;
+    padding-top: 15px;
+    padding-bottom: 8px;
+}
+
+.layui-side-scroll .user-info .photo {
+    display: block;
+    width: 76px;
+    height: 76px;
+    margin-left: 50px;
+    padding: 0px;
+}
+
+.layui-side-scroll .user-info .photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border: 4px solid #44576B;
+}
+
+.layui-side-scroll .user-info p {
+    display: block;
+    width: 100%;
+    height: 25px;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 25px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.layui-side-scroll a {
+    cursor: pointer;
+}
+
+.layui-side-scroll .sys-public-menu {
+    width: 200px;
+    padding-left: 0px;
+}
+
+.layui-side-scroll .sys-public-menu ul.layui-nav {
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+.layui-side-scroll ul.layui-nav li.layui-nav-item dl.layui-nav-child dd a {
+    /*display: inline-block;*/
+    vertical-align: top;
+    padding-left: 40px !important;
+    padding-right: 0px;
+}
+
+.layui-side-scroll ul.layui-nav li a i {
+    display: inline-block;
+    vertical-align: top;
+    padding-right: 5px;
+}
+
+.layui-body {
+    background: #F2F2F2;
+    overflow: hidden;
+}
+
+.layui-body .layui-tab {
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    border-left: 1px solid #e2e2e2;
+    background: #F1F2F7;
+    overflow: hidden;
+}
+
+.layui-tab .larry-title-box {
+    width: 100%;
+    height: 40px;
+    background: #fafafa;
+    margin-top: -1px;
+    position: relative;
+    border-bottom: 1px solid #1AA094;
+}
+
+.layui-tab .larry-title-box .key-press {
+    width: 40px;
+    height: 40px;
+    background: #FFFFFF;
+    border-right: 1px solid #E2E2E2;
+    cursor: pointer;
+    color: #009688;
+    text-align: center;
+}
+
+.layui-tab .larry-title-box .key-press i {
+    font-weight: bold;
+    color: #009688;
+    font-size: 20px;
+    line-height: 40px;
+}
+
+.layui-tab .larry-title-box .key-press:hover {
+    background: #f2f2f2;
+}
+
+.layui-tab .larry-title-box .go-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1005;
+}
+
+ul.layui-tab-title {
+    max-width: calc(100% - 160px);
+    height: 40px;
+    position: absolute;
+    top: 0px;
+    left: 41px;
+    background: #fafafa;
+    z-index: 1000;
+    overflow-y: hidden;
+    border-bottom: 1px solid #1AA094;
+}
+
+ul.layui-tab-title li {
+    background: #fafafa;
+}
+
+#admin-home {
+    padding: 0 12px;
+}
+
+/*ul.layui-tab-title li i {*/
+    /*display: inline-block;*/
+    /*vertical-align: top;*/
+    /*padding-right: 3px;*/
+    /*line-height: 40px;*/
+/*}*/
+
+ul.layui-tab-title li em {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 40px;
+}
+
+ul.layui-tab-title li:hover {
+    background: #f2f2f2;
+}
+
+ul.layui-tab-title .layui-this {
+    background: #009688;
+    color: #ffffff;
+    height: 40px;
+}
+
+ul.layui-tab-title .layui-this:hover {
+    background: #009688;
+}
+
+.layui-tab .larry-title-box .title-right {
+    width: 230px;
+    height: 40px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 1005;
+    background: #FFFFFF;
+    border-left: 1px solid #E5E5E5;
+}
+
+.layui-tab .larry-title-box .title-right .go-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.layui-tab .larry-title-box .title-right .refresh {
+    width: 68px;
+    position: absolute;
+    top: 0px;
+    left: 41px;
+    background: #5EB95E;
+}
+
+.layui-tab .larry-title-box .title-right .refresh i {
+    font-weight: normal;
+    font-size: 15px;
+    color: #ffffff;
+}
+
+.layui-tab .larry-title-box .title-right .refresh cite {
+    font-size: 15px;
+    line-height: 40px;
+    padding-left: 3px;
+    color: #ffffff;
+}
+
+.layui-tab .larry-title-box .title-right .refresh:hover {
+    background: #F7B824;
+}
+
+.layui-tab .larry-title-box .title-right .often {
+    width: 120px;
+    position: absolute;
+    top: 0px;
+    left: 109px;
+    background: #fafafa;
+    cursor: pointer;
+}
+
+.layui-tab .larry-title-box .title-right .often:hover {
+    background: #f2f2f2;
+    color: #333333;
+}
+
+.layui-tab .larry-title-box .title-right .often ul.layui-nav {
+    display: block;
+    width: 120px;
+    height: 100%;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    background: none;
+}
+
+.layui-tab .larry-title-box .title-right .often ul.layui-nav li.layui-nav-item {
+    width: 120px;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    top: 0px;
+    left: 0px;
+}
+
+.layui-tab .larry-title-box .title-right .often ul.layui-nav li.layui-nav-item a.top {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.often ul.layui-nav li.layui-nav-item a.top i {
+    display: inline-block;
+    width: 30px;
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    color: #555;
+}
+
+.often ul.layui-nav li.layui-nav-item a.top:hover i {
+    color: #FF784E;
+}
+
+.often ul.layui-nav li.layui-nav-item a.top cite {
+    display: inline-block;
+    width: 65px;
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    top: 0px;
+    left: 35px;
+    text-align: left;
+    color: #333333;
+}
+
+.often ul.layui-nav li.layui-nav-item a.top:hover cite {
+    color: #333333;
+}
+
+.often ul.layui-nav li.layui-nav-item a.top .layui-nav-more {
+    display: inline-block;
+    font-size: 16px;
+    position: absolute;
+    top: 18px;
+    left: 98px;
+}
+
+.often ul.layui-nav li.layui-nav-item a.top .layui-nav-mored {
+    position: absolute;
+    top: 10px;
+    left: 98px;
+}
+
+.often ul.layui-nav .layui-nav-bar {
+    display: none;
+}
+
+.often ul.layui-nav li.layui-nav-item dl.layui-nav-child {
+    width: 145px;
+    text-align: center;
+    position: absolute;
+    top: 42px;
+    left: -35px;
+    background: #ffffff;
+}
+
+.often ul.layui-nav li.layui-nav-item dl a {
+    display: inline-block;
+    vertical-align: top;
+    color: #333333;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 100%;
+    text-align: center;
+    line-height: 40px;
+}
+
+.often ul.layui-nav li.layui-nav-item dl a i {
+    display: inline-block;
+    vertical-align: top;
+    padding-right: 3px;
+    color: #333333;
+}
+
+.often ul.layui-nav li.layui-nav-item dl a:hover {
+    background: #5EB95E;
+    color: #ffffff;
+}
+
+.often ul.layui-nav li.layui-nav-item dl a:hover i {
+    color: #ffffff;
+}
+
+.often ul.layui-nav li.layui-nav-item dl dd.layui-this a {
+    color: #ffffff;
+}
+
+.often ul.layui-nav li.layui-nav-item dl dd.layui-this a i {
+    color: #ffffff;
+}
+
+.layui-tab .layui-tab-content {
+    margin: 0px;
+    padding: 0px;
+    background: #F1F2F7;
+}
+
+.layui-tab-content .layui-tab-item {
+    background: #F1F2F7;
+}
+
+.layui-tab-content .layui-tab-item iframe {
+    width: 100%;
+    border: 0;
+    height: 100%;
+}
+
+.layui-larry-foot .layui-main {
+    position: relative;
+}
+
+.layui-larry-foot .layui-main .left-box {
+    height: 100%;
+    width: auto;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    color: #ffffff;
+    font-size: 13px;
+    line-height: 30px;
+}
+
+.layui-larry-foot .layui-main .left-box img {
+    width: 90px;
+    height: 22px;
+    margin-top: -3px;
+}
+
+.layui-larry-foot .layui-main p {
+    color: #DDDDDD;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+@media screen and (max-width: 1200px) {
+    #larry-body {
+        background-color: lightblue;
+    }
+
+    .header-menu .larry-right-menu ul.layui-nav li.kjfs {
+        display: none;
+    }
+
+    #dianzhan {
+        display: none;
+    }
+}
+
+#layui-layer-shade1 .layui-layer-page {
+    overflow: hidden;
+}
+
+.layui-layer-content {
+    overflow: hidden;
+}
+
+.larry-theme-form {
+    width: 100%;
+    height: 270px;
+    padding-top: 30px;
+    display: block;
+    position: relative;
+    background: #f2f2f2;
+    overflow: hidden;
+}
+
+.larry-theme-form h3 {
+    display: block;
+    width: 450px;
+    height: 30px;
+    margin: 0 auto;
+    line-height: 30px;
+    text-align: center;
+    font-size: 22px;
+    color: #333333;
+}
+
+.larry-theme-con {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 25px;
+}
+
+.fullscreen .layui-form-switch {
+    width: 40px;
+}
+
+.layui-form-item {
+    margin-bottom: 25px;
+}
+
+.layui-form-item label {
+    position: static;
+    display: inline-block;
+    vertical-align: top;
+    width: 100px;
+    font-size: 14px;
+    text-align: right;
+}
+
+.layui-form-item .layui-input-block {
+    position: static;
+    display: inline-block;
+    vertical-align: top;
+    width: 230px;
+    margin-left: 10px !important;
+}
+
+.layui-form-switch em {
+    left: 28px;
+}
+
+.layui-form-switch i {
+    left: 8px;
+}
+
+.layui-form-onswitch em {
+    left: 8px;
+}
+
+.layui-form-onswitch i {
+    left: 28px;
+}
+
+.submit-form {
+    margin-top: 25px;
+}
+
+.submit-form button.larry-button {
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    margin-left: 60px;
+    margin-right: 55px;
+}
+
+.lock-screen {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #F1F2F7 url(../images/lockscreenbg.jpg) repeat fixed;
+    background-size: cover;
+    background-repeat: repeat;
+    z-index: 999999;
+}
+
+.lock-wrapper {
+    margin: 10% auto;
+    max-width: 400px;
+}
+
+#time {
+    width: 100%;
+    color: #fff;
+    font-size: 60px;
+    margin-bottom: 80px;
+    display: inline-block;
+    text-align: center;
+}
+
+.lock-box {
+    background: rgba(255, 255, 255, .3);
+    padding: 20px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    position: relative;
+    height: 215px;
+}
+
+.lock-wrapper img {
+    display: block;
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    left: 50%;
+    top: -45px;
+    margin-left: -45px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border: 5px solid #fff;
+}
+
+.lock-wrapper h1 {
+    display: block;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding: 50px 0 0 0;
+    margin-bottom: 23px;
+}
+
+.lock-wrapper .lock-form {
+    width: 100%;
+    height: 105px;
+}
+
+.lock-wrapper .lock-form .layui-form-item {
+    width: 100%;
+    height: 50px;
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 15px;
+}
+
+.lock-wrapper .lock-form .layui-form-item input[type='password'] {
+    width: 60%;
+    height: 40px;
+    margin: 0 auto;
+    border: solid 1px #E2E2E4;
+    cursor: auto;
+    font-size: 14px;
+    user-select: text;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+}
+
+.lock-wrapper .lock-form .layui-form-item button.layui-btn {
+    margin-left: 35%;
+}
+
+.lock-wrapper .lock-form .layui-form-item button.layui-btn:hover {
+    background: #F8C64F;
+}
+
+.larryTheme-larry {
+}
+
+.larryTheme-A .header-menu {
+    background: #0099cc;
+    border-bottom: none;
+    height: 65px;
+}
+
+.larryTheme-A .header-menu .layui-main {
+    height: 65px;
+}
+
+.larryTheme-A .header-menu .layui-main .side-menu-switch {
+    display: inline-block;
+    vertical-align: top;
+    width: 52px;
+    height: 65px;
+    margin: 0px;
+    padding: 0px;
+    top: 4px;
+    left: 0px;
+    overflow: hidden;
+}
+
+.larryTheme-A .header-menu .layui-main .larry-top-menu {
+    height: 65px;
+}
+
+.larryTheme-A .header-menu .layui-main ul.layui-nav li.layui-nav-item {
+    line-height: 65px;
+    height: 65px;
+}
+
+.larryTheme-A .header-menu .layui-main ul.layui-nav li.layui-nav-item a {
+    color: #ffffff;
+    line-height: 60px;
+}
+
+.larryTheme-A .header-menu .layui-main .layui-nav .layui-nav-item:hover {
+    background: #008fbf;
+}
+
+.larryTheme-A .header-menu .layui-main .layui-nav .layui-this {
+    background-color: #008fbf;
+    height: 65px;
+}
+
+.larryTheme-A .header-menu .layui-main ul.layui-nav .layui-this::after {
+    display: none;
+}
+
+.larryTheme-A .header-menu .layui-main ul.layui-nav span.layui-nav-bar {
+    display: none;
+    top: 56px;
+}
+
+.larryTheme-A .header-menu .layui-main #dianzhan {
+    background: #F7BF3A;
+}
+
+.larryTheme-A .larry-right-menu ul.layui-nav li.layui-nav-item dl.layui-nav-child {
+    top: 65px;
+    left: 0px;
+    width: 100%;
+    z-index: 99999;
+    padding-top: 8px;
+}
+
+.larryTheme-A .larry-right-menu ul.layui-nav li.layui-nav-item dl.layui-nav-child dd {
+    line-height: 35px;
+    text-align: center;
+    height: 35px;
+}
+
+.larryTheme-A .larry-right-menu ul.layui-nav li.layui-nav-item dl.layui-nav-child a {
+    height: 35px;
+    line-height: 35px;
+    padding-top: 0px;
+    text-align: center;
+    color: #333333;
+}
+
+.larryTheme-A .larry-right-menu {
+    height: 65px;
+}
+
+.larryTheme-A .larry-right-menu ul.layui-nav {
+    padding-top: 0px;
+}
+
+.larryTheme-A .larry-right-menu ul.layui-nav li {
+    margin-top: 0px;
+}
+
+.larryTheme-A .larry-right-menu ul.layui-nav li.layui-nav-item dl.layui-nav-child a:hover {
+    color: #fff;
+}
+
+.larryTheme-A .larry-right-menu ul.layui-nav li.layui-nav-item a:hover {
+    background: #008FBF;
+}
+
+.larryTheme-A .larry-right-menu ul.layui-nav:hover span.layui-nav-bar {
+    display: none;
+    opacity: 0 !important;
+}
+
+.larryTheme-A .header-menu .layui-this {
+    height: 56px;
+}
+
+.larryTheme-A .larrycms-left {
+    background: #22282e;
+    top: 65px;
+}
+
+.larryTheme-A .larrycms-left .layui-nav {
+    background: #22282e;
+}
+
+.larryTheme-A .larrycms-left .layui-nav li.layui-nav-item {
+    background: #22282e;
+}
+
+.larryTheme-A .larrycms-left .layui-nav li.layui-nav-item:hover {
+    background: #37424F;
+}
+
+.larryTheme-A .larrycms-left .layui-nav .layui-this a {
+    background: #0099cc;
+}
+
+.larryTheme-A .larrycms-left .layui-nav li.layui-nav-item dl {
+    background: #293038;
+}
+
+.larryTheme-A .larrycms-left .layui-nav li.layui-nav-item dl dd:hover {
+    background: #37424F;
+}
+
+.larryTheme-A .larrycms-left .layui-nav li.layui-nav-item dl dd.layui-this {
+    background: #0099CC;
+}
+
+.larryTheme-A #larry-body {
+    top: 65px;
+}
+
+.larryTheme-A #larry-body .larry-title-box ul.layui-tab-title .layui-this {
+    background: #5FB878;
+}
+
+.larryTheme-A .layui-footer {
+    background-color: #22282e;
+}
+
+.larryTheme-A .layui-layout-admin .layui-footer {
+    height: 39px;
+    line-height: 39px;
+}
+
+.larryTheme-B .header-menu {
+    background: #1ca794;
+    border-bottom: none;
+    height: 65px;
+}
+
+.larryTheme-B .header-menu .layui-main {
+    height: 65px;
+}
+
+.larryTheme-B .header-menu .layui-main .side-menu-switch {
+    display: inline-block;
+    vertical-align: top;
+    width: 52px;
+    height: 65px;
+    margin: 0px;
+    padding: 0px;
+    top: 4px;
+    left: 0px;
+    overflow: hidden;
+}
+
+.larryTheme-B .header-menu .layui-main .larry-top-menu {
+    height: 65px;
+}
+
+.larryTheme-B .header-menu .layui-main ul.layui-nav li.layui-nav-item {
+    line-height: 65px;
+    height: 65px;
+}
+
+.larryTheme-B .header-menu .layui-main ul.layui-nav li.layui-nav-item a {
+    color: #ffffff;
+    line-height: 60px;
+}
+
+.larryTheme-B .header-menu .layui-main .layui-nav .layui-nav-item:hover {
+    background: #17907f;
+}
+
+.larryTheme-B .header-menu .layui-main .layui-nav .layui-this {
+    background-color: #17907f;
+    height: 65px;
+}
+
+.larryTheme-B .header-menu .layui-main ul.layui-nav .layui-this::after {
+    display: none;
+}
+
+.larryTheme-B .header-menu .layui-main ul.layui-nav span.layui-nav-bar {
+    display: none;
+    top: 56px;
+}
+
+.larryTheme-B .larry-right-menu ul.layui-nav li.layui-nav-item dl.layui-nav-child dd {
+    line-height: 35px;
+    text-align: center;
+    height: 35px;
+}
+
+.larryTheme-B .larry-right-menu ul.layui-nav li.layui-nav-item dl.layui-nav-child a {
+    height: 35px;
+    line-height: 35px;
+    padding-top: 0px;
+    text-align: center;
+    color: #333333;
+}
+
+.larryTheme-B .larry-right-menu ul.layui-nav li a:hover {
+    background: #17907F;
+}
+
+.larryTheme-B .larry-right-menu ul.layui-nav {
+    padding-top: 0px;
+}
+
+.larryTheme-B .larry-right-menu ul.layui-nav:hover span.layui-nav-bar {
+    display: none;
+}
+
+.larryTheme-B .larry-right-menu ul.layui-nav li {
+    margin-top: 0px;
+}
+
+.larryTheme-B .larry-right-menu ul.layui-nav li.layui-nav-item dl.layui-nav-child a:hover {
+    color: #fff;
+}
+
+.larryTheme-B .layui-layout-admin .layui-footer {
+    height: 39px;
+    line-height: 39px;
+}
+
+.larryTheme-B .larrycms-left {
+    background: #1FBBA6;
+    top: 65px;
+}
+
+.larryTheme-B .larrycms-left .layui-nav {
+    background: #1FBBA6;
+}
+
+.larryTheme-B .larrycms-left .layui-nav li.layui-nav-item {
+    background: #1fbba6;
+}
+
+.larryTheme-B .larrycms-left .layui-nav li.layui-nav-item a {
+    color: #ffffff;
+}
+
+.larryTheme-B .larrycms-left .layui-nav li.layui-nav-item:hover {
+    background: #37424F;
+}
+
+.larryTheme-B .larrycms-left .layui-nav li.layui-nav-item .layui-this a {
+    background: #ffffff;
+    color: #1ca696;
+}
+
+.larryTheme-B .larrycms-left .layui-nav li.layui-nav-item .layui-this i.laryui-cion {
+    color: #1ca696;
+}
+
+.larryTheme-B .larrycms-left .layui-nav .layui-this a i {
+    color: #1ca696;
+}
+
+.larryTheme-B .larrycms-left .layui-nav li.layui-nav-item dl {
+    background: #D9E7E7;
+}
+
+.larryTheme-B .larrycms-left .layui-nav li.layui-nav-item dl dd:hover {
+    background: #17907f;
+}
+
+.larryTheme-B .larrycms-left .layui-nav li.layui-nav-item dl dd.layui-this {
+    background: #ffffff;
+}
+
+.larryTheme-B .larrycms-left .layui-nav li.layui-nav-item dl dd.layui-this a {
+    color: #1ca696;
+}
+
+.larryTheme-B .larrycms-left .layui-nav li.layui-nav-item dl dd.layui-this a i {
+    color: #1ca696;
+}
+
+.larryTheme-B #larry-body {
+    top: 65px;
+}
+
+.larryTheme-B #larry-body .larry-title-box ul.layui-tab-title .layui-this {
+    background: #5FB878;
+}
+
+.larryTheme-B .layui-footer {
+    background-color: #22282e;
+}
+
+.larryTheme-C .header-menu {
+    background: #2F4056;
+}
+
+.larryTheme-C .larrycms-left {
+    background: #2F4056;
+}
+
+.larryTheme-C .layui-footer {
+    background-color: #2F4056;
+}
+
+.larryTheme-C .layui-layout-admin .layui-footer {
+    height: 39px;
+    line-height: 39px;
+}
+
+body iframe {
+    background: #F1F2F7;
+}

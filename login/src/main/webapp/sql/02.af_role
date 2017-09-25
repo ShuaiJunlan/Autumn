@@ -1,0 +1,15 @@
+DROP TABLE IF EXISTS af_role;
+CREATE TABLE af_role(
+  id            INT(8)         NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '主键自增',
+  role_name     VARCHAR(16)   NOT NULL COMMENT '角色名称',
+  status        INT(1)         NOT NULL COMMENT '表示角色的状态，0无效， 1表示有效',
+  creator       VARCHAR(16)   NOT NULL COMMENT '创建者',
+  creator_id    INT(8)         NOT NULL COMMENT '创建者id',
+  create_time   DATETIME      NOT NULL COMMENT '创建时间',
+  modifier      VARCHAR(16)   NOT NULL COMMENT '修改者',
+  mofifier_id   INT(16)        NOT NULL COMMENT '修改者id',
+  modifier_time DATETIME      NOT NULL COMMENT '修改时间',
+  CONSTRAINT user_id_FK_KEY_creator_id FOREIGN KEY (creator_id) REFERENCES af_user(id),
+  CONSTRAINT user_id_FK_KEY_modifier_id FOREIGN KEY (mofifier_id) REFERENCES af_user(id)
+);
+COMMIT ;

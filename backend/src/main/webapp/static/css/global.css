@@ -1,0 +1,117 @@
+@charset "utf-8";
+/**
+ * @Author: Larry  2017-04-16 17:20:56
+ *+----------------------------------------------------------------------
+ *| LarryBlogCMS [ LarryCMS网站内容管理系统 ]
+ *| Copyright (c) 2016-2017 http://www.larrycms.com All rights reserved.
+ *| Version 1.09
+ *| <313492783@qq.com>
+ *+----------------------------------------------------------------------
+ */
+/* initialize css */
+html{padding:0px}
+html{background-color: #ffffff; }
+/*html,body{overflow-x: hidden; overflow-y: hidden;}*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,select,p,blockquote,th,td,span,a{margin:0;padding:0;}
+body{font-size:12px;font-family: "微软雅黑","Microsoft YaHei","Microsoft YaHei UI", "Segoe UI", Arial, Verdana, Sans-Serif, sans-serif;}
+em{font-style:normal}
+address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal;}
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary {display: block;}
+audio,canvas,video {display: inline-block;}
+audio:not([controls]) {display: none;height: 0;}
+[hidden] {display: none;}
+abbr[title] {border-bottom: 1px dotted;}
+b,strong {font-weight: bold;}
+pre {white-space: pre;white-space: pre-wrap;word-wrap: break-word;}
+a{text-decoration: none;color: #333333;font-family: "Microsoft YaHei";}
+a:hover{text-decoration: none;}
+fieldset,img{border:0;}
+ol,ul,li { list-style:none;}
+del,ins{text-decoration:none;}
+sub,sup {font-size: 75%;line-height: 0;position: relative;vertical-align: baseline;}
+sup {top: -0.5em;}
+sub {bottom: -0.25em;}
+address,button,caption,cite,code,dfn,em,input,optgroup,option,select,strong,textarea,th,var{font:inherit;}
+input[type="checkbox"],input[type="radio"] {box-sizing: border-box; /* 1 */padding: 0; /* 2 */}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration {-webkit-appearance: none;}
+input,select{height:20px;font-size:12px;line-height:20px;}
+button::-moz-focus-inner,input::-moz-focus-inner {border: 0;padding: 0;}
+textarea {overflow: auto; /* 1 */vertical-align: top; /* 2 */}
+table{border-collapse: collapse;border-spacing: 0;}
+caption,th{text-align:left;}
+button,html input[type="button"],
+input[type="reset"],input[type="submit"] {-webkit-appearance: button;
+cursor: pointer;
+}
+a:active {outline: none;star:expression(this.onFocus=this.blur());}
+a,a:hover,a:focus{text-decoration:none;outline:none;-webkit-transition:all 0.3s;transition:all 0.3s;-moz-transition:all 0.3s;-o-transition:all 0.3s;}
+::selection{background:#1E9FFF;color:#fff;}
+::-moz-selection{background:#1E9FFF;color:#fff;}
+h1,h2,h3,h4,h5,h6,a,p,span{font-family: "微软雅黑","Microsoft YaHei","Microsoft YaHei UI","Hiragino Sans GB W3","Segoe UI", Arial, Verdana, Sans-Serif, sans-serif;}
+pre{padding: 10px 15px; margin: 10px 0; font-size: 12px; border-left: 6px solid #009688;  background-color: #F2F2F2; font-family: Courier New; overflow: auto;}
+/* 清除浮动样式 */
+.clearfix:after {content: "."; display: block; height:0; clear:both; visibility: hidden;}
+.clearfix { *zoom:1; }
+
+.posr{position: relative;}
+.posb{position: absolute;}
+.posc{position: static;}
+.posf{position: fixed;}
+i{font-style: normal;font-size: 16px;}
+
+/* cmsMessage css */
+.larrycms-message{
+	width: 100%;
+	height: auto;
+	border: none;
+	padding: 0px;
+	margin: 0px;
+	background: #5EB95E;
+	overflow:hidden;
+	border-radius: 3px;
+	border: none;
+}
+.larrycms-message::after{
+	display: none !important;
+}
+.larrycms-message .message-con{
+	padding: 20px;
+	/* border: 1px solid red; */
+	height: auto;
+}
+.larrycms-message .message-con i.larry-icon{
+	display: block;
+	vertical-align: middle;
+	float: left;
+	width: 50px;
+	height: 100%;
+	line-height: 100%;
+	font-size: 45px;
+	color: #ffffff;
+}
+.larry-message-error{
+	background: #FF5722;
+}
+.larry-message-tips{
+	background: #F7B824;
+}
+.larrycms-message .message-con .resultmsg{
+	display: inline-block;
+	vertical-align: middle;
+	height: auto;
+	color: #ffffff;
+	font-size: 24px;
+	font-family: "Microsoft YaHei";
+	margin-left: 20px;
+	line-height: 45px;
+	float: left;
+	/* border: 1px solid red; */
+}
+.addWidth .message-con .resultmsg{
+	width: calc(100% - 90px);
+	width: -moz-calc(100% - 90px);
+	width: -webkit-calc(100% - 90px);
+}
+.larry-message-tips .message-con .resultmsg{
+	font-size: 20px;
+}

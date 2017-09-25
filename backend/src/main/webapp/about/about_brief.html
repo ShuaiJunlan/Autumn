@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>后台管理系统-关于我们</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="后台管理系统-关于我们">
+    <meta name="description" content="致力于提供通用版本后台管理解决方案">
+    <link rel="shortcut icon" href="/static/img/favicon.ico">
+    <link rel="stylesheet" href="/static/layui_v2/css/layui.css">
+    <link rel="stylesheet" href="/static/css/about.css">
+    <script src="/static/layui_v2/layui.js"></script>
+</head>
+
+<body>
+<div class="main fly-user-main layui-clear">
+    <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
+        <li class="layui-nav-item layui-this">
+            <a href="about_brief.html">
+                <i class="layui-icon">&#xe609;</i>
+                项目简介
+            </a>
+        </li>
+
+        <li class="layui-nav-item">
+            <a href="about_license.html">
+                <i class="layui-icon">&#xe6b2;</i>
+                关于版权
+            </a>
+        </li>
+        <li class="layui-nav-item ">
+            <a href="about_log.html">
+                <i class="layui-icon">&#xe60a;</i>
+                更新日志  <span class="layui-badge-dot" id="log-dot"></span>
+                <!--时间 -->
+                <div id="curDate" style="display: none;">2017-08-27</div>
+            </a>
+
+        </li>
+    </ul>
+
+    <div class="fly-panel fly-panel-user layui-anim layui-anim-upbit" pad20>
+            <div class="layui-tab layui-tab-brief" lay-filter="user" id="LAY_msg" style="margin-top: 15px;">
+                <blockquote class="layui-elem-quote title">项目简介</blockquote>
+                <div class="layui-elem-quote layui-quote-nm" style="border-width: 1px;">
+                    项目简介:
+                    <hr class="layui-bg-green">
+                    <p>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        contentManagerSystem(后台管理系统)框架模板,通过此系统可以方便快捷的管理，发布，维护网站内容,大家可以在此基础上根据实际业务场景自行扩展。
+                    </p>
+                    <p>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        一直以来都想做一套比较完善的后台管理系统，但都抽不出时间来，这次终于下定决心开写，尽管只能靠业余时间来写，尽管还不完善，但坚持下去，该有的都会有，我自己会一直维护,每月至少
+                        更新两次版本，源码也无偿贡献给大家，具体可以到《关于版权》一栏下载.
+
+                    </p>
+
+                    <br>
+                    <p>技术选型:</p>
+                    <hr class="layui-bg-green">
+                    <p>
+                        <ul style="margin-left: 12px;">
+                            <li>1.前端框架采用：layui2.x(经典模块化前端框架)支撑.</li>
+                            <li>2.后端框架采用：SpringBoot maven 构建整个项目.</li>
+                            <li>3.apacheShiro 用户登陆权限验证.</li>
+                            <li>4.mybatis+druid+mysql数据持久化.</li>
+                        </ul>
+
+                    </p>
+                    <br>
+                    <p>主要功能:</p>
+                    <hr class="layui-bg-green">
+                    <p>
+                        <ul style="margin-left: 12px;">
+                            <li>1.菜单管理:支持三级菜单新增修改、菜单导出、菜单失效，按钮级别权限控制，根据登陆用户动态菜单显示控制.</li>
+                            <li>2.角色管理:支持角色新增、修改、查询、导出、失效、批量失效、角色tree菜单展示赋权.</li>
+                            <li>3.用户管理:支持用户新增、修改、查询、导出、失效、批量失效,用户分配角色功能</li>
+                        </ul>
+                    </p>
+                    <br>
+                    <p>联系作者:</p>
+                    <hr class="layui-bg-green">
+                    <ul style="margin-left: 12px;">
+                        <li>qq:873559947</li>
+                        <li>微信:yxb873559947</li>
+                        <li>qq交流群:187568013</li>
+                        <li>如果您觉得此项目对您有所帮助，那么请戳这里，
+                            <a class="layui-btn layui-btn-mini layui-btn-danger" target="_blank" href="http://fly.layui.com/case/u/5849928">我要点赞</a>给作者点个赞。
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    </div>
+</div>
+<script type="text/javascript">
+    /**工具类*/
+    layui.use('util', function(){
+        var util = layui.util;
+
+        /**fixBar*/
+        util.fixbar({
+            bar1: true,
+            bgcolor: '#009688',
+            click: function(type){
+                if(type === 'bar1'){
+                    window.open("http://www.yangxiaobing.org");
+                }
+            }
+        });
+        /**5天后清除徽章*/
+        var curDate = new Date(layui.$("#curDate").text());
+        var endTime=new Date(curDate.setDate(curDate.getDate()+5)).getTime();
+        var serverTime = new Date().getTime();
+
+        util.countdown(endTime, serverTime, function(date, serverTime, timer){
+            //倒计时结束取消徽章
+            if(date[0] == 0 && date[1] == 0 &&　date[2] == 0 && date[3] == 0){
+                layui.$("#log-dot").removeClass('layui-badge-dot')
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

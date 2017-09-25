@@ -1,0 +1,18 @@
+<div class="layui-btn-group demoTable">
+    <button class="layui-btn" data-type="addMenu">
+        <i class="layui-icon">&#xe608;</i> 添加菜单
+    </button>
+    <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
+    <button class="layui-btn" data-type="getCheckLength">获取选中数目</button>
+    <button class="layui-btn" data-type="isAll">验证是否全选</button>
+</div>
+
+<table class="layui-table" lay-filter="menu" id="menu_table">
+
+</table>
+
+<script type="text/html" id="bar">
+    <a class="layui-btn layui-btn-primary layui-btn-mini" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+</script>

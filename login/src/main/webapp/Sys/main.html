@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Autumn Framework</title>
+    <link rel="stylesheet" href="../Lib/layui_v2.1.2/css/layui.css">
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">Autumn Framework</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left" id="top_menu">
+
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="userimg/RCzsdCq.jpg" class="layui-nav-img" id="MenuManage">
+                    贤心
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退了</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test" id="left_menu">
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body" id="body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">内容主体区域</div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © shuaijunlan.cn - 底部固定区域
+    </div>
+</div>
+<script src="../Lib/layui_v2.1.2/layui.js"></script>
+<script src="../Lib/jquery/jquery-3.2.1.min.js"></script>
+<script src="../BasePlu/Base.js"></script>
+<script src="js/main.js"></script>
+<script src="plugin/sys/sys.js"></script>
+<script src="plugin/MenuManage/MenuManage.js"></script>
+<!--<script src="js/test_09_03.js"></script>-->
+<script>
+
+</script>
+</body>
+</html>
