@@ -19,7 +19,7 @@ public class SysServiceImpl implements ISysService {
     @Autowired
     ISysMapper iSysMapper;
     @Override
-    public List<SysMenu> getMenuBySys(Integer sys) {
+    public List<SysMenu> getMenuBySys(String sys) {
         List<SysMenu> sysMenuList = new ArrayList<>();
         try {
             sysMenuList = iSysMapper.getMenuBySys(sys);

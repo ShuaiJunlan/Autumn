@@ -9,5 +9,5 @@ import java.util.List;
  * @date Created on 20:36 2017/9/4.
  */
 public interface ISysService {
-    List<SysMenu> getMenuBySys(Integer sys);
+    List<SysMenu> getMenuBySys(String sys);
 }

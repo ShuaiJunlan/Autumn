@@ -6,7 +6,7 @@ $(function () {
     layui.use('layer', function(){
         layer = layui.layer;
     });
-    var sys = 1
+    var sys = "01"
     Fv.ajax.get("/sys/getMenu/" + sys, {}, function (data) {
         main.menu.left_menu(data, "#left_menu");
         main.menu.top_menu(data, "#top_menu");

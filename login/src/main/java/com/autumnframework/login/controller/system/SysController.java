@@ -21,7 +21,7 @@ public class SysController {
     private ISysService iSysService;
     @RequestMapping(value = "/getMenu/{sys}")
     @ResponseBody
-    public List<SysMenu> getMenuBySys(@PathVariable("sys") Integer sys){
+    public List<SysMenu> getMenuBySys(@PathVariable("sys") String sys){
         return iSysService.getMenuBySys(sys);
     }
 }

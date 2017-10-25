@@ -15,3 +15,5 @@ CREATE TABLE af_user_role(
   CONSTRAINT user_id_FK_ID_modifier_id FOREIGN KEY (modifier_id) REFERENCES af_user(id)
 );
 COMMIT ;
+INSERT INTO af_user_role(user_id, role_id, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES (-1, 1, 'admin', -1, now(), 'admin', -1, now());
+COMMIT ;

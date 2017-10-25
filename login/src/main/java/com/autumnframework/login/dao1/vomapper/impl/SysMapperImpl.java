@@ -24,12 +24,12 @@ public class SysMapperImpl implements ISysMapper {
     ComboPooledDataSource comboPooledDataSource;
 
     @Override
-    public List<SysMenu> getMenuBySys(Integer sys) throws SQLException {
-        String sql_select_funcgrp = "SELECT * FROM af_funcgrp WHERE type = 'menu' AND sys = ? ORDER BY disporder";
+    public List<SysMenu> getMenuBySys(String sys) throws SQLException {
+        String sql_select_funcgrp = "SELECT * FROM af_funcgrp WHERE type = 'sysMenu' AND sys = ? ORDER BY disporder";
         String sq_select_func = "SELECT * FROM af_func WHERE grp_name = ? ORDER BY disporder";
         Connection connection = comboPooledDataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql_select_funcgrp);
-        statement.setInt(1, sys);
+        statement.setString(1, sys);
         ResultSet resultSet = statement.executeQuery();
         List<SysMenu> sysMenuList = new ArrayList<>();
         while (resultSet.next()){

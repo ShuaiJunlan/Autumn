@@ -8,7 +8,7 @@ $('#MenuManage').on('click', function () {
         ,async:false
     });
     $("#body").empty();
-    $("#body").load('plugin/MenuManage/MenuManage.html');
+    $("#body").load('/Sys/plugin/MenuManage/MenuManage.html');
     layui.use('table', function(){
         var level = 1;
         var table = layui.table;
@@ -75,7 +75,7 @@ $('#MenuManage').on('click', function () {
             }
             ,addMenu : function () {
                 //Ajax获取
-                $.post('plugin/MenuManage/AddMenu/AddMenu.html', {}, function(str){
+                $.post('/Sys/plugin/MenuManage/AddMenu/AddMenu.html', {}, function(str){
                     layer.open({
                         type: 1
                         ,title : "添加菜单"

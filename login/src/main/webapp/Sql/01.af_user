@@ -11,4 +11,6 @@ CREATE TABLE af_user(
   modifier VARCHAR(16) NOT NULL COMMENT '修改者',
   modifier_id INT(8) NOT NULL COMMENT '修改者id',
   modifier_time DATETIME NOT NULL COMMENT '修改时间'
-)
+);
+INSERT INTO af_user(id, user_login_name, username, password, status, creator, creator_id, create_time, modifier, modifier_id, modifier_time)VALUES (-1, 'admin', 'admin', 'admin', 1, 'admin', -1, now(),'admin', -1, now());
+COMMIT ;

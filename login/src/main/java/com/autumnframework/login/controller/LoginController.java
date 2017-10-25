@@ -34,7 +34,7 @@ public class LoginController extends BasicController{
      **/
     @RequestMapping("/loginProxy.do")
     public String toLoginProxy() {
-        return "main/loginProxy";
+        return "login";
     }
 
     /**

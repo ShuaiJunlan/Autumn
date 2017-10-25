@@ -36,10 +36,12 @@ public class MenuManageMapperImpl implements IMenuManageMapper {
             voMenu.setLevel(level + "级菜单");
             voMenu.setName(resultSet.getString("namec"));
             voMenu.setSys(resultSet.getInt("sys"));
-            if (level == 1)
+            if (level == 1) {
                 voMenu.setParent_name("");
-            else if (level == 2)
+            }
+            else if (level == 2) {
                 voMenu.setParent_name(resultSet.getString("grp_name"));
+            }
             voMenu.setStatus("");
             voMenu.setType("");
             voMenuList.add(voMenu);
@@ -53,10 +55,12 @@ public class MenuManageMapperImpl implements IMenuManageMapper {
         Connection connection = comboPooledDataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql);
         ResultSet resultSet = statement.executeQuery();
-        if (resultSet.next())
+        if (resultSet.next()) {
             return resultSet.getInt("num");
-        else
+        }
+        else{
             return 0;
+        }
     }
 
 

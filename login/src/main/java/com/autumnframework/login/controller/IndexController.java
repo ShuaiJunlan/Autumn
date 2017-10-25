@@ -53,7 +53,7 @@ public class IndexController extends BasicController {
      */
     @RequestMapping("/index.do")
     public String toIndexPage() {
-        return "main/index";
+        return "main/main";
     }
 
     /**
@@ -62,7 +62,7 @@ public class IndexController extends BasicController {
      */
     @RequestMapping("/home.do")
     public String toHomePage() {
-        return "main/home";
+        return "main/main";
     }
 
     /**
