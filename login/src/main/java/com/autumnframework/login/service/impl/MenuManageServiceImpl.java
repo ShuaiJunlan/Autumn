@@ -1,8 +1,7 @@
 package com.autumnframework.login.service.impl;
 
 
-import com.alibaba.fastjson.JSONObject;
-import com.autumnframework.login.dao1.vomapper.interfaces.IMenuManageMapper;
+import com.autumnframework.login.dao.vomapper.interfaces.IMenuManageMapper;
 import com.autumnframework.login.extern.constant.ResponseCode;
 import com.autumnframework.login.extern.utils.ResponseMsgUtil;
 import com.autumnframework.login.model.bo.DataPageResponseMsg;
@@ -30,10 +29,12 @@ public class MenuManageServiceImpl implements IMenuManageService {
         List<VoMenu> voMenuList = new ArrayList<>();
         int count = 0;
         try {
-            if (level == 1)
+            if (level == 1){
                 count = iMenuManageMapper.count("af_funcgrp");
-            else if (level == 2)
+            }
+            else if (level == 2) {
                 count = iMenuManageMapper.count("af_func");
+            }
             voMenuList = iMenuManageMapper.getMenuByPage(page, limit, level);
         } catch (SQLException e) {
             e.printStackTrace();

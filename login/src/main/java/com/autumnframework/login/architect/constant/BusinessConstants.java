@@ -42,8 +42,8 @@ package com.autumnframework.login.architect.constant;
 public enum BusinessConstants {
 
 	/**用户状态*/
-	SYS_USER_STATUS_0(0,"0-有效"),
-	SYS_USER_STATUS_1(1,"1-失效"),
+	SYS_USER_STATUS_0(0,"0-无效"),
+	SYS_USER_STATUS_1(1,"1-有效"),
 
 
 

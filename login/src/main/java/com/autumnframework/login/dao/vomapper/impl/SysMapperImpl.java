@@ -1,6 +1,6 @@
-package com.autumnframework.login.dao1.vomapper.impl;
+package com.autumnframework.login.dao.vomapper.impl;
 
-import com.autumnframework.login.dao1.vomapper.interfaces.ISysMapper;
+import com.autumnframework.login.dao.vomapper.interfaces.ISysMapper;
 import com.autumnframework.login.model.vo.SysMenu;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.springframework.beans.factory.annotation.Autowired;

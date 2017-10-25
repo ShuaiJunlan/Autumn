@@ -30,14 +30,14 @@
  * - License: GNU Lesser General Public License (GPL)
  * - source code availability: http://git.oschina.net/yangxiaobing_175/contentManagerSystem
  */
-package com.autumnframework.login.service;
+package com.autumnframework.login.service.impl;
 
 
 import com.autumnframework.login.architect.constant.BusinessConstants;
 import com.autumnframework.login.architect.constant.BussinessCode;
 import com.autumnframework.login.architect.utils.KeyConfig;
 import com.autumnframework.login.architect.utils.ResponseMsgUtil;
-import com.autumnframework.login.dao.ResourceMapper;
+import com.autumnframework.login.dao.bomapper.ResourceMapper;
 import com.autumnframework.login.domain.bo.ResponseMsg;
 import com.autumnframework.login.domain.bo.Tree;
 import com.autumnframework.login.domain.dto.ResourceChildrenMenuDto;
@@ -62,7 +62,7 @@ import java.util.*;
 @Service
 public class ResourceService {
 	
-	private  Log log = LogFactory.getLog(ResourceService.class);
+	private Log log = LogFactory.getLog(ResourceService.class);
 	@Autowired
 	private ResourceMapper resourceMapper;
 
@@ -233,7 +233,7 @@ public class ResourceService {
                 resourceMapper.updateByPrimaryKeySelective(res);
             }
 
-          
+
 
         } catch (Exception e) {
             log.error("保存菜单信息方法内部错误",e);

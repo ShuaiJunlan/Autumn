@@ -1,6 +1,6 @@
 package com.autumnframework.login.service.impl;
 
-import com.autumnframework.login.dao1.vomapper.interfaces.ISysMapper;
+import com.autumnframework.login.dao.vomapper.interfaces.ISysMapper;
 import com.autumnframework.login.model.vo.SysMenu;
 import com.autumnframework.login.service.interfaces.ISysService;
 import org.springframework.beans.factory.annotation.Autowired;

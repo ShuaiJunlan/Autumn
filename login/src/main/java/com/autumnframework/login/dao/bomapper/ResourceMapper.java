@@ -30,7 +30,7 @@
  * - License: GNU Lesser General Public License (GPL)
  * - source code availability: http://git.oschina.net/yangxiaobing_175/contentManagerSystem
  */
-package com.autumnframework.login.dao;
+package com.autumnframework.login.dao.bomapper;
 
 
 import com.autumnframework.login.domain.dto.ResourceMenuDto;

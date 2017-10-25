@@ -1,6 +1,6 @@
 package com.autumnframework.login.shiroconfig.filter;
 
-import com.autumnframework.login.dao.ResourceMapper;
+import com.autumnframework.login.dao.bomapper.ResourceMapper;
 import com.autumnframework.login.domain.vo.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;

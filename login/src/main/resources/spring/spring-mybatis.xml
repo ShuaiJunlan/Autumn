@@ -35,9 +35,9 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="jdbcDataSource"/>
         <property name="configLocation" value="classpath:spring/Mybatis-Configuration.xml"/>
-        <property name="typeAliasesPackage" value="com.autumnframework.login.domain"/>
+        <property name="typeAliasesPackage" value="com.autumnframework.login.model"/>
         <!-- 扫描sql配置文件：mapper需要的xml文件 -->
-        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <property name="mapperLocations" value="classpath:mapperxml/*.xml"/>
     </bean>
 
     <!--配置扫描dao接口包，动态实现Dao接口，并注入到spring容器中-->
@@ -45,7 +45,7 @@
         <!--注入sqlSessionFactory-->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <!--给出扫描DAO接口包-->
-        <property name="basePackage" value="com.autumnframework.login.dao"/>
+        <property name="basePackage" value="com.autumnframework.login.dao.bomapper"/>
     </bean>
-    <context:component-scan base-package="com.autumnframework.login.dao1"/>
+    <context:component-scan base-package="com.autumnframework.login.dao.vomapper"/>
 </beans>

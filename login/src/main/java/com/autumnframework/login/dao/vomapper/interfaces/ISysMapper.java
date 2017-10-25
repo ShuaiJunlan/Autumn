@@ -1,4 +1,4 @@
-package com.autumnframework.login.dao1.vomapper.interfaces;
+package com.autumnframework.login.dao.vomapper.interfaces;
 
 import com.autumnframework.login.model.vo.SysMenu;
 

@@ -33,9 +33,9 @@
 package com.autumnframework.login.shiroconfig.realm;
 
 import com.autumnframework.login.domain.vo.Resource;
-import com.autumnframework.login.domain.vo.User;
-import com.autumnframework.login.service.ResourceService;
-import com.autumnframework.login.service.UserService;
+import com.autumnframework.login.model.po.User;
+import com.autumnframework.login.service.impl.ResourceService;
+import com.autumnframework.login.service.impl.UserServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -43,12 +43,10 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.cache.Cache;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -68,7 +66,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 
     @Autowired
     @Lazy
-    private UserService userService;
+    private UserServiceImpl userService;
     @Autowired
     @Lazy
     private ResourceService resourceService;
@@ -96,9 +94,9 @@ public class ShiroDbRealm extends AuthorizingRealm {
             throw new AccountException("用户信息为空");
         }
         log.debug("authenticationCachingEnabled:" + super.isAuthenticationCachingEnabled());
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getUserPassword(), getName());
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getUser_login_name(), getName());
         if (null != info) {
-            log.info("用户认证通过:登陆用户名:" + user.getUserLoginName());
+            log.info("用户认证通过:登陆用户名:" + user.getUser_login_name());
             return info;
         }
 
@@ -122,18 +120,18 @@ public class ShiroDbRealm extends AuthorizingRealm {
         }
 
         User user = (User) getAvailablePrincipal(principals);
-        log.info("加载用户权限信息，当前登陆用户名:" + user.getUserLoginName());
-        log.info("load user information:" + user.getUserLoginName());
+        log.info("加载用户权限信息，当前登陆用户名:" + user.getUser_login_name());
+        log.info("load user information:" + user.getUser_login_name());
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         //如果登陆用户是admin,拥有所有权限
-        if(user.getUserLoginName().equals("admin")){
+        if(user.getUser_login_name().equals("admin")){
             List<Resource> resList = resourceService.selectResUrlAllList();
             for (Resource resource : resList) {
                 info.addStringPermission(resource.getResModelCode());
 
             }
         }else{
-            List<Resource> resUserList = resourceService.selectResListByUserId(user.getUserId());
+            List<Resource> resUserList = resourceService.selectResListByUserId(user.getId());
             for (Resource resUser : resUserList) {
                 info.addStringPermission(resUser.getResModelCode());
             }

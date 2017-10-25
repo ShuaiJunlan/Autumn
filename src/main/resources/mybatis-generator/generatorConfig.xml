@@ -21,11 +21,11 @@
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.autumnframework.login.mapperxml"  targetProject="\login\src\main">
+        <sqlMapGenerator targetPackage="mapperxml" targetProject="\login\src\main">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.autumnframework.login.dao1"  targetProject="\login\src\main\java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.autumnframework.login.dao" targetProject="\login\src\main\java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
