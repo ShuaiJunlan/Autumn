@@ -25,7 +25,7 @@ var main = {
                     var level_two = "<dl class=\"layui-nav-child\">";
                     var temp_;
                     for (var j = 0; j < data[i].child_num; j++){
-                        temp_ =  "<dd><a href=\""+ data[i].childes[j].href +"\">" + data[i].childes[j].menu_name +"</a></dd>";
+                        temp_ =  "<dd><a id=\""+ data[i].childes[j].href +"\">" + data[i].childes[j].menu_name +"</a></dd>";
                         level_two += temp_;
                     }
                     level_one += level_two;

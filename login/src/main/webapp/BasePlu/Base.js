@@ -217,6 +217,23 @@ Fv.ajax = {
                 errorFunc();
             }
         })
+    },
+    syncGet: function(svr, paras, succFunc, errorFunc) {
+        $.ajax({
+            type: "GET",
+            url: svr,
+            dataType: "json",
+            data: paras,
+            cache: true,
+            async: false,
+            success: function (data, paras) {
+                var ret = data;
+                succFunc(ret, paras);
+            },
+            error: function () {
+                errorFunc();
+            }
+        })
     }
 };
 
@@ -232,7 +249,6 @@ Fv.ajax.loadJs = function (a) {
     // {
     //     a.onLoad && a.onLoad.call()
     // };
-
 };
 Fv.ajax.loadCss = function (a) {
     var b = document.getElementsByTagName("head")[0];
@@ -372,41 +388,11 @@ Fv.plugin.loadPlu = function (a) {
  */
 namespace("Fv.msg");
 Fv.msg.delete = function (id) {
-    //取容器，取body会影响load其他div
-    //取最后一个container，一般情况下最后一个container是最里层的，即按钮所在层
-    var container = document.getElementsByClassName("container");
-    container = container[container.length - 1];
 
-    var str = "<div class=\"modal fade\" id=" + id + " tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">"
-        + " <div class=\"modal-dialog\"> <div class=\"modal-content\">"
-        + " <div class=\"modal-header\"><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">"
-        + " </button><h4 class=\"modal-title\">确认删除</h4></div><div class=\"modal-body\"><div><h5>确认删除该条信息？</h5>"
-        + " </div></div><div class=\"modal-footer\">"
-        + " <button id=\"" + id + "DeleteCancel\" type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消</button>"
-        + " <button id=\"" + id + "DeleteOk\" type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\">"
-        + " 确认</button></div></div></div></div>";
-
-    //添加到容器末尾
-    container.innerHTML += str;
 };
 
 Fv.msg.submit = function (id) {
-    //取容器，取body会影响load其他div
-    //取最后一个container，一般情况下最后一个container是最里层的，即按钮所在层
-    var container = document.getElementsByClassName("container");
-    container = container[container.length - 1];
 
-    var str = "<div class=\"modal fade\" id=" + id + " tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">"
-        + " <div class=\"modal-dialog\"> <div class=\"modal-content\">"
-        + " <div class=\"modal-header\"><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">"
-        + " </button><h4 class=\"modal-title\">确认发布</h4></div><div class=\"modal-body\"><div><h5>确认发布？</h5>"
-        + " </div></div><div class=\"modal-footer\">"
-        + " <button id=\"" + id + "SubmitCancel\" type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消</button>"
-        + " <button id=\"" + id + "SubmitOk\" type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\">"
-        + " 确认</button></div></div></div></div>";
-
-    //添加到容器末尾
-    container.innerHTML += str;
 };
 
 /**

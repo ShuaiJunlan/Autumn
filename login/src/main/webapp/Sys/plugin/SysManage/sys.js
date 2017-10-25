@@ -6,8 +6,8 @@ $(function () {
     layui.use('layer', function(){
         layer = layui.layer;
     });
-    var sys = "01"
-    Fv.ajax.get("/sys/getMenu/" + sys, {}, function (data) {
+    var sys = "01";
+    Fv.ajax.syncGet("/sys/getMenu/" + sys, {}, function (data) {
         main.menu.left_menu(data, "#left_menu");
         main.menu.top_menu(data, "#top_menu");
         //JavaScript代码区域
@@ -21,4 +21,5 @@ $(function () {
             icon : 2
         })
     })
+    Fv.ajax.loadJs(["/Sys/plugin/SysConfig/MenuManage/MenuManage.js"]);
 })
