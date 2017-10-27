@@ -1,8 +1,8 @@
 package com.autumnframework.login.dao.vomapper.impl;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.autumnframework.login.dao.vomapper.interfaces.IMenuManageMapper;
 import com.autumnframework.login.model.vo.VoMenu;
-import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,12 +20,12 @@ import java.util.List;
 @Repository
 public class MenuManageMapperImpl implements IMenuManageMapper {
     @Autowired
-    private ComboPooledDataSource comboPooledDataSource;
+    private DruidDataSource druidDataSource;
 
     @Override
     public List<VoMenu> getMenuByPage(int page, int limit, int level) throws SQLException {
         String sql_select_menu = "SELECT * FROM af_funcgrp LIMIT " + (page - 1) * limit + "," + (page * limit);
-        Connection connection = comboPooledDataSource.getConnection();
+        Connection connection = druidDataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql_select_menu);
         ResultSet resultSet = statement.executeQuery();
         List<VoMenu> voMenuList = new ArrayList<>();
@@ -52,7 +52,7 @@ public class MenuManageMapperImpl implements IMenuManageMapper {
     @Override
     public int count(String table) throws SQLException {
         String sql = "SELECT count(*) num FROM " + table;
-        Connection connection = comboPooledDataSource.getConnection();
+        Connection connection = druidDataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql);
         ResultSet resultSet = statement.executeQuery();
         if (resultSet.next()) {

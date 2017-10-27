@@ -332,7 +332,7 @@
     </select>
     <!-- 查询有效的,URL不为空的所有菜单信息-->
     <select id="selectResUrlAllList" resultMap="BaseResultMap">
-        SELECT * FROM CC_RESOURCE C WHERE RES_STATUS = 0 AND  C.RES_LINK_ADDRESS != ""
+        SELECT * FROM cc_resource C WHERE RES_STATUS = 0 AND  C.RES_LINK_ADDRESS != ""
 
     </select>
 
@@ -349,13 +349,13 @@
     </select>
     <!-- 根据用户Id查询用户资源菜单信息-->
     <select id="selectResListByUserId" resultMap="BaseResultMap">
-        SELECT * FROM CC_RESOURCE C
+        SELECT * FROM cc_resource C
             WHERE RES_STATUS = 0
-              AND   EXISTS (SELECT 1 FROM CC_ROLE_RESOURCE R
+              AND   EXISTS (SELECT 1 FROM cc_resource R
                     WHERE C.RES_ID = R.RESOURCE_ID  AND EXISTS(
-                        SELECT 1 FROM CC_ROLE T
+                        SELECT 1 FROM cc_role T
                             WHERE R.ROLE_ID = T.ROLE_ID
-                                AND EXISTS(SELECT 1 FROM CC_USER_ROLE UR WHERE T.ROLE_ID = UR.ROLE_ID AND UR.USER_ID = #{userId,jdbcType=INTEGER})
+                                AND EXISTS(SELECT 1 FROM cc_user_role UR WHERE T.ROLE_ID = UR.ROLE_ID AND UR.USER_ID = #{userId,jdbcType=INTEGER})
 
 		))
     </select>

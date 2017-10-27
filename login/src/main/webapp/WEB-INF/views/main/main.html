@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Autumn Framework</title>
@@ -36,9 +36,41 @@
         </div>
     </div>
 
-    <div class="layui-body" id="body">
+    <div class="layui-body" style="margin: 10px;" id="body">
         <!-- 内容主体区域 -->
-        <div style="padding: 15px;">内容主体区域</div>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+            <legend>Time Line</legend>
+        </fieldset>
+        <ul class="layui-timeline">
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                    <h3 class="layui-timeline-title">September 02, 2017</h3>
+                    <p>
+                        创建Autumn Framework项目，配置基本的开发环境,此项目采用IntelliJ IDEA作为开发工具</br>
+                        ,使用Maven管理项目，使用Tomcat作为web服务器， 基于JDK8编译。
+                    </p>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                    <h3 class="layui-timeline-title">September 18, 2017</h3>
+                    <p>
+                        创建"系统配置"子模块。
+                    </p>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                    <h3 class="layui-timeline-title">October 26, 2017</h3>
+                    <p>
+                        将数据库连接池从c3p0更换到Druid。
+                    </p>
+                </div>
+            </li>
+        </ul>
     </div>
 
     <div class="layui-footer">

@@ -10,6 +10,7 @@
     <packaging>war</packaging>
     <name>autumn-login Maven Webapp</name>
     <url>http://maven.apache.org</url>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
