@@ -3,3 +3,4 @@
 Autumn Framework is a collection of web component.
 
 [![Travis](https://img.shields.io/travis/rust-lang/rust.svg?style=plastic)]()
+[![Build Status](https://travis-ci.org/shuaijunlan/Autumn-Framework.svg?branch=master)](https://travis-ci.org/shuaijunlan/Autumn-Framework)
