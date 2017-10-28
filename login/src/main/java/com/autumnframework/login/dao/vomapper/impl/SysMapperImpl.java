@@ -1,6 +1,7 @@
 package com.autumnframework.login.dao.vomapper.impl;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.pool.DruidPooledConnection;
 import com.autumnframework.login.dao.vomapper.interfaces.ISysMapper;
 import com.autumnframework.login.model.vo.SysMenu;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class SysMapperImpl implements ISysMapper {
         String sql_select_funcgrp = "SELECT * FROM af_funcgrp WHERE type = 'leftMenu' AND sys = ? ORDER BY disporder";
         String sq_select_func = "SELECT * FROM af_func WHERE grp_name = ? ORDER BY disporder";
 
-        Connection connection = druidDataSource.getConnection().getConnection();
+        DruidPooledConnection connection = druidDataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql_select_funcgrp);
         statement.setString(1, sys);
         ResultSet resultSet = statement.executeQuery();
