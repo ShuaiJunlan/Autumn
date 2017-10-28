@@ -1,6 +1,7 @@
 package com.autumnframework.login.dao.vomapper.impl;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.pool.DruidPooledConnection;
 import com.autumnframework.login.architect.constant.BusinessConstants;
 import com.autumnframework.login.dao.vomapper.interfaces.IMenuManageMapper;
 import com.autumnframework.login.model.vo.VoMenu;
@@ -34,7 +35,7 @@ public class MenuManageMapperImpl implements IMenuManageMapper {
         }else if(level == 2){
             sql_select_menu = sql_select_menu.replace("!", "af_func");
         }
-        Connection connection = druidDataSource.getConnection();
+        DruidPooledConnection connection = druidDataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql_select_menu);
         statement.setString(1, type);
         statement.setString(2, sys);
@@ -63,21 +64,27 @@ public class MenuManageMapperImpl implements IMenuManageMapper {
             voMenu.setType(type);
             voMenuList.add(voMenu);
         }
+
+        resultSet.close();
+        statement.close();
+        connection.close();
         return voMenuList;
     }
 
     @Override
     public int count(String table) throws SQLException {
         String sql = "SELECT count(*) num FROM " + table;
-        Connection connection = druidDataSource.getConnection();
+        DruidPooledConnection connection = druidDataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql);
         ResultSet resultSet = statement.executeQuery();
+        int count = 0;
         if (resultSet.next()) {
-            return resultSet.getInt("num");
+             count = resultSet.getInt("num");
         }
-        else{
-            return 0;
-        }
+        connection.close();
+        statement.close();
+        resultSet.close();
+        return count;
     }
 
 
