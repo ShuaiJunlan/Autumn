@@ -9,7 +9,7 @@ $(function () {
     var sys = "01";
     Fv.ajax.syncGet("/sys/getMenu/" + sys, {}, function (data) {
         main.menu.left_menu(data, "#left_menu");
-        main.menu.top_menu(data, "#top_menu");
+        // main.menu.top_menu(data, "#top_menu");
         //JavaScript代码区域
         layui.use('element', function(){
             var element = layui.element;

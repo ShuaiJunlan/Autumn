@@ -10,6 +10,23 @@ import java.util.List;
  * @date Created on 10:24 2017/9/5.
  */
 public interface IMenuManageMapper {
-    List<VoMenu> getMenuByPage(int page, int limit, int level) throws SQLException;
+    /**
+     * get menu
+     * @param page
+     * @param limit
+     * @param level
+     * @param type
+     * @param sys
+     * @return
+     * @throws SQLException
+     */
+    List<VoMenu> getMenuByPage(int page, int limit, int level, String type, String sys) throws SQLException;
+
+    /**
+     * get count
+     * @param table
+     * @return
+     * @throws SQLException
+     */
     int count(String table) throws SQLException;
 }

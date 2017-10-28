@@ -1,48 +1,40 @@
-<form class="layui-form layui-form-pane" action="">
+<form class="layui-form layui-form-pane" action="" style="margin: 5px">
     <div class="layui-form-item">
         <label class="layui-form-label">菜单名称</label>
         <div class="layui-input-block">
-            <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+            <input type="text" name="name" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">菜单别名</label>
         <div class="layui-input-block">
-            <input type="text" name="title" required  lay-verify="required" placeholder="请输入唯一标识名称（英文）" autocomplete="off" class="layui-input">
+            <input type="text" name="alias" required  lay-verify="required" placeholder="请输入唯一标识名称（英文）" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">菜单级别</label>
-        <div class="layui-input-block">
-            <select name="level" lay-verify="required">
+        <div class="layui-input-block"  id="menu_level">
+            <select name="menu_level" lay-verify="required" lay-filter = "menu_level">
                 <option value=""></option>
-                <option value="0">一级菜单</option>
-                <option value="1">二级菜单</option>
+                <option value="1">一级菜单</option>
+                <option value="2">二级菜单</option>
             </select>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">父级菜单</label>
-        <div class="layui-input-block">
-            <select name="parent_menu" lay-verify="required">
+        <div class="layui-input-block" id="parent_menu">
+            <select name="parent_menu" lay-verify="required" lay-filter = "parent_menu">
                 <option value=""></option>
-                <option value="0">菜单1</option>
-                <option value="1">菜单2</option>
+                <option value="1">菜单1</option>
+                <option value="2">菜单2</option>
             </select>
         </div>
     </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
 </form>
-
-<script>
-    //Demo
-    layui.use('form', function(){
-        var form = layui.form;
-        console.log("hello");
-        form.render();
-        //监听提交
-        form.on('submit(formDemo)', function(data){
-            layer.msg(JSON.stringify(data.field));
-            return false;
-        });
-    });
-</script>

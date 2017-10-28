@@ -1,16 +1,17 @@
-DROP TABLE IF EXISTS af_func;
-CREATE TABLE af_func(
+DROP TABLE IF EXISTS af_funcgrp;
+CREATE TABLE af_funcgrp(
   id INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '主键，自增',
   sys VARCHAR(8) NOT NULL COMMENT '系统号',
+  name VARCHAR(16) NOT NULL UNIQUE COMMENT'名称',
   namee VARCHAR(16) NOT NULL COMMENT '英文名',
   namec VARCHAR(16) NOT NULL COMMENT '中文名',
   disporder INT(4) NOT NULL COMMENT '排列顺序',
-  grp_name VARCHAR(14) NOT NULL COMMENT '父名',
   plugin VARCHAR(32) DEFAULT NULL DEFAULT 'javascript:;' COMMENT '插件名',
-  CONSTRAINT grp_name_FK_ID_grp_name FOREIGN KEY (grp_name) REFERENCES af_funcgrp(name)
+  status INT(4) NOT NULL COMMENT '1表示有效， 2表示无效',
+  type VARCHAR(16) NOT NULL
 );
-INSERT INTO af_func(sys,namee, namec, disporder, grp_name) VALUES ('01', 'child module', '子模块1', 1, 'module1');
-INSERT INTO af_func(sys,namee, namec, disporder, grp_name) VALUES ('01', 'child module', '子模块2', 2, 'module1');
-INSERT INTO af_func(sys,namee, namec, disporder, grp_name) VALUES ('01', 'child module', '子模块3', 3, 'module1');
-INSERT INTO af_func(sys,namee, namec, disporder, grp_name) VALUES ('01', 'child module', '子模块1', 1, 'module2');
+INSERT INTO af_funcgrp(sys,namee, namec, disporder, name, type, status) VALUES ('01', 'module1', '系统配置', 1, 'module1', 'leftMenu',1);
+INSERT INTO af_funcgrp(sys,namee, namec, disporder, name, type, status) VALUES ('01', 'module2', '模块2', 2, 'module2', 'leftMenu',1);
+INSERT INTO af_funcgrp(sys,namee, namec, disporder, name, type, status) VALUES ('01', 'module3', '模块3', 3, 'module3', 'leftMenu',1);
+INSERT INTO af_funcgrp(sys,namee, namec, disporder, name, type, status) VALUES ('01', 'module4', '模块1', 4, 'module4', 'leftMenu',1);
 COMMIT ;

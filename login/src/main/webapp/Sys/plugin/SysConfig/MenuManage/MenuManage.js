@@ -2,24 +2,66 @@
  * Created by Mr SJL on 2017/9/5.
  */
 $('#MenuManage').on('click', function () {
-    // if ($("#body").hasChildNodes())
     $.ajaxSetup ({
         cache: false //关闭AJAX相应的缓存
         ,async:false
     });
-    $("#body").empty();
     $("#body").load('/Sys/plugin/SysConfig/MenuManage/MenuManage.html');
-    layui.use('table', function(){
+    addMenuData(1, 'leftMenu', '01');
+})
+var active = {
+    switch_level_one: function () {
         var level = 1;
+        addMenuData(level, 'leftMenu', '01');
+    }
+    ,switch_level_two: function () {
+        var level = 2;
+        addMenuData(level, 'leftMenu', '01');
+    }
+    ,getCheckData: function(){ //获取选中数据
+        var checkStatus = table.checkStatus('menu_table')
+            ,data = checkStatus.data;
+        layer.alert(JSON.stringify(data));
+    }
+    ,getCheckLength: function(){ //获取选中数目
+        var checkStatus = table.checkStatus('menu_table')
+            ,data = checkStatus.data;
+        layer.msg('选中了：'+ data.length + ' 个');
+    }
+    ,isAll: function(){ //验证是否全选
+        var checkStatus = table.checkStatus('menu_table');
+        layer.msg(checkStatus.isAll ? '全选': '未全选')
+    }
+    ,addMenu : function () {
+
+        //Ajax获取
+        layui.$.post('/Sys/plugin/SysConfig/AddMenu/AddMenu.html', {}, function(str){
+            layer.open({
+                type: 1
+                ,title: '添加菜单'
+                ,offset: 'auto' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+                ,id: 'addMenuLayer'+1 //防止重复弹出
+                ,content: str
+                ,shade: 0 //不显示遮罩
+            });
+            Fv.ajax.loadJs(["/Sys/plugin/SysConfig/AddMenu/AddMenu.js"]);
+        });
+    }
+};
+
+var addMenuData = function (level, type, sys) {
+    layui.use('table', function(){
         var table = layui.table;
+        table.render();
 
         table.render({
             id : "menu_table"
             ,elem : '#menu_table'
             ,url : '/menu/getMenuList/'
-            ,where : {level : level}
-            // ,height : 423
-            // ,width : 1166
+            ,where :
+                {level : level
+                    ,type : type
+                    ,sys : sys}
             ,cols: [[
                 {checkbox: true, LAY_CHECKED: true}
                 ,{field: 'id', title:'ID', width: 100, sort:true}
@@ -30,12 +72,11 @@ $('#MenuManage').on('click', function () {
                 ,{field: 'type', title:'菜单类型', width:100}
                 ,{field: 'level', title:'菜单级别', width:100}
                 ,{field: 'parent_name', title:'上级菜单', width:100}
-                ,{fixed: 'right', width:150, align:'center', toolbar: '#bar'} //这里的toolbar值是模板元素的选择器
+                ,{fixed: 'right', width:200, align:'center', toolbar: '#bar'} //这里的toolbar值是模板元素的选择器
             ]]
-            ,limits: [10,30,60,90,150,300]
+            ,limits: [10,30,60,90,150]
             ,limit: 10
             ,page : true
-            //  table style
             ,even: true //开启隔行背景
         })
 
@@ -58,49 +99,10 @@ $('#MenuManage').on('click', function () {
             }
         });
 
-        var $ = layui.$, active = {
-            getCheckData: function(){ //获取选中数据
-                var checkStatus = table.checkStatus('menu_table')
-                    ,data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
-            }
-            ,getCheckLength: function(){ //获取选中数目
-                var checkStatus = table.checkStatus('menu_table')
-                    ,data = checkStatus.data;
-                layer.msg('选中了：'+ data.length + ' 个');
-            }
-            ,isAll: function(){ //验证是否全选
-                var checkStatus = table.checkStatus('menu_table');
-                layer.msg(checkStatus.isAll ? '全选': '未全选')
-            }
-            ,addMenu : function () {
-                //Ajax获取
-                $.post('/Sys/plugin/SysConfig/AddMenu/AddMenu.html', {}, function(str){
-                    layer.open({
-                        type: 1
-                        ,title : "添加菜单"
-                        ,skin: 'layui-layer-rim' //加上边框
-                        // area: [a], //宽高
-                        ,content : str
-                        ,btn : ['确定', '取消']
-                        // ,zIndex : -1
-                        ,btn1 : function () {
-                            layer.msg("添加成功！");
-                        }
-                        ,btn2 : function () {
-                            layer.msg("取消提交！")
-                        }
-                    });
-                });
-            }
-        };
-
-        $('.demoTable .layui-btn').on('click', function(){
+        layui.$('.demoTable .layui-btn').on('click', function(){
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
         });
+
     });
-})
-
-//页面层
-
+}

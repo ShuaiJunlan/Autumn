@@ -20,8 +20,8 @@ public class MenuManageController {
     IMenuManageService iMenuManageService;
     @RequestMapping(value = "/getMenuList")
     @ResponseBody
-    public DataPageResponseMsg getMenuList(@RequestParam("page") int page, @RequestParam("limit") int limit, @RequestParam int level){
-        return this.iMenuManageService.getMenuByPage(page, limit, level);
+    public DataPageResponseMsg getMenuList(@RequestParam("page") int page, @RequestParam("limit") int limit, @RequestParam int level, @RequestParam String type, @RequestParam String sys){
+        return this.iMenuManageService.getMenuByPage(page, limit, level, type, sys);
     }
 
 }

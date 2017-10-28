@@ -59,14 +59,18 @@ public enum BusinessConstants {
 	/**菜单资源状态*/
 	SYS_RES_STATUS_0(0,"0-有效"),
 	SYS_RES_STATUS_1(1,"1-失效"),
+
     /**菜单级别*/
     SYS_RES_LEVEL_1(1,"一级菜单"),
     SYS_RES_LEVEL_2(2,"二级菜单"),
-    SYS_RES_LEVEL_3(3,"三级菜单")
-    ;
-	
+    SYS_RES_LEVEL_3(3,"三级菜单"),
 
-	private BusinessConstants(Integer code, String msg) {
+	/**菜单状态*/
+	SYS_MENU_STATUS_0(0,"失效"),
+	SYS_MENU_STATUS_1(1,"有效");
+
+
+	BusinessConstants(Integer code, String msg) {
 		this.code = code;
 		this.msg = msg;
 	}

@@ -4,7 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <context:property-placeholder location="classpath:druid-pool.properties" ignore-unresolvable="true"/>
-    <bean id = "dataSource" class = "com.alibaba.druid.pool.DruidDataSource" destroy-method = "close">
+    <bean id = "dataSource" class = "com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method = "close">
         <!-- 数据库基本信息配置 -->
         <property name = "url" value = "${url}"/>
         <property name = "username" value = "${jdbc.username}"/>
@@ -35,5 +35,6 @@
         <property name = "removeAbandonedTimeout" value ="${removeAbandonedTimeout}"/>
         <!-- 关闭 abanded 连接时输出错误日志 -->
         <property name = "logAbandoned" value = "${logAbandoned}"/>
+        <property name="resetStatEnable" value="false"/>
     </bean>
 </beans>

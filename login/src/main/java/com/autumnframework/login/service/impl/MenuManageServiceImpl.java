@@ -25,7 +25,7 @@ public class MenuManageServiceImpl implements IMenuManageService {
     private IMenuManageMapper iMenuManageMapper;
 
     @Override
-    public DataPageResponseMsg getMenuByPage(int page, int limit, int level) {
+    public DataPageResponseMsg getMenuByPage(int page, int limit, int level, String type, String sys) {
         List<VoMenu> voMenuList = new ArrayList<>();
         int count = 0;
         try {
@@ -35,7 +35,7 @@ public class MenuManageServiceImpl implements IMenuManageService {
             else if (level == 2) {
                 count = iMenuManageMapper.count("af_func");
             }
-            voMenuList = iMenuManageMapper.getMenuByPage(page, limit, level);
+            voMenuList = iMenuManageMapper.getMenuByPage(page, limit, level, type, sys);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -1,6 +1,7 @@
 package com.autumnframework.login.dao.vomapper.impl;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.autumnframework.login.architect.constant.BusinessConstants;
 import com.autumnframework.login.dao.vomapper.interfaces.IMenuManageMapper;
 import com.autumnframework.login.model.vo.VoMenu;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,20 @@ public class MenuManageMapperImpl implements IMenuManageMapper {
     private DruidDataSource druidDataSource;
 
     @Override
-    public List<VoMenu> getMenuByPage(int page, int limit, int level) throws SQLException {
-        String sql_select_menu = "SELECT * FROM af_funcgrp LIMIT " + (page - 1) * limit + "," + (page * limit);
+    public List<VoMenu> getMenuByPage(int page, int limit, int level, String type, String sys) throws SQLException {
+//        String sql_select_menu = "SELECT id, sys, name, state, disporder, type, level, parent_name";
+//        String sql_select_menu = "SELECT id, sys, name, state, disporder, type, level, parent_name";
+        String sql_select_menu = "SELECT * FROM ! WHERE type = ? AND sys = ? LIMIT " + (page - 1) * limit + "," + (page * limit);
+
+        if (level == 1){
+            sql_select_menu = sql_select_menu.replace("!", "af_funcgrp");
+        }else if(level == 2){
+            sql_select_menu = sql_select_menu.replace("!", "af_func");
+        }
         Connection connection = druidDataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql_select_menu);
+        statement.setString(1, type);
+        statement.setString(2, sys);
         ResultSet resultSet = statement.executeQuery();
         List<VoMenu> voMenuList = new ArrayList<>();
         while(resultSet.next()){
@@ -34,16 +45,22 @@ public class MenuManageMapperImpl implements IMenuManageMapper {
             voMenu.setId(resultSet.getInt("id"));
             voMenu.setDisporder(resultSet.getInt("disporder"));
             voMenu.setLevel(level + "级菜单");
-            voMenu.setName(resultSet.getString("namec"));
-            voMenu.setSys(resultSet.getInt("sys"));
+            voMenu.setName(resultSet.getString("name"));
+            voMenu.setNamee(resultSet.getString("namee"));
+            voMenu.setNamec(resultSet.getString("namec"));
+            voMenu.setSys(resultSet.getString("sys"));
             if (level == 1) {
                 voMenu.setParent_name("");
             }
             else if (level == 2) {
                 voMenu.setParent_name(resultSet.getString("grp_name"));
             }
-            voMenu.setStatus("");
-            voMenu.setType("");
+            if (resultSet.getInt("status") == 0){
+                voMenu.setStatus(BusinessConstants.SYS_MENU_STATUS_0.getMsg());
+            }else if (resultSet.getInt("status") == 1){
+                voMenu.setStatus(BusinessConstants.SYS_MENU_STATUS_1.getMsg());
+            }
+            voMenu.setType(type);
             voMenuList.add(voMenu);
         }
         return voMenuList;
