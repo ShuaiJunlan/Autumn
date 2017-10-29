@@ -1,0 +1,25 @@
+DROP TABLE IF EXISTS af_resource;
+CREATE TABLE af_resource(
+  id INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '主键，自增',
+  parent_id INT(8) COMMENT '父id',
+  namee VARCHAR(32) COMMENT '英文名',
+  namec VARCHAR(32) NOT NULL COMMENT '中文名',
+  status INT(4) NOT NULL COMMENT '状态：1表示有效，0表示无效',
+  link_address VARCHAR(128) COMMENT '请求接口',
+  icon VARCHAR(64) COMMENT '图标',
+  level INT(4) COMMENT '级别',
+  type INT(4) COMMENT '类型',
+  remark VARCHAR(128) COMMENT '备注',
+  creator       VARCHAR(16)   NOT NULL COMMENT '创建者',
+  creator_id    INT(8)         NOT NULL COMMENT '创建者id',
+  create_time   DATETIME      NOT NULL COMMENT '创建时间',
+  modifier      VARCHAR(16)   NOT NULL COMMENT '修改者',
+  modifier_id   INT(16)        NOT NULL COMMENT '修改者id',
+  modifier_time DATETIME      NOT NULL COMMENT '修改时间',
+  CONSTRAINT user_id_FK_ID_resource_creator_id FOREIGN KEY (creator_id) REFERENCES af_user(id),
+  CONSTRAINT user_id_FK_ID_resource_modifier_id FOREIGN KEY (modifier_id) REFERENCES af_user(id)
+);
+DELETE FROM af_resource;
+INSERT INTO af_resource(namec, status, link_address, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES ('获取系统菜单', 1, '/sys/getMenu/*', 'admin', -1, now(), 'admin', -1, now());
+INSERT INTO af_resource(namec, status, link_address, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES ('获取菜单列表', 1, '/menu/getMenuList', 'admin', -1, now(), 'admin', -1, now());
+COMMIT ;

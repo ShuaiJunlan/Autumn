@@ -32,9 +32,9 @@
  */
 package com.autumnframework.login.shiroconfig.realm;
 
-import com.autumnframework.login.domain.vo.Resource;
+import com.autumnframework.login.model.po.Resource;
 import com.autumnframework.login.model.po.User;
-import com.autumnframework.login.service.impl.ResourceService;
+import com.autumnframework.login.service.impl.ResourceServiceImpl;
 import com.autumnframework.login.service.impl.UserServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
@@ -69,7 +69,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
     private UserServiceImpl userService;
     @Autowired
     @Lazy
-    private ResourceService resourceService;
+    private ResourceServiceImpl resourceService;
 
     /**
      * 获取认证信息
@@ -94,7 +94,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
             throw new AccountException("用户信息为空");
         }
         log.debug("authenticationCachingEnabled:" + super.isAuthenticationCachingEnabled());
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getUser_login_name(), getName());
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getPassword(), getName());
         if (null != info) {
             log.info("用户认证通过:登陆用户名:" + user.getUser_login_name());
             return info;
@@ -123,20 +123,24 @@ public class ShiroDbRealm extends AuthorizingRealm {
         log.info("加载用户权限信息，当前登陆用户名:" + user.getUser_login_name());
         log.info("load user information:" + user.getUser_login_name());
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        //如果登陆用户是admin,拥有所有权限
-        if(user.getUser_login_name().equals("admin")){
-            List<Resource> resList = resourceService.selectResUrlAllList();
-            for (Resource resource : resList) {
-                info.addStringPermission(resource.getResModelCode());
+//        //如果登陆用户是admin,拥有所有权限
+//        if(user.getUser_login_name().equals("admin")){
+//            List<Resource> resList = resourceService.selectResUrlAllList();
+//            for (Resource resource : resList) {
+//                info.addStringPermission(resource.getResModelCode());
+//
+//            }
+//        }else{
+//            List<Resource> resUserList = resourceService.selectResListByUserId(user.getId());
+//            for (Resource resUser : resUserList) {
+//                info.addStringPermission(resUser.getResModelCode());
+//            }
+//        }
 
-            }
-        }else{
-            List<Resource> resUserList = resourceService.selectResListByUserId(user.getId());
-            for (Resource resUser : resUserList) {
-                info.addStringPermission(resUser.getResModelCode());
-            }
+        List<Resource> resUserList = resourceService.selectResListByUserId(user.getId());
+        for (Resource resUser : resUserList) {
+            info.addStringPermission(String.valueOf(resUser.getId()));
         }
-
         return  info;
     }
 

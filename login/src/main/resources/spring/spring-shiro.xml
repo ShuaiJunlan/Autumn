@@ -17,9 +17,8 @@
                 /Sys/**=anon
                 /Lib/**=anon
                 <!--test add-->
-                /sys/**=anon
+                <!--/sys/**=anon-->
                 /BasePlu/**=anon
-                /menu/**=anon
             </value>
         </property>
     </bean>

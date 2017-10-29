@@ -7,22 +7,6 @@
 
     <!--<context:property-placeholder location="classpjdbc.properties1ties" ignore-unresolvable="true"/>-->
     <import resource="spring-druid.xml"/>
-
-    <!--<bean id="jdbcDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
-        <!--<property name="driverClass" value="${jdbc.driver}"/>-->
-        <!--<property name="jdbcUrl" value="${jdbc.url}"/>-->
-        <!--<property name="user" value="${jdbc.username}"/>-->
-        <!--<property name="password" value="${jdbc.password}"/>-->
-        <!--&lt;!&ndash; 配置连接池的私有属性 &ndash;&gt;-->
-        <!--<property name="maxPoolSize" value="${jdbc.maxPoolSize}"/>-->
-        <!--<property name="minPoolSize" value="${jdbc.minPoolSize}"/>-->
-        <!--&lt;!&ndash; 关闭连接后不自动commit &ndash;&gt;-->
-        <!--<property name="autoCommitOnClose" value="${jdbc.autoCommitOnClose}"/>-->
-        <!--&lt;!&ndash; 获取连接超时时间 &ndash;&gt;-->
-        <!--<property name="checkoutTimeout" value="${jdbc.checkoutTimeout}"/>-->
-        <!--&lt;!&ndash; 获取当前连接失败重试次数 &ndash;&gt;-->
-        <!--<property name="acquireRetryAttempts" value="${jdbc.acquireRetryAttempts}"/>-->
-    <!--</bean>-->
     
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
@@ -40,4 +24,5 @@
         <property name="basePackage" value="com.autumnframework.login.dao.bomapper"/>
     </bean>
     <context:component-scan base-package="com.autumnframework.login.dao.vomapper"/>
+    <context:component-scan base-package="com.autumnframework.login.dao.bomapper"/>
 </beans>

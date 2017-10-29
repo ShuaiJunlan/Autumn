@@ -61,7 +61,7 @@
         <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
         <init-param>
             <param-name>exclusions</param-name>
-            <param-value>*.js,*.css,*.gif,*.png,*.jpg,*.ico,/druid/*</param-value>
+            <param-value>*.js,*.css,*.gif,*.png,*.jpg,*.ico,/druid/*, /druid</param-value>
         </init-param>
     </filter>
     <filter-mapping>
@@ -72,6 +72,18 @@
     <servlet>
         <servlet-name>DruidStatView</servlet-name>
         <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+        <init-param>
+            <param-name>resetEnable</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>loginUsername</param-name>
+            <param-value>admin</param-value>
+        </init-param>
+        <init-param>
+            <param-name>loginPassword</param-name>
+            <param-value>123456</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>DruidStatView</servlet-name>

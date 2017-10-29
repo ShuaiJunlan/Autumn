@@ -16,4 +16,5 @@ CREATE TABLE af_user_role(
 );
 COMMIT ;
 INSERT INTO af_user_role(user_id, role_id, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES (-1, 1, 'admin', -1, now(), 'admin', -1, now());
+INSERT INTO af_user_role(user_id, role_id, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES ( 1, 2, 'admin', -1, now(), 'admin', -1, now());
 COMMIT ;

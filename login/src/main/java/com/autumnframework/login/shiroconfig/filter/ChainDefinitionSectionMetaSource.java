@@ -1,7 +1,7 @@
 package com.autumnframework.login.shiroconfig.filter;
 
 import com.autumnframework.login.dao.bomapper.ResourceMapper;
-import com.autumnframework.login.domain.vo.Resource;
+import com.autumnframework.login.model.po.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,7 +40,7 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
     @Override
     public Ini.Section getObject() throws Exception {
         //获取所有Resource
-        List<Resource> list = resourceMapper.selectResUrlAllList();
+        List<Resource> list = resourceMapper.selectResourceAllList();
 
         Ini ini = new Ini();
         //加载默认的url
@@ -52,8 +52,8 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
 
             Resource resource = it.next();
             //如果不为空值添加到section中
-            if(StringUtils.isNotEmpty(resource.getResLinkAddress()) && StringUtils.isNotEmpty(resource.getResModelCode())) {
-                section.put(resource.getResLinkAddress(),  MessageFormat.format(PERMISSION_STRING,resource.getResModelCode()));
+            if(StringUtils.isNotEmpty(resource.getLink_address())) {
+                section.put(resource.getLink_address(),  MessageFormat.format(PERMISSION_STRING,resource.getId()));
             }
         }
         section.put("/**", "authc");

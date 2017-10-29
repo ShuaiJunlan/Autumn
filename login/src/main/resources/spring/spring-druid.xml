@@ -35,6 +35,5 @@
         <property name = "removeAbandonedTimeout" value ="${removeAbandonedTimeout}"/>
         <!-- 关闭 abanded 连接时输出错误日志 -->
         <property name = "logAbandoned" value = "${logAbandoned}"/>
-        <property name="resetStatEnable" value="false"/>
     </bean>
 </beans>

@@ -52,14 +52,13 @@ public class SysMapperImpl implements ISysMapper {
                 i++;
             }
             statement1.close();
-            resultSet1.close();
-
+            //resultSet1.close();
             sysMenu.setChild_num(i);
             sysMenu.setChildes(childMenuList);
             sysMenuList.add(sysMenu);
         }
         connection.close();
-        resultSet.close();
+        resultSet.close();      //  只需关闭一次
         statement.close();
         return sysMenuList;
     }
