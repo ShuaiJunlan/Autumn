@@ -58,7 +58,7 @@ var addMenuData = function (level, type, sys, url) {
     layui.use('table', function(){
         var table = layui.table;
         // table.render();
-        // var loading = layer.msg('数据加载中，请稍后', {icon: 16, time: false, shade: 0.5});
+        var loading = layer.msg('数据加载中，请稍后', {icon: 16, time: false, shade: 0.5});
         table.render({
             id : "menu_table"
             ,elem : '#menu_table'
