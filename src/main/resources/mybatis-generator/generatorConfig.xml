@@ -16,7 +16,7 @@
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.autumnframework.login.model.po" targetProject="\login\src\main\java">
+        <javaModelGenerator targetPackage="com.autumnframework.cms.model.po" targetProject="\login\src\main\java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
@@ -25,7 +25,7 @@
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.autumnframework.login.dao" targetProject="\login\src\main\java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.autumnframework.cms.dao" targetProject="\login\src\main\java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 

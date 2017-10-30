@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="chainDefinitionSectionMetaSource" class="com.autumnframework.login.shiroconfig.filter.ChainDefinitionSectionMetaSource">
+    <bean id="chainDefinitionSectionMetaSource" class="com.autumnframework.cms.shiroconfig.filter.ChainDefinitionSectionMetaSource">
         <property name="filterChainDefinitions">
             <value>
                 /logout.do=logout
@@ -23,7 +23,7 @@
         </property>
     </bean>
     <!-- 继承自AuthorizingRealm的自定义Realm,即指定Shiro验证用户登录的类为自定义的ShiroDbRealm.java -->
-    <bean id="myRealm" class="com.autumnframework.login.shiroconfig.realm.ShiroDbRealm">
+    <bean id="myRealm" class="com.autumnframework.cms.shiroconfig.realm.ShiroDbRealm">
         <property name="authenticationCachingEnabled" value="true"/>
         <property name="authorizationCachingEnabled" value="true"/>
         <property name="cachingEnabled" value="true"/>
@@ -47,7 +47,7 @@
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <!-- Shiro的核心安全接口,这个属性是必须的 -->
         <property name="securityManager" ref="securityManager"/>
-        <!-- 要求登录时的链接(可根据项目的URL进行替换),非必须的属性,默认会自动寻找Web工程根目录下的"/login.html"页面 -->
+        <!-- 要求登录时的链接(可根据项目的URL进行替换),非必须的属性,默认会自动寻找Web工程根目录cmsogin.html"页面 -->
         <property name="loginUrl" value="/loginProxy.do"/>
         <!-- 登录成功后要跳转的连接(本例中此属性用不到,因为登录成功后的处理逻辑在LoginController里硬编码为main.jsp了) -->
         <property name="successUrl" value="/main/index.do"/>

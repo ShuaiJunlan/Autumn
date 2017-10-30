@@ -38,9 +38,9 @@
     </mvc:annotation-driven>
 
 
-    <context:component-scan base-package="com.autumnframework.login.controller"/>
-    <context:component-scan base-package="com.autumnframework.login.dao"/>
-    <context:component-scan base-package="com.autumnframework.login.service"/>
+    <context:component-scan base-package="com.autumnframework.cms.controller"/>
+    <context:component-scan base-package="com.autumnframework.cms.dao"/>
+    <context:component-scan base-package="com.autumnframework.cms.service"/>
 
     <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
         <!-- 返回的视图模型数据需要经过jstl来处理 -->
@@ -65,7 +65,7 @@
             <!--<mvc:mapping path="/userNetport/**"/>-->
             <!--<mvc:mapping path="/topology/**"/>-->
             <!--<mvc:mapping path="/user/**"/>-->
-            <!--<mvc:exclude-mapping path="/login.html"/>-->
+            <!--<mvc:exclude-mapping patcmsogin.html"/>-->
             <!--<mvc:exclude-mapping path="/userNetport/queryByUserId/*"></mvc:exclude-mapping>-->
             <!--<mvc:exclude-mapping path="/topology/getTopologyByOne/**"></mvc:exclude-mapping>-->
             <!--<mvc:exclude-mapping path="/images/**"></mvc:exclude-mapping>-->
@@ -79,7 +79,7 @@
             <!--&lt;!&ndash;配置普通用户登录拦截器&ndash;&gt;-->
             <!--<mvc:mapping path="/html/user/*.html"/>-->
             <!--<mvc:mapping path="/topology/getTopologyByOne/**"></mvc:mapping>-->
-            <!--<mvc:exclude-mapping path="/login.html"/>-->
+            <!--<mvc:exclude-mapping patcmsogin.html"/>-->
             <!--<mvc:exclude-mapping path="/userNetport/queryByUserId/**"></mvc:exclude-mapping>-->
             <!--<mvc:exclude-mapping path="/images/**"></mvc:exclude-mapping>-->
             <!--<mvc:exclude-mapping path="/js/**"></mvc:exclude-mapping>-->
