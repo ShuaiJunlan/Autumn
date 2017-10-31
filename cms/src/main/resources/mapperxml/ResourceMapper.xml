@@ -270,4 +270,9 @@
       (SELECT resource_id FROM af_role_resource WHERE role_id IN
         (SELECT role_id FROM af_user_role WHERE user_id = #{userId,jdbcType=INTEGER}));
   </select>
+
+  <!--根据id删除资源-->
+  <delete id="deleteResById">
+    DELETE FROM ${table} WHERE id = #{id, jdbcType=INTEGER}
+  </delete>
 </mapper>

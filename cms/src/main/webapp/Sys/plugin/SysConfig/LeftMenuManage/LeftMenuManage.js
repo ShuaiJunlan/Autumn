@@ -33,7 +33,7 @@ Fv.plugin.LeftMenuManage.init = function () {
             }
             ,addMenu : function () {
                 layui.$.post('/Sys/plugin/SysConfig/AddMenu/AddMenu.html', {}, function(str){
-                    layer.open({
+                    var index = layer.open({
                         type: 1
                         ,title: '添加菜单'
                         ,offset: 'auto' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
@@ -52,7 +52,7 @@ Fv.plugin.LeftMenuManage.start = function () {
     $('#LeftMenuManage').on('click', function () {
         Fv.ajax.loadDiv(
             Fv.plugin.LeftMenuManage.init.div
-            , function () {         //  successful 成功回调
+            , function () {//  successful 成功回调
                 Fv.plugin.LeftMenuManage.addElementModule();
                 Fv.plugin.LeftMenuManage.addMenuData(1, 'leftMenu', '01', '/menu/getMenuList/');
                 layui.$('.demoTable .layui-btn').on('click', function(){
@@ -75,13 +75,13 @@ Fv.plugin.LeftMenuManage.addElementModule = function () {
         Fv.plugin.LeftMenuManage.init.active[type] ? Fv.plugin.LeftMenuManage.init.active[type].call(this, othis) : '';
     });
 
-    //Hash地址的定位
-    var layid = location.hash.replace(/^#test=/, '');
-    Fv.config.element.tabChange('docDemoTabBrief', layid);
+    // //Hash地址的定位
+    // var layid = location.hash.replace(/^#test=/, '');
+    // Fv.config.element.tabChange('docDemoTabBrief', layid);
 
-    Fv.config.element.on('tab(docDemoTabBrief)', function(elem){
-        location.hash = 'test='+ $(this).attr('lay-id');
-    });
+    // Fv.config.element.on('tab(docDemoTabBrief)', function(elem){
+    //     location.hash = 'test='+ $(this).attr('lay-id');
+    // });
 };
 
 
@@ -100,7 +100,7 @@ Fv.plugin.LeftMenuManage.addMenuData = function (level, type, sys, url) {
             {checkbox: true, LAY_CHECKED: true}
             ,{field: 'id', title:'ID', width: 100, sort:true}
             ,{field: 'sys', title:'系统号', width:100}
-            ,{field: 'name', title:'菜单名称', width:100}
+            ,{field: 'namec', title:'菜单名称', width:100}
             ,{field: 'status', title:'菜单状态', width:100}
             ,{field: 'disporder', title:'排列顺序', width:100}
             ,{field: 'type', title:'菜单类型', width:100}
@@ -128,9 +128,22 @@ Fv.plugin.LeftMenuManage.addMenuData = function (level, type, sys, url) {
         if(obj.event === 'detail'){
             layer.msg('ID：'+ data.id + ' 的查看操作');
         } else if(obj.event === 'del'){
-            layer.confirm('真的删除行么', function(index){
-                obj.del();
+            layer.confirm('确定删除么？', function(index){
                 layer.close(index);
+                var level = 0;
+                if (obj.data.level == "1级菜单"){
+                    level = 1;
+                }else if (obj.data.level = "2级菜单"){
+                    level = 2;
+                }
+                Fv.ajax.post("/menu/deleteMenu", {level:level, id:obj.data.id}, {}, function (data) {
+                    if (data.returnCode == "1111"){
+                        obj.del();
+                        layer.msg("删除成功！");
+                    }else {
+                        layer.msg("删除成功！");
+                    }
+                })
             });
         } else if(obj.event === 'edit'){
             layer.alert('编辑行：<br>'+ JSON.stringify(data))

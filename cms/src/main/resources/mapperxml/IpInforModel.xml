@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.autumnframework.cms.dao.bomapper.IIPInforDao">
+    <insert id="addIpInfor" parameterType="IpInforModel" useGeneratedKeys="true" keyProperty="id">
+		insert into af_ipinfo(ip, area, area_id, city, city_id, country, country_id, county, county_id, isp, isp_id, region, region_id, visit_time) values(#{ip}, #{area}, #{area_id}, #{city}, #{city_id},#{country},#{country_id},#{county},#{county_id},#{isp},#{isp_id},#{region},#{region_id},now())
+	</insert>
+</mapper>

@@ -21,5 +21,6 @@ CREATE TABLE af_resource(
 );
 DELETE FROM af_resource;
 INSERT INTO af_resource(namec, status, link_address, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES ('获取系统菜单', 1, '/sys/getMenu/*', 'admin', -1, now(), 'admin', -1, now());
-INSERT INTO af_resource(namec, status, link_address, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES ('获取菜单列表', 1, '/menu/getMenuList', 'admin', -1, now(), 'admin', -1, now());
+INSERT INTO af_resource(namec, status, link_address, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES ('获取菜单列表', 1, '/menu/getMenuList/', 'admin', -1, now(), 'admin', -1, now());
+INSERT INTO af_resource(namec, status, link_address, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES ('删除菜单', 1, '/menu/deleteMenu/', 'admin', -1, now(), 'admin', -1, now());
 COMMIT ;

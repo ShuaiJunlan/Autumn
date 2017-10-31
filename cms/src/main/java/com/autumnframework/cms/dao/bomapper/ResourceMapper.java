@@ -66,4 +66,12 @@ public interface ResourceMapper {
      * @return
      */
     List<Resource> selectResListByUserId(@Param("userId") Integer userId);
+
+    /**
+     * 根据id删除资源
+     * @param id
+     * @param table
+     * @return
+     */
+    int deleteResById (@Param("id") Integer id, @Param("table") String table);
 }

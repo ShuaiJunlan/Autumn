@@ -20,4 +20,15 @@ public class ResourceServiceImpl implements IResourceService {
     public List<Resource> selectResListByUserId(Integer userId) {
         return resourceMapper.selectResListByUserId(userId);
     }
+
+    @Override
+    public int deleteResById(Integer id, Integer level) {
+        String table = "";
+        if (level == 1){
+            table = "af_funcgrp";
+        }else if (level == 2){
+            table = "af_func";
+        }
+        return resourceMapper.deleteResById(id, table);
+    }
 }

@@ -51,6 +51,7 @@ public enum BussinessCode {
 
 
 
+
 	/**通用 */
     GLOBAL_LOGIN_NAME_NULL("0501","用户名不能为空"),
     GLOBAL_LOGIN_PASS_NULL("0502","密码不能为空"),
@@ -77,7 +78,11 @@ public enum BussinessCode {
     ROLE_RES_SAVE_ERROR("1509","角色分配菜单失败"),
     ROLE_NAME_EXIST("1508","角色名称已存在，请重新输入"),
 
-    ;
+
+	/**
+	 * 权限状态码
+	 */
+	NO_AUTHORIZATION("4000", "没有授权访问");
 
 	BussinessCode(String code, String msg) {
 		this.code = code;

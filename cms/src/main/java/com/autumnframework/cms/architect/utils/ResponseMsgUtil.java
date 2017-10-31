@@ -34,6 +34,7 @@ package com.autumnframework.cms.architect.utils;
 
 
 import com.autumnframework.cms.architect.constant.BussinessCode;
+import com.autumnframework.cms.architect.constant.ResponseCode;
 import com.autumnframework.cms.domain.bo.ResponseMsg;
 
 /**
@@ -54,6 +55,16 @@ public class ResponseMsgUtil {
     public static ResponseMsg returnCodeMessage(BussinessCode bussinessCode) {
         return returnCodeMessage(bussinessCode, null);
     }
+    /**
+     * 返回消息代码code 和 message
+     *
+     * @param responseCode 返回码
+     * @return
+     */
+    public static ResponseMsg returnCodeMessage(ResponseCode responseCode) {
+        return returnCodeMessage(responseCode, null);
+    }
+
 
     /**
      * 返回消息代码和数据
@@ -69,4 +80,19 @@ public class ResponseMsgUtil {
         ResponseMsg.setReturnData(returnData);
         return ResponseMsg;
     }
+    /**
+     * 返回消息代码和数据
+     *
+     * @param responseCode 返回码
+     * @param returnData    返回数据
+     * @return
+     */
+    public static ResponseMsg returnCodeMessage(ResponseCode responseCode, Object returnData) {
+        ResponseMsg ResponseMsg = new ResponseMsg();
+        ResponseMsg.setReturnCode(responseCode.getCode());
+        ResponseMsg.setReturnMessage(responseCode.getMsg());
+        ResponseMsg.setReturnData(returnData);
+        return ResponseMsg;
+    }
+
 }

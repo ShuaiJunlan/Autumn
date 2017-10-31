@@ -16,4 +16,6 @@ public interface IResourceService {
      * @return
      */
     List<Resource> selectResListByUserId(@Param("userId") Integer userId);
+
+    int deleteResById(Integer id, Integer level);
 }

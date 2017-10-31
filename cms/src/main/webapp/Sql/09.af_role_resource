@@ -20,4 +20,6 @@ INSERT INTO af_role_resource(role_id, resource_id, creator, creator_id, create_t
 
 INSERT INTO af_role_resource(role_id, resource_id, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES (2, 3, 'admin', -1, now(), 'admin', -1, now());;
 
+INSERT INTO af_role_resource(role_id, resource_id, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES (1, 5, 'admin', -1, now(), 'admin', -1, now());;
+
 COMMIT ;

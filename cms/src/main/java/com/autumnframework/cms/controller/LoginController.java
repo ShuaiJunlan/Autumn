@@ -1,10 +1,15 @@
 package com.autumnframework.cms.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.autumnframework.cms.architect.constant.BussinessCode;
 import com.autumnframework.cms.architect.constant.Constants;
+import com.autumnframework.cms.architect.utils.IpInfoUtil;
 import com.autumnframework.cms.architect.utils.ResponseMsgUtil;
 import com.autumnframework.cms.architect.utils.CreateImageCode;
+import com.autumnframework.cms.dao.bomapper.IIPInforDao;
 import com.autumnframework.cms.domain.bo.ResponseMsg;
+
+import com.autumnframework.cms.model.po.IpInforModel;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,6 +18,7 @@ import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,6 +35,9 @@ import java.io.IOException;
 @Controller
 public class LoginController extends BasicController{
     private static final Logger log = LogManager.getLogger(LoginController.class);
+
+    @Autowired
+    private IIPInforDao iipInforDao;
     /**
      * 登陆代理，跳转到顶级父窗口
      **/
@@ -66,6 +75,13 @@ public class LoginController extends BasicController{
     @RequestMapping("/loginCheck.do")
     @ResponseBody
     public ResponseMsg loginCheck(String username, String password, String code, HttpServletRequest request){
+
+        //  将jsonString@String转换成IpInforModel@Object
+        IpInforModel ipInforModel = JSON.parseObject(IpInfoUtil.getIpInforByReq(request).getString("data"), IpInforModel.class);
+//        ipInforModel.setVisit_time(SystemTime.getCurrentSystemTime());
+        iipInforDao.addIpInfor(ipInforModel);
+
+
         log.info("登陆验证处理开始");
         long start = System.currentTimeMillis();
         try {

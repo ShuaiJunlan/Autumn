@@ -16,4 +16,8 @@ INSERT INTO af_func(sys,name, namee, namec, disporder, grp_name, type, status) V
 INSERT INTO af_func(sys,name, namee, namec, disporder, grp_name, type, status) VALUES ('01','m2' ,'child module', '顶部菜单管理', 2, 'module1','leftMenu', 1);
 INSERT INTO af_func(sys,name, namee, namec, disporder, grp_name, type, status) VALUES ('01','m3' ,'child module', '子模块3', 3, 'module1','leftMenu', 1);
 INSERT INTO af_func(sys,name, namee, namec, disporder, grp_name, type, status) VALUES ('01','m4' ,'child module', '子模块1', 1, 'module2','leftMenu', 1);
+INSERT INTO af_func(sys,name, namee, namec, disporder, grp_name, type, status) VALUES ('01','m4' ,'child module', '子模块2', 2, 'module2','leftMenu', 1);
+INSERT INTO af_func(sys,name, namee, namec, disporder, grp_name, type, status) VALUES ('01','m4' ,'child module', '子模块3', 3, 'module2','leftMenu', 1);
+INSERT INTO af_func(sys,name, namee, namec, disporder, grp_name, type, status) VALUES ('01','m4' ,'child module', '子模块4', 4, 'module2','leftMenu', 1);
+INSERT INTO af_func(sys,name, namee, namec, disporder, grp_name, type, status) VALUES ('01','m4' ,'child module', '子模块5', 5, 'module2','leftMenu', 1);
 COMMIT ;

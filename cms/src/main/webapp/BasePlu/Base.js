@@ -223,9 +223,9 @@ Fv.ajax = {
             dataType: "json",
             data: paras,
             cache: true,
-            success: function (data, paras) {
-                var ret = data.ret;
-                callFunc(paras, ret);
+            success: function (data) {
+
+                callFunc(data);
             },
             error: function () {
                 //alert("errpror")
@@ -363,7 +363,8 @@ Fv.ajax.loadDiv = function (a, successfulFunc, errorFunc) {
             Fv.link.linkJs(a.js);
             Fv.link.linkCss(a.css);
             $("#" + a.id).html(data);
-            successfulFunc();
+            successfulFunc(data);
+
 
         },
         error: function () {

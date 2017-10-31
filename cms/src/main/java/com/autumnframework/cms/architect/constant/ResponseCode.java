@@ -7,20 +7,21 @@ package com.autumnframework.cms.architect.constant;
 public enum ResponseCode {
 
     //  get data success
-    GET_DATA_SUCCESS(0, "successfully");
+    REQUEST_SUCCESS("1111", "successfully"),
+    REQUEST_FAIL("0000", "fail");
 
-    private int code;
+    private String code;
     private String msg;
-    ResponseCode(int code, String msg){
+    ResponseCode(String code, String msg){
         this.code = code;
         this.msg = msg;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

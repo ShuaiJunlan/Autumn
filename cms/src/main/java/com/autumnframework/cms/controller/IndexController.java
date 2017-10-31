@@ -32,8 +32,12 @@
  */
 package com.autumnframework.cms.controller;
 
+import com.autumnframework.cms.architect.constant.BussinessCode;
+import com.autumnframework.cms.architect.utils.ResponseMsgUtil;
+import com.autumnframework.cms.domain.bo.ResponseMsg;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 /**
@@ -71,6 +75,7 @@ public class IndexController extends BasicController {
      */
     @RequestMapping("/unauthorized.do")
     public String toUnauthorizedPage() {
+//        return ResponseMsgUtil.returnCodeMessage(BussinessCode.NO_AUTHORIZATION);
         return "error/unauthorized";
     }
 
