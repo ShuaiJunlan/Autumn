@@ -1,31 +1,69 @@
 /**
  * Created by Mr SJL on 2015/12/19.
  */
-
-exists = function (a) {
-    var b = a.split(".")
-        , c = !0;
-    a = window;
-    for (var d = 0; d < b.length; d++) {
-        if (!a[b[d]]) {
-            c = !1;
+exists = function (t) {
+    if (!t)return false;
+    var e;
+    var i = t.split(".");
+    var n = true;
+    e = window;
+    for (var a = 0; a < i.length; a++) {
+        if (!e[i[a]]) {
+            n = false;
             break
         }
-        a = a[b[d]]
+        e = e[i[a]]
     }
-    return c
-}
-;
-namespace = function (a) {
-    var b = a.split(".");
-    exists(a) && console.log("\u5df2\u7ecf\u5b58\u5728\u8be5\u547d\u540d\u7a7a\u95f4:" + a);
-    a = window;
-    for (var c = 0; c < b.length; c++)
-        a[b[c]] || (a[b[c]] = {}),
-            a = a[b[c]]
-}
-;
+    return n
+};
+namespace = function (t) {
+    var e;
+    var i = t.split(".");
+    if (exists(t)) {
+    }
+    e = window;
+    for (var n = 0; n < i.length; n++) {
+        if (!e[i[n]])e[i[n]] = {};
+        e = e[i[n]]
+    }
+};
 var Fv = {};
+namespace("cx.frm");
+namespace("cx.plug");
+Fv.config  = function () {
+    return {};
+}();
+Fv.base = function (t, e, i) {
+    var n = arguments.callee.caller;
+    var a;
+    if (n.superClass_) {
+        var r = [arguments.length - 1];
+        for (a = 1; a < arguments.length; a++) {
+            r[a - 1] = arguments[a]
+        }
+        return n.superClass_.constructor.apply(t, r)
+    }
+    var o = [arguments.length - 2];
+    for (a = 2; a < arguments.length; a++) {
+        o[a - 2] = arguments[a]
+    }
+    var s = false;
+    for (var c = t.constructor; c; c = c.superClass_ && c.superClass_.constructor) {
+        if (c.prototype[e] === n) {
+            s = true
+        } else if (s) {
+            return c.prototype[e].apply(t, o)
+        }
+    }
+};
+Fv.inherits = function (t, e) {
+    var i = function () {
+    };
+    i.prototype = e.prototype;
+    t.superClass_ = e.prototype;
+    t.prototype = new i;
+    t.prototype.constructor = t
+};
 
 Fv.byId = function (a) {
     return (a = Fv.dom.byId(a)) ? a.wnd : null
@@ -311,12 +349,12 @@ Fv.ajax.loadHtml = function (a) {
     });
 };
 
-Fv.ajax.loadDiv = function (a, callFunc) {
+Fv.ajax.loadDiv = function (a, successfulFunc, errorFunc) {
     $.ajax({
         type: "POST",
         url: a.url,
         dataType: "text",
-        cache: !0,
+        cache: 0,
         success: function (data) {
 
             //为什么"Lib/EasyUI/Js/jquery.min.js",不能重复加载，否则easyUI特效会重复出现
@@ -325,11 +363,11 @@ Fv.ajax.loadDiv = function (a, callFunc) {
             Fv.link.linkJs(a.js);
             Fv.link.linkCss(a.css);
             $("#" + a.id).html(data);
-            callFunc();
-
+            successfulFunc();
 
         },
         error: function () {
+            errorFunc();
         }
     });
 };

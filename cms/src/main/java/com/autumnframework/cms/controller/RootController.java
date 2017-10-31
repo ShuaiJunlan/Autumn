@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RootController {
     @RequestMapping(value = "/")
     public String getDefaultPage(){
-        return "cms";
+        return "login";
     }
 }

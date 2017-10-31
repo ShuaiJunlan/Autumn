@@ -14,11 +14,12 @@
                 /comm/**=anon
                 /static/**=anon
                 /about/**=anon
-                /Sys/**=anon
                 /Lib/**=anon
                 <!--test add-->
                 <!--/sys/**=anon-->
                 /BasePlu/**=anon
+                /Sys/plugin/SysManage/**=anon
+                /Sys/userimg/**=anon
             </value>
         </property>
     </bean>

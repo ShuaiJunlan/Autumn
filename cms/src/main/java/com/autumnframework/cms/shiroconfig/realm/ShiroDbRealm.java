@@ -32,6 +32,8 @@
  */
 package com.autumnframework.cms.shiroconfig.realm;
 
+import com.autumnframework.cms.dao.bomapper.PluginMapper;
+import com.autumnframework.cms.model.po.Plugin;
 import com.autumnframework.cms.model.po.Resource;
 import com.autumnframework.cms.model.po.User;
 import com.autumnframework.cms.service.impl.ResourceServiceImpl;
@@ -70,6 +72,10 @@ public class ShiroDbRealm extends AuthorizingRealm {
     @Autowired
     @Lazy
     private ResourceServiceImpl resourceService;
+
+    @Autowired
+    @Lazy
+    private PluginMapper pluginMapper;
 
     /**
      * 获取认证信息
@@ -123,23 +129,15 @@ public class ShiroDbRealm extends AuthorizingRealm {
         log.info("加载用户权限信息，当前登陆用户名:" + user.getUser_login_name());
         log.info("load user information:" + user.getUser_login_name());
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-//        //如果登陆用户是admin,拥有所有权限
-//        if(user.getUser_login_name().equals("admin")){
-//            List<Resource> resList = resourceService.selectResUrlAllList();
-//            for (Resource resource : resList) {
-//                info.addStringPermission(resource.getResModelCode());
-//
-//            }
-//        }else{
-//            List<Resource> resUserList = resourceService.selectResListByUserId(user.getId());
-//            for (Resource resUser : resUserList) {
-//                info.addStringPermission(resUser.getResModelCode());
-//            }
-//        }
 
         List<Resource> resUserList = resourceService.selectResListByUserId(user.getId());
         for (Resource resUser : resUserList) {
             info.addStringPermission(String.valueOf(resUser.getId()));
+        }
+
+        List<Plugin> pluginList = pluginMapper.selectPluginByUserId(user.getId());
+        for (Plugin plugin : pluginList){
+            info.addStringPermission(String.valueOf(plugin.getId()));
         }
         return  info;
     }

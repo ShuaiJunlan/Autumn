@@ -1,6 +1,8 @@
 package com.autumnframework.cms.shiroconfig.filter;
 
+import com.autumnframework.cms.dao.bomapper.PluginMapper;
 import com.autumnframework.cms.dao.bomapper.ResourceMapper;
+import com.autumnframework.cms.model.po.Plugin;
 import com.autumnframework.cms.model.po.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -23,6 +25,9 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
     @Autowired
     private ResourceMapper resourceMapper;
 
+    @Autowired
+    private PluginMapper pluginMapper;
+
     private String filterChainDefinitions;
     /**
      * 通过filterChainDefinitions对默认的url过滤定义
@@ -38,9 +43,12 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
     public static final String PERMISSION_STRING="perms[{0}]";
 
     @Override
-    public Ini.Section getObject() throws Exception {
+    public synchronized Ini.Section getObject() throws Exception {
         //获取所有Resource
         List<Resource> list = resourceMapper.selectResourceAllList();
+
+        //获取所有的插件
+        List<Plugin> pluginList = pluginMapper.selectAllStatus1Plugin();
 
         Ini ini = new Ini();
         //加载默认的url
@@ -54,6 +62,13 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
             //如果不为空值添加到section中
             if(StringUtils.isNotEmpty(resource.getLink_address())) {
                 section.put(resource.getLink_address(),  MessageFormat.format(PERMISSION_STRING,resource.getId()));
+            }
+        }
+
+        for (Iterator<Plugin> iterator = pluginList.iterator(); iterator.hasNext();){
+            Plugin plugin = iterator.next();
+            if (StringUtils.isNotEmpty(plugin.getDir()) && StringUtils.isNotEmpty(plugin.getHtmlcurl())){
+                section.put(plugin.getDir()+plugin.getHtmlcurl(), MessageFormat.format(PERMISSION_STRING,plugin.getId()));
             }
         }
         section.put("/**", "authc");

@@ -7,7 +7,7 @@
 
     <context id="MySQL" targetRuntime="MyBatis3">
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/autumn_framework?autoReconnect=true"
+                        connectionURL="jdbc:mysql://139.199.210.120:3306/autumn_framework?autoReconnect=true"
                         userId="root"
                         password="shuaij">
         </jdbcConnection>
@@ -29,12 +29,12 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="af_resource" domainObjectName="Resource" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+        <table tableName="af_plugin" domainObjectName="Plugin" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true"/>
             <generatedKey column="id" sqlStatement="MySql" identity="true" />
         </table>
-        <table tableName="af_role_resource" domainObjectName="RoleResource" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+        <table tableName="af_role_plugin" domainObjectName="RolePlugin" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true"/>
             <generatedKey column="id" sqlStatement="MySql" identity="true" />

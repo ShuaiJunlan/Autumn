@@ -45,7 +45,7 @@ body {
 }
 
 .login {
-    height: 260px;
+    /*height: 260px;*/
     width: 260px;
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.5);

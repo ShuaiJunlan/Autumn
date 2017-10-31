@@ -1,19 +1,30 @@
 /**
  * Created by Mr SJL on 2017/9/5.
  */
+var table;
 $('#MenuManage').on('click', function () {
-    $.ajaxSetup ({
-        cache: false //关闭AJAX相应的缓存
-        ,async:false
-    });
-    $("#body").load('/Sys/plugin/SysConfig/MenuManage/MenuManage.html');
-    addMenuData(1, 'leftMenu', '01', '/menu/getMenuList/');
-    layui.$('.demoTable .layui-btn').on('click', function(){
-        var type = $(this).data('type');
-        active[type] ? active[type].call(this) : '';
-    });
-});
 
+    var div = {
+        url : "/Sys/plugin/SysConfig/MenuManage/LeftMenuManage.html"
+        , js: []
+        , css: []
+        , id: "body"
+    }
+    Fv.ajax.loadDiv(
+        div
+        , function () {         //  successful 成功回调
+            addElementModule();
+            addMenuData(1, 'leftMenu', '01', '/menu/getMenuList/');
+            layui.$('.demoTable .layui-btn').on('click', function(){
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+        }
+        , function () {         //  fail 失败回调
+            layui.layer.msg("加载失败")
+        }
+    )
+});
 var active = {
     switch_level_one: function () {
         var level = 1;
@@ -53,10 +64,31 @@ var active = {
         });
     }
 };
+var addElementModule = function () {
+    layui.use('element', function(){
+        var $ = layui.jquery
+            ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+        $('.site-demo-active').on('click', function(){
+            var othis = $(this), type = othis.data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+
+        //Hash地址的定位
+        var layid = location.hash.replace(/^#test=/, '');
+        element.tabChange('docDemoTabBrief', layid);
+
+        element.on('tab(docDemoTabBrief)', function(elem){
+            location.hash = 'test='+ $(this).attr('lay-id');
+        });
+
+    });
+}
+
 
 var addMenuData = function (level, type, sys, url) {
     layui.use('table', function(){
-        var table = layui.table;
+        table = layui.table;
         // table.render();
         var loading = layer.msg('数据加载中，请稍后', {icon: 16, time: false, shade: 0.5});
         table.render({

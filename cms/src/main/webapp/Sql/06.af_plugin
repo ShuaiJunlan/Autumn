@@ -1,0 +1,20 @@
+DROP TABLE IF EXISTS af_plugin;
+CREATE TABLE af_plugin(
+  id INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '主键，自增',
+  sys VARCHAR(8) NOT NULL COMMENT '系统号',
+  name VARCHAR(16) NOT NULL UNIQUE COMMENT'名称',
+  namee VARCHAR(16) COMMENT '英文名',
+  namec VARCHAR(16) COMMENT '中文名',
+  titlee VARCHAR(16) COMMENT '英文标题',
+  titlec VARCHAR(16) COMMENT '中文标题',
+  autorun INT(4) NOT NULL COMMENT '是否自动运行',
+  plugin VARCHAR(128) NOT NULL COMMENT '插件名',
+  dir VARCHAR(128) NOT NULL COMMENT '相对路径',
+  jsurl VARCHAR(128) NOT NULL COMMENT 'js名称',
+  htmleurl VARCHAR(128) COMMENT 'htmle名称',
+  htmlcurl VARCHAR(128) COMMENT 'htmlc名称',
+  icon VARCHAR(64) COMMENT '图标',
+  status INT(4) NOT NULL COMMENT '状态'
+);
+INSERT INTO af_plugin(sys, name, autorun, plugin, dir, jsurl, htmlcurl, status) VALUES ('01', '左边栏菜单管理', 0, 'Fv.plugin.LeftMenuManage', '/Sys/plugin/SysConfig/LeftMenuManage/', 'LeftMenuManage.js', 'LeftMenuManage.html', 1);
+COMMIT ;

@@ -530,4 +530,26 @@ public class Resource {
     public void setModifier_time(Date modifier_time) {
         this.modifier_time = modifier_time;
     }
+
+    @Override
+    public String toString() {
+        return "Resource{" +
+                "id=" + id +
+                ", parent_id=" + parent_id +
+                ", namee='" + namee + '\'' +
+                ", namec='" + namec + '\'' +
+                ", status=" + status +
+                ", link_address='" + link_address + '\'' +
+                ", icon='" + icon + '\'' +
+                ", level=" + level +
+                ", type=" + type +
+                ", remark='" + remark + '\'' +
+                ", creator='" + creator + '\'' +
+                ", creator_id=" + creator_id +
+                ", create_time=" + create_time +
+                ", modifier='" + modifier + '\'' +
+                ", modifier_id=" + modifier_id +
+                ", modifier_time=" + modifier_time +
+                '}';
+    }
 }

@@ -34,7 +34,7 @@ public class LoginController extends BasicController{
      **/
     @RequestMapping("/loginProxy.do")
     public String toLoginProxy() {
-        return "cms";
+        return "login";
     }
 
     /**
@@ -44,7 +44,7 @@ public class LoginController extends BasicController{
      */
     @RequestMapping("/login.do")
     public String toLoginPage()  {
-        return "cms";
+        return "login";
     }
 
     /**
@@ -124,6 +124,6 @@ public class LoginController extends BasicController{
     public String logout(){
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();
-        return "cms";
+        return "login";
     }
 }
