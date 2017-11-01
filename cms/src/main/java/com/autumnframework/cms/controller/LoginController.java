@@ -10,6 +10,8 @@ import com.autumnframework.cms.dao.bomapper.IIPInforDao;
 import com.autumnframework.cms.domain.bo.ResponseMsg;
 
 import com.autumnframework.cms.model.po.IpInforModel;
+import com.autumnframework.cms.model.po.LoginInfo;
+import com.autumnframework.cms.service.impl.LogManageImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,6 +40,9 @@ public class LoginController extends BasicController{
 
     @Autowired
     private IIPInforDao iipInforDao;
+
+    @Autowired
+    private LogManageImpl logManage;
     /**
      * 登陆代理，跳转到顶级父窗口
      **/
@@ -76,12 +81,6 @@ public class LoginController extends BasicController{
     @ResponseBody
     public ResponseMsg loginCheck(String username, String password, String code, HttpServletRequest request){
 
-        //  将jsonString@String转换成IpInforModel@Object
-        IpInforModel ipInforModel = JSON.parseObject(IpInfoUtil.getIpInforByReq(request).getString("data"), IpInforModel.class);
-//        ipInforModel.setVisit_time(SystemTime.getCurrentSystemTime());
-        iipInforDao.addIpInfor(ipInforModel);
-
-
         log.info("登陆验证处理开始");
         long start = System.currentTimeMillis();
         try {
@@ -115,6 +114,13 @@ public class LoginController extends BasicController{
             if (currentUser.isAuthenticated()) {
                 request.getSession().setAttribute(Constants.SESSION_KEY_LOGIN_NAME,getCurrentUser());
 
+                //  记录用户登录ip信息
+                String detail = IpInfoUtil.getIpInforByReq(request).getString("data");
+                if (!detail.equals("invaild ip.")){
+                    LoginInfo loginInfo = JSON.parseObject(detail, LoginInfo.class);
+                    loginInfo.setUser_login_name(username);
+                    logManage.insertLoginInfo(loginInfo);
+                }
                 return ResponseMsgUtil.returnCodeMessage(BussinessCode.GLOBAL_SUCCESS);
             }
             return ResponseMsgUtil.returnCodeMessage(BussinessCode.GLOBAL_LOGIN_FAIL);
@@ -130,7 +136,6 @@ public class LoginController extends BasicController{
         } finally {
             log.info("登陆验证处理结束,用时" + (System.currentTimeMillis() - start) + "毫秒");
         }
-
     }
 
     /**

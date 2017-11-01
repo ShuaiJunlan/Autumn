@@ -6,7 +6,6 @@ Fv.plugin.LeftMenuManage = function () {
     return{
         init : Fv.plugin.LeftMenuManage.init
         ,start : Fv.plugin.LeftMenuManage.start
-        ,
     }
 }();
 Fv.plugin.LeftMenuManage.init = function () {

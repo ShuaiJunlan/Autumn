@@ -29,15 +29,11 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="af_plugin" domainObjectName="Plugin" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+        <table tableName="af_logininfo" domainObjectName="LoginInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true"/>
             <generatedKey column="id" sqlStatement="MySql" identity="true" />
         </table>
-        <table tableName="af_role_plugin" domainObjectName="RolePlugin" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="true"/>
-            <generatedKey column="id" sqlStatement="MySql" identity="true" />
-        </table>
+
     </context>
 </generatorConfiguration>

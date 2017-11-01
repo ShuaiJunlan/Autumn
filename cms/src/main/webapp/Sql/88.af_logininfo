@@ -1,0 +1,20 @@
+DROP TABLE IF EXISTS af_logininfo;
+CREATE TABLE af_logininfo
+(
+  id         INT(20)  NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  ip         VARCHAR(255)     NOT NULL,
+  area       VARCHAR(8)                DEFAULT NULL,
+  area_id    VARCHAR(8)                DEFAULT NULL,
+  city       VARCHAR(8)                DEFAULT NULL,
+  city_id    VARCHAR(8)                DEFAULT NULL,
+  country    VARCHAR(8)                DEFAULT NULL,
+  country_id VARCHAR(8)                DEFAULT NULL,
+  county     VARCHAR(8)                DEFAULT NULL,
+  county_id  VARCHAR(8)                DEFAULT NULL,
+  isp        VARCHAR(8)                DEFAULT NULL,
+  isp_id     VARCHAR(8)                DEFAULT NULL,
+  region     VARCHAR(8)                DEFAULT NULL,
+  region_id  VARCHAR(8)                DEFAULT NULL,
+  visit_time DATETIME              DEFAULT NULL ,
+  user_login_name VARCHAR(32) NOT NULL
+);

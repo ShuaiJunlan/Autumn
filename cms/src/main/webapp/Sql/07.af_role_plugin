@@ -15,4 +15,5 @@ CREATE TABLE af_role_plugin(
   CONSTRAINT user_id_FK_ID_role_plugin_modifier_id FOREIGN KEY (modifier_id) REFERENCES af_user(id)
 );
 INSERT INTO af_role_plugin(role_id, plugin_id, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES (1, 1, 'admin', -1, now(), 'admin', -1, now());
+INSERT INTO af_role_plugin(role_id, plugin_id, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES (1, 2, 'admin', -1, now(), 'admin', -1, now());
 COMMIT ;

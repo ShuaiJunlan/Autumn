@@ -3,10 +3,11 @@
  */
 $(function () {
     var layer;
-    layui.use(['layer', 'element', 'table'], function(){
+    layui.use(['layer', 'element', 'table', 'form'], function(){
         Fv.config.layer = layui.layer;
         Fv.config.element = layui.element;
         Fv.config.table = layui.table;
+        Fv.config.form = layui.form;
     });
     var sys = "01";
     Fv.ajax.syncGet("/sys/getMenu/" + sys,
@@ -20,6 +21,7 @@ $(function () {
 
             });
             Fv.ajax.loadJs(["/Sys/plugin/SysConfig/LeftMenuManage/LeftMenuManage.js"]);
+            Fv.ajax.loadJs(["/Sys/plugin/SysConfig/LoginInfoManage/LoginInfoManage.js"]);
 
         },
         function () {

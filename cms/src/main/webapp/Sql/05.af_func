@@ -20,4 +20,6 @@ INSERT INTO af_func(sys,name, namee, namec, disporder, grp_name, type, status) V
 INSERT INTO af_func(sys,name, namee, namec, disporder, grp_name, type, status) VALUES ('01','m4' ,'child module', '子模块3', 3, 'module2','leftMenu', 1);
 INSERT INTO af_func(sys,name, namee, namec, disporder, grp_name, type, status) VALUES ('01','m4' ,'child module', '子模块4', 4, 'module2','leftMenu', 1);
 INSERT INTO af_func(sys,name, namee, namec, disporder, grp_name, type, status) VALUES ('01','m4' ,'child module', '子模块5', 5, 'module2','leftMenu', 1);
+
+INSERT INTO af_func(sys,name, namee, namec, disporder, grp_name, type, status, plugin) VALUES ('01','LoginInfoManage' ,'LoginInfoManage', '登录日志管理', 1, 'module4','login', 1, 'LoginInfoManage');
 COMMIT ;

@@ -286,6 +286,23 @@
           <!--</dependency>-->
         <!--</dependencies>-->
       <!--</plugin>-->
+
+      <!-- maven jetty plugin configuration -->
+      <plugin>
+        <groupId>org.mortbay.jetty</groupId>
+        <artifactId>maven-jetty-plugin</artifactId>
+        <version>8.1.9.v20130131</version>
+        <configuration>
+          <connectors>
+            <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+              <port>8081</port>
+              <maxIdleTime>60000</maxIdleTime>
+            </connector>
+          </connectors>
+          <!--热部署扫描的时间间隔-->
+          <scanIntervalSeconds>10</scanIntervalSeconds>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 </project>

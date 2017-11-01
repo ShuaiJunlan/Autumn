@@ -1,0 +1,36 @@
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style="margin: 0px;">
+    <ul class="layui-tab-title">
+        <li class="layui-this" lay-id="1" data-type="switch_level_one">登录日志</li>
+    </ul>
+    <div class="layui-tab-content" style="height: 70px;">
+        <div class="layui-tab-item layui-show">
+            <blockquote class="layui-elem-quote mylog-info-tit">
+                <div class="layui-inline">
+                    <form class="layui-form" id="userSearchForm">
+                        <div class="layui-input-inline" style="width:110px;">
+                            <select name="searchTerm" >
+                                <option value="userLoginNameTerm">用户名</option>
+                                <option value="userNameTerm">城市</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline" style="width:145px;">
+                            <input type="text" name="searchContent" value="" placeholder="请输入关键字" class="layui-input search_input">
+                        </div>
+                        <a class="layui-btn userSearchList_btn" lay-submit lay-filter="userSearchFilter"><i class="layui-icon larry-icon larry-chaxun7"></i>查询</a>
+                    </form>
+                </div>
+                <div class="layui-inline">
+                    <a class="layui-btn layui-btn-normal excelUserExport_btn"  style="background-color:#5FB878"> <i class="layui-icon larry-icon larry-danye"></i>导出</a>
+                </div>
+                <div class="layui-inline">
+                    <a class="layui-btn layui-btn-danger userBatchFail_btn"><i class="layui-icon larry-icon larry-shanchu"></i>批量失效</a>
+                </div>
+            </blockquote>
+        </div>
+    </div>
+</div>
+<table lay-filter="menu" id="loginlog_table"></table>
+<script type="text/html" id="bar">
+    <a class="layui-btn layui-btn-primary layui-btn-mini" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+</script>
