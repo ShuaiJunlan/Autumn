@@ -6,9 +6,16 @@ package com.autumnframework.cms.architect.constant;
  */
 public enum ResponseCode {
 
-    //  get data success
+    //  没有权限获取数据
+    GET_DATA_UNAUTHORIZED("3333", "unauthorized"),
+    //  请求成功
     REQUEST_SUCCESS("1111", "successfully"),
-    REQUEST_FAIL("0000", "fail");
+    //  请求失败
+    REQUEST_FAIL("0000", "fail"),
+
+    //  请求没有授权
+    REQUEST_UNAUTHORIZED("3333", "fail");
+
 
     private String code;
     private String msg;

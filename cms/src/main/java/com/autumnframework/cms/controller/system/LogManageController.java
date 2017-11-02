@@ -1,5 +1,6 @@
 package com.autumnframework.cms.controller.system;
 
+import com.autumnframework.cms.model.bo.DataPageResponseMsg;
 import com.autumnframework.cms.model.po.LoginInfo;
 import com.autumnframework.cms.service.impl.LogManageImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,13 @@ public class LogManageController {
     private LogManageImpl logManage;
     @RequestMapping(value = "/allLoginLog")
     @ResponseBody
-    public List<LoginInfo> getAllLoginInfo(int page, int limit){
+    public DataPageResponseMsg getAllLoginInfo(int page, int limit){
         return logManage.selectAllLoginInfo(page, limit);
     }
 
     @RequestMapping(value = "/userLoginLog")
     @ResponseBody
-    public List<LoginInfo> getAllLoginInfo(String username, int page, int limit){
+    public DataPageResponseMsg getAllLoginInfo(String username, int page, int limit){
         return logManage.selectLoginInfoByUserName(username, page, limit);
     }
 

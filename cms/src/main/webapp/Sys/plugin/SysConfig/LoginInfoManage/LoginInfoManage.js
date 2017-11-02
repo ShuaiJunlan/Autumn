@@ -20,10 +20,22 @@ Fv.plugin.LoginInfoManage.start = function () {
     $('#LoginInfoManage').on('click', function () {
         Fv.ajax.loadDiv(
             Fv.plugin.LoginInfoManage.init.div
-            , function () {
+            , function (data, a) {
+                var data1;
+                try {
+                    data1 = JSON.parse(data);
+                }catch(err) {
+                    console.log("请求成功")
+                }finally {
+                    $("#" + a.id).html(data);
+                }
+                if (data1 != undefined && data1.code != undefined && data1.code == "3333"){
+                    main.unauthorized();
+                    return;
+                }
                 Fv.plugin.LoginInfoManage.addElementModule();
                 Fv.plugin.LoginInfoManage.addFormModule();
-                Fv.plugin.LoginInfoManage.addMenuData(1, 'leftMenu', '01', '/log/allLoginLog/');
+                Fv.plugin.LoginInfoManage.addLoginInfoData('/log/allLoginLog/');
                 layui.$('.demoTable .layui-btn').on('click', function(){
                     var type = $(this).data('type');
                     Fv.plugin.LeftMenuManage.init.active[type] ? Fv.plugin.LeftMenuManage.init.active[type].call(this) : '';
@@ -49,7 +61,7 @@ Fv.plugin.LoginInfoManage.addFormModule = function () {
     Fv.config.form.render();
 }
 
-Fv.plugin.LoginInfoManage.addMenuData = function (level, type, sys, url) {
+Fv.plugin.LoginInfoManage.addLoginInfoData = function (url) {
     // var loading = layer.msg('数据加载中，请稍后', {icon: 16, time: false, shade: 0.5});
     Fv.config.table.render({
         id : "loginlog_table"
@@ -59,19 +71,22 @@ Fv.plugin.LoginInfoManage.addMenuData = function (level, type, sys, url) {
         }
         ,cols: [[
             {checkbox: true, LAY_CHECKED: true}
-            ,{field: 'id', title:'ID', width: 100, sort:true}
+            ,{field: 'id', title:'ID', width: 50, sort:true}
             ,{field: 'user_login_name', title:'登录名', width:100}
-            ,{field: 'ip', title:'ip', width:100}
+            ,{field: 'ip', title:'ip', width:130}
             ,{field: 'country', title:'国家', width:100}
-            ,{field: 'area', title:'地区', width:100}
+            ,{field: 'area', title:'地区', width:60}
             ,{field: 'region', title:'省份', width:100}
             ,{field: 'city', title:'城市', width:100}
-            ,{field: 'isp', title:'运营商', width:100}
-            ,{field: 'visit_time', title:'访问时间', width:100}
-            ,{fixed: 'right', width:200, align:'center', toolbar: '#bar'} //这里的toolbar值是模板元素的选择器
+            ,{field: 'isp', title:'运营商', width:120}
+            ,{field: 'visit_time', title:'访问时间', width:180}
+            ,{fixed: 'right', width:120, align:'center', toolbar: '#bar'}
         ]]
         ,limits: [10,30,60,90,150]
         ,limit: 10
+        ,response: {
+            statusCode:"1111"
+        }
         ,page : true
         ,even: true
         ,done: function(){
@@ -84,6 +99,7 @@ Fv.plugin.LoginInfoManage.addMenuData = function (level, type, sys, url) {
     Fv.config.table.on('checkbox(menu)', function(obj){
         console.log(obj)
     });
+    
     //监听工具条
     Fv.config.table.on('tool(menu)', function(obj){
         var data = obj.data;
@@ -95,4 +111,4 @@ Fv.plugin.LoginInfoManage.addMenuData = function (level, type, sys, url) {
             });
         }
     });
-};
+}

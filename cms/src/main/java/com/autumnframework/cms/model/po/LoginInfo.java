@@ -136,7 +136,7 @@ public class LoginInfo {
      *
      * @mbg.generated Tue Oct 31 19:49:31 CST 2017
      */
-    private Date visit_time;
+    private String visit_time;
 
     /**
      *
@@ -491,7 +491,7 @@ public class LoginInfo {
      *
      * @mbg.generated Tue Oct 31 19:49:31 CST 2017
      */
-    public Date getVisit_time() {
+    public String getVisit_time() {
         return visit_time;
     }
 
@@ -503,7 +503,7 @@ public class LoginInfo {
      *
      * @mbg.generated Tue Oct 31 19:49:31 CST 2017
      */
-    public void setVisit_time(Date visit_time) {
+    public void setVisit_time(String visit_time) {
         this.visit_time = visit_time;
     }
 

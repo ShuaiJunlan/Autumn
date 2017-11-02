@@ -362,8 +362,7 @@ Fv.ajax.loadDiv = function (a, successfulFunc, errorFunc) {
             //var css=["Lib/EasyUI/Css/easyui.css","Lib/EasyUI/Css/icon.css"];
             Fv.link.linkJs(a.js);
             Fv.link.linkCss(a.css);
-            $("#" + a.id).html(data);
-            successfulFunc(data);
+            successfulFunc(data, a);
 
 
         },

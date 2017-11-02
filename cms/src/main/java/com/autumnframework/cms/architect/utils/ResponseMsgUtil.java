@@ -35,13 +35,12 @@ package com.autumnframework.cms.architect.utils;
 
 import com.autumnframework.cms.architect.constant.BussinessCode;
 import com.autumnframework.cms.architect.constant.ResponseCode;
-import com.autumnframework.cms.domain.bo.ResponseMsg;
+import com.autumnframework.cms.model.bo.DataPageResponseMsg;
+import com.autumnframework.cms.model.bo.ResponseMsg;
 
 /**
- * 后台管理系统返回码信息帮助类
- *
- * @author yangxiaobing
- * @date 2017/7/11
+ * @author Junlan Shuai[shuaijunlan@gmail.com].
+ * @date Created on 16:09 2017/9/5.
  */
 
 public class ResponseMsgUtil {
@@ -75,9 +74,9 @@ public class ResponseMsgUtil {
      */
     public static ResponseMsg returnCodeMessage(BussinessCode bussinessCode, Object returnData) {
         ResponseMsg ResponseMsg = new ResponseMsg();
-        ResponseMsg.setReturnCode(bussinessCode.getCode());
-        ResponseMsg.setReturnMessage(bussinessCode.getMsg());
-        ResponseMsg.setReturnData(returnData);
+        ResponseMsg.setCode(bussinessCode.getCode());
+        ResponseMsg.setMsg(bussinessCode.getMsg());
+        ResponseMsg.setData(returnData);
         return ResponseMsg;
     }
     /**
@@ -89,10 +88,22 @@ public class ResponseMsgUtil {
      */
     public static ResponseMsg returnCodeMessage(ResponseCode responseCode, Object returnData) {
         ResponseMsg ResponseMsg = new ResponseMsg();
-        ResponseMsg.setReturnCode(responseCode.getCode());
-        ResponseMsg.setReturnMessage(responseCode.getMsg());
-        ResponseMsg.setReturnData(returnData);
+        ResponseMsg.setCode(responseCode.getCode());
+        ResponseMsg.setMsg(responseCode.getMsg());
+        ResponseMsg.setData(returnData);
         return ResponseMsg;
+    }
+
+    /**
+     * 前端分页插件要求格式数据
+     * @param responseCode
+     * @param returnData
+     * @param count
+     * @return
+     */
+    public static DataPageResponseMsg returnCodeMessage(ResponseCode responseCode, Object returnData, int count) {
+        DataPageResponseMsg dataPageResponseMsg = new DataPageResponseMsg(responseCode.getCode(), responseCode.getMsg(), returnData, count);
+        return dataPageResponseMsg;
     }
 
 }

@@ -9,21 +9,21 @@
                     <form class="layui-form" id="userSearchForm">
                         <div class="layui-input-inline" style="width:110px;">
                             <select name="searchTerm" >
-                                <option value="userLoginNameTerm">用户名</option>
-                                <option value="userNameTerm">城市</option>
+                                <option value=""></option>
+                                <option value="userLoginNameTerm">登录名</option>
+                                <option value="userNameTerm">ip</option>
+                                <option value="userNameTerm">国家</option>
                             </select>
                         </div>
                         <div class="layui-input-inline" style="width:145px;">
                             <input type="text" name="searchContent" value="" placeholder="请输入关键字" class="layui-input search_input">
                         </div>
-                        <a class="layui-btn userSearchList_btn" lay-submit lay-filter="userSearchFilter"><i class="layui-icon larry-icon larry-chaxun7"></i>查询</a>
+                        <!--<a class="layui-btn userSearchList_btn" lay-submit lay-filter="userSearchFilter"><i class="layui-icon larry-icon larry-chaxun7"></i>查询</a>-->
                     </form>
                 </div>
                 <div class="layui-inline">
-                    <a class="layui-btn layui-btn-normal excelUserExport_btn"  style="background-color:#5FB878"> <i class="layui-icon larry-icon larry-danye"></i>导出</a>
-                </div>
-                <div class="layui-inline">
-                    <a class="layui-btn layui-btn-danger userBatchFail_btn"><i class="layui-icon larry-icon larry-shanchu"></i>批量失效</a>
+                    <button class="layui-btn" lay-filter="formDemo"><i class="layui-icon">&#xe615;</i>查询</button>
+                    <button class="layui-btn" lay-filter="formDemo"><i class="layui-icon">&#xe621;</i>导出</button>
                 </div>
             </blockquote>
         </div>

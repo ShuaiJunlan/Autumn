@@ -1,6 +1,6 @@
 package com.autumnframework.cms.controller;
 
-import com.autumnframework.cms.domain.vo.User;
+import com.autumnframework.cms.model.po.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.context.annotation.Scope;
@@ -19,7 +19,7 @@ public class BasicController {
     public String getCurrentLoginName() {
         Subject currentUser = SecurityUtils.getSubject();
         User user = currentUser.getPrincipals().oneByType(User.class);
-        return user.getUserLoginName();
+        return user.getUser_login_name();
     }
 
     /**

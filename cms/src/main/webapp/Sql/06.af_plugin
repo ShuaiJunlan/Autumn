@@ -19,4 +19,5 @@ CREATE TABLE af_plugin(
 INSERT INTO af_plugin(sys, name, autorun, plugin, dir, jsurl, htmlcurl, status) VALUES ('01', '左边栏菜单管理', 0, 'Fv.plugin.LeftMenuManage', '/Sys/plugin/SysConfig/LeftMenuManage/', 'LeftMenuManage.js', 'LeftMenuManage.html', 1);
 
 INSERT INTO af_plugin(sys, name, autorun, plugin, dir, jsurl, htmlcurl, status) VALUES ('01', '登陆日志管理', 0, 'Fv.plugin.LoginInfoManage', '/Sys/plugin/SysConfig/LoginInfoManage/', 'LoginInfoManage.js', 'LoginInfoManage.html', 1);
+INSERT INTO af_plugin(sys, name, autorun, plugin, dir, jsurl, htmlcurl, status) VALUES ('01', '系统更新日志管理', 0, 'Fv.plugin.SysUpdateLogManage', '/Sys/plugin/SysConfig/SysUpdateLogManage/', 'SysUpdateLogManage.js', 'SysUpdateLogManage.html', 1);
 COMMIT ;

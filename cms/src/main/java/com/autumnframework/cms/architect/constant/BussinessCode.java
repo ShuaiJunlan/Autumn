@@ -44,6 +44,7 @@ package com.autumnframework.cms.architect.constant;
  *
  */
 public enum BussinessCode {
+
 	// 成功
 	GLOBAL_SUCCESS("0000","成功"),
 	//失败
@@ -76,13 +77,7 @@ public enum BussinessCode {
 	RES_FAILK_ERROR("1507","失效资源失败,程序异常"),
     USER_LOGIN_NAME_EXIST("1508","用户账号已存在，请重新输入"),
     ROLE_RES_SAVE_ERROR("1509","角色分配菜单失败"),
-    ROLE_NAME_EXIST("1508","角色名称已存在，请重新输入"),
-
-
-	/**
-	 * 权限状态码
-	 */
-	NO_AUTHORIZATION("4000", "没有授权访问");
+    ROLE_NAME_EXIST("1508","角色名称已存在，请重新输入");
 
 	BussinessCode(String code, String msg) {
 		this.code = code;

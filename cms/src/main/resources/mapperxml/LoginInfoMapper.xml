@@ -260,4 +260,18 @@
       user_login_name = #{user_login_name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAllLoginInfo" resultMap="BaseResultMap">
+    SELECT * FROM af_logininfo LIMIT ${start}, ${end};
+  </select>
+  <select id="selectLoginInfoByUserName" resultMap="BaseResultMap">
+    SELECT * FROM af_logininfo WHERE user_login_name = #{username, jdbcType=INTEGER} LIMIT ${start}, ${end};
+  </select>
+  
+  <select id="getAllLoginInfoConut" resultType="java.lang.Integer">
+    SELECT count(*) count FROM af_logininfo;
+  </select>
+  <select id="getUserLoginInfoConut" resultType="java.lang.Integer">
+    SELECT count(*) count FROM af_logininfo WHERE user_login_name = #{username};
+  </select>
 </mapper>

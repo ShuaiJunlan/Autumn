@@ -8,7 +8,7 @@ public class DataPageResponseMsg extends BaseResponseMsg {
     private int count;
 
 
-    public DataPageResponseMsg(int code, String msg, Object data, int count) {
+    public DataPageResponseMsg(String code, String msg, Object data, int count) {
         super(code, msg, data);
         this.count = count;
     }

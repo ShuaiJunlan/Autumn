@@ -1,9 +1,9 @@
 package com.autumnframework.cms.service.impl;
 
 
+import com.autumnframework.cms.architect.utils.ResponseMsgUtil;
 import com.autumnframework.cms.dao.vomapper.interfaces.IMenuManageMapper;
-import com.autumnframework.cms.extern.constant.ResponseCode;
-import com.autumnframework.cms.extern.utils.ResponseMsgUtil;
+import com.autumnframework.cms.architect.constant.ResponseCode;
 import com.autumnframework.cms.model.bo.DataPageResponseMsg;
 import com.autumnframework.cms.model.vo.VoMenu;
 import com.autumnframework.cms.service.interfaces.IMenuManageService;
@@ -39,6 +39,6 @@ public class MenuManageServiceImpl implements IMenuManageService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return ResponseMsgUtil.returnCodeMessage(ResponseCode.GET_DATA_SUCCESS, voMenuList, count);
+        return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_SUCCESS, voMenuList, count);
     }
 }

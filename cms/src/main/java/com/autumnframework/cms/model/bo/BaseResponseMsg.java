@@ -5,24 +5,24 @@ package com.autumnframework.cms.model.bo;
  * @date Created on 16:02 2017/9/5.
  */
 public class BaseResponseMsg {
-    private int code;
+    private String code;
     private String msg;
     private Object data;
 
     public BaseResponseMsg() {
     }
 
-    public BaseResponseMsg(int code, String msg, Object data) {
+    public BaseResponseMsg(String code, String msg, Object data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

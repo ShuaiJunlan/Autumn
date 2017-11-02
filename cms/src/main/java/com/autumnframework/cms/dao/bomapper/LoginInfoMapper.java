@@ -67,4 +67,7 @@ public interface LoginInfoMapper {
      */
     List<LoginInfo> selectLoginInfoByUserName(@Param("username") String username, @Param("start") int start, @Param("end") int end);
 
+    int getAllLoginInfoConut();
+    int getUserLoginInfoConut(@Param("username") String username);
+
 }

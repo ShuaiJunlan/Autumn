@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Autumn Framework</title>
     <link rel="shortcut icon" href="/static/img/favicon.ico">
-    <link rel="stylesheet" href="/static/layui_v2/css/layui.css">
+    <link rel="stylesheet" href="/Lib/layui_v2.1.2/css/layui.css">
     <link rel="stylesheet" href="/static/css/login.css">
-    <script type="text/javascript" src="/static/layui_v2/layui.js"></script>
+    <script src="/Lib/layui_v2.1.2/layui.js"></script>
 </head>
 <body>
 <div class="layui-carousel video_mask" id="login_carousel" >
@@ -97,18 +97,17 @@
                 }
             });
             //登陆成功
-            if (ajaxReturnData.returnCode == 0000) {
+            if (ajaxReturnData.code == 0000) {
                 window.location.href="/main/index.do";
                 top.layer.close(loginLoading);
                 return false;
             } else {
                 top.layer.close(loginLoading);
-                common.cmsLayErrorMsg(ajaxReturnData.returnMessage);
+                common.cmsLayErrorMsg(ajaxReturnData.msg);
                 reqCaptcha();
                 return false;
             }
         });
 
     });
-
 </script>

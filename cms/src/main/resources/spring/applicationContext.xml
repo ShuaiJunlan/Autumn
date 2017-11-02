@@ -7,6 +7,7 @@
     <import resource="spring-mvc.xml"/>
     <import resource="spring-mybatis.xml"/>
     <import resource="spring-shiro.xml"/>
+    <import resource="spring-swagger.xml"/>
 
 
     <!--<aop:aspectj-autoproxy />-->

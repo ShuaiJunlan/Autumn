@@ -67,4 +67,27 @@ var main = {
     buttom : function () {
 
     }
+    ,unauthorized : function () {
+        //示范一个公告层
+        Fv.config.layer.open({
+            type: 1
+            ,title: false //不显示标题栏
+            ,closeBtn: false
+            ,area: '300px;'
+            ,shade: 0.8
+            ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+            ,btn: ['残忍离开']
+            ,btnAlign: 'c'
+            ,moveType: 1 //拖拽模式，0或者1
+            ,content: '<div style="padding: 30px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">' +
+            '403-unauthorized<br>您知道吗？亲！<br>' +
+            '<br>很遗憾您没有此功能访问权限。<br>' +
+            '<br>想获得此功能访问权限吗？<br>' +
+            '<br>那就快快联系管理员吧！' +
+            '<br>shuaijunlan(at)gmail.com</div>'
+            ,success: function(layero){
+            }
+        });
+    }
+
 }

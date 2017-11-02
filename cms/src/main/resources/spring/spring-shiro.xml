@@ -20,6 +20,8 @@
                 /BasePlu/**=anon
                 /Sys/plugin/SysManage/**=anon
                 /Sys/userimg/**=anon
+                /swagger/**=anon
+                /api-docs=anon
             </value>
         </property>
     </bean>

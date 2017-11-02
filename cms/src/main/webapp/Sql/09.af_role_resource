@@ -18,12 +18,17 @@ DELETE FROM af_role_resource;
 INSERT INTO af_role_resource(role_id, resource_id, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES (1, 3, 'admin', -1, now(), 'admin', -1, now());;
 INSERT INTO af_role_resource(role_id, resource_id, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES (1, 4, 'admin', -1, now(), 'admin', -1, now());;
 
-INSERT INTO af_role_resource(role_id, resource_id, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES (2, 3, 'admin', -1, now(), 'admin', -1, now());;
-
 INSERT INTO af_role_resource(role_id, resource_id, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES (1, 5, 'admin', -1, now(), 'admin', -1, now());;
 
 
 INSERT INTO af_role_resource(role_id, resource_id, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES (1, 6, 'admin', -1, now(), 'admin', -1, now());;
 INSERT INTO af_role_resource(role_id, resource_id, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES (1, 7, 'admin', -1, now(), 'admin', -1, now());;
+
+
+INSERT INTO af_role_resource(role_id, resource_id, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES (2, 3, 'admin', -1, now(), 'admin', -1, now());;
+INSERT INTO af_role_resource(role_id, resource_id, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES (2, 4, 'admin', -1, now(), 'admin', -1, now());;
+
+
+INSERT INTO af_role_resource(role_id, resource_id, creator, creator_id, create_time, modifier, modifier_id, modifier_time) VALUES (2, 6, 'admin', -1, now(), 'admin', -1, now());;
 
 COMMIT ;

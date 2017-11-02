@@ -42,12 +42,16 @@
     <context:component-scan base-package="com.autumnframework.cms.dao"/>
     <context:component-scan base-package="com.autumnframework.cms.service"/>
 
+
+
     <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
         <!-- 返回的视图模型数据需要经过jstl来处理 -->
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
         <property name="prefix" value="/WEB-INF/views/" />
         <property name="suffix" value=".html" />
     </bean>
+
+    <!--<mvc:resources mapping="/swagger/**" location="/swagger/"/>-->
 
     <!--<context:component-scan base-package="com.fhintern.nesys.model"/>-->
 

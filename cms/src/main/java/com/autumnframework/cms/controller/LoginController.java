@@ -6,10 +6,8 @@ import com.autumnframework.cms.architect.constant.Constants;
 import com.autumnframework.cms.architect.utils.IpInfoUtil;
 import com.autumnframework.cms.architect.utils.ResponseMsgUtil;
 import com.autumnframework.cms.architect.utils.CreateImageCode;
-import com.autumnframework.cms.dao.bomapper.IIPInforDao;
-import com.autumnframework.cms.domain.bo.ResponseMsg;
 
-import com.autumnframework.cms.model.po.IpInforModel;
+import com.autumnframework.cms.model.bo.ResponseMsg;
 import com.autumnframework.cms.model.po.LoginInfo;
 import com.autumnframework.cms.service.impl.LogManageImpl;
 import org.apache.commons.lang3.StringUtils;
@@ -34,12 +32,10 @@ import java.io.IOException;
  * @author Junlan Shuai[shuaijunlan@gmail.com].
  * @date Created on 11:15 2017/8/30.
  */
+//@Api(value = "LoginController", description = "用户登录控制器", position = 1)
 @Controller
 public class LoginController extends BasicController{
     private static final Logger log = LogManager.getLogger(LoginController.class);
-
-    @Autowired
-    private IIPInforDao iipInforDao;
 
     @Autowired
     private LogManageImpl logManage;

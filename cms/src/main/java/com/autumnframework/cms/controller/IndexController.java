@@ -32,8 +32,14 @@
  */
 package com.autumnframework.cms.controller;
 
+import com.autumnframework.cms.architect.utils.ResponseMsgUtil;
+import com.autumnframework.cms.architect.constant.ResponseCode;
+import com.autumnframework.cms.model.bo.DataPageResponseMsg;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
 
 /**
  * 主页Controller
@@ -68,8 +74,9 @@ public class IndexController extends BasicController {
      * @return
      */
     @RequestMapping("/unauthorized.do")
-    public String toUnauthorizedPage() {
-        return "error/unauthorized";
+    @ResponseBody
+    public DataPageResponseMsg toUnauthorizedPage() {
+        return ResponseMsgUtil.returnCodeMessage(ResponseCode.GET_DATA_UNAUTHORIZED, new ArrayList<>(), 2);
     }
 
 
