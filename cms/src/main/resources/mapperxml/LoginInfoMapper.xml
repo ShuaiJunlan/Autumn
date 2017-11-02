@@ -274,4 +274,12 @@
   <select id="getUserLoginInfoConut" resultType="java.lang.Integer">
     SELECT count(*) count FROM af_logininfo WHERE user_login_name = #{username};
   </select>
+
+  <resultMap id="chartsView" type="com.autumnframework.cms.model.vo.ChartsView">
+    <result column="date" jdbcType="VARCHAR" property="x" />
+    <result column="count" jdbcType="INTEGER" property="y" />
+  </resultMap>
+  <select id="getLoginInfoCharts" resultMap="chartsView">
+    SELECT DATE(visit_time) date, COUNT(*) count from af_logininfo group by DATE(visit_time);
+  </select>
 </mapper>

@@ -1,5 +1,6 @@
 package com.autumnframework.cms.controller.system;
 
+import com.alibaba.fastjson.JSONObject;
 import com.autumnframework.cms.model.bo.DataPageResponseMsg;
 import com.autumnframework.cms.model.po.LoginInfo;
 import com.autumnframework.cms.service.impl.LogManageImpl;
@@ -19,16 +20,22 @@ import java.util.List;
 public class LogManageController {
     @Autowired
     private LogManageImpl logManage;
-    @RequestMapping(value = "/allLoginLog")
+    @RequestMapping(value = "/allLoginLog/")
     @ResponseBody
     public DataPageResponseMsg getAllLoginInfo(int page, int limit){
         return logManage.selectAllLoginInfo(page, limit);
     }
 
-    @RequestMapping(value = "/userLoginLog")
+    @RequestMapping(value = "/userLoginLog/")
     @ResponseBody
     public DataPageResponseMsg getAllLoginInfo(String username, int page, int limit){
         return logManage.selectLoginInfoByUserName(username, page, limit);
+    }
+
+    @RequestMapping(value = "/loginInfoCharts/")
+    @ResponseBody
+    public JSONObject getLoginInfoCharts(){
+        return logManage.getLoginInfoCharts();
     }
 
 }

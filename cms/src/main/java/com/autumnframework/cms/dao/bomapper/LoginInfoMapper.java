@@ -1,6 +1,7 @@
 package com.autumnframework.cms.dao.bomapper;
 
 import com.autumnframework.cms.model.po.LoginInfo;
+import com.autumnframework.cms.model.vo.ChartsView;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -69,5 +70,6 @@ public interface LoginInfoMapper {
 
     int getAllLoginInfoConut();
     int getUserLoginInfoConut(@Param("username") String username);
+    List<ChartsView> getLoginInfoCharts();
 
 }

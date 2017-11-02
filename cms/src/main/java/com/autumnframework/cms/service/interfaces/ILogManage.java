@@ -1,9 +1,9 @@
 package com.autumnframework.cms.service.interfaces;
 
+import com.alibaba.fastjson.JSONObject;
 import com.autumnframework.cms.model.bo.DataPageResponseMsg;
 import com.autumnframework.cms.model.po.LoginInfo;
 
-import java.util.List;
 
 /**
  * @author Junlan Shuai[shuaijunlan@gmail.com].
@@ -13,4 +13,5 @@ public interface ILogManage {
     DataPageResponseMsg selectAllLoginInfo(int page, int limit);
     DataPageResponseMsg selectLoginInfoByUserName(String username, int page, int limit);
     int insertLoginInfo(LoginInfo loginInfo);
+    JSONObject getLoginInfoCharts();
 }
