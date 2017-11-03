@@ -24,7 +24,7 @@ public class IpInfoUtil {
      * @param ip 参数ip
      * @return 返回ip的基本信息，以JSONObject格式返回
      */
-    public static JSONObject getIpInforByIp(String ip) {
+    public static JSONObject getIpInforByIp (String ip)throws Exception {
         String tmpURL = IP_INFO_URL + "?ip=" + ip;
         String str = HttpMethodUtil.doGet(tmpURL);
         return JSONObject.parseObject(str);
@@ -63,7 +63,7 @@ public class IpInfoUtil {
      * @param req
      * @return
      */
-    public static JSONObject getIpInforByReq(HttpServletRequest req) {
+    public static JSONObject getIpInforByReq(HttpServletRequest req) throws Exception {
         return getIpInforByIp(getIpByReq(req));
     }
 

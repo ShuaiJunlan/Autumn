@@ -3,11 +3,13 @@
  */
 $(function () {
     var layer;
-    layui.use(['layer', 'element', 'table', 'form'], function(){
+    layui.use(['layer', 'element', 'table', 'form', 'layedit', 'laydate'], function(){
         Fv.config.layer = layui.layer;
         Fv.config.element = layui.element;
         Fv.config.table = layui.table;
         Fv.config.form = layui.form;
+        Fv.config.layedit = layui.layedit;
+        Fv.config.laydate = layui.laydate;
     });
     var sys = "01";
     Fv.ajax.syncGet("/sys/getMenu/" + sys,

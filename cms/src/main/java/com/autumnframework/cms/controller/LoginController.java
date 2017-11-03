@@ -32,7 +32,6 @@ import java.io.IOException;
  * @author Junlan Shuai[shuaijunlan@gmail.com].
  * @date Created on 11:15 2017/8/30.
  */
-//@Api(value = "LoginController", description = "用户登录控制器", position = 1)
 @Controller
 public class LoginController extends BasicController{
     private static final Logger log = LogManager.getLogger(LoginController.class);
@@ -111,13 +110,17 @@ public class LoginController extends BasicController{
                 request.getSession().setAttribute(Constants.SESSION_KEY_LOGIN_NAME,getCurrentUser());
 
                 //  记录用户登录ip信息
-                String detail = IpInfoUtil.getIpInforByReq(request).getString("data");
-                if (!detail.equals("invaild ip.")){
+                try {
+                    String detail = IpInfoUtil.getIpInforByReq(request).getString("data");
+                    //  会抛出异常
                     LoginInfo loginInfo = JSON.parseObject(detail, LoginInfo.class);
                     loginInfo.setUser_login_name(username);
                     logManage.insertLoginInfo(loginInfo);
+                }catch (Exception e){
+                    log.error("invaild ip");
+                }finally {
+                    return ResponseMsgUtil.returnCodeMessage(BussinessCode.GLOBAL_SUCCESS);
                 }
-                return ResponseMsgUtil.returnCodeMessage(BussinessCode.GLOBAL_SUCCESS);
             }
             return ResponseMsgUtil.returnCodeMessage(BussinessCode.GLOBAL_LOGIN_FAIL);
         } catch (IncorrectCredentialsException ice) {

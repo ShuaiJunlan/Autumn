@@ -10,7 +10,7 @@ layui.use('form', function(){
         layer.msg(JSON.stringify(data.field));
         return false;
     });
-    $('#menu_level').on("click", function () {
-        alert("lll");
-    })
+    // $('#menu_level').on("click", function () {
+    //     alert("lll");
+    // })
 });

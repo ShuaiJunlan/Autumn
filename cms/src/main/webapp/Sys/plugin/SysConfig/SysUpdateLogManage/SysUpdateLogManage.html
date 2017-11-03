@@ -1,4 +1,19 @@
-<!-- 内容主体区域 -->
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style="margin: 0px;">
+    <ul class="layui-tab-title">
+        <li class="layui-this" lay-id="1" data-type="switch_level_one">系统更新日志</li>
+    </ul>
+    <div class="layui-tab-content" style="height: 70px;">
+        <div class="layui-tab-item layui-show">
+            <blockquote class="layui-elem-quote layui-text">
+                <div class="layui-btn-group demoTable">
+                    <button class="layui-btn" data-type="addSysUpdateLog">
+                        <i class="layui-icon">&#xe608;</i> 添加日志
+                    </button>
+                </div>
+            </blockquote>
+        </div>
+    </div>
+</div>
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
     <legend>Time Line</legend>
 </fieldset>
@@ -8,8 +23,8 @@
         <div class="layui-timeline-content layui-text">
             <h3 class="layui-timeline-title">September 02, 2017</h3>
             <p>
-                创建Autumn Framework项目，配置基本的开发环境,此项目采用IntelliJ IDEA作为开发工具</br>
-                ,使用Maven管理项目，使用Tomcat作为web服务器， 基于JDK8编译。
+                创建Autumn Framework项目，配置基本的开发环境，此项目采用IntelliJ IDEA作为开发工具，</br>
+                使用Maven构建项目，使用Tomcat作为web服务器， 基于Jdk8编译，代码托管于GitHub。
             </p>
         </div>
     </li>
@@ -18,7 +33,16 @@
         <div class="layui-timeline-content layui-text">
             <h3 class="layui-timeline-title">September 18, 2017</h3>
             <p>
-                创建"系统配置"子模块。
+                创建"系统设置"子模块。
+            </p>
+        </div>
+    </li>
+    <li class="layui-timeline-item">
+        <i class="layui-icon layui-timeline-axis"></i>
+        <div class="layui-timeline-content layui-text">
+            <h3 class="layui-timeline-title">October 16, 2017</h3>
+            <p>
+                基于第三方Shiro框架，添加用户角色权限管理功能。
             </p>
         </div>
     </li>
@@ -28,6 +52,15 @@
             <h3 class="layui-timeline-title">October 26, 2017</h3>
             <p>
                 将数据库连接池从c3p0更换到Druid。
+            </p>
+        </div>
+    </li>
+    <li class="layui-timeline-item">
+        <i class="layui-icon layui-timeline-axis"></i>
+        <div class="layui-timeline-content layui-text">
+            <h3 class="layui-timeline-title">November 01, 2017</h3>
+            <p>
+                增加“系统登录日志”功能，并基于ECharts做可视化展示。
             </p>
         </div>
     </li>

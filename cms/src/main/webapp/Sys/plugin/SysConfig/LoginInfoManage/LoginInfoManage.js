@@ -71,15 +71,15 @@ Fv.plugin.LoginInfoManage.addLoginInfoData = function (url) {
         }
         ,cols: [[
             {checkbox: true, LAY_CHECKED: true}
-            ,{field: 'id', title:'ID', width: 50, sort:true}
+            ,{field: 'id', title:'ID', width: 100, sort:true}
             ,{field: 'user_login_name', title:'登录名', width:100}
-            ,{field: 'ip', title:'ip', width:130}
+            ,{field: 'ip', title:'ip', width:130, sort:true}
             ,{field: 'country', title:'国家', width:100}
             ,{field: 'area', title:'地区', width:60}
             ,{field: 'region', title:'省份', width:100}
             ,{field: 'city', title:'城市', width:100}
             ,{field: 'isp', title:'运营商', width:120}
-            ,{field: 'visit_time', title:'访问时间', width:180}
+            ,{field: 'visit_time', title:'访问时间', width:180, sort:true}
             ,{fixed: 'right', width:120, align:'center', toolbar: '#bar'}
         ]]
         ,limits: [10,30,60,90,150]

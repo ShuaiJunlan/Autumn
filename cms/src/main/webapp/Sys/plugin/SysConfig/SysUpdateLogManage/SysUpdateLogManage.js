@@ -16,6 +16,21 @@ Fv.plugin.SysUpdateLogManage.init = function () {
             , css: [ ]
             , id: "body"
         }
+        ,active:{
+            addSysUpdateLog : function () {
+                layui.$.post('/Sys/plugin/SysConfig/AddSysUpdateLog/AddSysUpdateLog.html', {}, function(str){
+                    var index = layer.open({
+                        type: 1
+                        ,title: '添加日志'
+                        ,offset: 'auto' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+                        ,id: 'addSysUpdateLog' //防止重复弹出
+                        ,content: str
+                        ,shade: 0 //不显示遮罩
+                    });
+                    Fv.ajax.loadJs(["/Sys/plugin/SysConfig/AddSysUpdateLog/AddSysUpdateLog.js"]);
+                });
+            }
+        }
     }
 }();
 Fv.plugin.SysUpdateLogManage.start = function () {
@@ -35,6 +50,10 @@ Fv.plugin.SysUpdateLogManage.start = function () {
                     main.unauthorized();
                     return;
                 }
+                layui.$('.demoTable .layui-btn').on('click', function(){
+                    var type = $(this).data('type');
+                    Fv.plugin.SysUpdateLogManage.init.active[type] ? Fv.plugin.SysUpdateLogManage.init.active[type].call(this) : '';
+                });
             }
             , function () {
                 layui.layer.msg("加载失败")
@@ -42,6 +61,5 @@ Fv.plugin.SysUpdateLogManage.start = function () {
         )
     });
 }();
-var testEditormd;
 
 

@@ -85,14 +85,6 @@ Fv.plugin.LeftMenuManage.addElementModule = function () {
         var othis = $(this), type = othis.data('type');
         Fv.plugin.LeftMenuManage.init.active[type] ? Fv.plugin.LeftMenuManage.init.active[type].call(this, othis) : '';
     });
-
-    // //Hash地址的定位
-    // var layid = location.hash.replace(/^#test=/, '');
-    // Fv.config.element.tabChange('docDemoTabBrief', layid);
-
-    // Fv.config.element.on('tab(docDemoTabBrief)', function(elem){
-    //     location.hash = 'test='+ $(this).attr('lay-id');
-    // });
 };
 
 Fv.plugin.LeftMenuManage.addMenuData = function (level, type, sys, url) {
@@ -111,7 +103,7 @@ Fv.plugin.LeftMenuManage.addMenuData = function (level, type, sys, url) {
             {checkbox: true, LAY_CHECKED: true}
             ,{field: 'id', title:'ID', width: 100, sort:true}
             ,{field: 'sys', title:'系统号', width:100}
-            ,{field: 'namec', title:'菜单名称', width:100}
+            ,{field: 'namec', title:'菜单名称', width:150}
             ,{field: 'status', title:'菜单状态', width:100}
             ,{field: 'disporder', title:'排列顺序', width:100}
             ,{field: 'type', title:'菜单类型', width:100}
