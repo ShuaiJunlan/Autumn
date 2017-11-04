@@ -9,21 +9,20 @@
 
 Please submit issues to corresponding projects, that'll help us make issues tracking easier so that we can provide timely help to you.
 
-#### Modules
+### Modules
 * [CMS](https://github.com/shuaijunlan/Autumn-Framework/tree/master/cms)
 * [WEMIM](https://github.com/shuaijunlan/Autumn-Framework/tree/master/webim)
 
-#### Environment
+### Environment
 *Autumn-Framework* require `java8` and `maven3` as bulid enviroment.</br>
 
 The project requires at minimum 512MB memory to run. Please ensure you have corresponding tools installed in your environment before build and run the project.
 
-#### Get Started
+### Get Started
 * Clone from github.com:
     `git clone git@github.com:shuaijunlan/Autumn-Framework.git`
 * Enter the project root directory
 * Install dependencies:
     `mvn install`
 * Run server:
-    `mvn tomcat7:run`
-Server runs on port 8081 by default, visit localhost:8081 to check it out.
+    `mvn tomcat7:run`. Server runs on port 8081 by default, visit localhost:8081 to check it out.
