@@ -1,6 +1,6 @@
 ![logo](https://github.com/shuaijunlan/Autumn-Framework/blob/master/Autumn.png?raw=true)
 ## Autumn-Framework
-[![Build Status](https://travis-ci.org/shuaijunlan/Autumn-Framework.svg?branch=master)](https://travis-ci.org/shuaijunlan/Autumn-Framework)<br>
+[![Build Status](https://travis-ci.org/shuaijunlan/Autumn-Framework.svg?branch=master)](https://travis-ci.org/shuaijunlan/Autumn-Framework)  [![AUR](https://img.shields.io/aur/license/yaourt.svg)](https://github.com/shuaijunlan/Autumn-Framework/blob/master/LICENSE)</br>
 ![dynamic](https://github.com/shuaijunlan/Autumn-Framework/blob/master/dynamic.gif?raw=true)
 
 *Autumn-Framework* is a collection of web components, aimes to provide universal web system solution. It is scalable and stable, you can develop your own web system  basing on it. Also, you can join us to maintain it together, if only you are interested in it.</br>
