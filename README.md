@@ -26,3 +26,6 @@ The project requires at minimum 512MB memory to run. Please ensure you have corr
     `mvn install`
 * Run server:
     `mvn tomcat7:run`. Server runs on port 8081 by default, visit localhost:8081 to check it out.
+
+### License
+Licensed under GPL 2.0. See [LICENSE](https://github.com/shuaijunlan/Autumn-Framework/blob/master/LICENSE) for further details.
