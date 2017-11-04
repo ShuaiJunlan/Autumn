@@ -6,3 +6,4 @@ logs/
 backend/
 examples/
 Sql/
+mybatis-generator/
