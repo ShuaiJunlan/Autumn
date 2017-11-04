@@ -9,7 +9,7 @@
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://139.199.210.120:3306/autumn_framework?autoReconnect=true"
                         userId="root"
-                        password="shuaij">
+                        password="......">
         </jdbcConnection>
 
         <javaTypeResolver >
