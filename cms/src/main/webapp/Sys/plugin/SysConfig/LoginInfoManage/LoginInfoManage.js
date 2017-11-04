@@ -71,7 +71,7 @@ Fv.plugin.LoginInfoManage.addLoginInfoData = function (url) {
         }
         ,cols: [[
             {checkbox: true, LAY_CHECKED: true}
-            ,{field: 'id', title:'ID', width: 100, sort:true}
+            ,{field: 'id', title:'ID', width: 70, sort:true}
             ,{field: 'user_login_name', title:'登录名', width:100}
             ,{field: 'ip', title:'ip', width:130, sort:true}
             ,{field: 'country', title:'国家', width:100}

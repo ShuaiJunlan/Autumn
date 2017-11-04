@@ -34,14 +34,18 @@
             </ul>
         </div>
     </div>
-
+    <!-- 内容主体区域 -->
     <div class="layui-body" style="margin: 10px;" id="body">
-
-        <!-- 内容主体区域 -->
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
-            <legend>数据统计</legend>
-        </fieldset>
-        <div id="container" style="min-width: 250px; height: 300px; margin: 0 auto"></div>
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style="margin: 0px;">
+            <ul class="layui-tab-title">
+                <li class="layui-this" lay-id="1" data-type="">数据统计</li>
+            </ul>
+            <div class="layui-tab-content" style="height: 70px;">
+                <div class="layui-tab-item layui-show">
+                    <div id="container" style="min-width: 250px; height: 300px; margin: 0 auto"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="layui-footer">

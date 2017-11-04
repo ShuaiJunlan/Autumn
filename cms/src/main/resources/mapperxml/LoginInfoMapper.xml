@@ -260,21 +260,25 @@
       user_login_name = #{user_login_name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
+  <!--分页查询登录信息-->
   <select id="selectAllLoginInfo" resultMap="BaseResultMap">
-    SELECT * FROM af_logininfo LIMIT ${start}, ${end};
+    SELECT * FROM af_logininfo order by id DESC LIMIT ${start}, ${end};
   </select>
+
+  <!--根据用户名查询登录信息-->
   <select id="selectLoginInfoByUserName" resultMap="BaseResultMap">
-    SELECT * FROM af_logininfo WHERE user_login_name = #{username, jdbcType=INTEGER} LIMIT ${start}, ${end};
+    SELECT * FROM af_logininfo WHERE user_login_name = #{username, jdbcType=INTEGER} order by id LIMIT ${start}, ${end};
   </select>
-  
+  <!--获取用户登录信息条数-->
   <select id="getAllLoginInfoConut" resultType="java.lang.Integer">
     SELECT count(*) count FROM af_logininfo;
   </select>
+  <!--获取某用户的登录信息条数-->
   <select id="getUserLoginInfoConut" resultType="java.lang.Integer">
     SELECT count(*) count FROM af_logininfo WHERE user_login_name = #{username};
   </select>
 
+  <!--登录信息图表展示-->
   <resultMap id="chartsView" type="com.autumnframework.cms.model.vo.ChartsView">
     <result column="date" jdbcType="VARCHAR" property="x" />
     <result column="count" jdbcType="INTEGER" property="y" />
@@ -282,4 +286,6 @@
   <select id="getLoginInfoCharts" resultMap="chartsView">
     SELECT DATE(visit_time) date, COUNT(*) count from af_logininfo group by DATE(visit_time);
   </select>
+
+
 </mapper>
