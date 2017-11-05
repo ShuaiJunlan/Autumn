@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.autumnframework.cms.architect.constant.BussinessCode;
 import com.autumnframework.cms.architect.constant.Constants;
 import com.autumnframework.cms.architect.utils.IpInfoUtil;
+import com.autumnframework.cms.architect.utils.MD5Util;
 import com.autumnframework.cms.architect.utils.ResponseMsgUtil;
 import com.autumnframework.cms.architect.utils.CreateImageCode;
 
@@ -101,7 +102,7 @@ public class LoginController extends BasicController{
                 return ResponseMsgUtil.returnCodeMessage(BussinessCode.GLOBAL_CAPTCHA_ERROR);
             }
 
-            UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+            UsernamePasswordToken token = new UsernamePasswordToken(username, MD5Util.getMD5(password));
             token.setRememberMe(true);
             Subject currentUser = SecurityUtils.getSubject();
 

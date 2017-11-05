@@ -68,6 +68,24 @@
             anim: 'fade',
             indicator:'none'
         });
+        layer.open({
+            type: 1
+            ,title: false //不显示标题栏
+            ,closeBtn: false
+            ,area: '200px;'
+            ,shade: 0.8
+            ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+            ,btn: ['确定']
+            ,btnAlign: 'c'
+            ,moveType: 1 //拖拽模式，0或者1
+            ,content: '<div style="padding: 30px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">' +
+                        '测试用户<br>' +
+                        '<br>用户名：sys1<br>' +
+                        '<br>密&nbsp;&nbsp;码：sys1<br>'
+            ,success: function(layero){
+
+            }
+        })
 
         /**重新生成验证码*/
         function reqCaptcha() {
