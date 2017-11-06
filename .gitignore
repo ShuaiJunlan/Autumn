@@ -6,6 +6,5 @@ logs/
 backend/
 examples/
 Sql/
-!autumn_framework.*
 mybatis-generator/
 /src
