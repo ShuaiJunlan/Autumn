@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:properties/spring-email.properties" ignore-unresolvable="true"/>
+
+    <bean id="webEmailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${bus-web.host}"/>
+        <property name="port" value="${bus-web.port}"/>
+        <property name="username" value="${bus-web.username}"/>
+        <property name="password" value="${bus-web.password}"/>
+        <property name="javaMailProperties">
+            <props>
+                <!--设置是否需要身份验证-->
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.port">${bus-web.port}</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="smg" class="org.springframework.mail.SimpleMailMessage">
+        <property name="from" value="${bus-web.from}"/>
+        <property name="to" value="${bus-web.to}"/>
+    </bean>
+    <bean id="emailBean" class="com.autumnframework.cms.architect.email.WebEmail"/>
+</beans>
