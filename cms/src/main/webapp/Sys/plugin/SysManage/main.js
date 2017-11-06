@@ -18,14 +18,14 @@ var main = {
                 return;
             var menu = "";
             for (var  i = 0; i < data.length; i++) {
-                var level_one = "<li class=\"layui-nav-item\">\n" +
-                    "                    <a class=\"\" href=\""+ data[i].href +"\">" + data[i].menu_name +"</a>";
+                var level_one = "<li class=\"layui-nav-item layui-icon\">\n" +
+                    "<a class=\"left_menu\" href=\""+ data[i].href +"\">" +'<span class= \"left_menu_icon\" >'+ data[i].icon +  '  </span>'+ data[i].menu_name +"</a>";
 
                 if (data[i].child_num > 0){
                     var level_two = "<dl class=\"layui-nav-child\">";
                     var temp_;
                     for (var j = 0; j < data[i].child_num; j++){
-                        temp_ =  "<dd><a id=\""+ data[i].childes[j].href +"\">" + data[i].childes[j].menu_name +"</a></dd>";
+                        temp_ =  "<dd><a id=\""+ data[i].childes[j].href +"\" class=\"left_child_menu\">" + data[i].childes[j].menu_name +"</a></dd>";
                         level_two += temp_;
                     }
                     level_one += level_two;

@@ -10,6 +10,7 @@ public class SysMenu {
     public class ChildMenu{
         private String menu_name;
         private String href;
+//        private String icon1;
 
         public String getMenu_name() {
             return menu_name;
@@ -27,17 +28,27 @@ public class SysMenu {
             this.href = href;
         }
 
+//        public String getIcon() {
+//            return icon1;
+//        }
+//
+//        public void setIcon(String icon) {
+//            this.icon1 = icon;
+//        }
+
         @Override
         public String toString() {
             return "ChildMenu{" +
                     "menu_name='" + menu_name + '\'' +
                     ", href='" + href + '\'' +
+//                    ", icon='" + icon1 + '\'' +
                     '}';
         }
     }
     private String menu_name;
     private String href;
     private Integer child_num;
+    private String icon;
     private List<ChildMenu> childes;
 
     public String getMenu_name() {
@@ -72,13 +83,22 @@ public class SysMenu {
         this.childes = childes;
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     @Override
     public String toString() {
         return "SysMenu{" +
                 "menu_name='" + menu_name + '\'' +
                 ", href='" + href + '\'' +
                 ", child_num=" + child_num +
-                ", childs=" + childes +
+                ", icon='" + icon + '\'' +
+                ", childes=" + childes +
                 '}';
     }
 }

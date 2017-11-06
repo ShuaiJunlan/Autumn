@@ -49,6 +49,7 @@ public class MenuManageMapperImpl implements IMenuManageMapper {
             voMenu.setNamee(resultSet.getString("namee"));
             voMenu.setNamec(resultSet.getString("namec"));
             voMenu.setSys(resultSet.getString("sys"));
+            voMenu.setIcon(resultSet.getString("icon"));
             if (level == 1) {
                 voMenu.setParent_name("");
             }

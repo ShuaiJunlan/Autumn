@@ -37,6 +37,7 @@ public class SysMapperImpl implements ISysMapper {
             SysMenu sysMenu = new SysMenu();
             sysMenu.setMenu_name(resultSet.getString("namec"));
             sysMenu.setHref(resultSet.getString("plugin"));
+            sysMenu.setIcon(resultSet.getString("icon"));
 
             PreparedStatement statement1 = connection.prepareStatement(sq_select_func);
             statement1.setString(1, resultSet.getString("name"));
@@ -47,6 +48,7 @@ public class SysMapperImpl implements ISysMapper {
                 SysMenu.ChildMenu childMenu = sysMenu.new ChildMenu();
                 childMenu.setMenu_name(resultSet1.getString("namec"));
                 childMenu.setHref(resultSet1.getString("plugin"));
+//                childMenu.setIcon(resultSet1.getString("icon"));
                 childMenuList.add(childMenu);
                 i++;
             }

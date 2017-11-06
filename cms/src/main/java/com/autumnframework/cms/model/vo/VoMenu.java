@@ -15,6 +15,7 @@ public class VoMenu {
     private String type;
     private String level;
     private String parent_name;
+    private String icon;
 
     public Integer getId() {
         return id;
@@ -96,6 +97,14 @@ public class VoMenu {
         this.parent_name = parent_name;
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     @Override
     public String toString() {
         return "VoMenu{" +
@@ -103,12 +112,13 @@ public class VoMenu {
                 ", sys='" + sys + '\'' +
                 ", name='" + name + '\'' +
                 ", namee='" + namee + '\'' +
-                ", namcc='" + namec + '\'' +
+                ", namec='" + namec + '\'' +
                 ", status='" + status + '\'' +
                 ", disporder=" + disporder +
                 ", type='" + type + '\'' +
                 ", level='" + level + '\'' +
                 ", parent_name='" + parent_name + '\'' +
+                ", icon='" + icon + '\'' +
                 '}';
     }
 }
