@@ -4,6 +4,8 @@ import com.autumnframework.cms.model.po.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface UserMapper {
     /**
@@ -60,6 +62,18 @@ public interface UserMapper {
      * @return
      */
     User selectUserByloginNameAndStatus(@Param("userLoginName") String userLoginName, @Param("userStatus") Long userStatus);
+
+    /**
+     * 获取所有的用户
+     * @return
+     */
+    List<User> selectAllUser();
+
+    /**
+     * 获取用户数量
+     * @return
+     */
+    int getUserCount();
 
 
 }

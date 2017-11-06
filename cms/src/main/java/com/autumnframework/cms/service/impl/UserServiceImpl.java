@@ -1,13 +1,18 @@
 package com.autumnframework.cms.service.impl;
 
 import com.autumnframework.cms.architect.constant.BusinessConstants;
+import com.autumnframework.cms.architect.constant.ResponseCode;
+import com.autumnframework.cms.architect.utils.ResponseMsgUtil;
 import com.autumnframework.cms.dao.bomapper.UserMapper;
+import com.autumnframework.cms.model.bo.DataPageResponseMsg;
 import com.autumnframework.cms.model.po.User;
 import com.autumnframework.cms.service.interfaces.IUserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * @author Junlan Shuai[shuaijunlan@gmail.com].
@@ -29,5 +34,15 @@ public class UserServiceImpl implements IUserService{
     public User selectUserByloginName(String  userLoginName){
         logger.info("Method selectUserByLoginName() execute! - Login authenticate by querying DB. test1");
         return userMapper.selectUserByloginNameAndStatus(userLoginName, Long.valueOf(BusinessConstants.SYS_USER_STATUS_1.getCode()));
+    }
+
+    @Override
+    public DataPageResponseMsg selectAllUser() {
+        return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_SUCCESS, userMapper.selectAllUser(), userMapper.getUserCount());
+    }
+
+    @Override
+    public int insertUser(User user) {
+        return userMapper.insert(user);
     }
 }

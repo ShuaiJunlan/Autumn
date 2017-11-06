@@ -14,10 +14,10 @@
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="creator" jdbcType="VARCHAR" property="creator" />
     <result column="creator_id" jdbcType="INTEGER" property="creator_id" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="create_time" jdbcType="VARCHAR" property="create_time" />
     <result column="modifier" jdbcType="VARCHAR" property="modifier" />
     <result column="modifier_id" jdbcType="INTEGER" property="modifier_id" />
-    <result column="modifier_time" jdbcType="TIMESTAMP" property="modifier_time" />
+    <result column="modifier_time" jdbcType="VARCHAR" property="modifier_time" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--
@@ -62,9 +62,9 @@
       create_time, modifier, modifier_id, 
       modifier_time)
     values (#{user_login_name,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, #{creator_id,jdbcType=INTEGER}, 
-      #{create_time,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, #{modifier_id,jdbcType=INTEGER}, 
-      #{modifier_time,jdbcType=TIMESTAMP})
+      #{status,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, #{creator_id,jdbcType=INTEGER},
+      now(), #{modifier,jdbcType=VARCHAR}, #{modifier_id,jdbcType=INTEGER},
+      now())
   </insert>
   <insert id="insertSelective" parameterType="com.autumnframework.cms.model.po.User">
     <!--
@@ -208,5 +208,14 @@
     select *  from af_user
     where user_login_name =  #{userLoginName,jdbcType=VARCHAR}
     and status = #{userStatus,jdbcType=BIGINT}
+  </select>
+
+  <!--查询所有的用户-->
+  <select id="selectAllUser" resultMap="BaseResultMap">
+    SELECT * FROM af_user;
+  </select>
+  <!--获取用户数量-->
+  <select id="getUserCount" resultType="java.lang.Integer">
+    SELECT count(*) count from af_user;
   </select>
 </mapper>

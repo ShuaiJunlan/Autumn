@@ -25,6 +25,7 @@ $(function () {
             Fv.ajax.loadJs(["/Sys/plugin/SysConfig/LeftMenuManage/LeftMenuManage.js"]);
             Fv.ajax.loadJs(["/Sys/plugin/SysConfig/LoginInfoManage/LoginInfoManage.js"]);
             Fv.ajax.loadJs(["/Sys/plugin/SysConfig/SysUpdateLogManage/SysUpdateLogManage.js"]);
+            Fv.ajax.loadJs(["/Sys/plugin/SysConfig/UserManage/UserManage.js"]);
 
         },
         function () {
