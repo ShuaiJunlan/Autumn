@@ -262,12 +262,12 @@
   </update>
   <!--分页查询登录信息-->
   <select id="selectAllLoginInfo" resultMap="BaseResultMap">
-    SELECT * FROM af_logininfo order by id DESC LIMIT ${start}, ${end};
+    SELECT * FROM af_logininfo order by id DESC LIMIT ${start}, ${limit};
   </select>
 
   <!--根据用户名查询登录信息-->
   <select id="selectLoginInfoByUserName" resultMap="BaseResultMap">
-    SELECT * FROM af_logininfo WHERE user_login_name = #{username, jdbcType=INTEGER} order by id LIMIT ${start}, ${end};
+    SELECT * FROM af_logininfo WHERE user_login_name = #{username, jdbcType=INTEGER} order by id LIMIT ${start}, ${limit};
   </select>
 
   <!--获取用户登录信息条数-->

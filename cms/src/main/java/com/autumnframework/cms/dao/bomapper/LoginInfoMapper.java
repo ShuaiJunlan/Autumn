@@ -57,16 +57,20 @@ public interface LoginInfoMapper {
     int updateByPrimaryKey(LoginInfo record);
     /**
      * 获取所有登录信息
+     * @param start
+     * @param limit
      * @return
      */
-    List<LoginInfo> selectAllLoginInfo(@Param("start") int start, @Param("end") int end);
+    List<LoginInfo> selectAllLoginInfo(@Param("start") int start, @Param("limit") int limit);
 
     /**
      * 获取某用户登录信息
      * @param username
+     * @param start
+     * @param limit
      * @return
      */
-    List<LoginInfo> selectLoginInfoByUserName(@Param("username") String username, @Param("start") int start, @Param("end") int end);
+    List<LoginInfo> selectLoginInfoByUserName(@Param("username") String username, @Param("start") int start, @Param("limit") int limit);
 
     int getAllLoginInfoConut();
     int getUserLoginInfoConut(@Param("username") String username);

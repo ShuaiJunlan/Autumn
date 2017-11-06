@@ -28,12 +28,12 @@ public class LogManageImpl implements ILogManage {
     private LoginInfoMapper loginInfoMapper;
     @Override
     public DataPageResponseMsg selectAllLoginInfo(int page, int limit) {
-        return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_SUCCESS, loginInfoMapper.selectAllLoginInfo((page-1)*limit, page*limit), loginInfoMapper.getAllLoginInfoConut());
+        return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_SUCCESS, loginInfoMapper.selectAllLoginInfo((page-1)*limit, limit), loginInfoMapper.getAllLoginInfoConut());
     }
 
     @Override
     public DataPageResponseMsg selectLoginInfoByUserName(String username, int page, int limit) {
-        return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_SUCCESS, loginInfoMapper.selectLoginInfoByUserName(username, (page-1)*limit, page*limit), loginInfoMapper.getUserLoginInfoConut(username));
+        return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_SUCCESS, loginInfoMapper.selectLoginInfoByUserName(username, (page-1)*limit, limit), loginInfoMapper.getUserLoginInfoConut(username));
     }
 
     @Override
