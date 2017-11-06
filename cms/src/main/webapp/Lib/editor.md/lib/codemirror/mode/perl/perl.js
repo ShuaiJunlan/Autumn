@@ -323,7 +323,7 @@ CodeMirror.defineMode("perl",function(){
                 getprotobynumber                :1,     // - get protocol record numeric protocol
                 getprotoent                     :1,     // - get next protocols record
                 getpwent                        :1,     // - get next passwd record
-                getpwnam                        :1,     // - get passwd record given user autumn_framework name
+                getpwnam                        :1,     // - get passwd record given user autumn_framework.sql name
                 getpwuid                        :1,     // - get passwd record given user ID
                 getservbyname                   :1,     // - get services record given its name
                 getservbyport                   :1,     // - get services record given numeric port

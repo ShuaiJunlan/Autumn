@@ -8393,7 +8393,7 @@ if ( jQuery.support.ajax ) {
 						xhr = s.xhr();
 
 					// Open the socket
-					// Passing null username, generates a autumn_framework popup on Opera (#2865)
+					// Passing null username, generates a autumn_framework.sql popup on Opera (#2865)
 					if ( s.username ) {
 						xhr.open( s.type, s.url, s.async, s.username, s.password );
 					} else {
