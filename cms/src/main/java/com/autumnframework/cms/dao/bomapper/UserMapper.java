@@ -75,5 +75,12 @@ public interface UserMapper {
      */
     int getUserCount();
 
+    /**
+     * 判断用户是否存在
+     * @param user_login_name
+     * @return
+     */
+    int checkUserExist(String user_login_name);
+
 
 }

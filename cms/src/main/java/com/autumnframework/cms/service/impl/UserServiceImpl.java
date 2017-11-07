@@ -5,6 +5,7 @@ import com.autumnframework.cms.architect.constant.ResponseCode;
 import com.autumnframework.cms.architect.utils.ResponseMsgUtil;
 import com.autumnframework.cms.dao.bomapper.UserMapper;
 import com.autumnframework.cms.model.bo.DataPageResponseMsg;
+import com.autumnframework.cms.model.bo.ResponseMsg;
 import com.autumnframework.cms.model.po.User;
 import com.autumnframework.cms.service.interfaces.IUserService;
 import org.apache.logging.log4j.LogManager;
@@ -42,7 +43,13 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
-    public int insertUser(User user) {
-        return userMapper.insert(user);
+    public ResponseMsg insertUser(User user) {
+        if (userMapper.checkUserExist(user.getUser_login_name()) == 1){
+            return ResponseMsgUtil.returnCodeMessage(ResponseCode.DATA_EXIT);
+        }else if (userMapper.insert(user) == -1){
+            return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_FAIL);
+        }else {
+            return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_SUCCESS);
+        }
     }
 }

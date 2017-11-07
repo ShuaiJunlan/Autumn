@@ -26,8 +26,7 @@ public class EmailTask {
 
 
 
-//    @Scheduled(cron = "0 */1 * * * ?")
-    @Scheduled(cron = "0 0 12 * * ?")
+    @Scheduled(cron = "0 0 18 * * ?")
     public void sendVisitCountMiddle(){
         String content = "<html> <body> <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" height=\"500\">\n" +
                 "\t<tbody>\n" +
@@ -45,7 +44,7 @@ public class EmailTask {
         webEmail.send("Autumn Framework Notice", content);
     }
 
-    @Scheduled(cron = "0 30 23 * * ?")
+    @Scheduled(cron = "0 0 23 * * ?")
     public void sendVisitCountNight(){
         String content = "<html> <body> <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" height=\"500\">\n" +
                 "\t<tbody>\n" +

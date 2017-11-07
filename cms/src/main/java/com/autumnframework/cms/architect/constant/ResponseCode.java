@@ -14,7 +14,10 @@ public enum ResponseCode {
     REQUEST_FAIL("0000", "fail"),
 
     //  请求没有授权
-    REQUEST_UNAUTHORIZED("3333", "fail");
+    REQUEST_UNAUTHORIZED("3333", "fail"),
+
+    // 数据已存在
+    DATA_EXIT("5000", "data exist");
 
 
     private String code;

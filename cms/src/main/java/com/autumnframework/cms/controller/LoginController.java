@@ -10,6 +10,7 @@ import com.autumnframework.cms.architect.utils.CreateImageCode;
 
 import com.autumnframework.cms.model.bo.ResponseMsg;
 import com.autumnframework.cms.model.po.LoginInfo;
+import com.autumnframework.cms.model.po.User;
 import com.autumnframework.cms.service.impl.LogManageImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -108,7 +109,7 @@ public class LoginController extends BasicController{
 
             currentUser.login(token);
             if (currentUser.isAuthenticated()) {
-                request.getSession().setAttribute(Constants.SESSION_KEY_LOGIN_NAME,getCurrentUser());
+                request.getSession().setAttribute(Constants.SESSION_KEY_LOGIN_NAME, getCurrentUser());
 
                 //  记录用户登录ip信息
                 try {
@@ -146,5 +147,11 @@ public class LoginController extends BasicController{
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();
         return "login";
+    }
+
+    @RequestMapping("/init.do")
+    @ResponseBody
+    public User initInfo(HttpServletRequest request){
+        return (User) request.getSession().getAttribute(Constants.SESSION_KEY_LOGIN_NAME);
     }
 }

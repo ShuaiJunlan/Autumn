@@ -1,7 +1,9 @@
 package com.autumnframework.cms.controller.system;
 
+import com.autumnframework.cms.architect.utils.MD5Util;
 import com.autumnframework.cms.model.bo.DataPageResponseMsg;
 import com.autumnframework.cms.model.bo.ResponseMsg;
+import com.autumnframework.cms.model.po.User;
 import com.autumnframework.cms.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,5 +23,13 @@ public class UserManageController {
     @ResponseBody
     public DataPageResponseMsg getAllUser(){
         return userService.selectAllUser();
+    }
+
+    @RequestMapping(value = "/insert/")
+    @ResponseBody
+    public ResponseMsg insertUser(User user){
+
+        user.setPassword(MD5Util.getMD5(user.getPassword()));
+        return userService.insertUser(user);
     }
 }

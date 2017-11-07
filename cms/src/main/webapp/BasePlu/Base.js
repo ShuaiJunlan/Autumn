@@ -216,7 +216,7 @@ Fv.ajax = {
      * @param data      返回数据，json
      * @param callFunc  回调函数，function
      */
-    post: function (svr, paras, data1, callFunc) {
+    post: function (svr, paras, callFunc, errFunc) {
         $.ajax({
             type: "post",
             url: svr,
@@ -228,6 +228,7 @@ Fv.ajax = {
                 callFunc(data);
             },
             error: function () {
+                errFunc();
                 //alert("errpror")
             }
         })

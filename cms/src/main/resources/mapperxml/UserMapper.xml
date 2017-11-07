@@ -218,4 +218,8 @@
   <select id="getUserCount" resultType="java.lang.Integer">
     SELECT count(*) count from af_user;
   </select>
+
+  <select id="checkUserExist" resultType="java.lang.Integer">
+    SELECT COUNT(*) count FROM af_user WHERE user_login_name=#{user_login_name, jdbcType = VARCHAR};
+  </select>
 </mapper>

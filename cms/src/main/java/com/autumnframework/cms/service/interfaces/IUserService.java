@@ -2,6 +2,7 @@ package com.autumnframework.cms.service.interfaces;
 
 
 import com.autumnframework.cms.model.bo.DataPageResponseMsg;
+import com.autumnframework.cms.model.bo.ResponseMsg;
 import com.autumnframework.cms.model.po.User;
 
 import java.util.List;
@@ -24,5 +25,10 @@ public interface IUserService {
      */
     DataPageResponseMsg selectAllUser();
 
-    int insertUser(User user);
+    /**
+     * 插入一条用户
+     * @param user
+     * @return
+     */
+    ResponseMsg insertUser(User user);
 }
