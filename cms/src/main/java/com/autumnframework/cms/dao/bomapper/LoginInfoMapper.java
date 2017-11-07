@@ -76,4 +76,16 @@ public interface LoginInfoMapper {
     int getUserLoginInfoConut(@Param("username") String username);
     List<ChartsView> getLoginInfoCharts();
 
+    /**
+     * 获得今日的访问量
+     * @return
+     */
+    int getNowCount();
+
+    /**
+     * 获得昨日访问量
+     * @return
+     */
+    int getYesterdayCount();
+
 }

@@ -289,5 +289,13 @@
     SELECT DATE(visit_time) date, COUNT(*) count from af_logininfo group by DATE(visit_time);
   </select>
 
+  <select id="getNowCount" resultType="java.lang.Integer">
+    SELECT COUNT(*) count FROM af_logininfo WHERE DATE(visit_time) = curdate() ;
+  </select>
+
+  <select id="getYesterdayCount" resultType="java.lang.Integer">
+    SELECT count(*) count FROM af_logininfo WHERE DATE (visit_time) = date_sub(curdate(),interval 1 day);
+  </select>
+
 
 </mapper>

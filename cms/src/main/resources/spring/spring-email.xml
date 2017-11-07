@@ -23,5 +23,5 @@
         <property name="from" value="${bus-web.from}"/>
         <property name="to" value="${bus-web.to}"/>
     </bean>
-    <bean id="emailBean" class="com.autumnframework.cms.architect.email.WebEmail"/>
+    <context:component-scan base-package="com.autumnframework.cms.extern.email"/>
 </beans>
