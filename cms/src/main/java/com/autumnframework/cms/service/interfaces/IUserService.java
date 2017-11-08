@@ -23,7 +23,7 @@ public interface IUserService {
      * 获取所有的用户
      * @return
      */
-    DataPageResponseMsg selectAllUser();
+    DataPageResponseMsg selectAllUser(int page, int limit);
 
     /**
      * 插入一条用户

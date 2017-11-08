@@ -33,6 +33,7 @@ Fv.plugin.AddUser.start = function () {
             Fv.ajax.post("/user/insert/", user, function (data) {
                 if (data.code == '1111'){
                     layer.msg("添加成功");
+                    Fv.config.form.render(null, "addUser");
                 }else if (data.code == '0000'){
                     layer.msg("添加失败")
                 }else if (data.code == '5000'){

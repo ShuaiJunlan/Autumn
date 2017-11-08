@@ -108,7 +108,7 @@ Fv.plugin.UserManage.addUserData = function (url) {
     })
 
     //监听表格复选框选择
-    Fv.config.table.on('checkbox(menu)', function(obj){
+    Fv.config.table.on('checkbox(user)', function(obj){
         console.log(obj)
     });
 

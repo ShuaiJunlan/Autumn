@@ -96,12 +96,12 @@ Fv.plugin.LoginInfoManage.addLoginInfoData = function (url) {
     })
 
     //监听表格复选框选择
-    Fv.config.table.on('checkbox(menu)', function(obj){
+    Fv.config.table.on('checkbox(loginInfo)', function(obj){
         console.log(obj)
     });
     
     //监听工具条
-    Fv.config.table.on('tool(menu)', function(obj){
+    Fv.config.table.on('tool(loginInfo)', function(obj){
         var data = obj.data;
         if(obj.event === 'detail'){
             layer.msg('ID：'+ data.id + ' 的查看操作');

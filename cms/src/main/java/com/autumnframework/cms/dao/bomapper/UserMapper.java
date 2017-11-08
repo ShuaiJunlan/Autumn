@@ -65,9 +65,11 @@ public interface UserMapper {
 
     /**
      * 获取所有的用户
+     * @param start
+     * @param limit
      * @return
      */
-    List<User> selectAllUser();
+    List<User> selectAllUser(@Param("start") int start, @Param("limit") int limit);
 
     /**
      * 获取用户数量

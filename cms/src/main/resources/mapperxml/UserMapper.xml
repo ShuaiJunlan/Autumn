@@ -212,7 +212,7 @@
 
   <!--查询所有的用户-->
   <select id="selectAllUser" resultMap="BaseResultMap">
-    SELECT * FROM af_user;
+    SELECT * FROM af_user order by id DESC LIMIT ${start}, ${limit};
   </select>
   <!--获取用户数量-->
   <select id="getUserCount" resultType="java.lang.Integer">

@@ -8,6 +8,7 @@ import com.autumnframework.cms.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -21,8 +22,8 @@ public class UserManageController {
     private UserServiceImpl userService;
     @RequestMapping(value = "/getAllUser/")
     @ResponseBody
-    public DataPageResponseMsg getAllUser(){
-        return userService.selectAllUser();
+    public DataPageResponseMsg getAllUser(@RequestParam("page") int page, @RequestParam("limit") int limit){
+        return userService.selectAllUser(page, limit);
     }
 
     @RequestMapping(value = "/insert/")
