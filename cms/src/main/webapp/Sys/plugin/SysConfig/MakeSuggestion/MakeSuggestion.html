@@ -1,0 +1,20 @@
+<div class="layui-form layui-form-pane" action="" style="margin: 10px" lay-filter="addUser">
+    <div class="layui-form-item">
+        <label class="layui-form-label">您的邮箱</label>
+        <div class="layui-input-block">
+            <input name="email" lay-verify="email" autocomplete="off" class="layui-input" type="text"  placeholder="请输入您的邮箱，便于管理员联系您">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">内容</label>
+        <div class="layui-input-block">
+            <textarea name="content" lay-verify="required" required placeholder="请输入您想说的话(点击确认后将会直接发送到管理员的邮箱哦)" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="makeSuggestion">立即发送</button>
+        </div>
+    </div>
+</div>
