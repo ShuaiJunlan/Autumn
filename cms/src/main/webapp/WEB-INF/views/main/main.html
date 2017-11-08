@@ -61,6 +61,7 @@
 <script src="/Sys/plugin/SysManage/sys.js"></script>
 <script src="/Lib/Echarts-3.7.2/echarts.common.min.js"></script>
 <script type="text/javascript">
+
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('container'));
     Fv.ajax.get("/log/loginInfoCharts/", {}, function (data) {

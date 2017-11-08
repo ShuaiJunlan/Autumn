@@ -69,7 +69,7 @@ var main = {
     }
     ,unauthorized : function () {
         //示范一个公告层
-        Fv.config.layer.open({
+        layer.open({
             type: 1
             ,title: false //不显示标题栏
             ,closeBtn: false

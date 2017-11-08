@@ -155,7 +155,7 @@ Fv.plugin.LeftMenuManage.addMenuData = function (level, type, sys, url) {
                 }else if (obj.data.level = "2级菜单"){
                     level = 2;
                 }
-                Fv.ajax.post("/menu/deleteMenu/", {level:level, id:obj.data.id}, {}, function (data) {
+                Fv.ajax.post("/menu/deleteMenu/", {level:level, id:obj.data.id}, function (data) {
                     if (data.code == "1111"){
                         obj.del();
                         layer.msg("删除成功！");
