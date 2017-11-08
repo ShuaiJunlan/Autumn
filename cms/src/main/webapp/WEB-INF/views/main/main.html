@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>Autumn Framework</title>
     <link rel="stylesheet" href="/Lib/layui_v2.1.2/css/layui.css">
-    <link rel="stylesheet" href="/Sys/css/main.css">
+    <link rel="stylesheet" href="/Sys/css/main.css"  media="all">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all" />
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
@@ -41,7 +42,82 @@
             <ul class="layui-tab-title">
                 <li class="layui-this" lay-id="1" data-type="">数据统计</li>
             </ul>
-            <div class="layui-tab-content" style="height: 70px;">
+            <div class="layui-tab-content" >
+                <div class="layui-tab-item layui-show">
+                    <div class="panel_box row" style="">
+                        <div class="panel col">
+                            <a href="javascript:;" >
+                                <div class="panel_icon">
+                                    <i class="layui-icon" data-icon="&#xe63a;">&#xe63a;</i>
+                                </div>
+                                <div class="panel_word newMessage">
+                                    <span>0</span>
+                                    <cite>新消息</cite>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="panel col">
+                            <a href="javascript:;">
+                                <div class="panel_icon" style="background-color:#FF5722;">
+                                    <i class="iconfont icon-dongtaifensishu" data-icon="icon-dongtaifensishu"></i>
+                                </div>
+                                <div class="panel_word userAll">
+                                    <span>0</span>
+                                    <cite>新增人数</cite>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="panel col">
+                            <a href="javascript:;" >
+                                <div class="panel_icon" style="background-color:#009688;">
+                                    <i class="layui-icon" data-icon="&#xe613;">&#xe613;</i>
+                                </div>
+                                <div class="panel_word userAll">
+                                    <span>0</span>
+                                    <cite>用户总数</cite>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="panel col">
+                            <a href="javascript:;">
+                                <div class="panel_icon" style="background-color:#5FB878;">
+                                    <i class="layui-icon" data-icon="&#xe64a;">&#xe64a;</i>
+                                </div>
+                                <div class="panel_word imgAll">
+                                    <span>0</span>
+                                    <cite>图片总数</cite>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="panel col">
+                            <a href="javascript:;">
+                                <div class="panel_icon" style="background-color:#F7B824;">
+                                    <i class="iconfont icon-wenben" data-icon="icon-wenben"></i>
+                                </div>
+                                <div class="panel_word waitNews">
+                                    <span>0</span>
+                                    <cite>待审核文章</cite>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="panel col max_panel">
+                            <a href="javascript:;">
+                                <div class="panel_icon" style="background-color:#2F4056;">
+                                    <i class="iconfont icon-text" data-icon="icon-text"></i>
+                                </div>
+                                <div class="panel_word allNews">
+                                    <span>0</span>
+                                    <em>文章总数</em>
+                                    <cite>文章列表</cite>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                    <legend>图表</legend>
+                </fieldset>
                 <div class="layui-tab-item layui-show">
                     <div id="container" style="min-width: 250px; height: 300px; margin: 0 auto"></div>
                 </div>
