@@ -11,8 +11,7 @@
 Please submit issues to corresponding projects, that'll help us make issues tracking easier so that we can provide timely help to you.
 
 ### Modules
-* [CMS](https://github.com/shuaijunlan/Autumn-Framework/tree/master/cms)
-* [WEBIM](https://github.com/shuaijunlan/Autumn-Framework/tree/master/webim)
+* [AUTUMN-CMS](https://github.com/shuaijunlan/Autumn-Framework/tree/master/autumn-cms)
 
 ### Environment
 *Autumn-Framework* require `java8` and `maven3` as bulid enviroment.</br>
