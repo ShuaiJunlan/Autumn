@@ -26,7 +26,7 @@ The project requires at minimum 512MB memory to run. Please ensure you have corr
 * Enter the project root directory `cd Autumn-Framework`
 * Install dependencies:
     `mvn install`
-* Enter sub-system, e.g.`cd cms`
+* Enter sub-system, e.g.`cd autumn-cms`
 * Run server:
     `mvn tomcat7:run`. Server runs on port 8081 by default, visit `localhost:8081` to check it out.
 
