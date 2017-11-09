@@ -122,7 +122,7 @@
                     <div id="container" style="min-width: 250px; height: 300px; margin: 0 auto"></div>
                 </div>
                 <div class="layui-tab-item layui-show">
-                    <div id="map" style="min-width: 310px; margin: 0 auto"></div>
+                    <div id="map" style="min-width: 310px; margin: 0 auto; max-width: 1000px;"></div>
                 </div>
             </div>
         </div>
@@ -143,75 +143,73 @@
 <script src="/Lib/Highmaps/china.js"></script>
 
 <script type="text/javascript">
+    $(document).ready(function () {
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('container'));
+        Fv.ajax.get("/log/loginInfoCharts/", {}, function (data) {
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: '系统访问量统计'
+                    },
+                    tooltip: {},
+                    legend: {
+                        data:['访问次数']
+                    },
+                    xAxis: {
+                        data: data.X
+                    },
+                    yAxis: {},
+                    series: [{
+                        name: '访问次数',
+                        type: 'bar',
+                        data: data.Y
+                    }]
+                };
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            }
+            ,function () {
+                layer.msg("数据加载失败!");
+            }
+        );
 
-    // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('container'));
-    Fv.ajax.get("/log/loginInfoCharts/", {}, function (data) {
-            // 指定图表的配置项和数据
-            var option = {
+        Fv.ajax.get("/log/loginInfoArea/", {}, function (data){
+            // Create the chart
+            Highcharts.mapChart('map', {
+                chart: {
+                    map: 'cn/china'
+                },
                 title: {
-                    text: '系统访问量统计'
+                    text: '系统访问量地域分布'
                 },
-                tooltip: {},
-                legend: {
-                    data:['访问次数']
-                },
-                xAxis: {
-                    data: data.X
-                },
-                yAxis: {},
-                series: [{
-                    name: '访问次数',
-                    type: 'bar',
-                    data: data.Y
-                }]
-            };
-            // 使用刚指定的配置项和数据显示图表。
-            myChart.setOption(option);
-        }
-         ,function () {
-            layer.msg("数据加载失败!");
-        }
-    );
-
-    Fv.ajax.get("/log/loginInfoArea/", {}, function (data){
-        // Create the chart
-        Highcharts.mapChart('map', {
-            chart: {
-                map: 'cn/china'
-            },
-            title: {
-                text: '系统访问量地域分布'
-            },
-            mapNavigation: {
-                enabled: true,
-                buttonOptions: {
-                    verticalAlign: 'bottom'
-                }
-            },
-            colorAxis: {
-                min: 0,
-                minColor: '#c1c8ff',
-                maxColor: '#1e0aee',
-                labels:{
-                    style:{
-                        "color":"blue","fontWeight":"bold"
+                mapNavigation: {
+                    enabled: true,
+                    buttonOptions: {
+                        verticalAlign: 'bottom'
                     }
-                }
-            },
-            series: [{
-                data: data,
-                joinBy: 'name',
-                name: '访问量'
-            }]
-        });
-    },function () {
-        layer.msg("数据加载失败!");
-    })
-
-
-
-
+                },
+                colorAxis: {
+                    min: 0,
+                    minColor: '#c1c8ff',
+                    maxColor: '#1e0aee',
+                    labels:{
+                        style:{
+                            "color":"blue","fontWeight":"bold"
+                        }
+                    }
+                },
+                series: [{
+                    data: data,
+                    joinBy: 'name',
+                    name: '访问量'
+                }]
+            });
+        },function () {
+            layer.msg("数据加载失败!");
+        })
+        }
+    )
 </script>
 </body>
 </html>
