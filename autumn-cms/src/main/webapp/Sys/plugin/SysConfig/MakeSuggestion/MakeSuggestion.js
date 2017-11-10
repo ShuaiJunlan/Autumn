@@ -61,7 +61,5 @@ Fv.plugin.MakeSuggestion.start = function () {
             })
         });
     });
-
-
 }();
 

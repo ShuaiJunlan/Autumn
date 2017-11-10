@@ -42,7 +42,7 @@ Fv.plugin.AddUser.start = function () {
             }
             ,function () {
                     layer.msg("系统异常")
-                });
+            });
         }
         return false;
     });
