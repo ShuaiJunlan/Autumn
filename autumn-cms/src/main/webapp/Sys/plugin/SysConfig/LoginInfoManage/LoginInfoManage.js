@@ -32,6 +32,7 @@ Fv.plugin.LoginInfoManage.start = function () {
                     $("#" + a.id).html(data);
                 }
                 if (data1 != undefined && data1.code != undefined && data1.code == "3333"){
+                    Fv.config.layer.close(loading);
                     main.unauthorized();
                     return;
                 }
@@ -42,12 +43,14 @@ Fv.plugin.LoginInfoManage.start = function () {
                     var type = $(this).data('type');
                     Fv.plugin.LeftMenuManage.init.active[type] ? Fv.plugin.LeftMenuManage.init.active[type].call(this) : '';
                 });
+                Fv.config.layer.close(loading);
             }
             , function () {
-                layui.layer.msg("加载失败")
+                Fv.config.layer.close(loading);
+                layui.layer.msg("加载失败");
             }
         )
-        Fv.config.layer.close(loading);
+
     });
 }();
 
@@ -65,7 +68,6 @@ Fv.plugin.LoginInfoManage.addFormModule = function () {
 }
 
 Fv.plugin.LoginInfoManage.addLoginInfoData = function (url) {
-    // var loading = layer.msg('数据加载中，请稍后', {icon: 16, time: false, shade: 0.5});
     Fv.config.table.render({
         id : "loginlog_table"
         ,elem : '#loginlog_table'

@@ -36,6 +36,7 @@ Fv.plugin.SysUpdateLogManage.init = function () {
 }();
 Fv.plugin.SysUpdateLogManage.start = function () {
     $('#SystemUpdatingLogManage').on('click', function () {
+        var loading = Fv.config.layer.msg('数据加载中，请稍后', {icon: 16, time: false, shade: 0.5});
         Fv.ajax.loadDiv(
             Fv.plugin.SysUpdateLogManage.init.div
             , function (data, a) {
@@ -48,6 +49,7 @@ Fv.plugin.SysUpdateLogManage.start = function () {
                     $("#" + a.id).html(data);
                 }
                 if (data1 != undefined && data1.code != undefined && data1.code == "3333"){
+                    Fv.config.layer.close(loading);
                     main.unauthorized();
                     return;
                 }
@@ -55,9 +57,11 @@ Fv.plugin.SysUpdateLogManage.start = function () {
                     var type = $(this).data('type');
                     Fv.plugin.SysUpdateLogManage.init.active[type] ? Fv.plugin.SysUpdateLogManage.init.active[type].call(this) : '';
                 });
+                Fv.config.layer.close(loading);
             }
             , function () {
-                layui.layer.msg("加载失败")
+                Fv.config.layer.close(loading);
+                layui.layer.msg("加载失败");
             }
         )
     });
