@@ -39,6 +39,7 @@ Fv.plugin.LeftMenuManage.init = function () {
                         ,id: 'addMenuLayer'+1 //防止重复弹出
                         ,content: str
                         ,shade: 0 //不显示遮罩
+                        ,skin: 'layui-layer-molv'
                     });
                     Fv.ajax.loadJs(["/Sys/plugin/SysConfig/AddMenu/AddMenu.js"]);
                 });
@@ -62,6 +63,7 @@ Fv.plugin.LeftMenuManage.start = function () {
                     $("#" + a.id).html(data);
                 }
                 if (data1 != undefined && data1.code != undefined && data1.code == "3333"){
+                    Fv.config.layer.close(loading);
                     main.unauthorized();
                     return;
                 }
@@ -71,12 +73,13 @@ Fv.plugin.LeftMenuManage.start = function () {
                     var type = $(this).data('type');
                     Fv.plugin.LeftMenuManage.init.active[type] ? Fv.plugin.LeftMenuManage.init.active[type].call(this) : '';
                 });
+                Fv.config.layer.close(loading);
             }
             , function () {         //  fail 失败回调
+                Fv.config.layer.close(loading);
                 layui.layer.msg("加载失败")
             }
         );
-        Fv.config.layer.close(loading);
     });
 }();
 

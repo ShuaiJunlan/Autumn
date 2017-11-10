@@ -31,6 +31,7 @@ Fv.plugin.UserManage.init = function () {
 }();
 Fv.plugin.UserManage.start = function () {
     $('#UserManage').on('click', function () {
+        var loading = layer.msg('数据加载中，请稍后', {icon: 16, time: false, shade: 0.5});
         Fv.ajax.loadDiv(
             Fv.plugin.UserManage.init.div
             , function (data, a) {
@@ -43,6 +44,7 @@ Fv.plugin.UserManage.start = function () {
                     $("#" + a.id).html(data);
                 }
                 if (data1 != undefined && data1.code != undefined && data1.code == "3333"){
+                    Fv.config.layer.close(loading);
                     main.unauthorized();
                     return;
                 }
@@ -53,8 +55,10 @@ Fv.plugin.UserManage.start = function () {
                     var type = $(this).data('type');
                     Fv.plugin.UserManage.init.active[type] ? Fv.plugin.UserManage.init.active[type].call(this) : '';
                 });
+                Fv.config.layer.close(loading);
             }
             , function () {
+                Fv.config.layer.close(loading);
                 layui.layer.msg("加载失败")
             }
         )

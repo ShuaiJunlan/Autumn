@@ -27,6 +27,7 @@ Fv.plugin.SysUpdateLogManage.init = function () {
                         ,content: str
                         ,shade: 0 //不显示遮罩
                         ,offset: '50px'
+                        ,skin: 'layui-layer-molv'
                     });
                     Fv.ajax.loadJs(["/Sys/plugin/SysConfig/AddSysUpdateLog/AddSysUpdateLog.js"]);
                 });
