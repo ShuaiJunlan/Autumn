@@ -176,4 +176,13 @@
       modifier_time = #{modifier_time,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--查询所有的角色-->
+  <select id="selectAllRole" resultMap="BaseResultMap">
+    SELECT * FROM af_role order by id DESC LIMIT ${start}, ${limit};
+  </select>
+  <!--获取用户数量-->
+  <select id="getRoleCount" resultType="java.lang.Integer">
+    SELECT count(*) count from af_role;
+  </select>
 </mapper>

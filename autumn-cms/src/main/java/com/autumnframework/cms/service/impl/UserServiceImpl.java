@@ -39,7 +39,9 @@ public class UserServiceImpl implements IUserService{
 
     @Override
     public DataPageResponseMsg selectAllUser(int page, int limit) {
-        return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_SUCCESS, userMapper.selectAllUser((page-1)*limit, limit), userMapper.getUserCount());
+        return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_SUCCESS
+                , userMapper.selectAllUser((page-1)*limit, limit)
+                , userMapper.getUserCount());
     }
 
     @Override

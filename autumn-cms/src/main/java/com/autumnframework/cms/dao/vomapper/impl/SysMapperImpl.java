@@ -25,8 +25,9 @@ public class SysMapperImpl implements ISysMapper {
 
     @Override
     public List<SysMenu> getMenuBySys(String sys) throws SQLException {
-        String sql_select_funcgrp = "SELECT * FROM af_funcgrp WHERE type = 'leftMenu' AND sys = ? ORDER BY disporder";
-        String sq_select_func = "SELECT * FROM af_func WHERE grp_name = ? ORDER BY disporder";
+
+        String sql_select_funcgrp = "SELECT * FROM af_funcgrp WHERE type = 'leftMenu' AND status = 1 AND sys = ? ORDER BY disporder";
+        String sq_select_func = "SELECT * FROM af_func WHERE grp_name = ? AND status = 1 ORDER BY disporder";
 
         DruidPooledConnection connection = druidDataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql_select_funcgrp);

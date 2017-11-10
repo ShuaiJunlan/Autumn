@@ -1,0 +1,35 @@
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style="margin: 0px;">
+
+    <ul class="layui-tab-title">
+        <li class="layui-this" lay-id="1" data-type="switch_level_one">角色管理</li>
+    </ul>
+    <div class="layui-tab-content" style="height: 70px;">
+        <div class="layui-tab-item layui-show">
+            <blockquote class="layui-elem-quote mylog-info-tit">
+                <div class="layui-inline">
+                    <form class="layui-form" id="userSearchForm">
+                        <div class="layui-input-inline" style="width:110px;">
+                            <select name="searchTerm" >
+                                <option value=""></option>
+                                <option value="roleName">角色名称</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline" style="width:145px;">
+                            <input type="text" name="searchContent" value="" placeholder="请输入关键字" class="layui-input search_input">
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn" lay-filter="formDemo"><i class="layui-icon">&#xe615;</i>查询</button>
+                    <button class="layui-btn" lay-filter="formDemo"><i class="layui-icon">&#xe621;</i>导出</button>
+                    <button class="layui-btn" data-type="addUser"><i class="layui-icon">&#xe608;</i> 添加角色</button>
+                </div>
+            </blockquote>
+        </div>
+    </div>
+</div>
+<table lay-filter="role" id="role_table" class="table_margin"></table>
+<script type="text/html" id="bar">
+    <a class="layui-btn layui-btn-primary layui-btn-mini" lay-event="detail">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+</script>
