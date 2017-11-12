@@ -14,7 +14,7 @@ Please submit issues to corresponding projects, that'll help us make issues trac
 * [AUTUMN-CMS](https://github.com/shuaijunlan/Autumn-Framework/tree/master/autumn-cms)
 
 ### Environment
-*Autumn-Framework* require `java8` and `maven3` as bulid enviroment.</br>
+*Autumn-Framework* requires `java8` and `maven3` as bulid enviroment.</br>
 
 The project requires at minimum 512MB memory to run. Please ensure you have corresponding tools installed in your environment before build and run the project.
 
