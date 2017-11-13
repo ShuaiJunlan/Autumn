@@ -10,7 +10,7 @@ Fv.plugin.RoleManage = function () {
 }();
 Fv.plugin.RoleManage.init = function () {
     return{
-        div: {url : "/Sys/plugin/SysConfig/RoleManage/RoleManage.html", js: [], css: [], id: "body"}
+        div: {url : "Sys/plugin/SysConfig/RoleManage/RoleManage.html", js: [], css: [], id: "body"}
     }
 }();
 Fv.plugin.RoleManage.start = function () {
@@ -34,7 +34,7 @@ Fv.plugin.RoleManage.start = function () {
                 }
                 Fv.plugin.RoleManage.addElementModule();
                 Fv.plugin.RoleManage.addFormModule();
-                Fv.plugin.RoleManage.addRoleData('/role/getAllRole/');
+                Fv.plugin.RoleManage.addRoleData('role/getAllRole/');
                 // layui.$('.layui-inline .layui-btn').on('click', function(){
                 //     var type = $(this).data('type');
                 //     Fv.plugin.RoleManage.init.active[type] ? Fv.plugin.RoleManage.init.active[type].call(this) : '';

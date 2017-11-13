@@ -10,15 +10,15 @@ Fv.plugin.LeftMenuManage = function () {
 }();
 Fv.plugin.LeftMenuManage.init = function () {
     return{
-        div : {url : "/Sys/plugin/SysConfig/LeftMenuManage/LeftMenuManage.html", js: [], css: [], id: "body"}
+        div : {url : "Sys/plugin/SysConfig/LeftMenuManage/LeftMenuManage.html", js: [], css: [], id: "body"}
         ,active : {
             switch_level_one: function () {
                 var level = 1;
-                Fv.plugin.LeftMenuManage.addMenuData(level, 'leftMenu', '01', '/menu/getMenuList/');
+                Fv.plugin.LeftMenuManage.addMenuData(level, 'leftMenu', '01', 'menu/getMenuList/');
             }
             ,switch_level_two: function () {
                 var level = 2;
-                Fv.plugin.LeftMenuManage.addMenuData(level, 'leftMenu', '01', '/menu/getMenuList/');
+                Fv.plugin.LeftMenuManage.addMenuData(level, 'leftMenu', '01', 'menu/getMenuList/');
             }
             ,getCheckData: function(){ //获取选中数据
                 var checkStatus = Fv.config.table.checkStatus('menu_table')
@@ -31,7 +31,7 @@ Fv.plugin.LeftMenuManage.init = function () {
                 layer.msg('选中了：'+ data.length + ' 个');
             }
             ,addMenu : function () {
-                layui.$.post('/Sys/plugin/SysConfig/AddMenu/AddMenu.html', {}, function(str){
+                layui.$.post('Sys/plugin/SysConfig/AddMenu/AddMenu.html', {}, function(str){
                     var index = layer.open({
                         type: 1
                         ,title: '添加菜单'
@@ -41,7 +41,7 @@ Fv.plugin.LeftMenuManage.init = function () {
                         ,shade: 0 //不显示遮罩
                         ,skin: 'layui-layer-molv'
                     });
-                    Fv.ajax.loadJs(["/Sys/plugin/SysConfig/AddMenu/AddMenu.js"]);
+                    Fv.ajax.loadJs(["Sys/plugin/SysConfig/AddMenu/AddMenu.js"]);
                 });
             }
         }
@@ -68,7 +68,7 @@ Fv.plugin.LeftMenuManage.start = function () {
                     return;
                 }
                 Fv.plugin.LeftMenuManage.addElementModule();
-                Fv.plugin.LeftMenuManage.addMenuData(1, 'leftMenu', '01', '/menu/getMenuList/');
+                Fv.plugin.LeftMenuManage.addMenuData(1, 'leftMenu', '01', 'menu/getMenuList/');
                 layui.$('.demoTable .layui-btn').on('click', function(){
                     var type = $(this).data('type');
                     Fv.plugin.LeftMenuManage.init.active[type] ? Fv.plugin.LeftMenuManage.init.active[type].call(this) : '';
@@ -160,7 +160,7 @@ Fv.plugin.LeftMenuManage.addMenuData = function (level, type, sys, url) {
                 }else if (obj.data.level = "2级菜单"){
                     level = 2;
                 }
-                Fv.ajax.post("/menu/deleteMenu/", {level:level, id:obj.data.id}, function (data) {
+                Fv.ajax.post("menu/deleteMenu/", {level:level, id:obj.data.id}, function (data) {
                     if (data.code == "1111"){
                         obj.del();
                         layer.msg("删除成功！");

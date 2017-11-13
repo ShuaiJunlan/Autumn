@@ -12,7 +12,7 @@ $(function () {
     });
 
     var sys = "01";
-    Fv.ajax.syncGet("/sys/getMenu/" + sys,
+    Fv.ajax.syncGet("sys/getMenu/" + sys,
         {}
         , function (data) {
 
@@ -22,12 +22,12 @@ $(function () {
             }
             main.menu.left_menu(data, "#left_menu");
 
-            Fv.ajax.loadJs(["/Sys/plugin/SysConfig/LeftMenuManage/LeftMenuManage.js"]);
-            Fv.ajax.loadJs(["/Sys/plugin/SysConfig/LoginInfoManage/LoginInfoManage.js"]);
-            Fv.ajax.loadJs(["/Sys/plugin/SysConfig/SysUpdateLogManage/SysUpdateLogManage.js"]);
-            Fv.ajax.loadJs(["/Sys/plugin/SysConfig/UserManage/UserManage.js"]);
-            Fv.ajax.loadJs(["/Sys/plugin/SysConfig/MakeSuggestion/MakeSuggestion.js"]);
-            Fv.ajax.loadJs(["/Sys/plugin/SysConfig/RoleManage/RoleManage.js"]);
+            Fv.ajax.loadJs(["Sys/plugin/SysConfig/LeftMenuManage/LeftMenuManage.js"]);
+            Fv.ajax.loadJs(["Sys/plugin/SysConfig/LoginInfoManage/LoginInfoManage.js"]);
+            Fv.ajax.loadJs(["Sys/plugin/SysConfig/SysUpdateLogManage/SysUpdateLogManage.js"]);
+            Fv.ajax.loadJs(["Sys/plugin/SysConfig/UserManage/UserManage.js"]);
+            Fv.ajax.loadJs(["Sys/plugin/SysConfig/MakeSuggestion/MakeSuggestion.js"]);
+            Fv.ajax.loadJs(["Sys/plugin/SysConfig/RoleManage/RoleManage.js"]);
 
         },
         function () {
@@ -38,7 +38,7 @@ $(function () {
     );
 
 
-    Fv.ajax.get("/init.do", {}, function (data) {
+    Fv.ajax.get("init.do", {}, function (data) {
             $("#username").append(data.username);
             Fv.config.user = data;
         }

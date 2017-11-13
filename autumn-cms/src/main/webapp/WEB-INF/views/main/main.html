@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Autumn Framework</title>
-    <link rel="stylesheet" href="/Lib/layui_v2.1.2/css/layui.css">
-    <link rel="stylesheet" href="/Sys/css/main.css"  media="all">
+    <link rel="stylesheet" href="Lib/layui_v2.1.2/css/layui.css">
+    <link rel="stylesheet" href="Sys/css/main.css"  media="all">
     <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all" />
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo"><a href="/main/index.do" style="font-size: 20px; color: #11af43;">Autumn Framework</a></div>
+        <div class="layui-logo"><a href="index.do" style="font-size: 20px; color: #11af43;">Autumn Framework</a></div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left" id="top_menu">
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;" id="username">
-                    <img src="/Sys/userimg/RCzsdCq.jpg" class="layui-nav-img" id="MenuManage1">
+                    <img src="Sys/userimg/RCzsdCq.jpg" class="layui-nav-img" id="MenuManage1">
                     <!--Junlan Shuai-->
                 </a>
                 <dl class="layui-nav-child">
@@ -25,7 +25,7 @@
                     <dd><a>安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="/logout.do">注销</a></li>
+            <li class="layui-nav-item"><a href="logout.do">注销</a></li>
         </ul>
     </div>
 
@@ -109,20 +109,20 @@
         © autumn.shuaijunlan.cn - 底部固定区域
     </div>
 </div>
-<script src="/Lib/layui_v2.1.2/layui.js"></script>
-<script src="/Lib/jquery/jquery-3.2.1.min.js"></script>
-<script src="/BasePlu/Base.js"></script>
-<script src="/Sys/plugin/SysManage/main.js"></script>
-<script src="/Sys/plugin/SysManage/sys.js"></script>
-<script src="/Lib/Echarts-3.7.2/echarts.common.min.js"></script>
-<script src="/Lib/Highmaps/highmaps.js"></script>
-<script src="/Lib/Highmaps/china.js"></script>
+<script src="Lib/layui_v2.1.2/layui.js"></script>
+<script src="Lib/jquery/jquery-3.2.1.min.js"></script>
+<script src="BasePlu/Base.js"></script>
+<script src="Sys/plugin/SysManage/main.js"></script>
+<script src="Sys/plugin/SysManage/sys.js"></script>
+<script src="Lib/Echarts-3.7.2/echarts.common.min.js"></script>
+<script src="Lib/Highmaps/highmaps.js"></script>
+<script src="Lib/Highmaps/china.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('container'));
-        Fv.ajax.get("/log/loginInfoCharts/", {}, function (data) {
+        Fv.ajax.get("log/loginInfoCharts/", {}, function (data) {
                 // 指定图表的配置项和数据
                 var option = {
                     title: {
@@ -150,7 +150,7 @@
             }
         );
 
-        Fv.ajax.get("/log/loginInfoArea/", {}, function (data){
+        Fv.ajax.get("log/loginInfoArea/", {}, function (data){
             // Create the chart
             Highcharts.mapChart('map', {
                 chart: {

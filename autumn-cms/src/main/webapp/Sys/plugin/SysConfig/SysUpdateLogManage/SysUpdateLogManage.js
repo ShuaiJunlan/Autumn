@@ -11,14 +11,14 @@ Fv.plugin.SysUpdateLogManage = function () {
 }();
 Fv.plugin.SysUpdateLogManage.init = function () {
     return{
-        div : {url : "/Sys/plugin/SysConfig/SysUpdateLogManage/SysUpdateLogManage.html"
+        div : {url : "Sys/plugin/SysConfig/SysUpdateLogManage/SysUpdateLogManage.html"
             , js: []
             , css: [ ]
             , id: "body"
         }
         ,active:{
             addSysUpdateLog : function () {
-                layui.$.post('/Sys/plugin/SysConfig/AddSysUpdateLog/AddSysUpdateLog.html', {}, function(str){
+                layui.$.post('Sys/plugin/SysConfig/AddSysUpdateLog/AddSysUpdateLog.html', {}, function(str){
                     var index = layer.open({
                         type: 1
                         ,title: '添加日志'
@@ -29,7 +29,7 @@ Fv.plugin.SysUpdateLogManage.init = function () {
                         ,offset: '50px'
                         ,skin: 'layui-layer-molv'
                     });
-                    Fv.ajax.loadJs(["/Sys/plugin/SysConfig/AddSysUpdateLog/AddSysUpdateLog.js"]);
+                    Fv.ajax.loadJs(["Sys/plugin/SysConfig/AddSysUpdateLog/AddSysUpdateLog.js"]);
                 });
             }
         }

@@ -10,10 +10,10 @@ Fv.plugin.UserManage = function () {
 }();
 Fv.plugin.UserManage.init = function () {
     return{
-        div: {url : "/Sys/plugin/SysConfig/UserManage/UserManage.html", js: [], css: [], id: "body"}
+        div: {url : "Sys/plugin/SysConfig/UserManage/UserManage.html", js: [], css: [], id: "body"}
         ,active:{
             addUser: function () {
-                layui.$.post('/Sys/plugin/SysConfig/AddUser/AddUser.html', {}, function(str){
+                layui.$.post('Sys/plugin/SysConfig/AddUser/AddUser.html', {}, function(str){
                     var index = layer.open({
                         type: 1
                         ,title: '添加用户'
@@ -23,7 +23,7 @@ Fv.plugin.UserManage.init = function () {
                         ,shade: 0
                         ,skin: 'layui-layer-molv'
                     });
-                    Fv.ajax.loadJs(["/Sys/plugin/SysConfig/AddUser/AddUser.js"]);
+                    Fv.ajax.loadJs(["Sys/plugin/SysConfig/AddUser/AddUser.js"]);
                 });
             }
         }
@@ -50,7 +50,7 @@ Fv.plugin.UserManage.start = function () {
                 }
                 Fv.plugin.UserManage.addElementModule();
                 Fv.plugin.UserManage.addFormModule();
-                Fv.plugin.UserManage.addUserData('/user/getAllUser/');
+                Fv.plugin.UserManage.addUserData('user/getAllUser/');
                 layui.$('.layui-inline .layui-btn').on('click', function(){
                     var type = $(this).data('type');
                     Fv.plugin.UserManage.init.active[type] ? Fv.plugin.UserManage.init.active[type].call(this) : '';

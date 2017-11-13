@@ -4,10 +4,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Autumn Framework</title>
-    <link rel="shortcut icon" href="/static/img/favicon.ico">
-    <link rel="stylesheet" href="/Lib/layui_v2.1.2/css/layui.css">
-    <link rel="stylesheet" href="/static/css/login.css">
-    <script src="/Lib/layui_v2.1.2/layui.js"></script>
+    <link rel="shortcut icon" href="static/img/favicon.ico">
+    <link rel="stylesheet" href="Lib/layui_v2.1.2/css/layui.css">
+    <link rel="stylesheet" href="static/css/login.css">
+    <script src="Lib/layui_v2.1.2/layui.js"></script>
 </head>
 <body>
 <div class="layui-carousel video_mask" id="login_carousel" >
@@ -27,7 +27,7 @@
             </div>
             <div class="layui-form-item form_code">
                 <input class="layui-input" name="code" placeholder="验证码" lay-verify="required" type="text" autocomplete="off">
-                <div class="code"><img src="/captcha.do" width="116" height="36"></div>
+                <div class="code"><img src="captcha.do" width="116" height="36"></div>
             </div>
 
             <button class="layui-btn login_btn" lay-submit="" lay-filter="login">登陆系统</button>
@@ -88,7 +88,7 @@
 
         /**重新生成验证码*/
         function reqCaptcha() {
-            var url = "/captcha.do?nocache=" + new Date().getTime()
+            var url = "captcha.do?nocache=" + new Date().getTime()
             $('.code img').attr("src",url)
         }
         /**点击验证码重新生成*/
@@ -105,7 +105,7 @@
 
             //登陆验证
             $.ajax({
-                url: '/loginCheck.do',
+                url: 'loginCheck.do',
                 type: 'post',
                 async: false,
                 data: data.field,
@@ -115,7 +115,7 @@
             });
             //登陆成功
             if (ajaxReturnData.code == 0000) {
-                window.location.href="/main/index.do";
+                window.location.href="index.do";
                 top.layer.close(loginLoading);
                 return false;
             } else {

@@ -10,7 +10,7 @@ Fv.plugin.LoginInfoManage = function () {
 }();
 Fv.plugin.LoginInfoManage.init = function () {
     return{
-        div : {url : "/Sys/plugin/SysConfig/LoginInfoManage/LoginInfoManage.html", js: [], css: [], id: "body"}
+        div : {url : "Sys/plugin/SysConfig/LoginInfoManage/LoginInfoManage.html", js: [], css: [], id: "body"}
         ,active : {
 
         }
@@ -38,7 +38,7 @@ Fv.plugin.LoginInfoManage.start = function () {
                 }
                 Fv.plugin.LoginInfoManage.addElementModule();
                 Fv.plugin.LoginInfoManage.addFormModule();
-                Fv.plugin.LoginInfoManage.addLoginInfoData('/log/allLoginLog/');
+                Fv.plugin.LoginInfoManage.addLoginInfoData('log/allLoginLog/');
                 layui.$('.demoTable .layui-btn').on('click', function(){
                     var type = $(this).data('type');
                     Fv.plugin.LeftMenuManage.init.active[type] ? Fv.plugin.LeftMenuManage.init.active[type].call(this) : '';

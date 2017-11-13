@@ -19,7 +19,7 @@ Fv.plugin.MakeSuggestion.init = function () {
 Fv.plugin.MakeSuggestion.start = function () {
 
     $('#MakeSuggestion').on('click', function () {
-        layui.$.post('/Sys/plugin/SysConfig/MakeSuggestion/MakeSuggestion.html', {}, function(str){
+        layui.$.post('Sys/plugin/SysConfig/MakeSuggestion/MakeSuggestion.html', {}, function(str){
             var index = layer.open({
                 type: 1
                 ,title: '发表意见'
@@ -44,7 +44,7 @@ Fv.plugin.MakeSuggestion.start = function () {
                     content: data.field.content
                     ,email: data.field.email
                 };
-                Fv.ajax.post("/send/admin/", data, function (data) {
+                Fv.ajax.post("send/admin/", data, function (data) {
                         submit_count++;
                         layer.close(loading);
                         if (data.code == '1111'){

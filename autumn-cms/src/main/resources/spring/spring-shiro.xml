@@ -53,10 +53,10 @@
         <!-- 要求登录时的链接(可根据项目的URL进行替换),非必须的属性,默认会自动寻找Web工程根目录cmsogin.html"页面 -->
         <property name="loginUrl" value="/loginProxy.do"/>
         <!-- 登录成功后要跳转的连接(本例中此属性用不到,因为登录成功后的处理逻辑在LoginController里硬编码为main.jsp了) -->
-        <property name="successUrl" value="/main/index.do"/>
+        <property name="successUrl" value="/index.do"/>
         <!-- 用户访问未对其授权的资源时,所显示的连接 -->
         <!-- 若想更明显的测试此属性可以修改它的值,如unauthor.jsp,然后用[玄玉]登录后访问/admin/listUser.jsp就看见浏览器会显示unauthor.jsp -->
-        <property name="unauthorizedUrl" value="/main/unauthorized.do"/>
+        <property name="unauthorizedUrl" value="/unauthorized.do"/>
 
         <!-- Shiro连接约束配置,即过滤链的定义 -->
         <!-- 此处可配合我的这篇文章来理解各个过滤连的作用http://blog.csdn.net/jadyer/article/details/12172839 -->

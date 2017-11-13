@@ -8,7 +8,7 @@
   <modules>
     <!--<module>webim</module>-->
     <module>autumn-cms</module>
-    <!--<module>autumn-blog</module>-->
+    <module>autumn-blog</module>
     <!--<module>autumn-forum</module>-->
   </modules>
   <name>autumn Maven Webapp</name>

@@ -30,7 +30,7 @@ Fv.plugin.AddUser.start = function () {
                 ,modifier_id : Fv.config.user.id
                 ,status : data.field.status == '有效' ? 1 : 0
             }
-            Fv.ajax.post("/user/insert/", user, function (data) {
+            Fv.ajax.post("user/insert/", user, function (data) {
                 if (data.code == '1111'){
                     layer.msg("添加成功");
                     Fv.config.form.render(null, "addUser");
