@@ -1,0 +1,21 @@
+<div class="layui-form layui-form-pane" action="" style="margin: 10px" lay-filter="addUser">
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-block">
+            <input name="email" lay-verify="email" autocomplete="off" class="layui-input" type="text"  placeholder="请输入用户名（邮箱）">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-block">
+            <input type="password" name="password" required  lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="makeSuggestion">登录</button>
+        </div>
+    </div>
+
+</div>

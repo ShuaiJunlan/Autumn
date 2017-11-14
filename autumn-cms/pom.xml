@@ -32,5 +32,28 @@
     </dependencies>
     <build>
         <finalName>autumn-cms</finalName>
+        <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.3</version>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+                <encoding>UTF-8</encoding>
+            </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.tomcat.maven</groupId>
+            <artifactId>tomcat7-maven-plugin</artifactId>
+            <version>2.2</version>
+            <configuration>
+                <port>8081</port>
+                <path>/autumn-cms</path>
+                <uriEncoding>UTF-8</uriEncoding>
+                <server>tomcat</server>
+            </configuration>
+        </plugin>
+        </plugins>
     </build>
 </project>
