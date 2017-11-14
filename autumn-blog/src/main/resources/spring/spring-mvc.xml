@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans.xsd
-           http://www.springframework.org/schema/context
-           http://www.springframework.org/schema/context/spring-context.xsd
-           http://www.springframework.org/schema/mvc
-           http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-    <!-- 配置SpringMVC -->
-    <!-- 1：开启SpringMVC注解模式 -->
-    <!--简化配置
-        (1)自动注册DefaultAnnotationHandlerMapping,AnnotationMethodHandlerAdapter
-         (2)提供一系列：数据绑定，数字和日期的format（@NumberFormat,@DaraTimeFormat）,xml,json
-            默认读写支持
-     -->
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
     <mvc:annotation-driven>
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
@@ -38,10 +26,6 @@
     </mvc:annotation-driven>
 
 
-    <context:component-scan base-package="com.autumnframework.cms.controller"/>
-    <context:component-scan base-package="com.autumnframework.cms.dao"/>
-    <context:component-scan base-package="com.autumnframework.cms.service"/>
-
 
 
     <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
@@ -51,8 +35,11 @@
         <property name="suffix" value=".html" />
     </bean>
 
+
     <mvc:resources mapping="/BasePlu/**" location="classpath:/static/BasePlu/" />
     <mvc:resources mapping="/Lib/**" location="classpath:/static/Lib/" />
+
     <mvc:default-servlet-handler/>
+
 
 </beans>

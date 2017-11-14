@@ -15,7 +15,7 @@ $(function() {
     }();
     Fv.login = function () {
 
-        layui.$.post('/Sys/plugin/SysConfig/LoginPage/LoginPage.html', {}, function (str) {
+        layui.$.post('Sys/plugin/SysConfig/LoginPage/LoginPage.html', {}, function (str) {
             var index = layer.open({
                 type: 1
                 , title: '登录窗口'
@@ -58,7 +58,7 @@ $(function() {
         });
     };
     Fv.register = function () {
-        layui.$.post('/Sys/plugin/SysConfig/RegisterPage/RegisterPage.html', {}, function (str) {
+        layui.$.post('Sys/plugin/SysConfig/RegisterPage/RegisterPage.html', {}, function (str) {
             var index = layer.open({
                 type: 1
                 , title: '注册窗口'
@@ -83,7 +83,7 @@ $(function() {
                     content: data.field.content
                     , email: data.field.email
                 };
-                Fv.ajax.post("/send/admin/", data, function (data) {
+                Fv.ajax.post("send/admin/", data, function (data) {
                         submit_count++;
                         layer.close(loading);
                         if (data.code == '1111') {
