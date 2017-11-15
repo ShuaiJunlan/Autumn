@@ -50,7 +50,10 @@
             $(function() {
 //
                 var window_height = $(window).height()-15;
-                $.get('md/test.md', function(md){
+                var pa = {
+                    id : "11111"
+                }
+                Fv.ajax.get("blog/getBlogById", pa, function (data) {
                     testEditor = editormd("test-editormd", {
                         width: "95%",
                         height: window_height,
@@ -58,10 +61,12 @@
                         toolbarIcons : function() {
                             // Or return editormd.toolbarModes[name]; // full, simple, mini
                             // Using "||" set icons align right.
-                            return ["undo", "redo", "|", "bold", "hr", "|", "preview", "watch", "|", "fullscreen", "info", "||","login", "register", "testIcon", "testIcon2", "file", "faicon", "logout"]
+                            return ["undo", "redo", "|", "bold", "hr", "|", "preview", "watch", "|", "fullscreen", "info", "||", "save", "testIcon", "share", "login", "register", "logout"]
                         },
                         toolbarIconsClass : {
                             testIcon : "fa-gears"  // 指定一个FontAawsome的图标类
+                            ,save : "fa-save"
+                            ,share : "fa-share"
                         },
                         // 用于增加自定义工具栏的功能，可以直接插入HTML标签，不使用默认的元素创建图标
                         toolbarCustomIcons : {
@@ -81,24 +86,31 @@
                              */
                             testIcon : function(cm, icon, cursor, selection) {
 
-                                alert("hello")
-                            },
 
-                            testIcon2 : function(cm, icon, cursor, selection) {
-                                cm.replaceSelection("[" + selection + ":testIcon2](" + icon.html() + ")");
-                                console.log("testIcon2 =>", this, icon.html());
-                            }
+//                                alert(testEditor.getMarkdown());
+                            },
+                            save : function () {
+                                var paras = {
+                                    id : 11111
+                                    ,content : testEditor.getMarkdown()
+                                }
+                                Fv.ajax.post("blog/insertBlog", paras, function () {
+                                    alert("successfully");
+                                }, function () {
+
+                                })
+                            },
                         },
                         theme : "dark",
                         previewTheme : "dark",
                         editorTheme : "pastel-on-dark",
-                        markdown : md,
+                        markdown : data.content,
                         codeFold : true,
                         //syncScrolling : false,
                         saveHTMLToTextarea : true,    // 保存 HTML 到 Textarea
                         searchReplace : true,
                         //watch : false,                // 关闭实时预览
-                        htmlDecode : "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启    
+                        htmlDecode : "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启
                         //toolbar  : false,             //关闭工具栏
                         //previewCodeHighlight : false, // 关闭预览 HTML 的代码块高亮，默认开启
                         emoji : true,
@@ -127,7 +139,9 @@
                             //this.resize("100%", 640);
                         }
                     });
-                });
+                }, function () {
+                    
+                })
                 
                 $("#goto-line-btn").bind("click", function(){
                     testEditor.gotoLine(90);

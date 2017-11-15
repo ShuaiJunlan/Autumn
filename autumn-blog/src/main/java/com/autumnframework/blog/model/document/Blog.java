@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author Junlan Shuai[shuaijunlan@gmail.com].
  * @date Created on 9:52 2017/11/15.
  */
-@Document(collection = "blog")
+@Document(collection = "testBlog")
 public class Blog implements Serializable{
     private static final long serialVersionUID = 1L;
 

@@ -111,6 +111,12 @@
             <scope>test</scope>
         </dependency>
 
+        <!--logging-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>autumn-blog</finalName>
