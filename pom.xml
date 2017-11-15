@@ -17,18 +17,20 @@
 
     <properties>
         <junit.version>4.12</junit.version>
-        <spring.version>4.3.5.RELEASE</spring.version>
+        <!--<spring.version>4.3.5.RELEASE</spring.version>-->
+        <spring.version>5.0.1.RELEASE</spring.version>
         <mysql.jdbc.version>5.1.34</mysql.jdbc.version>
         <mybatis.version>3.4.1</mybatis.version>
         <commons-beanutils.version>1.8.3</commons-beanutils.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
         <log4j2.version>2.7</log4j2.version>
         <shiro.version>1.2.3</shiro.version>
-        <jackson.version>2.7.1</jackson.version>
+        <jackson.version>2.9.2</jackson.version>
         <druid.version>1.0.20</druid.version>
         <javax.servlet.version>3.1.0</javax.servlet.version>
         <aspectj.version>1.8.9</aspectj.version>
         <fastjson.version>1.2.35</fastjson.version>
+        <spring.data.version>2.0.1.RELEASE</spring.data.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -267,6 +269,12 @@
                 <version>${fastjson.version}</version>
             </dependency>
 
+            <!--spring data-->
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-mongodb</artifactId>
+                <version>${spring.data.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

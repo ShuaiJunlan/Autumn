@@ -334,7 +334,7 @@ f(x) = \int_{-\infty}^\infty
 
 ### 分页符 Page break
 
-> Print Test: Ctrl + P
+> Print Test1: Ctrl + P
 
 [========]
 

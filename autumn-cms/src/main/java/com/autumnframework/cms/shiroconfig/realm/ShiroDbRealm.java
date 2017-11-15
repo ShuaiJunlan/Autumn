@@ -54,10 +54,8 @@ import java.util.List;
 
 
 /**
- * 自定义Realm 实现Shiro权限验证
- *
- * @author yangxiaobing
- * @date 2017/7/10
+ * @author Junlan Shuai[shuaijunlan@gmail.com].
+ * @date Created on 10:51 2017/9/2.
  */
 //@Component
 public class ShiroDbRealm extends AuthorizingRealm {

@@ -2,14 +2,14 @@
 <html lang="zh">
     <head>
         <meta charset="utf-8" />
-        <title>Full example - Editor.md examples</title>
+        <title>Autumn-Framework</title>
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="Lib/editor.md/css/editormd.css" />
         <link rel="stylesheet" href="Lib/layui_v2.1.2/css/layui.css" />
-        <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="https://github.com/shuaijunlan/Autumn-Framework/raw/master/favicon.ico" type="image/x-icon" />
     </head>
-    <body>
-        <div id="layout">
+    <body style="background-color: #333">
+        <!--<div id="layout">-->
             <!--<header>-->
                 <!--<h1>完整示例</h1>-->
                 <!--<p>Full example</p>-->
@@ -37,7 +37,7 @@
             <!--</div>-->
             <!--<a id="MakeSuggestion">dsf</a>-->
             <div id="test-editormd"></div>
-        </div>
+        <!--</div>-->
         <script src="Lib/editor.md/examples/js/jquery.min.js"></script>
         <script src="Lib/editor.md/editormd.js"></script>
         <script src="Lib/layui_v2.1.2/layui.js"></script>
@@ -49,11 +49,11 @@
             
             $(function() {
 //
-                
+                var window_height = $(window).height()-15;
                 $.get('md/test.md', function(md){
                     testEditor = editormd("test-editormd", {
-                        width: "100%",
-                        height: 600,
+                        width: "95%",
+                        height: window_height,
                         path : 'Lib/editor.md/lib/',
                         toolbarIcons : function() {
                             // Or return editormd.toolbarModes[name]; // full, simple, mini

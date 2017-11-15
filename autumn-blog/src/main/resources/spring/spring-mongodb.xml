@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <mongo:mongo-client id="mongo" host="139.199.210.120" port="27017">
+        <mongo:client-options connections-per-host="10"
+                              threads-allowed-to-block-for-connection-multiplier="5"
+                              connect-timeout="10000"
+                              max-wait-time="120000"
+                              socket-keep-alive="true"
+                              socket-timeout="0"/>
+    </mongo:mongo-client>
+    <mongo:db-factory dbname="test1" mongo-ref="mongo"/>
+
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/>
+    </bean>
+
+    <!-- Activate annotation configured components -->
+    <context:annotation-config />
+
+    <!-- 映射转换器，扫描base-package目录下的文件，根据注释，把它们作为mongodb的一个collection的映射 -->
+    <!--<mongo:mapping-converter base-package="com.autumnframework.blog.document" />-->
+
+    <!-- mongodb bean的仓库目录，会自动扫描扩展了MongoRepository接口的接口进行注入 -->
+    <mongo:repositories base-package="com.autumnframework.blog.dao"/>
+
+
+</beans>

@@ -11,9 +11,7 @@
                 /loginCheck.do=anon
                 /captcha.do=anon
                 /loginProxy.do=anon
-                /comm/**=anon
                 /static/**=anon
-                /about/**=anon
                 /Lib/**=anon
                 <!--test add-->
                 <!--/sys/**=anon-->
