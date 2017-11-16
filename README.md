@@ -12,6 +12,8 @@ Please submit issues to corresponding projects, that'll help us make issues trac
 
 ### Modules
 * [AUTUMN-CMS](https://github.com/shuaijunlan/Autumn-Framework/tree/master/autumn-cms)
+* [AUTUMN-BLOG](https://github.com/shuaijunlan/Autumn-Framework/tree/master/autumn-blog)
+* [AUTUMN-COMMON](https://github.com/shuaijunlan/Autumn-Framework/tree/master/autumn-common)
 
 ### Environment
 *Autumn-Framework* requires `java8` and `maven3` as bulid enviroment.</br>

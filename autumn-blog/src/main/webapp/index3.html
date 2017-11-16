@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8" />
+        <title>Autumn-Framework</title>
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="Lib/editor.md/css/editormd.css" />
+        <link rel="stylesheet" href="Lib/layui_v2.1.2/css/layui.css" />
+        <link rel="shortcut icon" href="https://github.com/shuaijunlan/Autumn-Framework/raw/master/favicon.ico" type="image/x-icon" />
+    </head>
+    <body style="background-color: #333">
+        <!--<div id="layout">-->
+            <!--<header>-->
+                <!--<h1>完整示例</h1>-->
+                <!--<p>Full example</p>-->
+                <!--<ul style="margin: 10px 0 0 18px;">-->
+                    <!--<li>Enable HTML tags decode</li>-->
+                    <!--<li>Enable TeX, Flowchart, Sequence Diagram, Emoji, FontAwesome, Task lists</li>-->
+                    <!--<li>Enable Image upload</li>-->
+                    <!--<li>Enable [TOCM], Search Replace, Code fold</li>-->
+                <!--</ul>            -->
+            <!--</header>-->
+            <!--<div class="btns">-->
+                <!--<button id="goto-line-btn">Goto line 90</button>-->
+                <!--<button id="show-btn">Show editor</button>-->
+                <!--<button id="hide-btn">Hide editor</button>-->
+                <!--<button id="get-md-btn">Get Markdown</button>-->
+                <!--<button id="get-html-btn">Get HTML</button>-->
+                <!--<button id="watch-btn">Watch</button>-->
+                <!--<button id="unwatch-btn">Unwatch</button>-->
+                <!--<button id="preview-btn">Preview HTML (Press Shift + ESC cancel)</button>-->
+                <!--<button id="fullscreen-btn">Fullscreen (Press ESC cancel)</button>-->
+                <!--<button id="show-toolbar-btn">Show toolbar</button>-->
+                <!--<button id="close-toolbar-btn">Hide toolbar</button>-->
+                <!--<button id="toc-menu-btn">ToC Dropdown menu</button>-->
+                <!--<button id="toc-default-btn">ToC default</button>-->
+            <!--</div>-->
+            <!--<a id="MakeSuggestion">dsf</a>-->
+            <div id="test-editormd"></div>
+        <!--</div>-->
+        <script src="Lib/editor.md/examples/js/jquery.min.js"></script>
+        <script src="Lib/editor.md/editormd.js"></script>
+        <script src="Lib/layui_v2.1.2/layui.js"></script>
+        <script src="BasePlu/Base.js"></script>
+        <script src="Sys/plugin/SysManage/sys.js"></script>
+        <!--<script src="Sys/plugin/SysConfig/MakeSuggestion/MakeSuggestion.js"></script>-->
+        <script type="text/javascript">
+            var testEditor , login, init;
+            
+            $(function() {
+//
+                var window_height = $(window).height()-15;
+                var pa = {
+                    id : "11111"
+                }
+                Fv.ajax.get("blog/getBlogById", pa, function (data) {
+                    testEditor = editormd("test-editormd", {
+                        width: "95%",
+                        height: window_height,
+                        path : 'Lib/editor.md/lib/',
+                        toolbarIcons : function() {
+                            // Or return editormd.toolbarModes[name]; // full, simple, mini
+                            // Using "||" set icons align right.
+                            return ["undo", "redo", "|", "bold", "hr", "|", "preview", "watch", "|", "fullscreen", "info", "||", "save", "setting", "share", "login", "register", "logout"]
+                        },
+                        toolbarIconsClass : {
+                            setting : "fa-gears"  // 指定一个FontAawsome的图标类
+                            ,save : "fa-save"
+                            ,share : "fa-share"
+                        },
+                        // 用于增加自定义工具栏的功能，可以直接插入HTML标签，不使用默认的元素创建图标
+                        toolbarCustomIcons : {
+//                            file   : "<input type=\"file\" accept=\".md\" />",
+//                            faicon : "<i class=\"fa fa-star\" onclick=\"alert('faicon');\"></i>",
+                            login : "<a href=\"javascript:;\" class=\"layui-btn  layui-btn-mini\" style='background-color: inherit' onclick='Fv.login();'>登录</a>",
+                            register : "<a href=\"javascript:;\" class=\"layui-btn  layui-btn-mini\" style='background-color: inherit' onclick='Fv.register()'>注册</a>",
+                            logout : "<a href=\"javascript:;\" class=\"layui-btn  layui-btn-mini\" style='background-color: inherit'>注销</a>"
+                        },
+                        // 自定义工具栏按钮的事件处理
+                        toolbarHandlers : {
+                            /**
+                             * @param {Object}      cm         CodeMirror对象
+                             * @param {Object}      icon       图标按钮jQuery元素对象
+                             * @param {Object}      cursor     CodeMirror的光标对象，可获取光标所在行和位置
+                             * @param {String}      selection  编辑器选中的文本
+                             */
+                            setting : function(cm, icon, cursor, selection) {
+
+
+//                                alert(testEditor.getMarkdown());
+                            },
+                            save : function () {
+                                var paras = {
+                                    id : 11111
+                                    ,content : testEditor.getMarkdown()
+                                }
+                                Fv.ajax.post("blog/insertBlog", paras, function () {
+                                    alert("successfully");
+                                }, function () {
+
+                                })
+                            },
+                            share : function () {
+                                var content = testEditor.getHTML();
+                                alert(content);
+//                                Fv.config.layer.open({
+//                                    type: 1
+//                                    ,title: '添加菜单'
+//                                    ,offset: 'auto' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+//                                    ,id: 'addMenuLayer'+1 //防止重复弹出
+//                                    ,content: content
+//                                    ,shade: 0 //不显示遮罩
+//                                    ,skin: 'layui-layer-molv'
+////                                    ,area: ["1000px"]
+//                                });
+//                                Fv.config.layer.open({
+//                                    type: 0
+//                                    ,title: "分享链接"
+//                                    ,content: "hello"
+//                                })
+                            }
+                        },
+                        theme : "dark",
+                        previewTheme : "dark",
+                        editorTheme : "pastel-on-dark",
+                        markdown : data.content,
+                        codeFold : true,
+                        //syncScrolling : false,
+                        saveHTMLToTextarea : true,    // 保存 HTML 到 Textarea
+                        searchReplace : true,
+                        //watch : false,                // 关闭实时预览
+                        htmlDecode : "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启
+                        //toolbar  : false,             //关闭工具栏
+                        //previewCodeHighlight : false, // 关闭预览 HTML 的代码块高亮，默认开启
+                        emoji : true,
+                        taskList : true,
+                        tocm            : true,         // Using [TOCM]
+                        tex : true,                   // 开启科学公式TeX语言支持，默认关闭
+                        flowChart : true,             // 开启流程图支持，默认关闭
+                        sequenceDiagram : true,       // 开启时序/序列图支持，默认关闭,
+                        //dialogLockScreen : false,   // 设置弹出层对话框不锁屏，全局通用，默认为true
+                        //dialogShowMask : false,     // 设置弹出层对话框显示透明遮罩层，全局通用，默认为true
+                        //dialogDraggable : false,    // 设置弹出层对话框不可拖动，全局通用，默认为true
+                        //dialogMaskOpacity : 0.4,    // 设置透明遮罩层的透明度，全局通用，默认值为0.1
+                        //dialogMaskBgColor : "#000", // 设置透明遮罩层的背景颜色，全局通用，默认为#fff
+                        imageUpload : true,
+                        imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                        imageUploadURL : "./php/upload.php",
+                        onload : function() {
+                            console.log('onload', this);
+                            //this.fullscreen();
+                            //this.unwatch();
+                            //this.watch().fullscreen();
+
+                            //this.setMarkdown("#PHP");
+                            //this.width("100%");
+                            //this.height(480);
+                            //this.resize("100%", 640);
+                        }
+                    });
+                }, function () {
+                    
+                })
+                
+                $("#goto-line-btn").bind("click", function(){
+                    testEditor.gotoLine(90);
+                });
+                
+                $("#show-btn").bind('click', function(){
+                    testEditor.show();
+                });
+                
+                $("#hide-btn").bind('click', function(){
+                    testEditor.hide();
+                });
+                
+                $("#get-md-btn").bind('click', function(){
+                    alert(testEditor.getMarkdown());
+                });
+                
+                $("#get-html-btn").bind('click', function() {
+                    alert(testEditor.getHTML());
+                });                
+                
+                $("#watch-btn").bind('click', function() {
+                    testEditor.watch();
+                });                 
+                
+                $("#unwatch-btn").bind('click', function() {
+                    testEditor.unwatch();
+                });              
+                
+                $("#preview-btn").bind('click', function() {
+                    testEditor.previewing();
+                });
+                
+                $("#fullscreen-btn").bind('click', function() {
+                    testEditor.fullscreen();
+                });
+                
+                $("#show-toolbar-btn").bind('click', function() {
+                    testEditor.showToolbar();
+                });
+                
+                $("#close-toolbar-btn").bind('click', function() {
+                    testEditor.hideToolbar();
+                });
+                
+                $("#toc-menu-btn").click(function(){
+                    testEditor.config({
+                        tocDropdown   : true,
+                        tocTitle      : "目录 Table of Contents",
+                    });
+                });
+                
+                $("#toc-default-btn").click(function() {
+                    testEditor.config("tocDropdown", false);
+                });
+
+            });
+
+        </script>
+    </body>
+</html>
