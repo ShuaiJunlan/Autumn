@@ -1,3 +1,6 @@
+li{
+    list-style: disc outside none;
+}
 * {
     padding: 0;
     margin: 0;
@@ -91,4 +94,9 @@ body {
 
 .btns button:hover, .btn:hover {
     background: #f6f6f6;
+}
+
+.menu-selected {
+    border: 1px solid #ddd;
+    background: #eee;
 }
