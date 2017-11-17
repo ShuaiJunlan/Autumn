@@ -125,7 +125,7 @@
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <configuration>
-                    <port>8081</port>
+                    <port>8082</port>
                     <path>/autumn-blog</path>
                     <uriEncoding>UTF-8</uriEncoding>
                     <server>tomcat</server>
