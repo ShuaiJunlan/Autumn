@@ -1,6 +1,6 @@
 ![logo](https://github.com/shuaijunlan/Autumn-Framework/raw/master/Autumn.png)
 ## Autumn-Framework
-[![Build Status](https://travis-ci.org/shuaijunlan/Autumn-Framework.svg?branch=master)](https://travis-ci.org/shuaijunlan/Autumn-Framework)  [![LICENSE](https://img.shields.io/aur/license/yaourt.svg)](https://github.com/shuaijunlan/Autumn-Framework/blob/master/LICENSE) ![](https://img.shields.io/github/stars/shuaijunlan/Autumn-Framework.svg) ![](https://img.shields.io/badge/version-1.0.0-blue.svg)</br>
+[![Build Status](https://travis-ci.org/shuaijunlan/Autumn-Framework.svg?branch=master)](https://travis-ci.org/shuaijunlan/Autumn-Framework)  [![LICENSE](https://img.shields.io/aur/license/yaourt.svg)](https://github.com/shuaijunlan/Autumn-Framework/blob/master/LICENSE) ![](https://img.shields.io/github/stars/shuaijunlan/Autumn-Framework.svg) ![](https://img.shields.io/github/tag/shuaijunlan/Autumn-Framework.svg)</br>
 
 ![dynamic](https://github.com/shuaijunlan/Autumn-Framework/raw/master/dynamic.gif)
 
