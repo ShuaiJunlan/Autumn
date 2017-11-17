@@ -6,11 +6,9 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <!--<module>webim</module>-->
         <module>autumn-cms</module>
         <module>autumn-blog</module>
         <module>autumn-common</module>
-        <!--<module>autumn-forum</module>-->
     </modules>
     <name>autumn Maven Webapp</name>
     <url>http://maven.apache.org</url>
