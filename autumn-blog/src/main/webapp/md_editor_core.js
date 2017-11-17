@@ -41,7 +41,7 @@ $(function() {
             editorTheme     : optionSettings.EditEditorTheme,         // 编辑器区域主题样式，见editormd.editorThemes定义，夜间模式pastel-on-dark
             previewTheme    : optionSettings.EditPreviewTheme,        // 预览区区域主题样式，见editormd.previewThemes定义，夜间模式dark
             value           : code,
-            path            : pluginFullPath + "Lib/Wiz.Editor.md/Editor.md/lib/",
+            path            : pluginFullPath + "Lib/Wiz.Editor.md-2.6/Editor.md/lib/",
             htmlDecode      : "style,script,iframe",  // 开启HTML标签解析，为了安全性，默认不开启
             codeFold        : true,              // 代码折叠，默认关闭
             tex             : true,              // 开启科学公式TeX语言支持，默认关闭
@@ -628,8 +628,8 @@ $(function() {
     ////////////////////////////////////////////////
     // 设置表情文件的地址
     function setEmojiFilePath () {
-        editormd.emoji.path = pluginFullPath + "Lib/Wiz.Editor.md/Editor.md/emoji/emojis/";
-        editormd.twemoji.path = pluginFullPath + "Lib/Wiz.Editor.md/Editor.md/emoji/twemoji/36x36/";
+        editormd.emoji.path = pluginFullPath + "Lib/Wiz.Editor.md-2.6/Editor.md/emoji/emojis/";
+        editormd.twemoji.path = pluginFullPath + "Lib/Wiz.Editor.md-2.6/Editor.md/emoji/twemoji/36x36/";
     }
 
     ////////////////////////////////////////////////
