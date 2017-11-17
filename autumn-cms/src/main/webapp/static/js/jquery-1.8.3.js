@@ -2634,7 +2634,7 @@ var rformElems = /^(?:textarea|input|select)$/i,
 	};
 
 /*
- * Helper functions for managing events -- not part of the public interface.
+ * Helper functions for managing events -- not part of the public interfaces.
  * Props to Dean Edwards' addEvent library for many of the ideas.
  */
 jQuery.event = {
@@ -3214,7 +3214,7 @@ jQuery.event = {
 };
 
 // Some plugins are using, but it's undocumented/deprecated and will be removed.
-// The 1.7 special event interface should provide all the hooks needed now.
+// The 1.7 special event interfaces should provide all the hooks needed now.
 jQuery.event.handle = jQuery.event.dispatch;
 
 jQuery.removeEvent = document.removeEventListener ?

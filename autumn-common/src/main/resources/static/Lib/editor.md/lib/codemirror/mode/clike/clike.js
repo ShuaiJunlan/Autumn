@@ -306,7 +306,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
     name: "clike",
     keywords: words("abstract assert boolean break byte case catch char class const continue default " +
                     "do double else enum extends final finally float for goto if implements import " +
-                    "instanceof int interface long native new package private protected public " +
+                    "instanceof int interfaces long native new package private protected public " +
                     "return short static strictfp super switch synchronized this throw throws transient " +
                     "try void volatile while"),
     blockKeywords: words("catch class do else finally for if switch try while"),
@@ -324,7 +324,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
     name: "clike",
     keywords: words("abstract as base break case catch checked class const continue" +
                     " default delegate do else enum event explicit extern finally fixed for" +
-                    " foreach goto if implicit in interface internal is lock namespace new" +
+                    " foreach goto if implicit in interfaces internal is lock namespace new" +
                     " operator out override params private protected public readonly ref return sealed" +
                     " sizeof stackalloc static struct switch this throw try typeof unchecked" +
                     " unsafe using virtual void volatile while add alias ascending descending dynamic from get" +
@@ -467,7 +467,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
   def("text/x-nesc", {
     name: "clike",
     keywords: words(cKeywords + "as atomic async call command component components configuration event generic " +
-                    "implementation includes interface module new norace nx_struct nx_union post provides " +
+                    "implementation includes interfaces module new norace nx_struct nx_union post provides " +
                     "signal task uses abstract extends"),
     blockKeywords: words("case do else for if switch while struct"),
     atoms: words("null"),

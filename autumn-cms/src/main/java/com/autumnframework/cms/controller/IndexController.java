@@ -32,9 +32,9 @@
  */
 package com.autumnframework.cms.controller;
 
-import com.autumnframework.cms.architect.utils.ResponseMsgUtil;
-import com.autumnframework.cms.architect.constant.ResponseCode;
-import com.autumnframework.cms.model.bo.DataPageResponseMsg;
+import com.autumnframework.common.model.bo.DataPageResponseMsg;
+import com.autumnframework.common.architect.constant.ResponseCode;
+import com.autumnframework.common.architect.utils.ResponseMsgUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

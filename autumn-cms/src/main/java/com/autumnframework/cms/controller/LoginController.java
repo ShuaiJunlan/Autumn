@@ -1,14 +1,15 @@
 package com.autumnframework.cms.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.autumnframework.cms.architect.constant.BussinessCode;
-import com.autumnframework.cms.architect.constant.Constants;
-import com.autumnframework.cms.architect.utils.IpInfoUtil;
-import com.autumnframework.cms.architect.utils.MD5Util;
-import com.autumnframework.cms.architect.utils.ResponseMsgUtil;
-import com.autumnframework.cms.architect.utils.CreateImageCode;
 
-import com.autumnframework.cms.model.bo.ResponseMsg;
+
+import com.autumnframework.common.architect.constant.BussinessCode;
+import com.autumnframework.common.architect.constant.Constants;
+import com.autumnframework.common.architect.utils.CreateImageCode;
+import com.autumnframework.common.architect.utils.IpInfoUtil;
+import com.autumnframework.common.architect.utils.MD5Util;
+import com.autumnframework.common.architect.utils.ResponseMsgUtil;
+import com.autumnframework.common.model.bo.ResponseMsg;
 import com.autumnframework.cms.model.po.LoginInfo;
 import com.autumnframework.cms.model.po.User;
 import com.autumnframework.cms.service.impl.LogManageImpl;

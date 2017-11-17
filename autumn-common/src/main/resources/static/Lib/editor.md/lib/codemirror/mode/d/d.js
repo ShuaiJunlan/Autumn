@@ -192,7 +192,7 @@ CodeMirror.defineMode("d", function(config, parserConfig) {
     return obj;
   }
 
-  var blockKeywords = "body catch class do else enum for foreach foreach_reverse if in interface mixin " +
+  var blockKeywords = "body catch class do else enum for foreach foreach_reverse if in interfaces mixin " +
                       "out scope struct switch try union unittest version while with";
 
   CodeMirror.defineMIME("text/x-d", {

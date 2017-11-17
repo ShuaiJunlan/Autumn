@@ -1,9 +1,9 @@
 package com.autumnframework.cms.controller.system;
 
-import com.autumnframework.cms.architect.utils.ResponseMsgUtil;
-import com.autumnframework.cms.architect.constant.ResponseCode;
-import com.autumnframework.cms.model.bo.DataPageResponseMsg;
-import com.autumnframework.cms.model.bo.ResponseMsg;
+import com.autumnframework.common.architect.constant.ResponseCode;
+import com.autumnframework.common.architect.utils.ResponseMsgUtil;
+import com.autumnframework.common.model.bo.DataPageResponseMsg;
+import com.autumnframework.common.model.bo.ResponseMsg;
 import com.autumnframework.cms.service.interfaces.IMenuManageService;
 import com.autumnframework.cms.service.interfaces.IResourceService;
 import org.springframework.beans.factory.annotation.Autowired;

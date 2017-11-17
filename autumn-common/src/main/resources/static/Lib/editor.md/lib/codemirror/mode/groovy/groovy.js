@@ -20,10 +20,10 @@ CodeMirror.defineMode("groovy", function(config) {
   var keywords = words(
     "abstract as assert boolean break byte case catch char class const continue def default " +
     "do double else enum extends final finally float for goto if implements import in " +
-    "instanceof int interface long native new package private protected public return " +
+    "instanceof int interfaces long native new package private protected public return " +
     "short static strictfp super switch synchronized threadsafe throw throws transient " +
     "try void volatile while");
-  var blockKeywords = words("catch class do else finally for if switch try while enum interface def");
+  var blockKeywords = words("catch class do else finally for if switch try while enum interfaces def");
   var atoms = words("null true false this");
 
   var curPunc;

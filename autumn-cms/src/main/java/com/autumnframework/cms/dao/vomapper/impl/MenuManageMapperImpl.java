@@ -2,9 +2,9 @@ package com.autumnframework.cms.dao.vomapper.impl;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.pool.DruidPooledConnection;
-import com.autumnframework.cms.architect.constant.BusinessConstants;
 import com.autumnframework.cms.dao.vomapper.interfaces.IMenuManageMapper;
 import com.autumnframework.cms.model.vo.VoMenu;
+import com.autumnframework.common.architect.constant.BusinessConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

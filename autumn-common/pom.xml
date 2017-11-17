@@ -11,7 +11,18 @@
     <packaging>jar</packaging>
     <name>autumn-common Maven Webapp</name>
     <url>http://maven.apache.org</url>
-
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <!-- servlet api -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
     <build>
         <finalName>autumn-common</finalName>
     </build>

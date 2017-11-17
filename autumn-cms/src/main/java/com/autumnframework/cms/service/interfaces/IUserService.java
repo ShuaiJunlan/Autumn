@@ -1,11 +1,9 @@
 package com.autumnframework.cms.service.interfaces;
 
 
-import com.autumnframework.cms.model.bo.DataPageResponseMsg;
-import com.autumnframework.cms.model.bo.ResponseMsg;
+import com.autumnframework.common.model.bo.DataPageResponseMsg;
+import com.autumnframework.common.model.bo.ResponseMsg;
 import com.autumnframework.cms.model.po.User;
-
-import java.util.List;
 
 /**
  * @author Junlan Shuai[shuaijunlan@gmail.com].

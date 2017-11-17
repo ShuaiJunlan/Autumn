@@ -25,12 +25,11 @@ public class BlogManageController {
     @RequestMapping(value = "getBlogById")
     @ResponseBody
     public Blog getBlogById(@RequestParam("id")String id){
-        logger.info(id);
 
+        logger.info(id);
         Optional<Blog> blog =  commonRepository.findById(id);
         logger.info(blog);
         return blog.get();
-//        commonRepository.insert(new Blog("1", content));
     }
 
     @RequestMapping(value = "insertBlog")

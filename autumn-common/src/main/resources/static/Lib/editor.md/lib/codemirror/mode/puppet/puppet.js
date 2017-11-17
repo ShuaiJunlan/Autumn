@@ -31,7 +31,7 @@ CodeMirror.defineMode("puppet", function () {
   define('keyword', 'case if else in and elsif default or');
   define('atom', 'false true running present absent file directory undef');
   define('builtin', 'action augeas burst chain computer cron destination dport exec ' +
-    'file filebucket group host icmp iniface interface jump k5login limit log_level ' +
+    'file filebucket group host icmp iniface interfaces jump k5login limit log_level ' +
     'log_prefix macauthorization mailalias maillist mcx mount nagios_command ' +
     'nagios_contact nagios_contactgroup nagios_host nagios_hostdependency ' +
     'nagios_hostescalation nagios_hostextinfo nagios_hostgroup nagios_service ' +

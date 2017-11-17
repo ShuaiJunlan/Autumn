@@ -71,12 +71,12 @@
     return widget;
   }
 
-  // Clumsy backwards-compatible interface
+  // Clumsy backwards-compatible interfaces
   CodeMirror.newFoldFunction = function(rangeFinder, widget) {
     return function(cm, pos) { doFold(cm, pos, {rangeFinder: rangeFinder, widget: widget}); };
   };
 
-  // New-style interface
+  // New-style interfaces
   CodeMirror.defineExtension("foldCode", function(pos, options, force) {
     doFold(this, pos, options, force);
   });
