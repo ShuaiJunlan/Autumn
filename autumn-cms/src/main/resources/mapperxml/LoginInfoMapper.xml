@@ -280,13 +280,15 @@
     SELECT count(*) count FROM af_logininfo WHERE user_login_name = #{username};
   </select>
 
-  <!--登录信息图表展示-->
+  <!--登录信息图表展示, 只展示最近10天-->
   <resultMap id="chartsView" type="com.autumnframework.cms.model.vo.ChartsView">
     <result column="date" jdbcType="VARCHAR" property="x" />
     <result column="count" jdbcType="INTEGER" property="y" />
   </resultMap>
   <select id="getLoginInfoCharts" resultMap="chartsView">
-    SELECT DATE(visit_time) date, COUNT(*) count from af_logininfo group by DATE(visit_time);
+#     SELECT DATE(visit_time) date, COUNT(*) count from af_logininfo group by DATE(visit_time) LIMIT 0, 10;
+    SELECT date, count from (SELECT DATE(visit_time) date, COUNT(*) count from af_logininfo group by DATE(visit_time) DESC LIMIT 0, 10) t
+    group by date ASC;
   </select>
 
   <!--访问地域分布信息-->
