@@ -1,8 +1,8 @@
 package com.autumnframework.cms.controller.system;
 
-import com.autumnframework.cms.architect.utils.MD5Util;
-import com.autumnframework.cms.model.bo.DataPageResponseMsg;
-import com.autumnframework.cms.model.bo.ResponseMsg;
+import com.autumnframework.common.architect.utils.MD5Util;
+import com.autumnframework.common.model.bo.DataPageResponseMsg;
+import com.autumnframework.common.model.bo.ResponseMsg;
 import com.autumnframework.cms.model.po.User;
 import com.autumnframework.cms.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

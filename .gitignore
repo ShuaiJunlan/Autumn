@@ -4,9 +4,9 @@ target/
 test/
 logs/
 backend/
-examples/
 Sql/
 mybatis-generator/
 /src
 /autumn-forum
 /webim
+examples/

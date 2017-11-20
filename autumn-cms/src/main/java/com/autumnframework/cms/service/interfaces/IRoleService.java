@@ -1,6 +1,6 @@
 package com.autumnframework.cms.service.interfaces;
 
-import com.autumnframework.cms.model.bo.DataPageResponseMsg;
+import com.autumnframework.common.model.bo.DataPageResponseMsg;
 
 /**
  * @author Junlan Shuai[shuaijunlan@gmail.com].
