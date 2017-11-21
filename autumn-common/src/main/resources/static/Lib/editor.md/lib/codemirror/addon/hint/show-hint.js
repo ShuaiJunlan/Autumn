@@ -14,7 +14,7 @@
   var HINT_ELEMENT_CLASS        = "CodeMirror-hint";
   var ACTIVE_HINT_ELEMENT_CLASS = "CodeMirror-hint-active";
 
-  // This is the old interfaces, kept around for now to stay
+  // This is the old interface, kept around for now to stay
   // backwards-compatible.
   CodeMirror.showHint = function(cm, getHints, options) {
     if (!getHints) return cm.showHint(options);

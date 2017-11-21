@@ -14,7 +14,7 @@
 CodeMirror.defineMode("dylan", function(_config) {
   // Words
   var words = {
-    // Words that introduce unnamed definitions like "define interfaces"
+    // Words that introduce unnamed definitions like "define interface"
     unnamedDefinition: ["interface"],
 
     // Words that introduce simple named definitions like "define library"
