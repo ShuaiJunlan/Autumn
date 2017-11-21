@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 //@Component
 public class RegisterAuth {
     public static void main(String[] args) {
-        Configuration xmlConfig = new XmlConfiguration(RegisterAuth.class.getResource("classpath:ehcache.xml"));
+        Configuration xmlConfig = new XmlConfiguration(RegisterAuth.class.getResource("/ehcache.xml"));
         try (CacheManager cacheManager = CacheManagerBuilder.newCacheManager(xmlConfig)) {
             cacheManager.init();
 
