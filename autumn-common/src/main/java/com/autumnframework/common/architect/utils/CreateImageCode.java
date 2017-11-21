@@ -40,11 +40,8 @@ import java.io.OutputStream;
 import java.util.Random;
 
 /**
- * 生成验证码
- *
- * @author yangxiaobing
- * @date 2017/8/26
- *
+ * @author Junlan Shuai[shuaijunlan@gmail.com].
+ * @date Created on 15:55 2017/9/5.
  */
 public class CreateImageCode {
     // 图片的宽度。
