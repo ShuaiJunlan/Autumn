@@ -36,10 +36,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 定义一些code的生成方式,生成随机数，根据每次的随机结果定义
- *
- * @author yangxiaobing
- * @date 2017/8/15
+ * @author Junlan Shuai[shuaijunlan@gmail.com].
+ * @date Created on 15:55 2017/9/5.
  */
 public class KeyConfig {
 		

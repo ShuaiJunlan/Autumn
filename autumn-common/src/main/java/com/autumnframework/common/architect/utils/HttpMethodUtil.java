@@ -10,9 +10,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Created by Mr SJL on 2016/12/9.
- *
- * @Author Junlan Shuai
+ * @author Junlan Shuai[shuaijunlan@gmail.com].
+ * @date Created on 15:55 2017/9/5.
  */
 public class HttpMethodUtil
 {

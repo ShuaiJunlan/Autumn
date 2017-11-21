@@ -419,7 +419,7 @@ CodeMirror.defineMode("xquery", function() {
     state.tokenize = reinstateTokenize || tokenBase;
   }
 
-  // the interfaces for the mode API
+  // the interface for the mode API
   return {
     startState: function() {
       return {
