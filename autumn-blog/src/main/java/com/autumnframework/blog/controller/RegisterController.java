@@ -3,7 +3,7 @@ package com.autumnframework.blog.controller;
 import com.autumnframework.common.architect.utils.MD5Util;
 import com.autumnframework.common.model.bo.ResponseMsg;
 import com.autumnframework.common.model.po.User;
-import com.autumnframework.common.service.impl.UserServiceImpl;
+import com.autumnframework.common.service.impl.RegisterServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "register")
 public class RegisterController {
     @Autowired
-    private UserServiceImpl userService;
+    private RegisterServiceImpl userService;
 
     @RequestMapping(value = "userRegister/")
     @ResponseBody

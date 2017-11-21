@@ -9,7 +9,7 @@ import com.autumnframework.common.model.po.User;
  * @author Junlan Shuai[shuaijunlan@gmail.com].
  * @date Created on 15:09 2017/10/25.
  */
-public interface IUserService {
+public interface IRegisterService {
     /**
      * 根据登录名查询用户
      * @param userLoginName
@@ -28,5 +28,5 @@ public interface IUserService {
      * @param user
      * @return
      */
-    ResponseMsg insertUser(User user);
+    ResponseMsg registerUser(User user);
 }

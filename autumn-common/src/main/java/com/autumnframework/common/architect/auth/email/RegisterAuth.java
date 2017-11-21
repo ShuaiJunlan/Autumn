@@ -19,7 +19,6 @@ public class RegisterAuth {
             cacheManager.init();
 
             Cache<Long, String> basicCache = cacheManager.getCache("basicCache", Long.class, String.class);
-
             basicCache.put(1L, "da one!");
             String value = basicCache.get(1L);
             System.out.println(value);

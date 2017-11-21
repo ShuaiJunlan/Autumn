@@ -1,13 +1,15 @@
 package com.autumnframework.common.service.impl;
 
+import com.autumnframework.common.architect.auth.email.WebEmail;
 import com.autumnframework.common.architect.constant.BusinessConstants;
+import com.autumnframework.common.architect.constant.Constants;
 import com.autumnframework.common.architect.constant.ResponseCode;
 import com.autumnframework.common.architect.utils.ResponseMsgUtil;
 import com.autumnframework.common.dao.bomapper.UserMapper;
 import com.autumnframework.common.model.bo.DataPageResponseMsg;
 import com.autumnframework.common.model.bo.ResponseMsg;
 import com.autumnframework.common.model.po.User;
-import com.autumnframework.common.service.interfaces.IUserService;
+import com.autumnframework.common.service.interfaces.IRegisterService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +20,14 @@ import org.springframework.stereotype.Component;
  * @date Created on 15:10 2017/10/25.
  */
 @Component
-public class UserServiceImpl implements IUserService {
-    private Logger logger = LogManager.getLogger(UserServiceImpl.class);
+public class RegisterServiceImpl implements IRegisterService {
+    private Logger logger = LogManager.getLogger(RegisterServiceImpl.class);
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private WebEmail webEmail;
 
     /**
      * 根据用户Id查询用户信息
@@ -43,12 +48,16 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ResponseMsg insertUser(User user) {
+    public ResponseMsg registerUser(User user) {
         if (userMapper.checkUserExist(user.getUser_login_name()) == 1){
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.DATA_EXIT);
         }else if (userMapper.insert(user) == -1){
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_FAIL);
         }else {
+            int re = webEmail.sendHtmlEmail(Constants.REGISTER_AUTH_EMAIL_SUBJECT, Constants.REGISTER_AUTH_LINK, user.getUser_login_name());
+            if (re == -1){
+
+            }
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_SUCCESS);
         }
     }
