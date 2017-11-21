@@ -23,6 +23,6 @@ public class RegisterController {
     @ResponseBody
     public ResponseMsg doRegister(User user){
         user.setPassword(MD5Util.getMD5(user.getPassword()));
-        return userService.insertUser(user);
+        return userService.registerUser(user);
     }
 }
