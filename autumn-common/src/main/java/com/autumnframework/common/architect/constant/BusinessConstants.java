@@ -34,16 +34,15 @@ package com.autumnframework.common.architect.constant;
 
 
 /**
- * 系统管理平台业务常量定义
- *
- * @author yangxiaobing
- * @date   2016/8/15
+ * @author Junlan Shuai[shuaijunlan@gmail.com].
+ * @date Created on 15:55 2017/9/5.
  */
 public enum BusinessConstants {
 
 	/**用户状态*/
 	SYS_USER_STATUS_0(0,"0-无效"),
 	SYS_USER_STATUS_1(1,"1-有效"),
+	SYS_USER_STATUS_2(2,"1-未激活"),
 
 
 
