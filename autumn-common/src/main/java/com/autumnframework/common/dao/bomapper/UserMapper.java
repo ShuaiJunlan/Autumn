@@ -1,5 +1,6 @@
 package com.autumnframework.common.dao.bomapper;
 
+import com.autumnframework.common.model.bo.ResponseMsg;
 import com.autumnframework.common.model.po.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -83,6 +84,14 @@ public interface UserMapper {
      * @return
      */
     int checkUserExist(String user_login_name);
+    /**
+     * 根据用户登录名改变用户状态
+     * @param status
+     * @param user_login_name
+     * @return
+     */
+    int updateUserStatusByLoginName(@Param("status") int status, @Param("user_login_name") String user_login_name);
+
 
 
 }

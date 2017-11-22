@@ -49,16 +49,32 @@ public class RegisterServiceImpl implements IRegisterService {
 
     @Override
     public ResponseMsg registerUser(User user) {
+        //  判断邮箱是否已经被注册
         if (userMapper.checkUserExist(user.getUser_login_name()) == 1){
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.DATA_EXIT);
-        }else if (userMapper.insert(user) == -1){
-            return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_FAIL);
-        }else {
-            int re = webEmail.sendHtmlEmail(Constants.REGISTER_AUTH_EMAIL_SUBJECT, Constants.REGISTER_AUTH_LINK, user.getUser_login_name());
-            if (re == -1){
-
-            }
-            return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_SUCCESS);
         }
+//        int re = webEmail.sendHtmlEmail(Constants.REGISTER_AUTH_EMAIL_SUBJECT, Constants.REGISTER_AUTH_LINK.replace("?", user.getUser_login_name()), user.getUser_login_name());
+        int re = 0;
+        //  判断邮箱是否是有效邮箱
+        if (-1 == re){
+            return ResponseMsgUtil.returnCodeMessage(ResponseCode.MAIL_SEND_FAIL);
+        }else {
+            //  插入用户
+            int temp = userMapper.insert(user);
+            if (temp == -1){
+                return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_FAIL);
+            }else{
+                return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_SUCCESS);
+            }
+        }
+    }
+
+    @Override
+    public ResponseMsg updateUserStateByLoginName(int state, String user_login_name) {
+        int re = userMapper.updateUserStatusByLoginName(state, user_login_name);
+        if (re == 1){
+            return ResponseMsgUtil.returnCodeMessage(ResponseCode.AUTH_SUCCESS);
+        }
+        return ResponseMsgUtil.returnCodeMessage(ResponseCode.AUTH_FAIL);
     }
 }

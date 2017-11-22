@@ -6,6 +6,7 @@ import com.autumnframework.common.model.po.User;
 import com.autumnframework.common.service.impl.RegisterServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,5 +25,11 @@ public class RegisterController {
     public ResponseMsg doRegister(User user){
         user.setPassword(MD5Util.getMD5(user.getPassword()));
         return userService.registerUser(user);
+    }
+    @RequestMapping(value = "auth/{user_login_name}")
+    @ResponseBody
+    public ResponseMsg registerAuth(@PathVariable("user_login_name")String name){
+        
+        return userService.updateUserStateByLoginName(1, name);
     }
 }

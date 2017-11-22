@@ -17,8 +17,12 @@ public enum ResponseCode {
     REQUEST_UNAUTHORIZED("3333", "fail"),
 
     // 数据已存在
-    DATA_EXIT("5000", "data exist");
+    DATA_EXIT("5000", "data exist"),
 
+    MAIL_SEND_FAIL("4001", "send mail fairly"),
+    MAIL_SEND_SUCCESS("1001", "send mail successfully"),
+    AUTH_SUCCESS("1002", "auth successfully"),
+    AUTH_FAIL("4002", "auth fairly");
 
     private String code;
     private String msg;

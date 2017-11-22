@@ -29,4 +29,12 @@ public interface IRegisterService {
      * @return
      */
     ResponseMsg registerUser(User user);
+
+    /**
+     * 根据用户登录名改变用户状态
+     * @param state
+     * @param user_login_name
+     * @return
+     */
+    ResponseMsg updateUserStateByLoginName(int state, String user_login_name);
 }
