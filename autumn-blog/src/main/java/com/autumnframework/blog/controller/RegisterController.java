@@ -29,7 +29,7 @@ public class RegisterController {
     @RequestMapping(value = "auth/{user_login_name}")
     @ResponseBody
     public ResponseMsg registerAuth(@PathVariable("user_login_name")String name){
-        
+
         return userService.updateUserStateByLoginName(1, name);
     }
 }
