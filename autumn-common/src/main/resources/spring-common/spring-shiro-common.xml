@@ -20,8 +20,6 @@
                 /Sys/userimg/**=anon
                 /swagger/**=anon
                 /api-docs=anon
-
-
                 /main.html=authc
             </value>
         </property>

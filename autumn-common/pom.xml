@@ -13,19 +13,13 @@
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-        </dependency>
-        <!-- servlet api -->
-        <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <scope>provided</scope>
+            <artifactId>jstl</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
         </dependency>
 
         <dependency>
@@ -149,6 +143,13 @@
             </exclusions>
         </dependency>
 
+        <!-- servlet api -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
         <!--aspectj-->
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -185,6 +186,17 @@
             <artifactId>jackson-annotations</artifactId>
         </dependency>
 
+        <!--test-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
         <!--spring data-->
         <dependency>
             <groupId>org.springframework.data</groupId>
@@ -197,17 +209,6 @@
             <artifactId>ehcache</artifactId>
         </dependency>
 
-
-        <!--test-->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/commons-net/commons-net -->
         <dependency>

@@ -1,12 +1,13 @@
-package com.autumnframework.cms.dao.bomapper;
+package com.autumnframework.common.dao.bomapper;
 
-import com.autumnframework.cms.model.po.LoginInfo;
-import com.autumnframework.cms.model.vo.AreaView;
-import com.autumnframework.cms.model.vo.ChartsView;
+import com.autumnframework.common.model.po.LoginInfo;
+import com.autumnframework.common.model.vo.AreaView;
+import com.autumnframework.common.model.vo.ChartsView;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 @Repository
 public interface LoginInfoMapper {
     /**

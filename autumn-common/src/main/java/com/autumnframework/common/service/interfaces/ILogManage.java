@@ -1,9 +1,9 @@
-package com.autumnframework.cms.service.interfaces;
+package com.autumnframework.common.service.interfaces;
 
 import com.alibaba.fastjson.JSONObject;
-import com.autumnframework.common.model.bo.DataPageResponseMsg;
-import com.autumnframework.cms.model.po.LoginInfo;
+import com.autumnframework.common.model.po.LoginInfo;
 import com.autumnframework.common.model.vo.AreaView;
+import com.autumnframework.common.model.bo.DataPageResponseMsg;
 
 import java.util.List;
 

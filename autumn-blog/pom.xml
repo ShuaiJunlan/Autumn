@@ -15,6 +15,12 @@
             <groupId>cn.shuaijunlan</groupId>
             <artifactId>autumn-common</artifactId>
         </dependency>
+        <!-- servlet api -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <build>
         <finalName>autumn-blog</finalName>

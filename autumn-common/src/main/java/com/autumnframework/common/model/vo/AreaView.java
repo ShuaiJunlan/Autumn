@@ -1,4 +1,4 @@
-package com.autumnframework.cms.model.vo;
+package com.autumnframework.common.model.vo;
 
 /**
  * @author Junlan Shuai[shuaijunlan@gmail.com].

@@ -1,8 +1,8 @@
-package com.autumnframework.cms.controller;
+package com.autumnframework.blog.controller;
 
-import com.autumnframework.common.model.bo.DataPageResponseMsg;
 import com.autumnframework.common.architect.constant.ResponseCode;
 import com.autumnframework.common.architect.utils.ResponseMsgUtil;
+import com.autumnframework.common.model.bo.DataPageResponseMsg;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,7 +16,6 @@ import java.util.ArrayList;
  * @date 2017/7/6
  */
 @Controller
-//@RequestMapping("main")
 public class IndexController extends BasicController {
 
     /**

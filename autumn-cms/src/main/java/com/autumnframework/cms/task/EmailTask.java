@@ -1,7 +1,7 @@
 package com.autumnframework.cms.task;
 
-import com.autumnframework.cms.dao.bomapper.LoginInfoMapper;
 import com.autumnframework.common.architect.auth.email.WebEmail;
+import com.autumnframework.common.dao.bomapper.LoginInfoMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
