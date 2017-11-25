@@ -6,7 +6,7 @@
 
     <import resource="spring-mvc.xml"/>
     <import resource="spring-mongodb.xml"/>
-    <import resource="spring-mvc-common.xml"/>
+    <import resource="classpath:spring-common/spring-mvc-common.xml"/>
 
 
     <!--<aop:aspectj-autoproxy />-->

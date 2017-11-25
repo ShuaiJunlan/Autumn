@@ -13,6 +13,9 @@
                 /loginProxy.do=anon
                 /static/**=anon
                 /Lib/**=anon
+
+                /css/**=anon
+                /js/**=anon
                 <!--test add-->
                 <!--/sys/**=anon-->
                 /BasePlu/**=anon
