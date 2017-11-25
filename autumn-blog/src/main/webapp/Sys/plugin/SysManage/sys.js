@@ -10,6 +10,13 @@ $(function() {
                 Fv.config.form = layui.form;
                 Fv.config.layedit = layui.layedit;
                 Fv.config.laydate = layui.laydate;
+
+                Fv.ajax.loadJs(["Sys/plugin/SysConfig/RegisterPage/RegisterPage.js"]);
+                Fv.ajax.loadJs(["Sys/plugin/SysConfig/LoginPage/LoginPage.js"]);
+                Fv.config.user = {
+                    username : 'admin'
+                    ,id : -1
+                };
             }
         )
     }();
@@ -100,4 +107,5 @@ $(function() {
             })
         });
     }
+
 })

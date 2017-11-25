@@ -10,4 +10,7 @@ public class Constants {
     public static final String SESSION_KEY_LOGIN_NAME="LOGIN_NAME";
     /**初始化密码*/
     public static final String INIT_LOGIN_PWD = "123456";
+
+    public static final String REGISTER_AUTH_EMAIL_SUBJECT = "Autumn-Blog注册激活邮件";
+    public static final String REGISTER_AUTH_LINK = "https://shuaijunlan.cn/autumn-blog/register/auth?user_login_name=#";
 }

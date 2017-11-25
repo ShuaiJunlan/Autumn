@@ -1,9 +1,9 @@
 package com.autumnframework.cms.shiroconfig.filter;
 
-import com.autumnframework.cms.dao.bomapper.PluginMapper;
-import com.autumnframework.cms.dao.bomapper.ResourceMapper;
-import com.autumnframework.cms.model.po.Plugin;
-import com.autumnframework.cms.model.po.Resource;
+import com.autumnframework.common.dao.bomapper.PluginMapper;
+import com.autumnframework.common.dao.bomapper.ResourceMapper;
+import com.autumnframework.common.model.po.Plugin;
+import com.autumnframework.common.model.po.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

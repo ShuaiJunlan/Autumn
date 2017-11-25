@@ -1,6 +1,6 @@
 package com.autumnframework.cms.controller.system;
 
-import com.autumnframework.cms.extern.email.WebEmail;
+import com.autumnframework.common.architect.auth.email.WebEmail;
 import com.autumnframework.common.architect.constant.ResponseCode;
 import com.autumnframework.common.architect.utils.ResponseMsgUtil;
 import com.autumnframework.common.model.bo.ResponseMsg;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping(value = "/send")
 public class MessageController {
+
     @Autowired
     private WebEmail webEmail;
 

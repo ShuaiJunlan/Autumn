@@ -5,13 +5,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <context:annotation-config/>
 
-    <!--<context:property-placeholder location="classpjdbc.properties1ties" ignore-unresolvable="true"/>-->
     <import resource="spring-druid.xml"/>
     
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
+    <bean id="sqlSessionFactory-cms" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource-cms"/>
         <property name="configLocation" value="classpath:spring/Mybatis-Configuration.xml"/>
-        <property name="typeAliasesPackage" value="com.autumnframework.cms.model"/>
         <!-- 扫描sql配置文件：mapper需要的xml文件 -->
         <property name="mapperLocations" value="classpath:mapperxml/*.xml"/>
     </bean>
@@ -19,7 +17,7 @@
     <!--配置扫描dao接口包，动态实现Dao接口，并注入到spring容器中-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!--注入sqlSessionFactory-->
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory-cms"/>
         <!--给出扫描DAO接口包-->
         <property name="basePackage" value="com.autumnframework.cms.dao.bomapper"/>
     </bean>

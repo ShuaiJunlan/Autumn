@@ -5,6 +5,7 @@ import com.alibaba.druid.pool.DruidPooledConnection;
 import com.autumnframework.cms.dao.vomapper.interfaces.ISysMapper;
 import com.autumnframework.cms.model.vo.SysMenu;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -21,7 +22,8 @@ import java.util.List;
 public class SysMapperImpl implements ISysMapper {
 
     @Autowired
-    DruidDataSource druidDataSource;
+    @Qualifier("dataSource-cms")
+    private DruidDataSource druidDataSource;
 
     @Override
     public List<SysMenu> getMenuBySys(String sys) throws SQLException {

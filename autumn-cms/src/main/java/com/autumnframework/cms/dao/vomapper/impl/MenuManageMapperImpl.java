@@ -6,6 +6,7 @@ import com.autumnframework.cms.dao.vomapper.interfaces.IMenuManageMapper;
 import com.autumnframework.cms.model.vo.VoMenu;
 import com.autumnframework.common.architect.constant.BusinessConstants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -21,6 +22,7 @@ import java.util.List;
 @Repository
 public class MenuManageMapperImpl implements IMenuManageMapper {
     @Autowired
+    @Qualifier("dataSource-cms")
     private DruidDataSource druidDataSource;
 
     @Override

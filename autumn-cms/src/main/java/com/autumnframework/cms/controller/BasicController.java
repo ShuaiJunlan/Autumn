@@ -1,6 +1,6 @@
 package com.autumnframework.cms.controller;
 
-import com.autumnframework.cms.model.po.User;
+import com.autumnframework.common.model.po.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.context.annotation.Scope;

@@ -2,8 +2,8 @@ package com.autumnframework.cms.controller.system;
 
 import com.alibaba.fastjson.JSONObject;
 import com.autumnframework.common.model.bo.DataPageResponseMsg;
-import com.autumnframework.cms.model.vo.AreaView;
-import com.autumnframework.cms.service.impl.LogManageImpl;
+import com.autumnframework.common.model.vo.AreaView;
+import com.autumnframework.common.service.impl.LogManageImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
