@@ -26,9 +26,7 @@ public class BlogManageController {
     @ResponseBody
     public Blog getBlogById(@RequestParam("id")String id){
 
-        logger.info(id);
         Optional<Blog> blog =  commonRepository.findById(id);
-        logger.info(blog);
         return blog.get();
     }
 

@@ -11,8 +11,8 @@ import com.autumnframework.common.architect.utils.MD5Util;
 import com.autumnframework.common.architect.utils.ResponseMsgUtil;
 import com.autumnframework.common.model.bo.ResponseMsg;
 import com.autumnframework.cms.model.po.LoginInfo;
-import com.autumnframework.cms.model.po.User;
 import com.autumnframework.cms.service.impl.LogManageImpl;
+import com.autumnframework.common.model.po.User;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -120,7 +120,7 @@ public class LoginController extends BasicController{
                     loginInfo.setUser_login_name(username);
                     logManage.insertLoginInfo(loginInfo);
                 }catch (Exception e){
-                    log.error("invaild ip");
+                    log.error("invalid ip");
                 }finally {
                     return ResponseMsgUtil.returnCodeMessage(BussinessCode.GLOBAL_SUCCESS);
                 }

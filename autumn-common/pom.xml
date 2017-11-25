@@ -149,12 +149,6 @@
             </exclusions>
         </dependency>
 
-        <!-- servlet api -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-        </dependency>
-
         <!--aspectj-->
         <dependency>
             <groupId>org.aspectj</groupId>

@@ -1,4 +1,4 @@
-package com.autumnframework.cms.shiroconfig.filter;
+package com.autumnframework.common.shiroconfig.filter;
 
 import com.autumnframework.common.dao.bomapper.PluginMapper;
 import com.autumnframework.common.dao.bomapper.ResourceMapper;
@@ -38,17 +38,18 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
         this.filterChainDefinitions = filterChainDefinitions;
     }
     /**
-     * 默认premission字符串
+     * 默认permission字符串
      */
     public static final String PERMISSION_STRING="perms[{0}]";
 
     @Override
     public synchronized Ini.Section getObject() throws Exception {
-        //获取所有Resource
-        List<Resource> list = resourceMapper.selectResourceAllList();
 
         //获取所有的插件
         List<Plugin> pluginList = pluginMapper.selectAllStatus1Plugin();
+
+        //获取所有Resource
+        List<Resource> list = resourceMapper.selectResourceAllList();
 
         Ini ini = new Ini();
         //加载默认的url

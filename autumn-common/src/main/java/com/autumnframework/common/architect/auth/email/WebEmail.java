@@ -23,7 +23,7 @@ public class WebEmail {
     @Resource(name = "smg")
     private SimpleMailMessage mailMessage;
 
-    public void sendHtmlEmail(String subject, String content, String to) {
+    public int sendHtmlEmail(String subject, String content, String to) {
 
         mailMessage.setTo(to);
         try {
@@ -39,9 +39,28 @@ public class WebEmail {
 
         } catch (Exception e) {
             logger.error("the email send error ! {}", e);
-//            return -1;
+            return -1;
         }finally {
         }
-//        return 1;
+        return 1;
+    }
+
+    public void send(String subject, String content) {
+
+        try {
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "utf-8");
+            mimeMessage.setContent(content, "text/html;charset=utf-8");
+            messageHelper.setFrom(mailMessage.getFrom());
+            messageHelper.setSubject(subject); //主题
+//            messageHelper.setText(content);   //内容
+            messageHelper.setTo(mailMessage.getTo()); //发送给
+            messageHelper.setCc(mailMessage.getFrom()); //抄送
+
+            mailSender.send(mimeMessage);    //发送邮件
+
+        } catch (Exception e) {
+            logger.error("the email send error ! {}", e);
+        }
     }
 }

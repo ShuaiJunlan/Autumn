@@ -5,7 +5,7 @@ import com.autumnframework.common.architect.utils.ResponseMsgUtil;
 import com.autumnframework.common.model.bo.DataPageResponseMsg;
 import com.autumnframework.common.model.bo.ResponseMsg;
 import com.autumnframework.cms.service.interfaces.IMenuManageService;
-import com.autumnframework.cms.service.interfaces.IResourceService;
+import com.autumnframework.common.service.interfaces.IResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

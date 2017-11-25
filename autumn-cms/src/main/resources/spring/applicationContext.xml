@@ -4,11 +4,14 @@
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <import resource="spring-mvc.xml"/>
+    <!--<import resource="spring-mvc.xml"/>-->
+    <!--<import resourspring-mybatis-common.xml.xml"/>-->
+    <!--<import resourspring-shiro-common.xml.xml"/>-->
+    <!--<import resourspring-email-common.xml.xml"/>-->
     <import resource="spring-mybatis.xml"/>
-    <import resource="spring-shiro.xml"/>
-    <import resource="spring-email.xml"/>
     <import resource="spring-task.xml"/>
+    <import resource="spring-mvc.xml"/>
+    <import resource="classpath:spring-common/spring-mvc-common.xml"/>
 
 
     <!--<aop:aspectj-autoproxy />-->

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -26,9 +27,9 @@ public class RegisterController {
         user.setPassword(MD5Util.getMD5(user.getPassword()));
         return userService.registerUser(user);
     }
-    @RequestMapping(value = "auth/{user_login_name}")
+    @RequestMapping(value = "auth")
     @ResponseBody
-    public ResponseMsg registerAuth(@PathVariable("user_login_name")String name){
+    public ResponseMsg registerAuth(@RequestParam("user_login_name")String name){
 
         return userService.updateUserStateByLoginName(1, name);
     }
