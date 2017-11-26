@@ -107,5 +107,8 @@ $(function() {
             })
         });
     }
+    Fv.logout = function () {
+        Fv.ajax.post("logout.do", {}, null, null);
+    }
 
 })

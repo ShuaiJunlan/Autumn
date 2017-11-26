@@ -13,4 +13,5 @@ public class Constants {
 
     public static final String REGISTER_AUTH_EMAIL_SUBJECT = "Autumn-Blog注册激活邮件";
     public static final String REGISTER_AUTH_LINK = "https://shuaijunlan.cn/autumn-blog/register/auth?user_login_name=#";
+    public static final String REGISTER_AUTH_TEMPLATE = "<a href = '?'>账号激活链接</a>";
 }

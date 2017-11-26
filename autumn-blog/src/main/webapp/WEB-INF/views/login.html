@@ -6,8 +6,8 @@
     <title>Autumn Framework</title>
     <link rel="shortcut icon" href="https://github.com/shuaijunlan/Autumn-Framework/raw/master/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="Lib/layui_v2.1.2/css/layui.css">
+    <script src="Lib/Wiz.Editor.md-2.6/Editor.md/examples/js/jquery.min.js"></script>
     <link rel="stylesheet" href="static/css/login.css">
-    <script src="Lib/layui_v2.1.2/layui.js"></script>
 </head>
 <body>
 <div class="layui-carousel video_mask" id="login_carousel" >
@@ -29,18 +29,9 @@
                 <input class="layui-input" name="code" placeholder="验证码" lay-verify="required" type="text" autocomplete="off">
                 <div class="code"><img src="captcha.do" width="116" height="36"></div>
             </div>
-
             <button class="layui-btn login_btn" lay-submit="" lay-filter="login">登陆系统</button>
         </form>
-        <div class="layui-collapse" style="margin-top: 30px">
-            <div class="layui-colla-item">
-                <h2 class="layui-colla-title">测试用户账号？</h2>
-                <div class="layui-colla-content">
-                    <p>用户名：sys1<br>密码：sys1
-                    </p>
-                </div>
-            </div>
-        </div>
+        <a style="padding-left: 70%; color: white" id="register">没有账号？</a>
     </div>
 
 </div>
@@ -48,6 +39,8 @@
 </body>
 
 </html>
+<script src="Lib/layui_v2.1.2/layui.js"></script>
+<script src="BasePlu/Base.js"></script>
 <script>
     layui.config({
         base : "static/js/"
@@ -67,25 +60,6 @@
             anim: 'fade',
             indicator:'none'
         });
-        layer.open({
-            type: 1
-            ,title: false //不显示标题栏
-            ,closeBtn: false
-            ,shade: 0.8
-            ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
-            ,btn: ['确定']
-            ,btnAlign: 'c'
-            ,moveType: 1 //拖拽模式，0或者1
-            ,content: '<div style="padding: 30px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">' +
-                        '用户名：sys1<br>' +
-                        '密&nbsp;&nbsp;&nbsp;码：sys1<br>' +
-                        '开源地址：<br>' +
-                        '<a href="https://github.com/shuaijunlan/Autumn-Framework" target="_blank" style="color: greenyellow">https://github.com/shuaijunlan/Autumn-Framework(点击跳转)</a></div>'
-            ,success: function(layero){
-
-            }
-        })
-
         /**重新生成验证码*/
         function reqCaptcha() {
             var url = "captcha.do?nocache=" + new Date().getTime()
@@ -95,7 +69,6 @@
         $('.code img').on('click', function () {
             reqCaptcha();
         });
-
         /**监听登陆提交*/
         form.on('submit(login)', function (data) {
             //弹出loading
@@ -126,5 +99,61 @@
             }
         });
 
+        $("#register").click(function () {
+
+            layui.$.post('Sys/plugin/SysConfig/RegisterPage/RegisterPage.html', {}, function (str) {
+                var init = {
+                    username : 'admin'
+                    ,id : -1
+                };
+                layer.open({
+                    type: 1
+                    ,title: "用户注册"
+                    ,shade: 0.8
+                    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+//                    ,btn: ['确定']
+                    ,btnAlign: 'c'
+                    ,moveType: 1 //拖拽模式，0或者1
+                    ,content: str
+                    ,success: function(layero){
+                    }
+                })
+                form.render();
+                form.on('submit(RegisterPage)', function(data){
+                    var loginLoading = layer.msg('注册中，请稍候...', {icon: 16, time: false, shade: 0.8});
+                    if (data.field.password != data.field.repassword){
+                        layer.msg("两次密码不一致");
+                        layer.close(loginLoading);
+                    }else {
+                        var user = {
+                            username : data.field.username
+                            ,user_login_name : data.field.user_login_name
+                            ,password : data.field.password
+                            ,creator : init.username
+                            ,creator_id : init.id
+                            ,modifier : init.username
+                            ,modifier_id : init.id
+                            ,status : 2
+                        }
+                        Fv.ajax.post("register/userRegister/", user, function (data) {
+                                if (data.code == '1111'){
+                                    layer.closeAll("page");
+                                    layer.confirm('请查收您的激活邮件(可能在垃圾箱中)，点击链接激活，否则无法使用此账号登录?', {icon: 3, title:'提示'});
+                                }else if (data.code == '0000'){
+                                    layer.msg("添加失败")
+                                }else if (data.code == '5000'){
+                                    layer.msg("登录名已存在")
+                                }
+                                layer.close(loginLoading);
+                            }
+                            ,function () {
+                                layer.close(loginLoading);
+                                layer.msg("系统异常");
+                            });
+                    }
+                    return false;
+                });
+            })
+        })
     });
 </script>
