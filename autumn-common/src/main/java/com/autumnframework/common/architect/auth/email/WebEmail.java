@@ -53,7 +53,6 @@ public class WebEmail {
             mimeMessage.setContent(content, "text/html;charset=utf-8");
             messageHelper.setFrom(mailMessage.getFrom());
             messageHelper.setSubject(subject); //主题
-//            messageHelper.setText(content);   //内容
             messageHelper.setTo(mailMessage.getTo()); //发送给
             messageHelper.setCc(mailMessage.getFrom()); //抄送
 

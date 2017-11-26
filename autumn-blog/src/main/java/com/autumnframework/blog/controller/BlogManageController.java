@@ -27,7 +27,12 @@ public class BlogManageController {
     public Blog getBlogById(@RequestParam("id")String id){
 
         Optional<Blog> blog =  commonRepository.findById(id);
-        return blog.get();
+        if (blog.isPresent()){
+            return blog.get();
+        }else {
+            return null;
+        }
+
     }
 
     @RequestMapping(value = "insertBlog")

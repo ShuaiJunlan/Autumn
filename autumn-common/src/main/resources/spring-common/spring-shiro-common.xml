@@ -11,11 +11,14 @@
                 /loginCheck.do=anon
                 /captcha.do=anon
                 /loginProxy.do=anon
+                /register/userRegister/=anon
+                /register/auth=anon
                 /static/**=anon
                 /Lib/**=anon
 
                 /css/**=anon
                 /js/**=anon
+                /Sys/plugin/SysConfig/RegisterPage/RegisterPage.html=anon
                 <!--test add-->
                 <!--/sys/**=anon-->
                 /BasePlu/**=anon
@@ -23,7 +26,6 @@
                 /Sys/userimg/**=anon
                 /swagger/**=anon
                 /api-docs=anon
-                /main.html=authc
             </value>
         </property>
     </bean>
