@@ -53,8 +53,8 @@ public class RegisterServiceImpl implements IRegisterService {
         if (userMapper.checkUserExist(user.getUser_login_name()) == 1){
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.DATA_EXIT);
         }
-        String to = user.getUser_login_name();
-        String content = Constants.REGISTER_AUTH_TEMPLATE.replace("?", Constants.REGISTER_AUTH_LINK.replace("#", to));
+        String to = user.getEmail();
+        String content = Constants.REGISTER_AUTH_TEMPLATE.replace("?", Constants.REGISTER_AUTH_LINK.replace("#", user.getUser_login_name()));
         int re = webEmail.sendHtmlEmail(Constants.REGISTER_AUTH_EMAIL_SUBJECT, content, to);
         //  判断邮箱是否是有效邮箱
         if (-1 == re){

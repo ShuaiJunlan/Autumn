@@ -366,4 +366,15 @@ public class User implements Serializable{
     public void setModifier_time(String modifier_time) {
         this.modifier_time = modifier_time;
     }
+
+
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
