@@ -529,6 +529,16 @@ public class LoginInfo {
         this.user_login_name = user_login_name == null ? null : user_login_name.trim();
     }
 
+    private int type;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "LoginInfo{" +

@@ -23,6 +23,7 @@
     <result column="region_id" jdbcType="VARCHAR" property="region_id" />
     <result column="visit_time" jdbcType="TIMESTAMP" property="visit_time" />
     <result column="user_login_name" jdbcType="VARCHAR" property="user_login_name" />
+    <result column="type" jdbcType="INTEGER" property="type" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--
@@ -31,7 +32,7 @@
       This element was generated on Tue Oct 31 19:49:31 CST 2017.
     -->
     id, ip, area, area_id, city, city_id, country, country_id, county, county_id, isp, 
-    isp_id, region, region_id, visit_time, user_login_name
+    isp_id, region, region_id, visit_time, user_login_name, type
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--
@@ -66,13 +67,13 @@
       city, city_id, country, 
       country_id, county, county_id, 
       isp, isp_id, region, 
-      region_id, visit_time, user_login_name
+      region_id, visit_time, user_login_name, type
       )
     values (#{ip,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{area_id,jdbcType=VARCHAR}, 
       #{city,jdbcType=VARCHAR}, #{city_id,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, 
       #{country_id,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{county_id,jdbcType=VARCHAR}, 
       #{isp,jdbcType=VARCHAR}, #{isp_id,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR}, 
-      #{region_id,jdbcType=VARCHAR}, now(), #{user_login_name,jdbcType=VARCHAR}
+      #{region_id,jdbcType=VARCHAR}, now(), #{user_login_name,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.autumnframework.common.model.po.LoginInfo">
@@ -257,7 +258,8 @@
       region = #{region,jdbcType=VARCHAR},
       region_id = #{region_id,jdbcType=VARCHAR},
       visit_time = #{visit_time,jdbcType=TIMESTAMP},
-      user_login_name = #{user_login_name,jdbcType=VARCHAR}
+      user_login_name = #{user_login_name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <!--分页查询登录信息-->

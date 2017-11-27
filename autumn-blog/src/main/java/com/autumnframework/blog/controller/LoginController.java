@@ -116,6 +116,7 @@ public class LoginController extends BasicController{
                     //  会抛出异常
                     LoginInfo loginInfo = JSON.parseObject(detail, LoginInfo.class);
                     loginInfo.setUser_login_name(username);
+                    loginInfo.setType(1);
                     logManage.insertLoginInfo(loginInfo);
                 }catch (Exception e){
                     log.error("invalid ip");
