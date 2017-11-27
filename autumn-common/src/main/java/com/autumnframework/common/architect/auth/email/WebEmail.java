@@ -38,7 +38,7 @@ public class WebEmail {
             mailSender.send(mimeMessage);    //发送邮件
 
         } catch (Exception e) {
-            logger.error("the email send error ! {}", e);
+            logger.error("the email send error ! content: {}, exception: {}", content, e);
             return -1;
         }finally {
         }
@@ -59,7 +59,7 @@ public class WebEmail {
             mailSender.send(mimeMessage);    //发送邮件
 
         } catch (Exception e) {
-            logger.error("the email send error ! {}", e);
+            logger.error("the email send error! content: {}, exception: {}", content, e);
         }
     }
 }
