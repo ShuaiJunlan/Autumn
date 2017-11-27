@@ -31,7 +31,7 @@
             </div>
             <button class="layui-btn login_btn" lay-submit="" lay-filter="login">登陆系统</button>
         </form>
-        <a style="padding-left: 70%; color: white" id="register">没有账号？</a>
+        <a style="padding-left: 70%; color: white; line-height: 35px; cursor: help;" id="register">没有账号？</a>
     </div>
 
 </div>
@@ -110,11 +110,11 @@
                     type: 1
                     ,title: "用户注册"
                     ,shade: 0.8
-                    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
-//                    ,btn: ['确定']
+                    ,id: 'registerPage  ' //设定一个id，防止重复弹出
                     ,btnAlign: 'c'
                     ,moveType: 1 //拖拽模式，0或者1
                     ,content: str
+                    , skin: 'layui-layer-molv'
                     ,success: function(layero){
                     }
                 })
@@ -126,8 +126,8 @@
                         layer.close(loginLoading);
                     }else {
                         var user = {
-                            username : data.field.username
-                            ,user_login_name : data.field.user_login_name
+                            user_login_name : data.field.user_login_name
+                            ,email : data.field.email
                             ,password : data.field.password
                             ,creator : init.username
                             ,creator_id : init.id

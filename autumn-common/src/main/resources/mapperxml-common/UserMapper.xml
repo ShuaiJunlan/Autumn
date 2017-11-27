@@ -18,6 +18,7 @@
     <result column="modifier" jdbcType="VARCHAR" property="modifier" />
     <result column="modifier_id" jdbcType="INTEGER" property="modifier_id" />
     <result column="modifier_time" jdbcType="VARCHAR" property="modifier_time" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--
@@ -26,7 +27,7 @@
       This element was generated on Wed Oct 25 15:47:08 CST 2017.
     -->
     id, user_login_name, username, password, status, creator, creator_id, create_time, 
-    modifier, modifier_id, modifier_time
+    modifier, modifier_id, modifier_time, email
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--
@@ -60,11 +61,11 @@
     insert into af_user (user_login_name, username, password, 
       status, creator, creator_id, 
       create_time, modifier, modifier_id, 
-      modifier_time)
+      modifier_time, email)
     values (#{user_login_name,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, #{creator_id,jdbcType=INTEGER},
       now(), #{modifier,jdbcType=VARCHAR}, #{modifier_id,jdbcType=INTEGER},
-      now())
+      now(), #{email,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.autumnframework.common.model.po.User">
     <!--
@@ -198,7 +199,8 @@
       create_time = #{create_time,jdbcType=TIMESTAMP},
       modifier = #{modifier,jdbcType=VARCHAR},
       modifier_id = #{modifier_id,jdbcType=INTEGER},
-      modifier_time = #{modifier_time,jdbcType=TIMESTAMP}
+      modifier_time = #{modifier_time,jdbcType=TIMESTAMP},
+      email = #{email,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
