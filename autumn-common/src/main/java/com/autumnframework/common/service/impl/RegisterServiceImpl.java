@@ -55,13 +55,15 @@ public class RegisterServiceImpl implements IRegisterService {
     }
 
     @Override
-    public ResponseMsg registerUser(User user) {
+    public synchronized ResponseMsg registerUser(User user) {
+
         //  判断邮箱是否已经被注册
         if (userMapper.checkUserExist(user.getUser_login_name()) == 1){
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.DATA_EXIT);
         }
         //  生成一个随机的五位整数，并使用MD5加密，作为激活码
         String active_code = MD5Util.getMD5(String.valueOf(RandomNumUtil.generateNbitNum(5)));
+
         //  当前时间戳
         long current_time = System.currentTimeMillis();
         String to = user.getEmail();
@@ -70,6 +72,7 @@ public class RegisterServiceImpl implements IRegisterService {
                 .replace("#2", active_code)
                 .replace("#3", String.valueOf(current_time)));
         int re = webEmail.sendHtmlEmail(Constants.REGISTER_AUTH_EMAIL_SUBJECT, content, to);
+
         //  判断邮箱是否是有效邮箱
         if (-1 == re){
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.MAIL_SEND_FAIL);
@@ -79,7 +82,6 @@ public class RegisterServiceImpl implements IRegisterService {
             if (temp == -1){
                 return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_FAIL);
             }else{
-                //  将激活码放入map数据结构中
                 register_code.put(user.getUser_login_name(), active_code);
                 return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_SUCCESS);
             }
@@ -102,6 +104,9 @@ public class RegisterServiceImpl implements IRegisterService {
         //  判断链接是否失效（超24小时失效）
         if (((current_time-Long.valueOf(time))/(1000.0*60*60)) > 24.0){
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.AUTH_LINK_TIMEOUT);
+        }
+        if (selectUserByloginName(user_login_name) != null){
+            return ResponseMsgUtil.returnCodeMessage(ResponseCode.HAVE_AUTH);
         }
         //  判断激活码和用户名是否匹配
         if (register_code.containsKey(user_login_name) && register_code.get(user_login_name).equals(activation_code)){
