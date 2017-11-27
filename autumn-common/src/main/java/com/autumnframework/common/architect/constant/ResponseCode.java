@@ -22,7 +22,8 @@ public enum ResponseCode {
     MAIL_SEND_FAIL("4001", "send mail fairly"),
     MAIL_SEND_SUCCESS("1001", "send mail successfully"),
     AUTH_SUCCESS("1002", "auth successfully"),
-    AUTH_FAIL("4002", "auth fairly");
+    AUTH_FAIL("4002", "auth fairly"),
+    AUTH_LINK_TIMEOUT("4003", "link failure");
 
     private String code;
     private String msg;
