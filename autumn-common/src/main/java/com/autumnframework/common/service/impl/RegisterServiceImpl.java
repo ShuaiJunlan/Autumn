@@ -4,6 +4,8 @@ import com.autumnframework.common.architect.auth.email.WebEmail;
 import com.autumnframework.common.architect.constant.BusinessConstants;
 import com.autumnframework.common.architect.constant.Constants;
 import com.autumnframework.common.architect.constant.ResponseCode;
+import com.autumnframework.common.architect.utils.MD5Util;
+import com.autumnframework.common.architect.utils.RandomNumUtil;
 import com.autumnframework.common.architect.utils.ResponseMsgUtil;
 import com.autumnframework.common.dao.bomapper.UserMapper;
 import com.autumnframework.common.model.bo.DataPageResponseMsg;
@@ -14,6 +16,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Junlan Shuai[shuaijunlan@gmail.com].
@@ -28,6 +33,8 @@ public class RegisterServiceImpl implements IRegisterService {
 
     @Autowired
     private WebEmail webEmail;
+
+    private static Map<String, String> register_code = new ConcurrentHashMap<>();
 
     /**
      * 根据用户Id查询用户信息
@@ -53,8 +60,15 @@ public class RegisterServiceImpl implements IRegisterService {
         if (userMapper.checkUserExist(user.getUser_login_name()) == 1){
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.DATA_EXIT);
         }
+        //  生成一个随机的五位整数，并使用MD5加密，作为激活码
+        String active_code = MD5Util.getMD5(String.valueOf(RandomNumUtil.generateNbitNum(5)));
+        //  当前时间戳
+        long current_time = System.currentTimeMillis();
         String to = user.getEmail();
-        String content = Constants.REGISTER_AUTH_TEMPLATE.replace("?", Constants.REGISTER_AUTH_LINK.replace("#", user.getUser_login_name()));
+        String content = Constants.REGISTER_AUTH_TEMPLATE.replace("?", Constants.REGISTER_AUTH_LINK
+                .replace("#1", user.getUser_login_name())
+                .replace("#2", active_code)
+                .replace("#3", String.valueOf(current_time)));
         int re = webEmail.sendHtmlEmail(Constants.REGISTER_AUTH_EMAIL_SUBJECT, content, to);
         //  判断邮箱是否是有效邮箱
         if (-1 == re){
@@ -65,6 +79,8 @@ public class RegisterServiceImpl implements IRegisterService {
             if (temp == -1){
                 return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_FAIL);
             }else{
+                //  将激活码放入map数据结构中
+                register_code.put(user.getUser_login_name(), active_code);
                 return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_SUCCESS);
             }
         }
@@ -75,6 +91,22 @@ public class RegisterServiceImpl implements IRegisterService {
         int re = userMapper.updateUserStatusByLoginName(state, user_login_name);
         if (re == 1){
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.AUTH_SUCCESS);
+        }
+        return ResponseMsgUtil.returnCodeMessage(ResponseCode.AUTH_FAIL);
+    }
+
+    @Override
+    public ResponseMsg registerAuth(String user_login_name, String activation_code, String time) {
+
+        long current_time = System.currentTimeMillis();
+        //  判断链接是否失效（超24小时失效）
+        if (((current_time-Long.valueOf(time))/(1000.0*60*60)) > 24.0){
+            return ResponseMsgUtil.returnCodeMessage(ResponseCode.AUTH_LINK_TIMEOUT);
+        }
+        //  判断激活码和用户名是否匹配
+        if (register_code.containsKey(user_login_name) && register_code.get(user_login_name).equals(activation_code)){
+            register_code.remove(user_login_name);
+            return updateUserStateByLoginName(1, user_login_name);
         }
         return ResponseMsgUtil.returnCodeMessage(ResponseCode.AUTH_FAIL);
     }

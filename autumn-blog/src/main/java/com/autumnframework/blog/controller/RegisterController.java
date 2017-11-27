@@ -28,8 +28,8 @@ public class RegisterController {
     }
     @RequestMapping(value = "auth")
     @ResponseBody
-    public ResponseMsg registerAuth(@RequestParam("user_login_name")String name){
+    public ResponseMsg registerAuth(@RequestParam("user_login_name")String name, @RequestParam("activation_code")String activation_code, @RequestParam("time")String time){
 
-        return userService.updateUserStateByLoginName(1, name);
+        return userService.registerAuth(name, activation_code, time);
     }
 }

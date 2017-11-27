@@ -37,4 +37,13 @@ public interface IRegisterService {
      * @return
      */
     ResponseMsg updateUserStateByLoginName(int state, String user_login_name);
+
+    /**
+     * 用户激活认证
+     * @param user_login_name
+     * @param activation_code
+     * @param time
+     * @return
+     */
+    ResponseMsg registerAuth(String user_login_name, String activation_code, String time);
 }
