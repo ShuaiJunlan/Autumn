@@ -105,6 +105,8 @@ public class RegisterServiceImpl implements IRegisterService {
         if (((current_time-Long.valueOf(time))/(1000.0*60*60)) > 24.0){
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.AUTH_LINK_TIMEOUT);
         }
+
+        //  判断是否已经认证
         if (selectUserByloginName(user_login_name) != null){
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.HAVE_AUTH);
         }
