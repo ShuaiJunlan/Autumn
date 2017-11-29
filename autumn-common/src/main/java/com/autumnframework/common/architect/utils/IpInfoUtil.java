@@ -16,7 +16,8 @@ import java.util.Map;
  * @Author Junlan Shuai
  */
 public class IpInfoUtil {
-    private final static String IP_INFO_URL = "http://ip.taobao.com/service/getIpInfo.php"; //获取ip信息URL，返回JSON格式的数据
+    //获取ip信息URL，返回JSON格式的数据
+    private final static String IP_INFO_URL = "http://ip.taobao.com/service/getIpInfo.php";
 
     /**
      * 通过ip，查取ip的基本信息

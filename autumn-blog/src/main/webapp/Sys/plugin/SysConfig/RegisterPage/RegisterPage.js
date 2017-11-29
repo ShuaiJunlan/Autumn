@@ -36,10 +36,10 @@ Fv.plugin.RegisterPage.start = function () {
                         layer.msg("添加成功，请刷新表格查看新添加的记录");
                         // Fv.config.form.render(null, "RegisterPage");
 
-                    }else if (data.code == '0000'){
-                        layer.msg("添加失败")
                     }else if (data.code == '5000'){
                         layer.msg("登录名已存在")
+                    }else {
+                        layer.msg("注册失败，请稍后再试");
                     }
                 }
                 ,function () {

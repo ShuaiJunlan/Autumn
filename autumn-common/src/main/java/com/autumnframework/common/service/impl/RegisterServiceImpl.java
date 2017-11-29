@@ -1,5 +1,6 @@
 package com.autumnframework.common.service.impl;
 
+import com.autumnframework.common.architect.auth.email.RegisterAuth;
 import com.autumnframework.common.architect.auth.email.WebEmail;
 import com.autumnframework.common.architect.constant.BusinessConstants;
 import com.autumnframework.common.architect.constant.Constants;
@@ -33,6 +34,9 @@ public class RegisterServiceImpl implements IRegisterService {
 
     @Autowired
     private WebEmail webEmail;
+
+    @Autowired
+    private RegisterAuth register_auth;
 
     private static Map<String, String> register_code = new ConcurrentHashMap<>();
 
@@ -71,10 +75,18 @@ public class RegisterServiceImpl implements IRegisterService {
                 .replace("#1", user.getUser_login_name())
                 .replace("#2", active_code)
                 .replace("#3", String.valueOf(current_time)));
-        int re = webEmail.sendHtmlEmail(Constants.REGISTER_AUTH_EMAIL_SUBJECT, content, to);
 
-        //  判断邮箱是否是有效邮箱
-        if (-1 == re){
+        int check_email = register_auth.checkEmailIsValid(to);
+
+        //  判断邮箱是否有效
+        if (-1 == check_email){
+            logger.error("invalid email address:" + to);
+            return ResponseMsgUtil.returnCodeMessage(ResponseCode.EMAIL_NOT_VALID);
+        }
+
+        int send_email = webEmail.sendHtmlEmail(Constants.REGISTER_AUTH_EMAIL_SUBJECT, content, to);
+        //  判断邮件是否发送成功
+        if (-1 == send_email){
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.MAIL_SEND_FAIL);
         }else {
             //  插入用户
@@ -99,15 +111,18 @@ public class RegisterServiceImpl implements IRegisterService {
 
     @Override
     public ResponseMsg registerAuth(String user_login_name, String activation_code, String time) {
-
+        logger.info("register auth start! user_login_name:" + user_login_name + "   activation_code:" + activation_code + "   time:" + time);
         long current_time = System.currentTimeMillis();
         //  判断链接是否失效（超24小时失效）
         if (((current_time-Long.valueOf(time))/(1000.0*60*60)) > 24.0){
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.AUTH_LINK_TIMEOUT);
         }
+
+        //  判断是否已经认证
         if (selectUserByloginName(user_login_name) != null){
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.HAVE_AUTH);
         }
+
         //  判断激活码和用户名是否匹配
         if (register_code.containsKey(user_login_name) && register_code.get(user_login_name).equals(activation_code)){
             register_code.remove(user_login_name);

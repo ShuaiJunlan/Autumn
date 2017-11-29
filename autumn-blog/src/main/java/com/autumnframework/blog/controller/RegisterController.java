@@ -23,7 +23,11 @@ public class RegisterController {
     @RequestMapping(value = "userRegister/")
     @ResponseBody
     public ResponseMsg doRegister(User user){
+        //  密码加密
         user.setPassword(MD5Util.getMD5(user.getPassword()));
+        //  设置未激活状态
+        user.setStatus(2);
+
         return userService.registerUser(user);
     }
     @RequestMapping(value = "auth")

@@ -17,7 +17,7 @@
         <div class="carousel_div3"></div>
     </div>
     <div class="login layui-anim layui-anim-up">
-        <h1>Autumn Framework</h1></p>
+        <h1>Autumn Blog</h1></p>
         <form class="layui-form" action="" method="post">
             <div class="layui-form-item">
                 <input type="text" name="username" lay-verify="required" placeholder="请输入账号" autocomplete="off"  value="" class="layui-input">
@@ -141,10 +141,10 @@
                                     layer.confirm('请查收您的激活邮件(可能在垃圾箱中)，点击链接激活，否则无法使用此账号登录?', {icon: 3, title:'提示'});
                                 }else if (data.code == '4001'){
                                     layer.msg("邮件发送失败");
-                                } else if (data.code == '0000'){
-                                    layer.msg("注册失败");
                                 }else if (data.code == '5000'){
                                     layer.msg("登录名已存在");
+                                }else {
+                                    layer.msg("注册失败，请稍后再试");
                                 }
                                 layer.close(loginLoading);
                             }
