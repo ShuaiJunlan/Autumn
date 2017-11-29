@@ -214,7 +214,6 @@
             <artifactId>isemail</artifactId>
         </dependency>
 
-
     </dependencies>
     <build>
         <finalName>autumn-common</finalName>
