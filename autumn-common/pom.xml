@@ -209,10 +209,6 @@
             <artifactId>ehcache</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.webjars.npm</groupId>
-            <artifactId>isemail</artifactId>
-        </dependency>
 
     </dependencies>
     <build>
