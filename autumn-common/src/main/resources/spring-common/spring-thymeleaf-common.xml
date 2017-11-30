@@ -21,6 +21,7 @@
         <property name="cacheable" value="false" />
         <!--解决中文乱码-->
         <property name="characterEncoding" value="UTF-8"/>
+
     </bean>
 
     <bean id="templateEngine-web" class="org.thymeleaf.spring5.SpringTemplateEngine">
@@ -35,5 +36,6 @@
         <property name="templateEngine" ref="templateEngine-web" />
         <!--解决中文乱码-->
         <property name="characterEncoding" value="UTF-8"/>
+        <property name="order" value="1"/>
     </bean>
 </beans>
