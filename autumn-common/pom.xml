@@ -209,6 +209,12 @@
             <artifactId>ehcache</artifactId>
         </dependency>
 
+        <!--thymeleaf-->
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring5</artifactId>
+        </dependency>
+
 
     </dependencies>
     <build>

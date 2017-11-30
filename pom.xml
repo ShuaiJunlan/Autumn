@@ -6,11 +6,9 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <!--<module>webim</module>-->
         <module>autumn-cms</module>
         <module>autumn-blog</module>
         <module>autumn-common</module>
-        <!--<module>autumn-forum</module>-->
     </modules>
     <name>autumn Maven Webapp</name>
     <url>http://maven.apache.org</url>
@@ -18,7 +16,6 @@
     <properties>
         <junit.version>4.12</junit.version>
         <spring.version>5.0.1.RELEASE</spring.version>
-        <!--<spring.version>4.3.5.RELEASE</spring.version>-->
         <mysql.jdbc.version>5.1.34</mysql.jdbc.version>
         <mybatis.version>3.4.1</mybatis.version>
         <commons-beanutils.version>1.8.3</commons-beanutils.version>
@@ -33,6 +30,7 @@
         <spring.data.version>2.0.1.RELEASE</spring.data.version>
         <ehcache.version>3.4.0</ehcache.version>
         <javamail.version>1.4.5</javamail.version>
+        <spring.thymeleaf.version>3.0.9.RELEASE</spring.thymeleaf.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -285,8 +283,12 @@
                 <version>${spring.data.version}</version>
             </dependency>
 
-
-
+            <!--thymeleaf-->
+            <dependency>
+                <groupId>org.thymeleaf</groupId>
+                <artifactId>thymeleaf-spring5</artifactId>
+                <version>${spring.thymeleaf.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
