@@ -69,7 +69,7 @@ Fv.plugin.LeftMenuManage.start = function () {
                 }
                 Fv.plugin.LeftMenuManage.addElementModule();
                 Fv.plugin.LeftMenuManage.addMenuData(1, 'leftMenu', '01', 'menu/getMenuList/');
-                layui.$('.demoTable .layui-btn').on('click', function(){
+                layui.$('.layui-inline .layui-btn').on('click', function(){
                     var type = $(this).data('type');
                     Fv.plugin.LeftMenuManage.init.active[type] ? Fv.plugin.LeftMenuManage.init.active[type].call(this) : '';
                 });

@@ -78,6 +78,7 @@
         <!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
         <logger name="org.springframework" level="INFO"></logger>
         <logger name="org.mybatis" level="INFO"></logger>
+        <logger name="com.mongodb" level="INFO"></logger>
         <!--<logger name="org.apache" level="INFO"></logger>-->
         <root level="all">
             <appender-ref ref="log"/>
