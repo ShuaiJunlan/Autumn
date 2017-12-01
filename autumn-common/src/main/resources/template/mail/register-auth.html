@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body style="margin: 0px;">
+<div style="height: 100%; width: 100%">
+    <div style="width: 100%; height: 30%; background-color: #dbe091; margin: 0px"><p style="margin: 0px">Autumn-Framework注册激活</p></div>
+    <div style="width: 100%; height: 70%; background-color: #f0ebf0; margin: 0px">
+        <p style="margin: 0px">尊敬的<span style="color: #4e9be0" th:text="${username}"></span>用户:</p><br>
+        <a target="_blank" th:href="${link}" th:text="${link}"></a>
+    </div>
+</div>
+</body>
+</html>
