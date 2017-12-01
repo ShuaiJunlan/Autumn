@@ -13,8 +13,8 @@ import com.autumnframework.common.model.bo.DataPageResponseMsg;
 import com.autumnframework.common.model.bo.ResponseMsg;
 import com.autumnframework.common.model.po.User;
 import com.autumnframework.common.service.interfaces.IRegisterService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Component
 public class RegisterServiceImpl implements IRegisterService {
-    private Logger logger = LogManager.getLogger(RegisterServiceImpl.class);
+    private Logger logger = LoggerFactory.getLogger(RegisterServiceImpl.class);
 
     @Autowired
     private UserMapper userMapper;

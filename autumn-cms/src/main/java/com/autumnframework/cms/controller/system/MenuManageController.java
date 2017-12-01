@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/menu")
 public class MenuManageController {
     @Autowired
-    IMenuManageService iMenuManageService;
+    private IMenuManageService iMenuManageService;
 
     @Autowired
-    IResourceService iResourceService;
+    private IResourceService iResourceService;
     @RequestMapping(value = "/getMenuList/")
     @ResponseBody
     public DataPageResponseMsg getMenuList(@RequestParam("page") int page, @RequestParam("limit") int limit, @RequestParam int level, @RequestParam String type, @RequestParam String sys){
