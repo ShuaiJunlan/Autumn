@@ -21,6 +21,7 @@ import java.util.Map;
  */
 @Component
 public class RegisterAuth {
+
     public int checkEmailIsValid(String email){
 
         //  第三方邮箱验证接口
