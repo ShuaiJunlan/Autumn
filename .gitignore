@@ -3,6 +3,8 @@
 target/
 test/
 logs/
+logs-cms/
+logs-blog/
 backend/
 Sql/
 mybatis-generator/
