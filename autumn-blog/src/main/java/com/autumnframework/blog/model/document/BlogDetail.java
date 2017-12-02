@@ -24,6 +24,22 @@ public class BlogDetail {
     private long comment_times;
     private int state;
 
+    public BlogDetail() {
+    }
+
+    public BlogDetail(String id, String username, Date time, String title, String content_md, String content_html, long byte_count, long visit_times, long comment_times, int state) {
+        this.id = id;
+        this.username = username;
+        this.time = time;
+        this.title = title;
+        this.content_md = content_md;
+        this.content_html = content_html;
+        this.byte_count = byte_count;
+        this.visit_times = visit_times;
+        this.comment_times = comment_times;
+        this.state = state;
+    }
+
     public String getId() {
         return id;
     }

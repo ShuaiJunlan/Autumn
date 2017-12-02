@@ -2,13 +2,14 @@
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
-    <title>Editor.md examples</title>
+    <title th:text="${title}"></title>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
     <link rel="stylesheet" th:href="@{/Lib/editor.md/css/editormd.preview.css}"/>
     <link rel="shortcut icon" href="https://github.com/shuaijunlan/Autumn-Framework/raw/master/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all" />
     <style>
-        body {padding: 40px; background-color: #1d1d1b}
+        body {padding: 40px; background-color: #c7edcc
+        }
 
         #layout > header {
             width: auto;
@@ -57,8 +58,8 @@
 <body>
 <div id="layout">
     <header style="width: 80%;text-align: center">
-        <h1 th:text="${title}">Markdown转HTML的显示处理之自定义 ToC 容器</h1>
-        <p>
+        <h1 style="font-size: 40px"><span>标题：</span><span th:text="${title}"></span></h1>
+        <p style="font-size: 15px">
             <span>
                 <i>作者：</i>
                 <i th:text="${username}"></i>

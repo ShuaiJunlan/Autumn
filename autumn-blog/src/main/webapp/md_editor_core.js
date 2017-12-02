@@ -21,7 +21,7 @@ $(function() {
 
 
     //custom
-    var toolbarIcons = ["saveIcon", "|", "undo", "redo", "|", "bold", "hr", "|", "preview", "watch", "|", "fullscreen", "info", "||", "share", "optionsIcon", "outlineIcon", "counterIcon", "|", "logout"];
+    var toolbarIcons = ["saveIcon", "|", "undo", "redo", "|", "bold", "hr", "|", "preview", "watch", "|", "fullscreen", "info", "||", "share", "optionsIcon", "outlineIcon", "counterIcon", "|", "login", "logout"];
 
     try {
         wizVerisonGreaterThan45 = objApp.Window.CurrentDocumentBrowserObject != null;
@@ -73,7 +73,7 @@ $(function() {
                 share : "fa-share"
             },
             toolbarCustomIcons : {  // 用于增加自定义工具栏的功能，可以直接插入HTML标签，不使用默认的元素创建图标
-                login : "<a href=\"javascript:;\" class=\"layui-btn  layui-btn-mini\" style='background-color: inherit' onclick='Fv.login();'>登录</a>",
+                login : "<a href=\"javascript:;\" style='background-color: inherit' id='username' '></a>",
                 register : "<a href=\"javascript:;\" class=\"layui-btn  layui-btn-mini\" style='background-color: inherit' onclick='Fv.register()'>注册</a>",
                 logout : "<a href=\"javascript:;\" class=\"layui-btn  layui-btn-xs\" style='background-color: inherit' onclick='Fv.logout()'>注销</a>"
             },
@@ -114,12 +114,15 @@ $(function() {
                     optionsIcon : "选项",
                     outlineIcon : "内容目录",
                     counterIcon : "文章信息",
+                    share : "分享",
                     login : "登录",
                     register : "注册",
                     logout : "登出"
                 }
             },
             onload : function() {
+
+                $("#username").append(Fv.config.user.username);
                 var keyMap = {
                     "Ctrl-F9": function(cm) {
                         $.proxy(wizEditor.toolbarHandlers["watch"], wizEditor)();
