@@ -19,6 +19,7 @@
                 /css/**=anon
                 /js/**=anon
                 /Sys/plugin/SysConfig/RegisterPage/RegisterPage.html=anon
+                /blog/getBlogByIdD/**=anon
                 <!--test add-->
                 <!--/sys/**=anon-->
                 /BasePlu/**=anon

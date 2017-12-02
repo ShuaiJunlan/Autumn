@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Editor.md examples</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/button.css"/>
+    <link rel="stylesheet" href="Lib/editor.md/css/editormd.preview.css" />
+    <link rel="shortcut icon" href="https://github.com/shuaijunlan/Autumn-Framework/raw/master/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all" />
+    <style>
+        body {padding: 40px; background-color: #1d1d1b}
+
+        #layout > header {
+            width: auto;
+        }
+
+        #sidebar {
+            width: 30%;
+            height: 90%;
+            position: fixed;
+            top: 10px;
+            right: 0;
+            overflow: hidden;
+            background: #fff;
+            z-index: 100;
+            padding: 18px;
+            border: 1px solid #4e63dd;
+            display: none;
+        }
+
+        #sidebar:hover {
+            overflow: auto;
+        }
+
+        #sidebar h1 {
+            font-size: 16px;
+        }
+
+        #custom-toc-container {
+            padding-left: 0;
+        }
+
+        #test-editormd-view {
+            margin: auto;
+            width: 80%;
+        }
+
+        .sidebar-button{
+            z-index: 999;
+            position: fixed;
+            right: 2%;
+            top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="layout">
+    <header style="width: 80%;text-align: center">
+        <h1 th:text="${title}">Markdown转HTML的显示处理之自定义 ToC 容器</h1>
+        <p>
+            <span>
+                <i>作者：</i>
+                <i th:text="${username}"></i>
+            </span>|
+            <span>
+                <i>发布时间：</i>
+                <i th:text="${time}"></i>
+            </span>|
+            <span>
+                <i>访问量：</i>
+                <i th:text="${visit_times}"></i>
+            </span>
+        </p>
+    </header>
+    <i class="sidebar-button" id="menu_list">Sidebar</i>
+    <div id="sidebar">
+        <h1>Table of Contents</h1>
+        <div class="markdown-body editormd-preview-container" id="custom-toc-container">#custom-toc-container</div>
+    </div>
+    <div id="test-editormd-view">
+        <textarea style="display:none;" name="test-editormd-markdown-doc">###Hello world!</textarea>
+    </div>
+
+</div>
+<!-- <script src="js/zepto.min.js"></script>
+<script>
+    var jQuery = Zepto;  // 为了避免修改flowChart.js和sequence-diagram.js的源码，所以使用Zepto.js时想支持flowChart/sequenceDiagram就得加上这一句
+</script> -->
+<script src="Lib/editor.md/examples/js/jquery.min.js"></script>
+<script src="Lib/editor.md/lib/marked.min.js"></script>
+<script src="Lib/editor.md/lib/prettify.min.js"></script>
+
+<script src="Lib/editor.md/lib/raphael.min.js"></script>
+<script src="Lib/editor.md/lib/underscore.min.js"></script>
+<script src="Lib/editor.md/lib/sequence-diagram.min.js"></script>
+<script src="Lib/editor.md/lib/flowchart.min.js"></script>
+<script src="Lib/editor.md/lib/jquery.flowchart.min.js"></script>
+
+<script src="Lib/editor.md/editormd.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var testEditormdView;
+
+        $.get("md/test.md", function(markdown) {
+
+            testEditormdView = editormd.markdownToHTML("test-editormd-view", {
+                markdown        : markdown ,//+ "\r\n" + $("#append-test").text(),
+                htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启
+                //toc             : false,
+                tocm            : true,    // Using [TOCM]
+                tocContainer    : "#custom-toc-container", // 自定义 ToC 容器层
+                //gfm             : false,
+                //tocDropdown     : true,
+                markdownSourceCode : true, // 是否保留 Markdown 源码，即是否删除保存源码的 Textarea 标签
+                emoji           : true,
+                taskList        : true,
+                tex             : true,  // 默认不解析
+                flowChart       : true,  // 默认不解析
+                sequenceDiagram : true,  // 默认不解析
+            });
+
+        });
+        var switch_sidebar = 0;
+        $("#menu_list").click(function () {
+            if (switch_sidebar === 0){
+                $("#sidebar").css("display", "block");
+                switch_sidebar = 1;
+            }else if (switch_sidebar === 1){
+                $("#sidebar").css("display", "none");
+                switch_sidebar = 0;
+            }
+
+        })
+    });
+</script>
+</body>
+</html>
