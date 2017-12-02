@@ -16,7 +16,6 @@ import java.util.ArrayList;
  * @date 2017/7/6
  */
 @Controller
-//@RequestMapping("main")
 public class IndexController extends BasicController {
 
     /**

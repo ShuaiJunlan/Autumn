@@ -13,8 +13,8 @@ import com.autumnframework.common.model.bo.DataPageResponseMsg;
 import com.autumnframework.common.model.bo.ResponseMsg;
 import com.autumnframework.common.model.po.User;
 import com.autumnframework.common.service.interfaces.IRegisterService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Component
 public class RegisterServiceImpl implements IRegisterService {
-    private Logger logger = LogManager.getLogger(RegisterServiceImpl.class);
+    private Logger logger = LoggerFactory.getLogger(RegisterServiceImpl.class);
 
     @Autowired
     private UserMapper userMapper;
@@ -61,7 +61,7 @@ public class RegisterServiceImpl implements IRegisterService {
     @Override
     public synchronized ResponseMsg registerUser(User user) {
 
-        //  判断邮箱是否已经被注册
+        //  判断用户登录名是否已经被注册
         if (userMapper.checkUserExist(user.getUser_login_name()) == 1){
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.DATA_EXIT);
         }
@@ -111,15 +111,17 @@ public class RegisterServiceImpl implements IRegisterService {
 
     @Override
     public ResponseMsg registerAuth(String user_login_name, String activation_code, String time) {
-        logger.info("register auth start! user_login_name:" + user_login_name + "   activation_code:" + activation_code + "   time:" + time);
+        logger.info("Register authentication start[user_login_name:{}-activation_code:{}-time:{}]", user_login_name, activation_code, time);
         long current_time = System.currentTimeMillis();
         //  判断链接是否失效（超24小时失效）
         if (((current_time-Long.valueOf(time))/(1000.0*60*60)) > 24.0){
+            logger.info("Register authentication end! Reason:{}", ResponseCode.AUTH_LINK_TIMEOUT.getMsg());
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.AUTH_LINK_TIMEOUT);
         }
 
         //  判断是否已经认证
         if (selectUserByloginName(user_login_name) != null){
+            logger.info("Register authentication end! Reason:{}", ResponseCode.HAVE_AUTH.getMsg());
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.HAVE_AUTH);
         }
 
@@ -128,6 +130,7 @@ public class RegisterServiceImpl implements IRegisterService {
             register_code.remove(user_login_name);
             return updateUserStateByLoginName(1, user_login_name);
         }
+        logger.info("Register authentication end! Reason:{}", ResponseCode.AUTH_FAIL.getMsg());
         return ResponseMsgUtil.returnCodeMessage(ResponseCode.AUTH_FAIL);
     }
 }

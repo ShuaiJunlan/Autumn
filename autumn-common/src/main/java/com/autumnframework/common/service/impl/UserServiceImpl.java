@@ -8,8 +8,8 @@ import com.autumnframework.common.architect.constant.ResponseCode;
 import com.autumnframework.common.architect.utils.ResponseMsgUtil;
 import com.autumnframework.common.model.bo.DataPageResponseMsg;
 import com.autumnframework.common.model.bo.ResponseMsg;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class UserServiceImpl implements IUserService{
-    private Logger logger = LogManager.getLogger(UserServiceImpl.class);
+    private Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private UserMapper userMapper;
