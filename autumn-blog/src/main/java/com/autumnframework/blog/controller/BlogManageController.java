@@ -2,8 +2,8 @@ package com.autumnframework.blog.controller;
 
 import com.autumnframework.blog.dao.mongo.CommonRepository;
 import com.autumnframework.blog.model.document.Blog;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping(value = "blog")
 public class BlogManageController {
-    private static Logger logger = LogManager.getLogger(BlogManageController.class);
+    private static Logger logger = LoggerFactory.getLogger(BlogManageController.class);
     @Autowired
     private CommonRepository commonRepository;
     @RequestMapping(value = "getBlogById")
