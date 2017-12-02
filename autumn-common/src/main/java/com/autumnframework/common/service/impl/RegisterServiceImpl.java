@@ -61,7 +61,7 @@ public class RegisterServiceImpl implements IRegisterService {
     @Override
     public synchronized ResponseMsg registerUser(User user) {
 
-        //  判断邮箱是否已经被注册
+        //  判断用户登录名是否已经被注册
         if (userMapper.checkUserExist(user.getUser_login_name()) == 1){
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.DATA_EXIT);
         }
@@ -111,7 +111,7 @@ public class RegisterServiceImpl implements IRegisterService {
 
     @Override
     public ResponseMsg registerAuth(String user_login_name, String activation_code, String time) {
-        logger.info("register auth start! user_login_name:" + user_login_name + "   activation_code:" + activation_code + "   time:" + time);
+        logger.info("register auth start! user_login_name:{}-activation_code:{}-time:{}", user_login_name, activation_code, time);
         long current_time = System.currentTimeMillis();
         //  判断链接是否失效（超24小时失效）
         if (((current_time-Long.valueOf(time))/(1000.0*60*60)) > 24.0){

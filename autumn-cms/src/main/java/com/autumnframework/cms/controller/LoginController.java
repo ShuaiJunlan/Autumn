@@ -30,6 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * @author Junlan Shuai[shuaijunlan@gmail.com].
@@ -38,7 +39,6 @@ import java.io.IOException;
 @Controller
 public class LoginController extends BasicController{
     private static final Logger log = LoggerFactory.getLogger(LoginController.class);
-//    private static final Logger log = LogManager.getLogger(LoginController.class);
 
     @Autowired
     private LogManageImpl logManage;
@@ -81,7 +81,7 @@ public class LoginController extends BasicController{
     @ResponseBody
     public ResponseMsg loginCheck(String username, String password, String code, HttpServletRequest request){
 
-        log.info("登陆验证处理开始");
+        log.info("登陆验证处理开始:{}", new Date());
         long start = System.currentTimeMillis();
         try {
             //1.用户名不能为空
@@ -102,7 +102,7 @@ public class LoginController extends BasicController{
             //4.验证码输入错误
             String sessionCode = (String) request.getSession().getAttribute("code");
             if(!code.toLowerCase().equals(sessionCode)) {
-                log.error("登陆验证失败,原因:验证码错误：code:"+code+",sessionCode:"+sessionCode);
+                log.error("登陆验证失败,原因:验证码错误：enter-code:{},session-code:{}", code, sessionCode);
                 return ResponseMsgUtil.returnCodeMessage(BussinessCode.GLOBAL_CAPTCHA_ERROR);
             }
 
@@ -136,10 +136,10 @@ public class LoginController extends BasicController{
             log.error("登陆验证失败,原因:用户名或密码不匹配");
             return ResponseMsgUtil.returnCodeMessage(BussinessCode.GLOBAL_LOGIN_FAIL);
         }catch (Exception e) {
-            log.error("登陆验证失败,原因:系统登陆异常", e);
+            log.error("登陆验证失败,系统异常：{}", e);
             return ResponseMsgUtil.returnCodeMessage(BussinessCode.GLOBAL_LOGIN_ERROR);
         } finally {
-            log.info("登陆验证处理结束,用时" + (System.currentTimeMillis() - start) + "毫秒");
+            log.info("登陆验证处理结束,用时{}毫秒", System.currentTimeMillis() - start);
         }
     }
 

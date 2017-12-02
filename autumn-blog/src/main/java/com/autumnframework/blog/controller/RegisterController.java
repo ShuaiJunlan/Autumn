@@ -25,7 +25,7 @@ public class RegisterController {
     public ResponseMsg doRegister(User user){
         //  密码加密
         user.setPassword(MD5Util.getMD5(user.getPassword()));
-        //  设置未激活状态
+        //  初次注册，设置未激活状态
         user.setStatus(2);
 
         return userService.registerUser(user);
