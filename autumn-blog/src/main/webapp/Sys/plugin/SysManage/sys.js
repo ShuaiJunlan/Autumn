@@ -14,10 +14,6 @@ $(function() {
                 Fv.ajax.loadJs(["Sys/plugin/SysConfig/RegisterPage/RegisterPage.js"]);
                 Fv.ajax.loadJs(["Sys/plugin/SysConfig/LoginPage/LoginPage.js"]);
                 Fv.ajax.loadJs(["Sys/plugin/SysConfig/ShareArticle/ShareArticle.js"]);
-                Fv.config.user = {
-                    username : 'admin'
-                    ,id : -1
-                };
             }
         )
     }();

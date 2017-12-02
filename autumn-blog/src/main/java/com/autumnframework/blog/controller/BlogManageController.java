@@ -22,7 +22,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping(value = "blog")
 public class BlogManageController {
-
+    private static final Logger logger = LoggerFactory.getLogger(BlogManageController.class);
     @Autowired
     private BlogRepository blogRepository;
 
@@ -58,12 +58,33 @@ public class BlogManageController {
     public String getBlogDetail(@PathVariable("id") String id, Model model){
 
         Optional<BlogDetail> blog =  blogRepository.findById(id);
+
         if (blog.isPresent()){
-            model.addAttribute("title", blog.get().getTitle());
-            model.addAttribute("username", blog.get().getUsername());
-            model.addAttribute("time", blog.get().getTime());
-            model.addAttribute("visit_times", blog.get().getVisit_times());
-            model.addAttribute("content", blog.get().getContent_md());
+            // increment visiting times by one
+            BlogDetail blogDetail = blog.get();
+
+//            BlogDetail blogDetailCp = new BlogDetail(blogDetail.getId(),
+//                    blogDetail.getUsername(),
+//                    blogDetail.getTime(),
+//                    blogDetail.getTitle(),
+//                    blogDetail.getContent_md(),
+//                    blogDetail.getContent_html(),
+//                    blogDetail.getByte_count(),
+//                    blogDetail.getVisit_times(),
+//                    blogDetail.getComment_times(),
+//                    blogDetail.getState());
+            long times = blogDetail.getVisit_times();
+
+            times++;
+            blogDetail.setVisit_times(times);
+            blogRepository.save(blogDetail);
+            logger.info("Blog detail:{}", blogDetail);
+
+            model.addAttribute("title", blogDetail.getTitle());
+            model.addAttribute("username", blogDetail.getUsername());
+            model.addAttribute("time", blogDetail.getTime());
+            model.addAttribute("visit_times", blogDetail.getVisit_times());
+            model.addAttribute("content", blogDetail.getContent_md());
         }else {
             return "detail";
         }

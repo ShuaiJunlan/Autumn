@@ -19,7 +19,7 @@ Fv.plugin.ShareArticle.start = function () {
     Fv.config.form.on('submit(shareArticle)', function(data){
 
             var blogDetail = {
-                username: Fv.config.user.username
+                username: Fv.config.user.user_login_name
                 , title: data.field.title
                 , content_md: Fv.config.blog.content_md
                 , content_html: Fv.config.blog.content_html
