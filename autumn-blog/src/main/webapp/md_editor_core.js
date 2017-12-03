@@ -20,8 +20,8 @@ $(function() {
     var wantSaveTime = null;
 
 
-    //custom
-    var toolbarIcons = ["saveIcon", "|", "undo", "redo", "|", "bold", "hr", "|", "preview", "watch", "|", "fullscreen", "info", "||", "share", "optionsIcon", "outlineIcon", "counterIcon", "|", "login", "logout"];
+    //custom "info",
+    var toolbarIcons = ["saveIcon", "|", "undo", "redo", "|", "bold", "hr", "|", "preview", "watch", "|", "fullscreen",  "||", "share", "optionsIcon", "outlineIcon", "counterIcon", "|", "login", "logout"];
 
     try {
         wizVerisonGreaterThan45 = objApp.Window.CurrentDocumentBrowserObject != null;
@@ -122,7 +122,7 @@ $(function() {
             },
             onload : function() {
 
-                $("#username").append(Fv.config.user.username);
+                $("#username").append(Fv.config.user.user_login_name);
                 var keyMap = {
                     "Ctrl-F9": function(cm) {
                         $.proxy(wizEditor.toolbarHandlers["watch"], wizEditor)();
