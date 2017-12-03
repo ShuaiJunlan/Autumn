@@ -3,6 +3,7 @@ package com.autumnframework.common.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.autumnframework.common.architect.constant.BussinessCode;
 import com.autumnframework.common.architect.constant.Constants;
+import com.autumnframework.common.architect.constant.ResponseCode;
 import com.autumnframework.common.architect.utils.IpInfoUtil;
 import com.autumnframework.common.architect.utils.MD5Util;
 import com.autumnframework.common.architect.utils.ResponseMsgUtil;
@@ -35,7 +36,7 @@ public class LoginServiceImpl implements ILoginService {
 
     private static final Logger log = LoggerFactory.getLogger(LoginServiceImpl.class);
     @Override
-    public ResponseMsg loginCheck(String username, String password, String code, HttpServletRequest request) {
+    public ResponseMsg loginCheck(String username, String password, String code, HttpServletRequest request, String sys) {
 
 
         log.info("Login verification start:{}", new Date());
@@ -69,8 +70,12 @@ public class LoginServiceImpl implements ILoginService {
 
             currentUser.login(token);
             if (currentUser.isAuthenticated()) {
-
-                request.getSession().setAttribute(Constants.SESSION_KEY_LOGIN_NAME, getCurrentUser());
+                User user = getCurrentUser();
+                // when login autumn-blog
+                if (sys.equals("02") && (user.getEmail() == null || user.getEmail().equals(""))){
+                    return ResponseMsgUtil.returnCodeMessage(ResponseCode.HAVE_NOT_AUTH);
+                }
+                request.getSession().setAttribute(Constants.SESSION_KEY_LOGIN_NAME, user);
 
                 //  record user login ip information
                 try {
@@ -78,7 +83,11 @@ public class LoginServiceImpl implements ILoginService {
                     //  会抛出异常
                     LoginInfo loginInfo = JSON.parseObject(detail, LoginInfo.class);
                     loginInfo.setUser_login_name(username);
-                    loginInfo.setType(2);
+                    if (sys.equals("01")) {
+                        loginInfo.setType(1);
+                    }else {
+                        loginInfo.setType(2);
+                    }
                     logManage.insertLoginInfo(loginInfo);
                 }catch (Exception e){
                     log.error("Invalid ip, exception{}", e);
