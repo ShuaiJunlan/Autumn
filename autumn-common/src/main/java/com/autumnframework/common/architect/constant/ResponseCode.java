@@ -36,6 +36,8 @@ public enum ResponseCode {
     AUTH_LINK_TIMEOUT(  "4003", "link failure"),
     //  邮箱验证失败
     EMAIL_NOT_VALID(    "4004", "email not valid"),
+    //  未认证
+    HAVE_NOT_AUTH(      "4005", "have not authentication"),
 
 
     // 数据已存在

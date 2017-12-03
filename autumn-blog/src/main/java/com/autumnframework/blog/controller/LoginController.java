@@ -77,7 +77,7 @@ public class LoginController extends BasicController{
     @ResponseBody
     public ResponseMsg loginCheck(String username, String password, String code, HttpServletRequest request){
 
-        return loginService.loginCheck(username, password, code, request);
+        return loginService.loginCheck(username, password, code, request, "02");
     }
 
     /**
