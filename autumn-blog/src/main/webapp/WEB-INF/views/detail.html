@@ -12,8 +12,19 @@
         body {padding: 1%; background-color: #c7edcc
         }
 
-        #layout > header {
+        .layout {
             width: auto;
+        }
+        .layout header{
+            width: 80%;
+            margin: auto;
+            margin-bottom: 1rem;
+        }
+        .fontsize_h{
+            font-size: 2rem;
+        }
+        .fontsize_d{
+            font-size: 1rem;
         }
 
         #sidebar {
@@ -54,13 +65,28 @@
             top: 10px;
             cursor: pointer;
         }
+        @media all and (max-width: 420px) {
+            #test-editormd-view {
+                margin: auto;
+                width: 90%;
+            }
+            header h1{
+                font-size: 1rem;
+            }
+            .fontsize_h{
+                font-size: 1rem;
+            }
+            .fontsize_d{
+                font-size: 0.5rem;
+            }
+        }
     </style>
 </head>
 <body>
-<div id="layout">
+<div class="layout">
     <header style="width: 80%;text-align: center">
-        <h1 style="font-size: 2rem"><span th:text="${title}"></span></h1>
-        <p style="font-size: 1rem">
+        <h1 class="fontsize_h"><span th:text="${title}"></span></h1>
+        <p class="fontsize_d">
             <span>
                 <i>作者：</i>
                 <i th:text="${username}"></i>
