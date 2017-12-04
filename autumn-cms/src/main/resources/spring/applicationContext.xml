@@ -11,6 +11,7 @@
     <import resource="spring-mybatis.xml"/>
     <import resource="spring-task.xml"/>
     <import resource="spring-mvc.xml"/>
+    <import resource="spring-mongodb.xml"/>
     <import resource="classpath:spring-common/spring-mvc-common.xml"/>
 
 
