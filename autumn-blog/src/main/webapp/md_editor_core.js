@@ -33,7 +33,7 @@ $(function() {
     ////////////////////////////////////////////////
 
     var pa = {
-        id : "C0F8262EABD6FB19D5C34D8EAE553760"
+        id : "1D524E25C80F2CABD8621053928F77B8"
     }
     Fv.ajax.get("blog/getBlogById/"+pa.id, {}, function (data) {
         wizEditor = editormd("test-editormd", {
