@@ -30,15 +30,18 @@
         #sidebar {
             width: 40%;
             height: auto;
+            max-height: 90%;
             position: fixed;
             top: 10px;
             right: 0;
             overflow: hidden;
-            background: #fff;
+            background: #cce8cf;
+            opacity: 0.85;
             z-index: 100;
             padding: 18px;
-            border: 1px solid #4e63dd;
             display: none;
+            border-radius: 15px; /*等价于 15px 15px 15px 15px*/
+            border: 1px solid #4e63dd;
         }
 
         #sidebar:hover {
@@ -56,7 +59,6 @@
         #test-editormd-view {
             margin: auto;
             width: 80%;
-            white-space: i;
         }
 
         .sidebar-button{
@@ -94,11 +96,12 @@
                 font-size: 10px !important;
                 line-height: 10px;
                 height: auto;
+                max-height: 90%;
                 position: fixed;
                 top: 10px;
                 right: 0;
                 overflow: hidden;
-                background: #fff;
+
                 z-index: 100;
                 padding: 18px;
                 border: 1px solid #4e63dd;
@@ -129,7 +132,7 @@
     <i class="sidebar-button" id="menu_list">Sidebar</i>
     <div id="sidebar">
         <h1>Table of Contents</h1>
-        <div class="markdown-body editormd-preview-container" id="custom-toc-container">#custom-toc-container</div>
+        <div class="markdown-body editormd-preview-container" id="custom-toc-container" style="background-color: #cce8cf">#custom-toc-container</div>
     </div>
     <div id="test-editormd-view">
         <textarea style="display:none;" name="test-editormd-markdown-doc" th:text="${content}"></textarea>
