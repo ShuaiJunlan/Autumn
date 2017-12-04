@@ -28,8 +28,8 @@
         }
 
         #sidebar {
-            width: 60%;
-            height: 90%;
+            width: 40%;
+            height: auto;
             position: fixed;
             top: 10px;
             right: 0;
@@ -46,7 +46,7 @@
         }
 
         #sidebar h1 {
-            font-size: 16px;
+            font-size: 1rem;
         }
 
         #custom-toc-container {
@@ -78,6 +78,30 @@
             }
             .fontsize_d{
                 font-size: 0.5rem;
+            }
+            .sidebar-button{
+                z-index: 999;
+                position: fixed;
+                right: 2%;
+                top: 10px;
+                cursor: pointer;
+                font-size: 0.5rem;
+            }
+            #sidebar {
+                width: 60%;
+                padding: 0.5rem !important;
+                font-size: 10px !important;
+                line-height: 10px;  
+                height: auto;
+                position: fixed;
+                top: 10px;
+                right: 0;
+                overflow: hidden;
+                background: #fff;
+                z-index: 100;
+                padding: 18px;
+                border: 1px solid #4e63dd;
+                display: none;
             }
         }
     </style>
