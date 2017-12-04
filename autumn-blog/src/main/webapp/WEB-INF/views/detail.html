@@ -9,15 +9,26 @@
     <link rel="shortcut icon" href="https://github.com/shuaijunlan/Autumn-Framework/raw/master/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all" />
     <style>
-        body {padding: 40px; background-color: #c7edcc
+        body {padding: 1%; background-color: #c7edcc
         }
 
-        #layout > header {
+        .layout {
             width: auto;
+        }
+        .layout header{
+            width: 80%;
+            margin: auto;
+            margin-bottom: 1rem;
+        }
+        .fontsize_h{
+            font-size: 2rem;
+        }
+        .fontsize_d{
+            font-size: 1rem;
         }
 
         #sidebar {
-            width: 30%;
+            width: 60%;
             height: 90%;
             position: fixed;
             top: 10px;
@@ -54,13 +65,28 @@
             top: 10px;
             cursor: pointer;
         }
+        @media all and (max-width: 420px) {
+            #test-editormd-view {
+                margin: auto;
+                width: 90%;
+            }
+            header h1{
+                font-size: 1rem;
+            }
+            .fontsize_h{
+                font-size: 1rem;
+            }
+            .fontsize_d{
+                font-size: 0.5rem;
+            }
+        }
     </style>
 </head>
 <body>
-<div id="layout">
+<div class="layout">
     <header style="width: 80%;text-align: center">
-        <h1 style="font-size: 40px"><span>标题：</span><span th:text="${title}"></span></h1>
-        <p style="font-size: 15px">
+        <h1 class="fontsize_h"><span th:text="${title}"></span></h1>
+        <p class="fontsize_d">
             <span>
                 <i>作者：</i>
                 <i th:text="${username}"></i>
@@ -81,7 +107,7 @@
         <div class="markdown-body editormd-preview-container" id="custom-toc-container">#custom-toc-container</div>
     </div>
     <div id="test-editormd-view">
-        <textarea style="display:none;" name="test-editormd-markdown-doc" th:text="${content}">###Hello world!</textarea>
+        <textarea style="display:none;" name="test-editormd-markdown-doc" th:text="${content}"></textarea>
     </div>
 
 </div>
