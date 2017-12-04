@@ -28,6 +28,7 @@ $(function () {
             Fv.ajax.loadJs(["Sys/plugin/SysConfig/UserManage/UserManage.js"]);
             Fv.ajax.loadJs(["Sys/plugin/SysConfig/MakeSuggestion/MakeSuggestion.js"]);
             Fv.ajax.loadJs(["Sys/plugin/SysConfig/RoleManage/RoleManage.js"]);
+            Fv.ajax.loadJs(["Sys/plugin/SysConfig/ArticleList/ArticleList.js"]);
 
         },
         function () {
