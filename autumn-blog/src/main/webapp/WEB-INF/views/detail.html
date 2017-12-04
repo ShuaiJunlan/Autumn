@@ -145,23 +145,25 @@
 </script> -->
 
 
-<script th:src="@{/Lib/editor.md/examples/js/jquery.min.js}"></script>
-<script th:src="@{/Lib/editor.md/lib/marked.min.js}"></script>
-<script th:src="@{/Lib/editor.md/lib/prettify.min.js}"></script>
 
-<script th:src="@{/Lib/editor.md/lib/raphael.min.js}"></script>
-<script th:src="@{/Lib/editor.md/lib/underscore.min.js}"></script>
-<script th:src="@{/Lib/editor.md/lib/sequence-diagram.min.js}"></script>
-<script th:src="@{/Lib/editor.md/lib/flowchart.min.js}"></script>
-<script th:src="@{/Lib/editor.md/lib/jquery.flowchart.min.js}"></script>
-<script th:src="@{/Lib/editor.md/editormd.js}"></script>
+<script src="//autumnblog-1251679769.file.myqcloud.com/blogdetail/editor.md/examples/js/jquery.min.js"></script>
+<script src="//autumnblog-1251679769.file.myqcloud.com/blogdetail/editor.md/lib/marked.min.js"></script>
+<script src="//autumnblog-1251679769.file.myqcloud.com/blogdetail/editor.md/lib/prettify.min.js"></script>
+
+<script src="//autumnblog-1251679769.file.myqcloud.com/blogdetail/editor.md/lib/raphael.min.js"></script>
+<script src="//autumnblog-1251679769.file.myqcloud.com/blogdetail/editor.md/lib/underscore.min.js"></script>
+<script src="//autumnblog-1251679769.file.myqcloud.com/blogdetail/editor.md/lib/sequence-diagram.min.js"></script>
+<script src="//autumnblog-1251679769.file.myqcloud.com/blogdetail/editor.md/lib/flowchart.min.js"></script>
+<script src="//autumnblog-1251679769.file.myqcloud.com/blogdetail/editor.md/lib/jquery.flowchart.min.js"></script>
+<script src="//autumnblog-1251679769.file.myqcloud.com/blogdetail/editor.md/editormd.js"></script>
+
+
 
 
 <script type="text/javascript">
     $(function() {
         var testEditormdView;
 
-//        $.get("md/test.md", function(markdown) {
 
         testEditormdView = editormd.markdownToHTML("test-editormd-view", {
 //                markdown        : markdown ,//+ "\r\n" + $("#append-test").text(),
@@ -179,7 +181,6 @@
             sequenceDiagram : true,  // 默认不解析
         });
 
-//        });
         var switch_sidebar = 0;
         $("#menu_list").click(function () {
             if (switch_sidebar === 0){
