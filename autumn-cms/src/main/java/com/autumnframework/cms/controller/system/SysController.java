@@ -1,7 +1,7 @@
 package com.autumnframework.cms.controller.system;
 
-import com.autumnframework.cms.model.vo.SysMenu;
-import com.autumnframework.cms.service.interfaces.ISysService;
+import com.autumnframework.common.model.vo.SysMenu;
+import com.autumnframework.common.service.interfaces.ISysService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;

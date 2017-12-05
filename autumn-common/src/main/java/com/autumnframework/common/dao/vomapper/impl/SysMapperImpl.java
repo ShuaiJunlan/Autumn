@@ -1,9 +1,9 @@
-package com.autumnframework.cms.dao.vomapper.impl;
+package com.autumnframework.common.dao.vomapper.impl;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.pool.DruidPooledConnection;
-import com.autumnframework.cms.dao.vomapper.interfaces.ISysMapper;
-import com.autumnframework.cms.model.vo.SysMenu;
+import com.autumnframework.common.dao.vomapper.interfaces.ISysMapper;
+import com.autumnframework.common.model.vo.SysMenu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -22,7 +22,7 @@ import java.util.List;
 public class SysMapperImpl implements ISysMapper {
 
     @Autowired
-    @Qualifier("dataSource-cms")
+    @Qualifier("dataSource")
     private DruidDataSource druidDataSource;
 
     @Override

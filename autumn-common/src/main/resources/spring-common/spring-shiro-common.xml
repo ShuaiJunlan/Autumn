@@ -18,6 +18,7 @@
 
                 /css/**=anon
                 /js/**=anon
+                /img/**=anon
                 /Sys/plugin/SysConfig/RegisterPage/RegisterPage.html=anon
                 /blog/getBlogByIdD/**=anon
                 <!--test add-->
