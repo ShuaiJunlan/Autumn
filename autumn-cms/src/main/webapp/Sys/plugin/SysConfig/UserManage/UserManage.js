@@ -31,7 +31,7 @@ Fv.plugin.UserManage.init = function () {
 }();
 Fv.plugin.UserManage.start = function () {
     $('#UserManage').on('click', function () {
-        var loading = layer.msg('数据加载中，请稍后', {icon: 16, time: false, shade: 0.5});
+        var loading = layer.msg('数据加载中，请稍后', {icon: 16, time: false, shade: 0});
         Fv.ajax.loadDiv(
             Fv.plugin.UserManage.init.div
             , function (data, a) {

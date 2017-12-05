@@ -19,7 +19,7 @@ Fv.plugin.LoginInfoManage.init = function () {
 Fv.plugin.LoginInfoManage.start = function () {
 
     $('#LoginInfoManage').on('click', function () {
-        var loading = Fv.config.layer.msg('数据加载中，请稍后', {icon: 16, time: false, shade: 0.5});
+        var loading = Fv.config.layer.msg('数据加载中，请稍后', {icon: 16, time: false, shade: 0});
         Fv.ajax.loadDiv(
             Fv.plugin.LoginInfoManage.init.div
             , function (data, a) {

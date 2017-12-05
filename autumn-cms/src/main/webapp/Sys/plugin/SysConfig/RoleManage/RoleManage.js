@@ -15,7 +15,7 @@ Fv.plugin.RoleManage.init = function () {
 }();
 Fv.plugin.RoleManage.start = function () {
     $('#RoleManage').on('click', function () {
-        var loading = layer.msg('数据加载中，请稍后', {icon: 16, time: false, shade: 0.5});
+        var loading = layer.msg('数据加载中，请稍后', {icon: 16, time: false, shade: 0});
         Fv.ajax.loadDiv(
             Fv.plugin.RoleManage.init.div
             , function (data, a) {

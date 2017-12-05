@@ -37,7 +37,7 @@ Fv.plugin.SysUpdateLogManage.init = function () {
 }();
 Fv.plugin.SysUpdateLogManage.start = function () {
     $('#SystemUpdatingLogManage').on('click', function () {
-        var loading = Fv.config.layer.msg('数据加载中，请稍后', {icon: 16, time: false, shade: 0.5});
+        var loading = Fv.config.layer.msg('数据加载中，请稍后', {icon: 16, time: false, shade: 0});
         Fv.ajax.loadDiv(
             Fv.plugin.SysUpdateLogManage.init.div
             , function (data, a) {
