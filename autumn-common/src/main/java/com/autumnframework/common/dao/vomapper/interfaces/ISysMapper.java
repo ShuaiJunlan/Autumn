@@ -1,6 +1,7 @@
-package com.autumnframework.cms.dao.vomapper.interfaces;
+package com.autumnframework.common.dao.vomapper.interfaces;
 
-import com.autumnframework.cms.model.vo.SysMenu;
+
+import com.autumnframework.common.model.vo.SysMenu;
 
 import java.sql.SQLException;
 import java.util.List;

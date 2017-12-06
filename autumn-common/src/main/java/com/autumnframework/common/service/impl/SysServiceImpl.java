@@ -1,8 +1,8 @@
-package com.autumnframework.cms.service.impl;
+package com.autumnframework.common.service.impl;
 
-import com.autumnframework.cms.dao.vomapper.interfaces.ISysMapper;
-import com.autumnframework.cms.model.vo.SysMenu;
-import com.autumnframework.cms.service.interfaces.ISysService;
+import com.autumnframework.common.dao.vomapper.interfaces.ISysMapper;
+import com.autumnframework.common.model.vo.SysMenu;
+import com.autumnframework.common.service.interfaces.ISysService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +16,7 @@ import java.util.List;
  */
 @Service
 public class SysServiceImpl implements ISysService {
+
     @Autowired
     private ISysMapper iSysMapper;
     @Override

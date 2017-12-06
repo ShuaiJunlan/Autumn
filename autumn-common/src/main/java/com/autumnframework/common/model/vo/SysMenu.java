@@ -1,4 +1,4 @@
-package com.autumnframework.cms.model.vo;
+package com.autumnframework.common.model.vo;
 
 import java.util.List;
 

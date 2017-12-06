@@ -1,6 +1,7 @@
-package com.autumnframework.cms.service.interfaces;
+package com.autumnframework.common.service.interfaces;
 
-import com.autumnframework.cms.model.vo.SysMenu;
+
+import com.autumnframework.common.model.vo.SysMenu;
 
 import java.util.List;
 
