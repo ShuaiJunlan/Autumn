@@ -1,2096 +1,255 @@
 /*
-Navicat MySQL Data Transfer
+ Navicat Premium Data Transfer
 
-Source Server         : 139.199.210.120
-Source Server Version : 50556
-Source Host           : 139.199.210.120:3306
-Source Database       : autumn_framework
+ Source Server         : 139.199.210.120
+ Source Server Type    : MariaDB
+ Source Server Version : 50556
+ Source Host           : 139.199.210.120:3306
+ Source Schema         : autumn_framework
 
-Target Server Type    : MYSQL
-Target Server Version : 50556
-File Encoding         : 65001
+ Target Server Type    : MariaDB
+ Target Server Version : 50556
+ File Encoding         : 65001
 
-Date: 2017-11-13 08:55:33
+ Date: 06/12/2017 16:26:22
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
 -- Table structure for af_func
 -- ----------------------------
 DROP TABLE IF EXISTS `af_func`;
-CREATE TABLE `af_func` (
+CREATE TABLE `af_func`  (
   `id` int(8) NOT NULL AUTO_INCREMENT COMMENT '主键，自增',
-  `sys` varchar(8) COLLATE utf8_bin NOT NULL COMMENT '系统号',
-  `name` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '名称',
-  `namee` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '英文名',
-  `namec` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '中文名',
+  `sys` varchar(8) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '系统号',
+  `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '名称',
+  `namee` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '英文名',
+  `namec` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '中文名',
   `disporder` int(4) NOT NULL COMMENT '排列顺序',
-  `plugin` varchar(64) COLLATE utf8_bin DEFAULT 'javascript:;' COMMENT '插件名',
+  `plugin` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT 'javascript:;' COMMENT '插件名',
   `status` int(4) NOT NULL COMMENT '1表示有效， 2表示无效',
-  `type` varchar(16) COLLATE utf8_bin NOT NULL,
-  `grp_name` varchar(32) COLLATE utf8_bin NOT NULL,
-  `icon` varchar(32) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`),
-  KEY `grp_name_FK_ID_grp_name` (`grp_name`),
-  CONSTRAINT `grp_name_FK_ID_grp_name` FOREIGN KEY (`grp_name`) REFERENCES `af_funcgrp` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- ----------------------------
--- Records of af_func
--- ----------------------------
-INSERT INTO `af_func` VALUES ('1', '01', 'm1', 'child module', '侧边菜单管理', '1', 'LeftMenuManage', '1', 'leftMenu', 'module1', null);
-INSERT INTO `af_func` VALUES ('2', '01', 'm2', 'child module', '顶部菜单管理', '2', 'javascript:;', '0', 'leftMenu', 'module1', null);
-INSERT INTO `af_func` VALUES ('16', '01', 'LoginInfoManage', 'LoginInfoManage', '登录日志管理', '1', 'LoginInfoManage', '1', 'leftMenu', 'module4', null);
-INSERT INTO `af_func` VALUES ('17', '01', 'SystemUpdatingLogManage', 'SystemUpdatingLogManage', '系统更新日志管理', '2', 'SystemUpdatingLogManage', '1', 'leftMenu', 'module4', null);
-INSERT INTO `af_func` VALUES ('24', '01', 'm5', 'child module', '用户管理', '3', 'UserManage', '1', 'leftMenu', 'module1', null);
-INSERT INTO `af_func` VALUES ('25', '01', 'MakeSuggestion', 'MakeSuggestion', '联系管理员', '1', 'MakeSuggestion', '1', 'leftMenu', 'module3', null);
-INSERT INTO `af_func` VALUES ('26', '01', 'RoleManage', 'role manage', '角色管理', '4', 'RoleManage', '1', 'leftMenu', 'module1', null);
+  `type` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `grp_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `icon` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `name`(`name`) USING BTREE,
+  INDEX `grp_name_FK_ID_grp_name`(`grp_name`) USING BTREE,
+  CONSTRAINT `grp_name_FK_ID_grp_name` FOREIGN KEY (`grp_name`) REFERENCES `af_funcgrp` (`name`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for af_funcgrp
 -- ----------------------------
 DROP TABLE IF EXISTS `af_funcgrp`;
-CREATE TABLE `af_funcgrp` (
+CREATE TABLE `af_funcgrp`  (
   `id` int(8) NOT NULL AUTO_INCREMENT COMMENT '主键，自增',
-  `sys` varchar(8) COLLATE utf8_bin NOT NULL COMMENT '系统号',
-  `name` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '名称',
-  `namee` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '英文名',
-  `namec` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '中文名',
+  `sys` varchar(8) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '系统号',
+  `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '名称',
+  `namee` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '英文名',
+  `namec` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '中文名',
   `disporder` int(4) NOT NULL COMMENT '排列顺序',
-  `plugin` varchar(32) COLLATE utf8_bin DEFAULT 'javascript:;' COMMENT '插件名',
+  `plugin` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT 'javascript:;' COMMENT '插件名',
   `status` int(4) NOT NULL COMMENT '1表示有效， 2表示无效',
-  `type` varchar(16) COLLATE utf8_bin NOT NULL,
-  `icon` varchar(36) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- ----------------------------
--- Records of af_funcgrp
--- ----------------------------
-INSERT INTO `af_funcgrp` VALUES ('1', '01', 'module1', 'module1', '系统设置', '1', 'javascript:;', '1', 'leftMenu', '&#xe614;');
-INSERT INTO `af_funcgrp` VALUES ('4', '01', 'module4', 'module4', '日志管理', '4', 'javascript:;', '1', 'leftMenu', '&#xe622;');
-INSERT INTO `af_funcgrp` VALUES ('5', '01', 'module3', 'module3', '消息中心', '3', 'javascript:;', '1', 'leftMenu', '&#xe857;');
-
--- ----------------------------
--- Table structure for af_ipinfo
--- ----------------------------
-DROP TABLE IF EXISTS `af_ipinfo`;
-CREATE TABLE `af_ipinfo` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
-  `ip` varchar(255) COLLATE utf8_bin NOT NULL,
-  `area` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `area_id` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `city` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `city_id` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `country` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `country_id` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `county` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `county_id` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `isp` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `isp_id` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `region` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `region_id` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `visit_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- ----------------------------
--- Records of af_ipinfo
--- ----------------------------
-INSERT INTO `af_ipinfo` VALUES ('1', '115.28.61.173', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '阿里云', '1000323', '山东省', '370000', '2017-10-31 17:10:19');
-INSERT INTO `af_ipinfo` VALUES ('2', '115.28.61.173', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '阿里云', '1000323', '山东省', '370000', '2017-10-31 17:12:01');
-INSERT INTO `af_ipinfo` VALUES ('3', '115.28.61.173', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '阿里云', '1000323', '山东省', '370000', '2017-10-31 17:12:11');
-INSERT INTO `af_ipinfo` VALUES ('4', '115.28.61.173', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '阿里云', '1000323', '山东省', '370000', '2017-10-31 17:12:24');
-INSERT INTO `af_ipinfo` VALUES ('5', '115.28.61.173', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '阿里云', '1000323', '山东省', '370000', '2017-10-31 17:12:54');
-INSERT INTO `af_ipinfo` VALUES ('6', '115.28.61.173', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '阿里云', '1000323', '山东省', '370000', '2017-10-31 17:13:25');
-INSERT INTO `af_ipinfo` VALUES ('7', '115.28.61.173', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '阿里云', '1000323', '山东省', '370000', '2017-10-31 17:13:55');
-INSERT INTO `af_ipinfo` VALUES ('8', '117.136.81.238', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-10-31 17:27:04');
-INSERT INTO `af_ipinfo` VALUES ('9', '104.225.236.27', '西部', 'US_WT', '', '-1', '美国', 'US', '', '-1', '', '-1', '内华达州', 'US_NV', '2017-10-31 19:02:27');
-INSERT INTO `af_ipinfo` VALUES ('10', '104.225.236.27', '西部', 'US_WT', '', '-1', '美国', 'US', '', '-1', '', '-1', '内华达州', 'US_NV', '2017-10-31 19:02:30');
-INSERT INTO `af_ipinfo` VALUES ('11', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-10-31 19:05:16');
-INSERT INTO `af_ipinfo` VALUES ('12', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-10-31 19:05:46');
-INSERT INTO `af_ipinfo` VALUES ('13', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-10-31 19:05:53');
-INSERT INTO `af_ipinfo` VALUES ('14', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-10-31 19:06:00');
-INSERT INTO `af_ipinfo` VALUES ('15', '104.225.236.27', '西部', 'US_WT', '', '-1', '美国', 'US', '', '-1', '', '-1', '内华达州', 'US_NV', '2017-10-31 19:07:02');
-INSERT INTO `af_ipinfo` VALUES ('16', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-10-31 19:18:44');
-INSERT INTO `af_ipinfo` VALUES ('17', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-10-31 19:18:57');
-INSERT INTO `af_ipinfo` VALUES ('18', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-10-31 19:19:05');
-INSERT INTO `af_ipinfo` VALUES ('19', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-10-31 20:18:46');
-INSERT INTO `af_ipinfo` VALUES ('20', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-10-31 20:19:06');
-INSERT INTO `af_ipinfo` VALUES ('21', '58.48.110.175', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-10-31 21:27:18');
-INSERT INTO `af_ipinfo` VALUES ('22', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-01 08:45:02');
+  `type` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `icon` varchar(36) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `name`(`name`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for af_logininfo
 -- ----------------------------
 DROP TABLE IF EXISTS `af_logininfo`;
-CREATE TABLE `af_logininfo` (
+CREATE TABLE `af_logininfo`  (
   `id` int(20) NOT NULL AUTO_INCREMENT,
-  `ip` varchar(255) COLLATE utf8_bin NOT NULL,
-  `area` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `area_id` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `city` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `city_id` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `country` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `country_id` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `county` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `county_id` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `isp` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `isp_id` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `region` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `region_id` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `visit_time` datetime DEFAULT NULL,
-  `user_login_name` varchar(32) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1683 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- ----------------------------
--- Records of af_logininfo
--- ----------------------------
-INSERT INTO `af_logininfo` VALUES ('2', '115.28.61.173', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '阿里云', '1000323', '山东省', '370000', '2017-11-01 09:16:02', 'admin');
-INSERT INTO `af_logininfo` VALUES ('3', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-01 09:24:14', 'admin');
-INSERT INTO `af_logininfo` VALUES ('4', '115.28.61.173', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '阿里云', '1000323', '山东省', '370000', '2017-11-01 09:27:48', 'admin');
-INSERT INTO `af_logininfo` VALUES ('5', '115.28.61.173', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '阿里云', '1000323', '山东省', '370000', '2017-11-01 09:29:01', 'admin');
-INSERT INTO `af_logininfo` VALUES ('6', '117.136.81.131', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-01 10:42:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('7', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-01 15:43:46', 'admin');
-INSERT INTO `af_logininfo` VALUES ('8', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-01 16:09:30', 'admin');
-INSERT INTO `af_logininfo` VALUES ('9', '39.168.135.232', '华东', '300000', '九江市', '360400', '中国', 'CN', '', '-1', '移动', '100025', '江西省', '360000', '2017-11-01 21:36:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('10', '58.48.110.174', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-01 21:36:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('11', '39.168.135.232', '华东', '300000', '九江市', '360400', '中国', 'CN', '', '-1', '移动', '100025', '江西省', '360000', '2017-11-01 21:37:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('12', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-02 14:46:28', 'admin');
-INSERT INTO `af_logininfo` VALUES ('13', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-02 15:44:33', 'admin');
-INSERT INTO `af_logininfo` VALUES ('14', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-02 15:45:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('15', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-02 19:30:16', 'admin');
-INSERT INTO `af_logininfo` VALUES ('16', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-02 20:06:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('17', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-02 20:13:14', 'admin');
-INSERT INTO `af_logininfo` VALUES ('18', '117.136.81.156', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-02 21:20:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('19', '58.48.110.174', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-02 22:38:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('20', '39.168.133.98', '华东', '300000', '九江市', '360400', '中国', 'CN', '', '-1', '移动', '100025', '江西省', '360000', '2017-11-02 22:52:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('21', '58.48.110.174', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-02 22:52:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('22', '58.48.110.174', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-02 22:54:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('23', '58.48.110.174', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-03 08:07:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('24', '117.136.81.150', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-03 11:08:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('25', '39.168.134.191', '华东', '300000', '九江市', '360400', '中国', 'CN', '', '-1', '移动', '100025', '江西省', '360000', '2017-11-03 11:59:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('26', '117.136.81.150', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-03 12:16:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('27', '175.188.159.115', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '河南省', '410000', '2017-11-03 16:03:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('28', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-03 16:07:20', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('29', '61.129.65.61', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-03 16:19:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('30', '171.88.47.0', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-03 16:23:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('31', '218.93.26.90', '华东', '300000', '常州市', '320400', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-03 16:24:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('32', '104.225.236.27', '西部', 'US_WT', '', '-1', '美国', 'US', '', '-1', '', '-1', '内华达州', 'US_NV', '2017-11-03 16:25:48', 'admin');
-INSERT INTO `af_logininfo` VALUES ('33', '218.29.101.51', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '联通', '100026', '河南省', '410000', '2017-11-03 16:26:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('34', '182.50.118.228', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '皓宽网络', '1000337', '北京市', '110000', '2017-11-03 16:27:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('35', '60.12.138.66', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '联通', '100026', '浙江省', '330000', '2017-11-03 16:28:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('36', '61.183.176.172', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-03 16:30:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('37', '115.183.231.21', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 16:30:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('38', '121.69.4.22', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 16:32:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('39', '111.172.93.71', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-03 16:33:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('40', '221.5.109.16', '华南', '800000', '湛江市', '440800', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-03 16:33:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('41', '221.215.104.6', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-03 16:34:20', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('42', '221.181.101.37', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '移动', '100025', '上海市', '310000', '2017-11-03 16:34:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('43', '121.69.58.214', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 16:35:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('44', '116.26.81.213', '华南', '800000', '汕头市', '440500', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-03 16:35:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('45', '115.183.231.21', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 16:36:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('46', '116.66.184.178', '', '-1', '', '-1', '新加坡', 'SG', '', '-1', '', '-1', '', '-1', '2017-11-03 16:38:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('47', '121.28.98.226', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '联通', '100026', '河北省', '130000', '2017-11-03 16:39:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('48', '58.132.204.197', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '皓宽网络', '1000337', '北京市', '110000', '2017-11-03 16:40:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('49', '110.19.222.187', '华北', '100000', '呼和浩特市', '150100', '中国', 'CN', '', '-1', '联通', '100026', '内蒙古自治区', '150000', '2017-11-03 16:43:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('50', '119.119.75.156', '东北', '200000', '沈阳市', '210100', '中国', 'CN', '', '-1', '联通', '100026', '辽宁省', '210000', '2017-11-03 16:44:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('51', '36.5.194.192', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '电信', '100017', '安徽省', '340000', '2017-11-03 16:45:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('52', '1.85.61.211', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-03 16:46:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('53', '116.25.156.72', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-03 16:47:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('54', '219.142.22.66', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-03 16:47:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('55', '219.142.22.66', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-03 16:48:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('56', '114.92.45.104', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-03 16:48:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('57', '220.115.174.218', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '广东省', '440000', '2017-11-03 16:49:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('58', '60.247.9.234', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-03 16:49:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('59', '117.136.40.207', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-03 16:50:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('60', '117.136.40.207', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-03 16:51:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('61', '123.145.83.93', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '联通', '100026', '重庆市', '500000', '2017-11-03 16:53:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('62', '59.41.64.167', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-03 16:53:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('63', '113.200.50.58', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '联通', '100026', '陕西省', '610000', '2017-11-03 16:53:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('64', '182.84.19.31', '华东', '300000', '九江市', '360400', '中国', 'CN', '', '-1', '电信', '100017', '江西省', '360000', '2017-11-03 16:54:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('65', '120.195.124.58', '华东', '300000', '扬州市', '321000', '中国', 'CN', '', '-1', '移动', '100025', '江苏省', '320000', '2017-11-03 16:56:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('66', '219.142.22.66', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-03 16:58:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('67', '106.39.142.52', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-03 16:58:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('68', '221.208.253.61', '东北', '200000', '哈尔滨市', '230100', '中国', 'CN', '', '-1', '联通', '100026', '黑龙江省', '230000', '2017-11-03 16:59:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('69', '222.190.113.219', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-03 16:59:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('70', '101.204.248.185', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '联通', '100026', '四川省', '510000', '2017-11-03 17:00:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('71', '124.202.211.130', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 17:01:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('72', '222.18.40.205', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '教育网', '100027', '四川省', '510000', '2017-11-03 17:02:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('73', '113.140.81.66', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-03 17:02:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('74', '182.150.46.239', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-03 17:02:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('75', '113.200.50.58', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '联通', '100026', '陕西省', '610000', '2017-11-03 17:03:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('76', '112.25.154.148', '华东', '300000', '苏州市', '320500', '中国', 'CN', '', '-1', '移动', '100025', '江苏省', '320000', '2017-11-03 17:03:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('77', '218.2.216.21', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-03 17:04:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('78', '218.2.216.21', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-03 17:04:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('79', '218.2.216.21', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-03 17:05:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('80', '218.2.216.21', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-03 17:06:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('81', '116.228.98.118', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-03 17:06:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('82', '210.13.80.220', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-03 17:07:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('83', '124.193.178.222', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 17:07:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('84', '124.193.178.222', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 17:08:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('85', '124.193.178.222', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 17:08:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('86', '124.193.178.222', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 17:09:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('87', '124.193.178.222', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 17:09:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('88', '114.249.229.88', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-03 17:11:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('89', '58.132.204.197', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '皓宽网络', '1000337', '北京市', '110000', '2017-11-03 17:12:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('90', '221.237.156.12', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-03 17:13:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('91', '218.25.49.202', '东北', '200000', '沈阳市', '210100', '中国', 'CN', '', '-1', '联通', '100026', '辽宁省', '210000', '2017-11-03 17:13:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('92', '119.253.58.170', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-03 17:15:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('93', '124.193.178.222', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 17:15:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('94', '203.93.214.90', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '联通', '100026', '湖南省', '430000', '2017-11-03 17:16:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('95', '123.120.36.107', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-03 17:16:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('96', '221.237.156.12', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-03 17:19:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('97', '124.193.178.222', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 17:19:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('98', '117.174.30.36', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '移动', '100025', '四川省', '510000', '2017-11-03 17:21:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('99', '124.193.178.222', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 17:21:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('100', '124.193.178.222', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 17:22:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('101', '124.193.178.222', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 17:22:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('102', '124.193.178.222', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 17:22:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('103', '124.193.178.222', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 17:22:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('104', '27.18.2.212', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-03 17:24:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('105', '121.204.160.90', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-03 17:25:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('106', '59.42.38.235', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-03 17:27:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('107', '221.237.156.12', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-03 17:27:53', 'admin');
-INSERT INTO `af_logininfo` VALUES ('108', '221.237.156.12', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-03 17:28:23', 'admin');
-INSERT INTO `af_logininfo` VALUES ('109', '221.237.156.12', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-03 17:28:53', 'admin');
-INSERT INTO `af_logininfo` VALUES ('110', '221.237.156.12', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-03 17:29:24', 'admin');
-INSERT INTO `af_logininfo` VALUES ('111', '221.237.156.12', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-03 17:29:54', 'admin');
-INSERT INTO `af_logininfo` VALUES ('112', '221.237.156.12', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-03 17:30:24', 'admin');
-INSERT INTO `af_logininfo` VALUES ('113', '221.237.156.12', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-03 17:30:55', 'admin');
-INSERT INTO `af_logininfo` VALUES ('114', '119.139.198.141', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-03 17:32:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('115', '210.75.14.253', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-03 17:32:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('116', '58.23.17.114', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '联通', '100026', '福建省', '350000', '2017-11-03 17:35:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('117', '106.37.241.74', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-03 17:35:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('118', '124.193.178.222', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 17:41:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('119', '127.0.0.1', '', '-1', '内网IP', 'local', '内网IP', '-1', '内网IP', 'local', '内网IP', 'local', '', '-1', '2017-11-03 17:42:01', 'admin');
-INSERT INTO `af_logininfo` VALUES ('120', '120.234.18.2', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-03 17:45:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('121', '124.193.178.222', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 17:46:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('122', '47.90.107.101', '', '-1', '', '-1', '香港', 'HK', '', '-1', '阿里云', '1000323', '香港特别行政区', '810000', '2017-11-03 17:49:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('123', '113.109.63.243', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-03 17:51:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('124', '124.65.241.114', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-03 17:51:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('125', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-03 17:51:49', 'admin');
-INSERT INTO `af_logininfo` VALUES ('126', '27.16.218.60', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-03 17:52:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('127', '119.57.117.117', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-03 17:52:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('128', '27.16.218.60', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-03 17:53:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('129', '1.192.246.36', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-03 17:56:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('130', '58.213.104.36', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-03 17:59:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('131', '157.0.31.2', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-03 18:01:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('132', '101.81.129.167', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-03 18:03:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('133', '223.104.20.90', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-03 18:04:08', 'admin');
-INSERT INTO `af_logininfo` VALUES ('134', '223.104.172.28', '华东', '300000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '江西省', '360000', '2017-11-03 18:06:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('135', '101.81.129.167', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-03 18:07:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('136', '101.81.129.167', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-03 18:12:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('137', '14.155.88.16', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-03 18:23:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('138', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-03 18:44:59', 'admin');
-INSERT INTO `af_logininfo` VALUES ('139', '111.22.93.130', '华中', '400000', '衡阳市', '430400', '中国', 'CN', '', '-1', '移动', '100025', '湖南省', '430000', '2017-11-03 18:55:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('140', '61.148.202.6', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-03 18:57:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('141', '113.65.15.40', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-03 19:09:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('142', '14.156.44.219', '华南', '800000', '东莞市', '441900', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-03 19:24:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('143', '222.240.170.115', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-03 19:25:08', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('144', '183.225.25.127', '西南', '500000', '昆明市', '530100', '中国', 'CN', '', '-1', '移动', '100025', '云南省', '530000', '2017-11-03 19:30:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('145', '106.120.122.132', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-03 19:32:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('146', '113.15.12.69', '华南', '800000', '玉林市', '450900', '中国', 'CN', '', '-1', '电信', '100017', '广西壮族自治区', '450000', '2017-11-03 19:36:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('147', '101.19.137.241', '华北', '100000', '保定市', '130600', '中国', 'CN', '', '-1', '联通', '100026', '河北省', '130000', '2017-11-03 19:53:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('148', '122.235.232.27', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-03 19:59:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('149', '42.243.64.127', '西南', '500000', '昆明市', '530100', '中国', 'CN', '', '-1', '电信', '100017', '云南省', '530000', '2017-11-03 20:11:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('150', '58.246.105.154', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-03 20:31:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('151', '58.48.110.174', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-03 20:36:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('152', '218.26.54.109', '华北', '100000', '晋城市', '140500', '中国', 'CN', '', '-1', '联通', '100026', '山西省', '140000', '2017-11-03 20:37:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('153', '223.255.14.236', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 20:54:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('154', '223.104.20.90', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-03 21:11:54', 'admin');
-INSERT INTO `af_logininfo` VALUES ('155', '101.232.187.128', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '鹏博士', '1000143', '广东省', '440000', '2017-11-03 21:14:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('156', '183.240.202.151', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-03 21:15:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('157', '58.48.110.174', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-03 21:33:44', 'admin');
-INSERT INTO `af_logininfo` VALUES ('158', '183.14.132.114', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-03 21:35:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('159', '118.247.10.144', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-03 21:44:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('160', '58.48.110.174', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-03 22:05:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('161', '183.13.175.187', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-03 22:35:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('162', '58.48.110.174', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-03 22:36:14', 'admin');
-INSERT INTO `af_logininfo` VALUES ('163', '183.13.175.166', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-03 22:36:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('164', '39.168.135.153', '华东', '300000', '九江市', '360400', '中国', 'CN', '', '-1', '移动', '100025', '江西省', '360000', '2017-11-03 22:45:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('165', '58.48.110.174', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-03 22:46:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('166', '39.168.135.153', '华东', '300000', '九江市', '360400', '中国', 'CN', '', '-1', '移动', '100025', '江西省', '360000', '2017-11-03 22:47:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('167', '113.246.52.66', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-04 03:25:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('168', '221.11.61.117', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '联通', '100026', '陕西省', '610000', '2017-11-04 07:51:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('169', '223.104.20.90', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-04 08:59:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('170', '120.40.96.131', '华东', '300000', '福州市', '350100', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-04 09:06:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('171', '180.162.40.137', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-04 10:10:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('172', '121.32.122.172', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-04 11:28:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('173', '218.16.62.14', '华南', '800000', '东莞市', '441900', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-04 11:32:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('174', '211.167.238.97', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-04 14:01:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('175', '39.178.39.149', '华东', '300000', '九江市', '360400', '中国', 'CN', '', '-1', '移动', '100025', '江西省', '360000', '2017-11-04 14:08:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('176', '27.16.149.226', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-04 14:19:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('177', '119.129.87.170', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-04 15:25:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('178', '119.129.87.81', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-04 15:28:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('179', '220.165.171.241', '西南', '500000', '昆明市', '530100', '中国', 'CN', '', '-1', '电信', '100017', '云南省', '530000', '2017-11-04 16:07:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('180', '119.129.87.170', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-04 16:22:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('181', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-04 16:26:12', 'admin');
-INSERT INTO `af_logininfo` VALUES ('182', '119.129.87.81', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-04 16:29:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('183', '180.169.86.198', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-04 16:41:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('184', '163.125.125.79', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-04 16:41:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('185', '61.164.47.179', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-04 17:36:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('186', '119.129.87.81', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-04 17:38:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('187', '111.207.143.125', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-04 19:27:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('188', '175.11.206.30', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-04 19:35:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('189', '121.35.0.142', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-04 19:38:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('190', '97.64.21.245', '', '-1', '', '-1', '美国', 'US', '', '-1', '', '-1', '', '-1', '2017-11-04 19:39:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('191', '220.114.171.110', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '安徽省', '340000', '2017-11-04 19:42:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('192', '175.11.206.30', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-04 19:50:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('193', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-04 19:58:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('194', '119.123.79.17', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-04 20:14:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('195', '119.36.214.2', '华中', '400000', '荆州市', '421000', '中国', 'CN', '', '-1', '联通', '100026', '湖北省', '420000', '2017-11-04 20:34:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('196', '223.104.3.192', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '移动', '100025', '北京市', '110000', '2017-11-04 20:45:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('197', '58.16.253.122', '西南', '500000', '贵阳市', '520100', '中国', 'CN', '', '-1', '联通', '100026', '贵州省', '520000', '2017-11-04 21:02:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('198', '58.48.110.174', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-04 22:07:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('199', '58.48.110.174', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-04 22:08:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('200', '58.248.144.28', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-04 22:20:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('201', '27.185.29.80', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-04 22:25:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('202', '27.17.3.62', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-04 22:28:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('203', '211.154.198.196', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-04 22:36:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('204', '120.197.7.88', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-04 22:59:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('205', '117.136.81.155', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-04 23:52:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('206', '114.250.78.189', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-05 00:44:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('207', '49.66.25.136', '华东', '300000', '无锡市', '320200', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-05 09:48:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('208', '117.136.81.155', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-05 10:12:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('209', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-05 11:46:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('210', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-05 12:04:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('211', '101.247.158.194', '华北', '100000', '太原市', '140100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '山西省', '140000', '2017-11-05 14:45:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('212', '112.10.80.120', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '移动', '100025', '浙江省', '330000', '2017-11-05 16:50:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('213', '120.229.133.252', '华南', '800000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-05 17:15:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('214', '121.204.34.7', '华东', '300000', '福州市', '350100', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-05 17:34:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('215', '43.224.47.183', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '皓宽网络', '1000337', '北京市', '110000', '2017-11-05 17:37:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('216', '27.154.8.82', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-05 17:45:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('217', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-05 17:45:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('218', '114.242.249.203', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-05 17:46:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('219', '115.34.181.50', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-05 17:47:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('220', '183.48.244.246', '华南', '800000', '珠海市', '440400', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-05 17:49:20', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('221', '58.60.160.54', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-05 17:55:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('222', '101.224.242.214', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-05 18:10:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('223', '117.179.9.81', '东北', '200000', '哈尔滨市', '230100', '中国', 'CN', '', '-1', '移动', '100025', '黑龙江省', '230000', '2017-11-05 18:18:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('224', '180.109.157.119', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-05 18:33:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('225', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-05 18:35:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('226', '223.104.2.15', '华东', '300000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '山东省', '370000', '2017-11-05 18:35:24', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('227', '111.29.130.55', '华南', '800000', '海口市', '460100', '中国', 'CN', '', '-1', '移动', '100025', '海南省', '460000', '2017-11-05 18:57:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('228', '166.111.5.202', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '教育网', '100027', '北京市', '110000', '2017-11-05 19:02:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('229', '114.242.249.125', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-05 19:06:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('230', '117.136.81.164', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-05 19:07:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('231', '103.254.71.67', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-05 19:13:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('232', '111.8.106.214', '华中', '400000', '衡阳市', '430400', '中国', 'CN', '', '-1', '移动', '100025', '湖南省', '430000', '2017-11-05 19:38:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('233', '113.109.81.83', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-05 19:51:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('234', '58.48.110.169', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-05 20:01:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('235', '114.95.234.222', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-05 20:02:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('236', '1.80.122.40', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-05 20:14:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('237', '117.73.240.159', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '方正宽带', '100063', '北京市', '110000', '2017-11-05 20:19:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('238', '124.207.38.6', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-05 20:20:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('239', '120.204.61.173', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '移动', '100025', '上海市', '310000', '2017-11-05 20:34:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('240', '222.134.129.4', '华东', '300000', '淄博市', '370300', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-05 20:38:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('241', '117.40.138.147', '华东', '300000', '南昌市', '360100', '中国', 'CN', '', '-1', '电信', '100017', '江西省', '360000', '2017-11-05 20:53:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('242', '116.1.57.28', '华南', '800000', '桂林市', '450300', '中国', 'CN', '', '-1', '电信', '100017', '广西壮族自治区', '450000', '2017-11-05 20:57:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('243', '101.241.80.204', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '歌华', '100080', '北京市', '110000', '2017-11-05 21:03:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('244', '113.139.243.218', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-05 21:16:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('245', '61.148.16.226', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-05 21:33:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('246', '171.113.206.22', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-05 21:45:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('247', '14.24.96.133', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-05 21:51:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('248', '111.194.45.223', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-05 21:53:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('249', '58.59.223.26', '华南', '800000', '崇左市', '451400', '中国', 'CN', '', '-1', '电信', '100017', '广西壮族自治区', '450000', '2017-11-05 21:57:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('250', '124.90.176.227', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '联通', '100026', '浙江省', '330000', '2017-11-05 22:18:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('251', '49.74.254.55', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-05 22:23:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('252', '59.41.249.106', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-05 22:26:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('253', '58.48.110.174', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-05 22:26:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('254', '116.22.45.67', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-05 22:33:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('255', '223.104.19.86', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '河南省', '410000', '2017-11-05 22:35:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('256', '27.154.24.64', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-05 22:40:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('257', '27.154.24.64', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-05 22:42:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('258', '116.24.92.223', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-05 22:45:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('259', '111.22.7.190', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '移动', '100025', '湖南省', '430000', '2017-11-05 22:48:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('260', '111.199.73.65', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-05 22:50:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('261', '111.199.73.65', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-05 22:53:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('262', '113.134.74.9', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-05 22:55:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('263', '125.120.22.167', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-05 22:56:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('264', '111.199.73.65', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-05 22:57:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('265', '111.85.26.204', '西南', '500000', '贵阳市', '520100', '中国', 'CN', '', '-1', '联通', '100026', '贵州省', '520000', '2017-11-05 23:02:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('266', '125.119.222.111', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-05 23:11:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('267', '117.136.81.202', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-05 23:20:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('268', '116.226.232.239', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-05 23:26:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('269', '116.226.232.239', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-05 23:27:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('270', '27.42.109.122', '华南', '800000', '珠海市', '440400', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-05 23:55:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('271', '183.236.19.250', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-06 00:29:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('272', '27.38.175.53', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-06 01:10:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('273', '117.136.39.230', '华南', '800000', '东莞市', '441900', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-06 05:54:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('274', '122.4.237.235', '华东', '300000', '潍坊市', '370700', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-06 08:05:08', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('275', '119.136.222.95', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-06 08:11:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('276', '219.143.95.97', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-06 08:17:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('277', '58.240.231.114', '华东', '300000', '苏州市', '320500', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-06 08:24:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('278', '124.237.112.74', '华北', '100000', '秦皇岛市', '130300', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-06 08:24:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('279', '114.249.229.29', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-06 08:33:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('280', '1.15.110.46', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '方正宽带', '100063', '北京市', '110000', '2017-11-06 08:48:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('281', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-06 08:49:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('282', '116.236.182.210', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-06 08:51:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('283', '124.128.251.100', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-06 08:52:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('284', '116.1.3.203', '华南', '800000', '桂林市', '450300', '中国', 'CN', '', '-1', '电信', '100017', '广西壮族自治区', '450000', '2017-11-06 08:53:08', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('285', '59.172.5.110', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-06 09:01:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('286', '113.200.205.93', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '联通', '100026', '陕西省', '610000', '2017-11-06 09:02:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('287', '120.194.126.242', '华中', '400000', '许昌市', '411000', '中国', 'CN', '', '-1', '移动', '100025', '河南省', '410000', '2017-11-06 09:06:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('288', '111.8.57.60', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '移动', '100025', '湖南省', '430000', '2017-11-06 09:12:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('289', '123.150.153.244', '华北', '100000', '天津市', '120100', '中国', 'CN', '', '-1', '电信', '100017', '天津市', '120000', '2017-11-06 09:15:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('290', '111.204.176.98', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-06 09:17:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('291', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-06 09:25:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('292', '223.100.139.69', '东北', '200000', '大连市', '210200', '中国', 'CN', '', '-1', '移动', '100025', '辽宁省', '210000', '2017-11-06 09:27:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('293', '119.6.3.75', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '联通', '100026', '四川省', '510000', '2017-11-06 09:29:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('294', '221.227.250.159', '华东', '300000', '南通市', '320600', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-06 09:48:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('295', '60.30.33.67', '华北', '100000', '天津市', '120100', '中国', 'CN', '', '-1', '联通', '100026', '天津市', '120000', '2017-11-06 09:51:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('296', '113.246.210.117', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-06 10:18:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('297', '58.62.144.90', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-06 10:28:20', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('298', '210.13.111.26', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-06 10:50:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('299', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-06 11:14:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('300', '218.22.46.179', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '电信', '100017', '安徽省', '340000', '2017-11-06 11:27:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('301', '218.22.46.179', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '电信', '100017', '安徽省', '340000', '2017-11-06 11:28:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('302', '122.225.202.162', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-06 11:29:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('303', '116.7.99.69', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-06 11:36:24', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('304', '223.104.64.31', '华南', '800000', '东莞市', '441900', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-06 11:40:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('305', '58.56.80.210', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-06 11:56:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('306', '110.53.253.102', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '联通', '100026', '湖南省', '430000', '2017-11-06 13:03:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('307', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-06 13:10:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('308', '114.247.94.101', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-06 13:36:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('309', '222.240.3.218', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-06 13:51:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('310', '112.81.108.86', '华东', '300000', '苏州市', '320500', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-06 13:55:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('311', '218.17.157.51', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-06 14:03:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('312', '112.25.222.171', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '移动', '100025', '江苏省', '320000', '2017-11-06 14:05:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('313', '222.240.3.218', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-06 14:18:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('314', '27.115.75.78', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-06 15:14:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('315', '211.157.146.124', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-06 16:01:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('316', '121.237.168.98', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-06 16:26:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('317', '115.233.220.90', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-06 16:31:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('318', '101.68.67.18', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '联通', '100026', '浙江省', '330000', '2017-11-06 16:39:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('319', '157.0.31.2', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-06 16:39:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('320', '10.118.44.108', '', '-1', '内网IP', 'local', '内网IP', '-1', '内网IP', 'local', '内网IP', 'local', '', '-1', '2017-11-06 16:50:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('321', '219.142.98.250', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-06 17:05:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('322', '117.136.81.185', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-06 17:26:08', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('323', '218.75.73.146', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-06 17:29:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('324', '157.0.31.2', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-06 17:58:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('325', '120.41.148.88', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-06 18:08:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('326', '115.204.94.137', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-06 18:46:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('327', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-06 19:11:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('328', '112.97.193.86', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-06 19:20:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('329', '157.0.31.2', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-06 19:21:24', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('330', '119.6.3.75', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '联通', '100026', '四川省', '510000', '2017-11-06 20:42:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('331', '58.48.110.170', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-06 21:17:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('332', '58.16.63.162', '西南', '500000', '贵阳市', '520100', '中国', 'CN', '', '-1', '联通', '100026', '贵州省', '520000', '2017-11-06 21:19:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('333', '1.32.200.87', '', '-1', '', '-1', '新加坡', 'SG', '', '-1', '', '-1', '', '-1', '2017-11-06 21:34:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('334', '106.6.171.147', '华东', '300000', '南昌市', '360100', '中国', 'CN', '', '-1', '电信', '100017', '江西省', '360000', '2017-11-06 22:16:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('335', '1.32.200.87', '', '-1', '', '-1', '新加坡', 'SG', '', '-1', '', '-1', '', '-1', '2017-11-06 22:26:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('336', '58.48.110.170', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-06 22:35:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('337', '58.48.110.170', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-06 23:16:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('338', '106.6.171.147', '华东', '300000', '南昌市', '360100', '中国', 'CN', '', '-1', '电信', '100017', '江西省', '360000', '2017-11-06 23:21:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('339', '183.12.48.255', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-06 23:57:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('340', '27.17.36.50', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-07 08:54:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('341', '221.5.109.16', '华南', '800000', '湛江市', '440800', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-07 10:43:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('342', '118.112.177.36', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-07 10:46:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('343', '118.112.177.36', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-07 10:57:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('344', '218.4.189.195', '华东', '300000', '苏州市', '320500', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-07 11:03:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('345', '221.5.109.16', '华南', '800000', '湛江市', '440800', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-07 11:47:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('346', '116.231.190.27', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-07 13:24:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('347', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-07 13:42:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('348', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-07 13:51:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('349', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-07 13:56:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('350', '183.15.240.65', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-07 14:52:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('351', '183.63.98.58', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-07 15:22:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('352', '113.250.248.168', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-07 16:00:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('353', '113.250.248.168', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-07 16:00:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('354', '111.59.90.97', '华南', '800000', '桂林市', '450300', '中国', 'CN', '', '-1', '移动', '100025', '广西壮族自治区', '450000', '2017-11-07 16:34:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('355', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-07 17:16:26', 'admin');
-INSERT INTO `af_logininfo` VALUES ('356', '223.104.20.80', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-07 17:26:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('357', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-07 17:27:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('358', '223.104.20.80', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-07 17:28:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('359', '61.158.148.5', '华中', '400000', '开封市', '410200', '中国', 'CN', '', '-1', '联通', '100026', '河南省', '410000', '2017-11-07 18:09:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('360', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-07 18:40:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('361', '112.7.64.196', '华东', '300000', '济宁市', '370800', '中国', 'CN', '', '-1', '移动', '100025', '山东省', '370000', '2017-11-07 18:57:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('362', '122.96.42.83', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-07 19:15:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('363', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-07 19:43:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('364', '223.166.32.106', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-07 20:13:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('365', '106.6.171.147', '华东', '300000', '南昌市', '360100', '中国', 'CN', '', '-1', '电信', '100017', '江西省', '360000', '2017-11-07 21:07:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('366', '106.42.82.211', '华中', '400000', '新乡市', '410700', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-07 21:15:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('367', '111.221.177.248', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '天威', '100076', '广东省', '440000', '2017-11-07 21:18:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('368', '27.18.223.4', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-07 21:24:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('369', '113.141.167.226', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-07 21:28:20', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('370', '58.48.110.170', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-07 21:29:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('371', '111.19.44.91', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '移动', '100025', '陕西省', '610000', '2017-11-07 21:31:08', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('372', '115.35.188.10', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-07 21:38:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('373', '101.244.99.59', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '上海市', '310000', '2017-11-07 21:39:08', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('374', '175.9.29.9', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-07 21:46:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('375', '180.118.9.162', '华东', '300000', '镇江市', '321100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-07 21:51:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('376', '60.209.144.147', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-07 22:02:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('377', '183.204.69.45', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '移动', '100025', '河南省', '410000', '2017-11-07 22:03:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('378', '118.29.113.157', '华北', '100000', '天津市', '120100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '天津市', '120000', '2017-11-07 22:04:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('379', '223.74.104.223', '华南', '800000', '清远市', '441800', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-07 22:04:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('380', '58.48.110.170', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-07 22:05:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('381', '223.74.104.223', '华南', '800000', '清远市', '441800', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-07 22:05:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('382', '58.48.110.170', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-07 22:05:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('383', '58.48.110.170', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-07 22:05:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('384', '114.86.48.51', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-07 22:12:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('385', '58.48.110.170', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-07 22:15:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('386', '101.130.53.111', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '湖南省', '430000', '2017-11-07 22:23:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('387', '115.183.99.134', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-07 22:26:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('388', '111.30.238.162', '华北', '100000', '天津市', '120100', '中国', 'CN', '', '-1', '移动', '100025', '天津市', '120000', '2017-11-07 22:27:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('389', '111.30.238.162', '华北', '100000', '天津市', '120100', '中国', 'CN', '', '-1', '移动', '100025', '天津市', '120000', '2017-11-07 22:27:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('390', '111.30.238.162', '华北', '100000', '天津市', '120100', '中国', 'CN', '', '-1', '移动', '100025', '天津市', '120000', '2017-11-07 22:28:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('391', '111.30.238.162', '华北', '100000', '天津市', '120100', '中国', 'CN', '', '-1', '移动', '100025', '天津市', '120000', '2017-11-07 22:28:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('392', '111.30.238.162', '华北', '100000', '天津市', '120100', '中国', 'CN', '', '-1', '移动', '100025', '天津市', '120000', '2017-11-07 22:28:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('393', '111.30.238.162', '华北', '100000', '天津市', '120100', '中国', 'CN', '', '-1', '移动', '100025', '天津市', '120000', '2017-11-07 22:29:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('394', '111.30.238.162', '华北', '100000', '天津市', '120100', '中国', 'CN', '', '-1', '移动', '100025', '天津市', '120000', '2017-11-07 22:29:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('395', '111.30.238.162', '华北', '100000', '天津市', '120100', '中国', 'CN', '', '-1', '移动', '100025', '天津市', '120000', '2017-11-07 22:30:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('396', '111.30.238.162', '华北', '100000', '天津市', '120100', '中国', 'CN', '', '-1', '移动', '100025', '天津市', '120000', '2017-11-07 22:30:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('397', '117.139.255.91', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '移动', '100025', '四川省', '510000', '2017-11-07 22:30:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('398', '114.91.218.178', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-07 22:40:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('399', '183.39.229.63', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-07 22:41:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('400', '175.9.29.9', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-07 22:47:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('401', '117.166.68.137', '华东', '300000', '九江市', '360400', '中国', 'CN', '', '-1', '移动', '100025', '江西省', '360000', '2017-11-07 22:49:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('402', '14.213.137.38', '华南', '800000', '佛山市', '440600', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-07 23:00:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('403', '171.11.3.105', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-07 23:03:45', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('404', '59.42.27.186', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-07 23:03:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('405', '58.48.110.170', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-07 23:04:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('406', '45.115.218.139', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '上海驰联', '1000407', '上海市', '310000', '2017-11-07 23:07:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('407', '223.104.20.115', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-07 23:12:31', 'admin');
-INSERT INTO `af_logininfo` VALUES ('408', '27.154.72.89', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-07 23:13:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('409', '42.199.59.166', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '广东省', '440000', '2017-11-07 23:16:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('410', '182.91.221.98', '华南', '800000', '桂林市', '450300', '中国', 'CN', '', '-1', '联通', '100026', '广西壮族自治区', '450000', '2017-11-07 23:17:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('411', '180.108.59.85', '华东', '300000', '苏州市', '320500', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-07 23:19:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('412', '58.213.112.66', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-07 23:25:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('413', '223.104.20.115', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-07 23:30:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('414', '111.201.243.42', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-07 23:35:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('415', '58.212.115.68', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-07 23:38:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('416', '223.72.88.221', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '移动', '100025', '北京市', '110000', '2017-11-07 23:45:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('417', '223.72.88.221', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '移动', '100025', '北京市', '110000', '2017-11-07 23:46:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('418', '223.72.88.221', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '移动', '100025', '北京市', '110000', '2017-11-07 23:46:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('419', '139.227.160.109', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-07 23:46:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('420', '183.204.69.45', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '移动', '100025', '河南省', '410000', '2017-11-07 23:47:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('421', '183.204.69.45', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '移动', '100025', '河南省', '410000', '2017-11-07 23:47:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('422', '220.112.15.112', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '鹏博士', '1000143', '广东省', '440000', '2017-11-07 23:50:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('423', '27.212.182.207', '华东', '300000', '淄博市', '370300', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-07 23:50:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('424', '218.89.222.11', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-07 23:54:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('425', '218.89.222.11', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-07 23:55:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('426', '218.89.222.11', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-07 23:55:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('427', '1.68.63.40', '华北', '100000', '太原市', '140100', '中国', 'CN', '', '-1', '电信', '100017', '山西省', '140000', '2017-11-07 23:57:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('428', '180.175.61.65', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-07 23:59:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('429', '220.112.15.112', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '鹏博士', '1000143', '广东省', '440000', '2017-11-07 23:59:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('430', '183.30.185.79', '华南', '800000', '惠州市', '441300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 00:09:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('431', '1.68.63.40', '华北', '100000', '太原市', '140100', '中国', 'CN', '', '-1', '电信', '100017', '山西省', '140000', '2017-11-08 00:17:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('432', '139.205.239.45', '西南', '500000', '绵阳市', '510700', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 00:37:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('433', '14.204.115.37', '西南', '500000', '昆明市', '530100', '中国', 'CN', '', '-1', '联通', '100026', '云南省', '530000', '2017-11-08 00:47:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('434', '175.0.67.107', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-08 00:53:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('435', '59.40.15.88', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 00:54:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('436', '112.82.174.147', '华东', '300000', '常州市', '320400', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-08 01:07:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('437', '180.139.176.34', '华南', '800000', '南宁市', '450100', '中国', 'CN', '', '-1', '电信', '100017', '广西壮族自治区', '450000', '2017-11-08 01:20:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('438', '42.242.225.180', '西南', '500000', '昭通市', '530600', '中国', 'CN', '', '-1', '电信', '100017', '云南省', '530000', '2017-11-08 03:04:08', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('439', '175.188.159.130', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '河南省', '410000', '2017-11-08 05:53:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('440', '123.234.22.4', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-08 07:57:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('441', '110.184.56.94', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 07:59:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('442', '223.104.20.115', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-08 08:03:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('443', '112.224.17.148', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-08 08:05:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('444', '116.7.232.146', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 08:14:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('445', '123.149.79.83', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-08 08:25:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('446', '218.22.41.205', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '电信', '100017', '安徽省', '340000', '2017-11-08 08:26:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('447', '221.7.77.122', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '联通', '100026', '重庆市', '500000', '2017-11-08 08:30:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('448', '113.250.253.12', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-08 08:34:24', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('449', '218.6.92.34', '华东', '300000', '漳州市', '350600', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-08 08:34:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('450', '218.6.92.34', '华东', '300000', '漳州市', '350600', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-08 08:35:24', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('451', '116.228.107.18', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 08:39:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('452', '180.142.28.188', '华南', '800000', '来宾市', '451300', '中国', 'CN', '', '-1', '电信', '100017', '广西壮族自治区', '450000', '2017-11-08 08:42:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('453', '58.22.7.156', '华东', '300000', '福州市', '350100', '中国', 'CN', '', '-1', '联通', '100026', '福建省', '350000', '2017-11-08 08:44:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('454', '182.150.150.88', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 08:44:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('455', '218.10.65.254', '东北', '200000', '哈尔滨市', '230100', '中国', 'CN', '', '-1', '联通', '100026', '黑龙江省', '230000', '2017-11-08 08:48:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('456', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 08:48:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('457', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 08:49:30', 'admin');
-INSERT INTO `af_logininfo` VALUES ('458', '121.33.175.136', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 08:49:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('459', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 08:52:39', 'sys3');
-INSERT INTO `af_logininfo` VALUES ('460', '111.175.34.119', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-08 08:56:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('461', '222.139.221.227', '华中', '400000', '南阳市', '411300', '中国', 'CN', '', '-1', '联通', '100026', '河南省', '410000', '2017-11-08 08:57:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('462', '113.70.103.40', '华南', '800000', '佛山市', '440600', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 08:57:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('463', '119.129.83.34', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 08:59:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('464', '101.204.248.13', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '联通', '100026', '四川省', '510000', '2017-11-08 09:03:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('465', '42.122.124.208', '华北', '100000', '天津市', '120100', '中国', 'CN', '', '-1', '电信', '100017', '天津市', '120000', '2017-11-08 09:03:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('466', '111.224.234.220', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-08 09:03:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('467', '103.218.216.113', '华南', '800000', '东莞市', '441900', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 09:03:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('468', '111.224.234.220', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-08 09:04:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('469', '111.224.234.220', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-08 09:04:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('470', '115.214.69.140', '华东', '300000', '宁波市', '330200', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 09:05:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('471', '111.224.234.220', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-08 09:05:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('472', '111.224.234.220', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-08 09:05:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('473', '111.224.234.220', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-08 09:06:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('474', '111.224.234.220', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-08 09:06:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('475', '111.224.234.220', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-08 09:07:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('476', '61.149.254.206', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 09:07:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('477', '111.121.78.134', '西南', '500000', '贵阳市', '520100', '中国', 'CN', '', '-1', '电信', '100017', '贵州省', '520000', '2017-11-08 09:08:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('478', '113.139.246.200', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-08 09:09:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('479', '27.11.215.170', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '联通', '100026', '重庆市', '500000', '2017-11-08 09:11:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('480', '59.45.77.50', '东北', '200000', '本溪市', '210500', '中国', 'CN', '', '-1', '电信', '100017', '辽宁省', '210000', '2017-11-08 09:12:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('481', '58.240.77.26', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-08 09:14:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('482', '58.22.7.156', '华东', '300000', '福州市', '350100', '中国', 'CN', '', '-1', '联通', '100026', '福建省', '350000', '2017-11-08 09:16:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('483', '58.240.77.26', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-08 09:17:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('484', '58.240.77.26', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-08 09:17:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('485', '58.240.77.26', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-08 09:17:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('486', '116.226.238.62', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 09:19:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('487', '180.173.193.146', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 09:19:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('488', '124.202.174.250', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-08 09:20:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('489', '113.57.183.130', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '联通', '100026', '湖北省', '420000', '2017-11-08 09:23:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('490', '180.169.37.124', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 09:23:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('491', '180.169.105.198', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 09:24:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('492', '61.149.254.206', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 09:26:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('493', '61.149.254.206', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 09:27:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('494', '222.95.169.104', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-08 09:29:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('495', '211.161.168.36', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '湖北省', '420000', '2017-11-08 09:31:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('496', '218.13.14.222', '华南', '800000', '佛山市', '440600', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 09:31:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('497', '61.149.254.206', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 09:32:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('498', '119.137.54.92', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 09:34:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('499', '111.227.172.90', '华北', '100000', '秦皇岛市', '130300', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-08 09:34:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('500', '180.169.37.124', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 09:35:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('501', '58.214.17.226', '华东', '300000', '无锡市', '320200', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-08 09:37:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('502', '117.75.19.81', '西南', '500000', '昆明市', '530100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '云南省', '530000', '2017-11-08 09:38:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('503', '202.205.180.178', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '教育网', '100027', '北京市', '110000', '2017-11-08 09:40:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('504', '59.109.64.130', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '方正宽带', '100063', '北京市', '110000', '2017-11-08 09:40:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('505', '116.226.74.158', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 09:42:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('506', '119.137.54.92', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 09:44:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('507', '59.40.117.228', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 09:45:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('508', '58.198.122.216', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '教育网', '100027', '上海市', '310000', '2017-11-08 09:46:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('509', '219.134.117.173', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 09:47:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('510', '180.173.42.46', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 09:48:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('511', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 09:49:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('512', '60.181.128.49', '华东', '300000', '温州市', '330300', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 09:49:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('513', '1.119.55.82', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '皓宽网络', '1000337', '北京市', '110000', '2017-11-08 09:50:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('514', '180.173.42.46', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 09:52:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('515', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 09:53:35', 'admin');
-INSERT INTO `af_logininfo` VALUES ('516', '210.22.126.19', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-08 09:54:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('517', '36.110.112.202', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-08 09:58:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('518', '115.236.172.162', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 09:59:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('519', '113.77.253.230', '华南', '800000', '东莞市', '441900', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 10:01:20', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('520', '125.41.123.133', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '联通', '100026', '河南省', '410000', '2017-11-08 10:02:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('521', '113.77.253.230', '华南', '800000', '东莞市', '441900', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 10:02:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('522', '125.77.51.57', '华东', '300000', '福州市', '350100', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-08 10:04:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('523', '218.17.88.142', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 10:06:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('524', '116.24.218.68', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 10:06:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('525', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 10:07:21', 'admin');
-INSERT INTO `af_logininfo` VALUES ('526', '114.226.13.30', '华东', '300000', '常州市', '320400', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-08 10:07:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('527', '61.140.237.143', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 10:09:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('528', '222.85.151.248', '西南', '500000', '贵阳市', '520100', '中国', 'CN', '', '-1', '电信', '100017', '贵州省', '520000', '2017-11-08 10:13:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('529', '223.112.89.58', '华东', '300000', '苏州市', '320500', '中国', 'CN', '', '-1', '移动', '100025', '江苏省', '320000', '2017-11-08 10:15:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('530', '59.108.53.146', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '方正宽带', '100063', '北京市', '110000', '2017-11-08 10:15:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('531', '122.226.178.186', '华东', '300000', '台州市', '331000', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 10:18:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('532', '180.173.70.179', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 10:18:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('533', '222.82.252.242', '西北', '600000', '乌鲁木齐市', '650100', '中国', 'CN', '', '-1', '电信', '100017', '新疆维吾尔自治区', '650000', '2017-11-08 10:22:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('534', '180.168.57.138', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 10:23:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('535', '180.169.138.199', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 10:24:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('536', '171.11.4.99', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-08 10:26:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('537', '58.248.196.133', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-08 10:28:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('538', '223.93.139.40', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '移动', '100025', '浙江省', '330000', '2017-11-08 10:29:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('539', '218.2.115.179', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-08 10:30:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('540', '211.143.54.76', '华北', '100000', '沧州市', '130900', '中国', 'CN', '', '-1', '移动', '100025', '河北省', '130000', '2017-11-08 10:33:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('541', '49.67.55.174', '华东', '300000', '南通市', '320600', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-08 10:33:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('542', '221.130.252.39', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '移动', '100025', '重庆市', '500000', '2017-11-08 10:34:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('543', '112.229.189.165', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-08 10:42:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('544', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 10:43:48', 'admin');
-INSERT INTO `af_logininfo` VALUES ('545', '183.37.211.8', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 10:45:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('546', '182.201.173.144', '东北', '200000', '大连市', '210200', '中国', 'CN', '', '-1', '电信', '100017', '辽宁省', '210000', '2017-11-08 10:47:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('547', '123.139.25.1', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '联通', '100026', '陕西省', '610000', '2017-11-08 10:48:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('548', '1.180.43.213', '华北', '100000', '包头市', '150200', '中国', 'CN', '', '-1', '电信', '100017', '内蒙古自治区', '150000', '2017-11-08 10:50:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('549', '61.157.198.170', '西南', '500000', '内江市', '511000', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 10:51:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('550', '58.61.145.26', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 10:53:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('551', '58.61.145.26', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 10:53:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('552', '219.144.130.206', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-08 10:53:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('553', '61.178.32.26', '西北', '600000', '兰州市', '620100', '中国', 'CN', '', '-1', '电信', '100017', '甘肃省', '620000', '2017-11-08 10:57:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('554', '219.144.130.206', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-08 10:58:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('555', '123.182.255.83', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-08 10:59:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('556', '180.168.203.226', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 11:00:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('557', '183.131.17.162', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 11:03:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('558', '218.72.51.158', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 11:03:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('559', '223.74.12.77', '华南', '800000', '湛江市', '440800', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-08 11:05:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('560', '220.112.224.253', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '鹏博士', '1000143', '广东省', '440000', '2017-11-08 11:06:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('561', '220.250.12.178', '华东', '300000', '福州市', '350100', '中国', 'CN', '', '-1', '联通', '100026', '福建省', '350000', '2017-11-08 11:07:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('562', '101.95.22.230', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 11:11:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('563', '112.65.48.29', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-08 11:11:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('564', '112.65.48.29', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-08 11:12:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('565', '112.65.48.29', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-08 11:12:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('566', '112.65.48.29', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-08 11:13:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('567', '112.65.48.29', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-08 11:13:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('568', '112.65.48.29', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-08 11:14:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('569', '202.96.41.3', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 11:16:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('570', '101.81.224.95', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 11:17:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('571', '61.148.244.193', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 11:19:20', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('572', '222.85.233.69', '西南', '500000', '贵阳市', '520100', '中国', 'CN', '', '-1', '电信', '100017', '贵州省', '520000', '2017-11-08 11:24:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('573', '183.239.166.178', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-08 11:24:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('574', '183.156.54.72', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 11:26:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('575', '220.166.228.206', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 11:30:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('576', '117.152.168.27', '华中', '400000', '孝感市', '420900', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-08 11:31:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('577', '116.205.3.151', '华南', '800000', '', '-1', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 11:32:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('578', '120.41.7.58', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-08 11:32:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('579', '123.127.46.142', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 11:32:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('580', '221.222.186.152', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 11:37:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('581', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 11:38:53', 'admin');
-INSERT INTO `af_logininfo` VALUES ('582', '171.15.121.15', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-08 11:43:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('583', '221.5.109.16', '华南', '800000', '湛江市', '440800', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-08 11:50:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('584', '113.139.246.200', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-08 11:52:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('585', '113.205.189.209', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '联通', '100026', '重庆市', '500000', '2017-11-08 11:53:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('586', '59.41.146.128', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 11:54:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('587', '221.215.97.84', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-08 12:00:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('588', '110.84.147.24', '华东', '300000', '福州市', '350100', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-08 12:02:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('589', '61.178.129.41', '西北', '600000', '天水市', '620500', '中国', 'CN', '', '-1', '电信', '100017', '甘肃省', '620000', '2017-11-08 12:03:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('590', '103.251.98.80', '华南', '800000', '南宁市', '450100', '中国', 'CN', '', '-1', '联通', '100026', '广西壮族自治区', '450000', '2017-11-08 12:11:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('591', '113.119.37.168', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 12:15:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('592', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 12:22:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('593', '221.226.175.234', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-08 12:25:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('594', '180.175.176.18', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 12:28:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('595', '180.175.176.18', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 12:31:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('596', '112.117.91.63', '西南', '500000', '昆明市', '530100', '中国', 'CN', '', '-1', '电信', '100017', '云南省', '530000', '2017-11-08 12:40:24', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('597', '183.67.59.90', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-08 12:41:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('598', '223.199.180.206', '华南', '800000', '海口市', '460100', '中国', 'CN', '', '-1', '电信', '100017', '海南省', '460000', '2017-11-08 12:41:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('599', '115.171.202.49', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-08 12:41:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('600', '121.33.175.136', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 12:47:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('601', '117.22.252.94', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-08 12:48:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('602', '183.185.219.80', '华北', '100000', '太原市', '140100', '中国', 'CN', '', '-1', '联通', '100026', '山西省', '140000', '2017-11-08 12:49:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('603', '219.145.243.121', '西北', '600000', '商洛市', '611000', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-08 12:56:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('604', '222.175.126.38', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-08 13:08:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('605', '124.127.244.7', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-08 13:12:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('606', '218.10.65.254', '东北', '200000', '哈尔滨市', '230100', '中国', 'CN', '', '-1', '联通', '100026', '黑龙江省', '230000', '2017-11-08 13:14:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('607', '118.122.132.124', '西南', '500000', '绵阳市', '510700', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 13:17:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('608', '60.165.39.4', '西北', '600000', '兰州市', '620100', '中国', 'CN', '', '-1', '电信', '100017', '甘肃省', '620000', '2017-11-08 13:19:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('609', '222.175.126.38', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-08 13:21:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('610', '122.225.242.18', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 13:21:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('611', '122.225.242.18', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 13:22:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('612', '122.225.242.18', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 13:22:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('613', '122.225.242.18', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 13:23:08', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('614', '122.225.242.18', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 13:23:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('615', '61.139.95.185', '西南', '500000', '绵阳市', '510700', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 13:24:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('616', '122.227.146.130', '华东', '300000', '宁波市', '330200', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 13:27:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('617', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 13:28:30', 'admin');
-INSERT INTO `af_logininfo` VALUES ('618', '180.175.57.216', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 13:30:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('619', '221.10.49.11', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '联通', '100026', '四川省', '510000', '2017-11-08 13:32:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('620', '59.41.21.5', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 13:33:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('621', '223.166.204.137', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-08 13:34:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('622', '113.204.165.5', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '联通', '100026', '重庆市', '500000', '2017-11-08 13:36:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('623', '106.91.59.178', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-08 13:36:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('624', '220.165.107.71', '西南', '500000', '普洱市', '530800', '中国', 'CN', '', '-1', '电信', '100017', '云南省', '530000', '2017-11-08 13:38:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('625', '59.172.205.133', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-08 13:49:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('626', '116.25.97.147', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 13:52:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('627', '118.144.186.213', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-08 13:53:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('628', '183.129.220.50', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 13:54:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('629', '183.129.220.50', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 13:54:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('630', '183.129.220.50', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 13:55:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('631', '119.130.231.109', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 13:55:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('632', '183.129.220.50', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 13:55:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('633', '183.129.220.50', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 13:56:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('634', '61.161.141.6', '东北', '200000', '沈阳市', '210100', '中国', 'CN', '', '-1', '联通', '100026', '辽宁省', '210000', '2017-11-08 13:56:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('635', '116.24.64.29', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 13:57:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('636', '61.139.227.6', '华南', '800000', '桂林市', '450300', '中国', 'CN', '', '-1', '电信', '100017', '广西壮族自治区', '450000', '2017-11-08 14:03:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('637', '180.169.59.216', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 14:05:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('638', '222.128.36.53', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 14:05:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('639', '180.175.176.18', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 14:06:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('640', '180.173.138.86', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 14:07:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('641', '116.228.229.74', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 14:08:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('642', '119.103.240.35', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-08 14:10:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('643', '114.226.13.30', '华东', '300000', '常州市', '320400', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-08 14:10:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('644', '123.160.232.220', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-08 14:11:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('645', '219.136.95.49', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 14:12:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('646', '116.30.222.193', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 14:13:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('647', '113.140.80.197', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-08 14:14:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('648', '183.47.45.107', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 14:16:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('649', '111.113.5.110', '西北', '600000', '银川市', '640100', '中国', 'CN', '', '-1', '电信', '100017', '宁夏回族自治区', '640000', '2017-11-08 14:16:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('650', '27.17.105.3', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-08 14:18:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('651', '183.60.191.113', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 14:19:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('652', '123.116.32.147', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 14:19:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('653', '182.33.46.89', '华东', '300000', '济宁市', '370800', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-08 14:20:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('654', '218.13.14.222', '华南', '800000', '佛山市', '440600', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 14:20:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('655', '218.21.64.5', '华南', '800000', '柳州市', '450200', '中国', 'CN', '', '-1', '电信', '100017', '广西壮族自治区', '450000', '2017-11-08 14:22:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('656', '123.182.255.83', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-08 14:27:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('657', '115.231.97.106', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 14:29:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('658', '180.167.34.210', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 14:30:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('659', '113.106.79.26', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 14:31:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('660', '223.150.182.43', '华中', '400000', '常德市', '430700', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-08 14:33:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('661', '101.224.96.207', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 14:34:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('662', '218.26.35.29', '华北', '100000', '大同市', '140200', '中国', 'CN', '', '-1', '联通', '100026', '山西省', '140000', '2017-11-08 14:34:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('663', '58.56.156.42', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-08 14:35:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('664', '113.77.146.221', '华南', '800000', '东莞市', '441900', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 14:36:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('665', '119.137.205.236', '华南', '800000', '揭阳市', '445200', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 14:37:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('666', '180.175.176.18', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 14:37:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('667', '222.88.152.124', '华中', '400000', '安阳市', '410500', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-08 14:40:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('668', '58.56.156.42', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-08 14:44:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('669', '125.35.5.253', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 14:46:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('670', '116.1.3.204', '华南', '800000', '桂林市', '450300', '中国', 'CN', '', '-1', '电信', '100017', '广西壮族自治区', '450000', '2017-11-08 14:47:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('671', '218.29.110.26', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '联通', '100026', '河南省', '410000', '2017-11-08 14:48:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('672', '117.30.152.17', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-08 14:48:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('673', '124.239.134.29', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-08 14:52:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('674', '61.139.95.185', '西南', '500000', '绵阳市', '510700', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 14:53:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('675', '116.226.124.105', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 15:00:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('676', '1.82.203.3', '西北', '600000', '宝鸡市', '610300', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-08 15:00:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('677', '117.159.5.62', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '移动', '100025', '河南省', '410000', '2017-11-08 15:05:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('678', '222.88.152.124', '华中', '400000', '安阳市', '410500', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-08 15:06:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('679', '119.137.53.136', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 15:08:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('680', '180.120.255.150', '华东', '300000', '南通市', '320600', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-08 15:12:45', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('681', '112.102.176.211', '东北', '200000', '哈尔滨市', '230100', '中国', 'CN', '', '-1', '电信', '100017', '黑龙江省', '230000', '2017-11-08 15:14:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('682', '119.90.89.89', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '皓宽网络', '1000337', '北京市', '110000', '2017-11-08 15:15:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('683', '210.12.24.2', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 15:16:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('684', '122.224.218.194', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 15:17:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('685', '118.116.109.16', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 15:19:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('686', '218.83.245.25', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 15:21:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('687', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 15:24:40', 'admin');
-INSERT INTO `af_logininfo` VALUES ('688', '14.106.241.101', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-08 15:24:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('689', '218.29.110.26', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '联通', '100026', '河南省', '410000', '2017-11-08 15:25:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('690', '115.195.133.149', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 15:25:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('691', '115.195.133.149', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 15:25:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('692', '115.195.133.149', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 15:26:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('693', '113.57.28.128', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '联通', '100026', '湖北省', '420000', '2017-11-08 15:26:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('694', '175.171.147.171', '东北', '200000', '大连市', '210200', '中国', 'CN', '', '-1', '联通', '100026', '辽宁省', '210000', '2017-11-08 15:27:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('695', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 15:27:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('696', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 15:27:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('697', '14.106.241.101', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-08 15:28:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('698', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 15:28:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('699', '218.21.64.5', '华南', '800000', '柳州市', '450200', '中国', 'CN', '', '-1', '电信', '100017', '广西壮族自治区', '450000', '2017-11-08 15:28:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('700', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 15:28:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('701', '171.38.99.78', '华南', '800000', '玉林市', '450900', '中国', 'CN', '', '-1', '联通', '100026', '广西壮族自治区', '450000', '2017-11-08 15:32:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('702', '1.194.187.3', '华中', '400000', '开封市', '410200', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-08 15:33:45', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('703', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 15:35:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('704', '211.103.181.227', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-08 15:35:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('705', '113.57.28.128', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '联通', '100026', '湖北省', '420000', '2017-11-08 15:37:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('706', '113.57.28.128', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '联通', '100026', '湖北省', '420000', '2017-11-08 15:40:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('707', '157.0.31.2', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-08 15:43:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('708', '116.30.222.193', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 15:45:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('709', '124.128.33.106', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-08 15:47:20', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('710', '123.126.24.10', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 15:48:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('711', '111.200.57.98', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 15:53:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('712', '117.22.144.128', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-08 15:58:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('713', '180.112.252.70', '华东', '300000', '无锡市', '320200', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-08 16:00:45', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('714', '183.62.6.133', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 16:01:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('715', '182.141.29.150', '西南', '500000', '攀枝花市', '510400', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 16:02:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('716', '218.241.135.38', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-08 16:07:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('717', '122.225.242.18', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 16:07:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('718', '61.183.85.118', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-08 16:09:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('719', '182.110.5.51', '华东', '300000', '南昌市', '360100', '中国', 'CN', '', '-1', '电信', '100017', '江西省', '360000', '2017-11-08 16:10:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('720', '114.226.13.30', '华东', '300000', '常州市', '320400', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-08 16:11:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('721', '60.166.67.219', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '电信', '100017', '安徽省', '340000', '2017-11-08 16:11:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('722', '115.210.209.69', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 16:12:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('723', '180.164.136.92', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 16:13:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('724', '113.204.227.146', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '联通', '100026', '重庆市', '500000', '2017-11-08 16:14:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('725', '59.51.84.38', '华中', '400000', '衡阳市', '430400', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-08 16:15:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('726', '211.142.96.54', '华中', '400000', '焦作市', '410800', '中国', 'CN', '', '-1', '移动', '100025', '河南省', '410000', '2017-11-08 16:19:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('727', '14.106.241.101', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-08 16:21:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('728', '183.67.55.100', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-08 16:21:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('729', '114.241.52.86', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 16:21:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('730', '125.114.150.193', '华东', '300000', '宁波市', '330200', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 16:22:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('731', '183.38.245.199', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 16:24:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('732', '183.185.219.80', '华北', '100000', '太原市', '140100', '中国', 'CN', '', '-1', '联通', '100026', '山西省', '140000', '2017-11-08 16:27:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('733', '113.57.183.130', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '联通', '100026', '湖北省', '420000', '2017-11-08 16:30:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('734', '124.16.134.194', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '科技网', '1000114', '北京市', '110000', '2017-11-08 16:31:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('735', '222.209.7.121', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 16:40:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('736', '183.202.214.24', '华北', '100000', '晋中市', '140700', '中国', 'CN', '', '-1', '移动', '100025', '山西省', '140000', '2017-11-08 16:41:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('737', '119.98.147.146', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-08 16:47:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('738', '118.122.132.124', '西南', '500000', '绵阳市', '510700', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 16:51:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('739', '115.196.193.217', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-08 16:53:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('740', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 16:56:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('741', '117.168.106.116', '华东', '300000', '南昌市', '360100', '中国', 'CN', '', '-1', '移动', '100025', '江西省', '360000', '2017-11-08 16:57:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('742', '118.122.132.124', '西南', '500000', '绵阳市', '510700', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 16:59:20', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('743', '119.250.21.169', '华北', '100000', '廊坊市', '131000', '中国', 'CN', '', '-1', '联通', '100026', '河北省', '130000', '2017-11-08 17:00:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('744', '14.106.241.101', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-08 17:00:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('745', '59.108.53.146', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '方正宽带', '100063', '北京市', '110000', '2017-11-08 17:00:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('746', '222.190.132.136', '华东', '300000', '泰州市', '321200', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-08 17:04:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('747', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 17:08:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('748', '119.119.76.204', '东北', '200000', '沈阳市', '210100', '中国', 'CN', '', '-1', '联通', '100026', '辽宁省', '210000', '2017-11-08 17:09:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('749', '36.7.138.71', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '电信', '100017', '安徽省', '340000', '2017-11-08 17:10:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('750', '223.104.20.115', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-08 17:10:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('751', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 17:11:19', 'sys2');
-INSERT INTO `af_logininfo` VALUES ('752', '61.163.77.114', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '联通', '100026', '河南省', '410000', '2017-11-08 17:11:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('753', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 17:11:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('754', '210.76.108.39', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-08 17:12:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('755', '171.34.210.178', '华东', '300000', '南昌市', '360100', '中国', 'CN', '', '-1', '联通', '100026', '江西省', '360000', '2017-11-08 17:12:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('756', '61.144.174.216', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 17:14:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('757', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 17:16:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('758', '58.67.136.49', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 17:17:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('759', '103.25.28.26', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '皓宽网络', '1000337', '北京市', '110000', '2017-11-08 17:20:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('760', '121.10.252.172', '华南', '800000', '肇庆市', '441200', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 17:21:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('761', '27.202.9.131', '华东', '300000', '东营市', '370500', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-08 17:21:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('762', '121.10.252.172', '华南', '800000', '肇庆市', '441200', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 17:21:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('763', '121.10.252.172', '华南', '800000', '肇庆市', '441200', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 17:22:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('764', '121.10.252.172', '华南', '800000', '肇庆市', '441200', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 17:23:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('765', '171.214.212.208', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 17:26:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('766', '101.81.220.100', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 17:29:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('767', '183.67.94.95', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-08 17:35:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('768', '218.19.136.106', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 17:43:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('769', '61.149.254.206', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 17:43:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('770', '58.20.235.220', '华中', '400000', '湘潭市', '430300', '中国', 'CN', '', '-1', '联通', '100026', '湖南省', '430000', '2017-11-08 17:43:45', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('771', '61.149.254.206', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 17:44:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('772', '61.149.254.206', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 17:44:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('773', '61.149.254.206', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 17:44:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('774', '119.6.109.59', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '联通', '100026', '四川省', '510000', '2017-11-08 17:50:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('775', '117.71.53.3', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '电信', '100017', '安徽省', '340000', '2017-11-08 17:52:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('776', '27.18.186.186', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-08 17:59:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('777', '125.69.79.26', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 18:06:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('778', '58.223.192.38', '华东', '300000', '扬州市', '321000', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-08 18:12:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('779', '110.18.198.61', '华北', '100000', '乌兰察布市', '150900', '中国', 'CN', '', '-1', '联通', '100026', '内蒙古自治区', '150000', '2017-11-08 18:14:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('780', '180.117.203.25', '华东', '300000', '宿迁市', '321300', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-08 18:14:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('781', '180.117.203.25', '华东', '300000', '宿迁市', '321300', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-08 18:15:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('782', '180.104.45.23', '华东', '300000', '徐州市', '320300', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-08 18:18:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('783', '59.53.22.130', '华东', '300000', '南昌市', '360100', '中国', 'CN', '', '-1', '电信', '100017', '江西省', '360000', '2017-11-08 18:20:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('784', '119.98.107.96', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-08 18:22:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('785', '27.18.186.186', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-08 18:22:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('786', '14.221.97.220', '华南', '800000', '东莞市', '441900', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 18:27:08', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('787', '43.224.45.102', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '皓宽网络', '1000337', '北京市', '110000', '2017-11-08 18:29:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('788', '60.216.220.165', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-08 18:38:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('789', '59.42.26.55', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 18:40:08', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('790', '58.253.32.211', '华南', '800000', '阳江市', '441700', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-08 18:47:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('791', '211.97.122.82', '华东', '300000', '', '-1', '中国', 'CN', '', '-1', '联通', '100026', '福建省', '350000', '2017-11-08 18:51:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('792', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 18:52:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('793', '222.209.11.183', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 18:56:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('794', '61.141.201.120', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 18:57:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('795', '58.251.229.153', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-08 19:03:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('796', '210.12.27.198', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 19:04:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('797', '113.15.223.195', '华南', '800000', '钦州市', '450700', '中国', 'CN', '', '-1', '电信', '100017', '广西壮族自治区', '450000', '2017-11-08 19:13:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('798', '219.139.229.208', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-08 19:33:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('799', '59.172.39.138', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-08 19:35:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('800', '110.184.30.39', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 19:38:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('801', '111.17.222.247', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '移动', '100025', '山东省', '370000', '2017-11-08 19:42:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('802', '223.71.214.162', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '移动', '100025', '北京市', '110000', '2017-11-08 19:42:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('803', '118.187.52.138', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-08 19:42:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('804', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 19:50:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('805', '175.154.84.204', '西南', '500000', '绵阳市', '510700', '中国', 'CN', '', '-1', '联通', '100026', '四川省', '510000', '2017-11-08 19:52:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('806', '123.162.82.227', '华中', '400000', '焦作市', '410800', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-08 20:24:24', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('807', '60.208.219.215', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-08 20:36:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('808', '58.212.159.235', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-08 20:36:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('809', '112.5.201.190', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '移动', '100025', '福建省', '350000', '2017-11-08 20:38:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('810', '113.105.128.250', '华南', '800000', '东莞市', '441900', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 20:41:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('811', '139.227.2.88', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-08 20:55:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('812', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-08 20:57:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('813', '175.0.138.30', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-08 21:05:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('814', '175.154.84.204', '西南', '500000', '绵阳市', '510700', '中国', 'CN', '', '-1', '联通', '100026', '四川省', '510000', '2017-11-08 21:16:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('815', '106.58.77.7', '西南', '500000', '临沧市', '530900', '中国', 'CN', '', '-1', '电信', '100017', '云南省', '530000', '2017-11-08 21:22:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('816', '27.18.204.62', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-08 21:27:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('817', '139.205.168.112', '西南', '500000', '绵阳市', '510700', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 21:27:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('818', '222.211.255.91', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 21:30:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('819', '101.247.209.100', '华南', '800000', '东莞市', '441900', '中国', 'CN', '', '-1', '鹏博士', '1000143', '广东省', '440000', '2017-11-08 21:35:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('820', '222.211.255.91', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 21:35:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('821', '125.90.49.9', '华南', '800000', '湛江市', '440800', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 21:48:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('822', '101.85.48.122', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 21:53:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('823', '124.202.184.174', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-08 21:59:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('824', '113.87.12.90', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 22:01:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('825', '113.87.12.90', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-08 22:02:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('826', '112.12.76.63', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '移动', '100025', '浙江省', '330000', '2017-11-08 22:18:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('827', '101.81.118.60', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 22:18:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('828', '36.149.236.19', '华东', '300000', '无锡市', '320200', '中国', 'CN', '', '-1', '移动', '100025', '江苏省', '320000', '2017-11-08 22:19:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('829', '101.233.151.114', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '鹏博士', '1000143', '广东省', '440000', '2017-11-08 22:24:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('830', '117.25.59.178', '华东', '300000', '福州市', '350100', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-08 22:26:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('831', '111.199.184.239', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-08 22:26:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('832', '223.73.57.135', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-08 22:31:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('833', '27.15.216.144', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '联通', '100026', '重庆市', '500000', '2017-11-08 22:34:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('834', '222.211.255.91', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-08 22:38:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('835', '222.64.49.31', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 22:38:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('836', '119.59.255.152', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '鹏博士', '1000143', '广东省', '440000', '2017-11-08 22:46:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('837', '58.100.85.79', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '华数传媒', '1000333', '浙江省', '330000', '2017-11-08 22:47:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('838', '110.167.94.162', '西北', '600000', '西宁市', '630100', '中国', 'CN', '', '-1', '电信', '100017', '青海省', '630000', '2017-11-08 22:47:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('839', '119.59.255.152', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '鹏博士', '1000143', '广东省', '440000', '2017-11-08 22:48:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('840', '36.106.203.229', '华北', '100000', '天津市', '120100', '中国', 'CN', '', '-1', '电信', '100017', '天津市', '120000', '2017-11-08 22:51:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('841', '182.242.96.138', '西南', '500000', '昆明市', '530100', '中国', 'CN', '', '-1', '电信', '100017', '云南省', '530000', '2017-11-08 23:07:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('842', '180.157.152.128', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 23:17:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('843', '112.10.194.89', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '移动', '100025', '浙江省', '330000', '2017-11-08 23:18:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('844', '114.88.13.119', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 23:45:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('845', '223.104.20.118', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-08 23:53:45', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('846', '218.82.121.85', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-08 23:59:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('847', '111.199.188.128', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-09 00:00:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('848', '117.73.154.210', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '方正宽带', '100063', '北京市', '110000', '2017-11-09 00:14:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('849', '117.73.154.210', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '方正宽带', '100063', '北京市', '110000', '2017-11-09 00:17:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('850', '223.11.216.142', '华北', '100000', '太原市', '140100', '中国', 'CN', '', '-1', '电信', '100017', '山西省', '140000', '2017-11-09 00:18:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('851', '114.92.169.81', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-09 00:22:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('852', '115.197.137.11', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 00:56:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('853', '14.144.52.99', '华南', '800000', '韶关市', '440200', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 02:00:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('854', '117.89.197.79', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-09 02:28:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('855', '180.102.221.14', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-09 05:48:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('856', '115.230.121.49', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 07:33:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('857', '118.113.233.144', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-09 07:50:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('858', '58.48.110.175', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 08:01:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('859', '112.229.186.214', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-09 08:04:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('860', '119.98.107.96', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 08:16:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('861', '113.69.39.97', '华南', '800000', '佛山市', '440600', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 08:17:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('862', '218.17.209.242', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 08:20:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('863', '118.114.176.242', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-09 08:20:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('864', '58.48.110.175', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 08:22:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('865', '118.122.132.124', '西南', '500000', '绵阳市', '510700', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-09 08:29:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('866', '223.104.20.118', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-09 08:30:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('867', '61.177.152.4', '华东', '300000', '无锡市', '320200', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-09 08:37:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('868', '124.200.182.158', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-09 08:40:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('869', '112.117.32.196', '西南', '500000', '昆明市', '530100', '中国', 'CN', '', '-1', '电信', '100017', '云南省', '530000', '2017-11-09 08:45:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('870', '120.37.162.215', '华东', '300000', '泉州市', '350500', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-09 08:52:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('871', '122.245.83.151', '华东', '300000', '宁波市', '330200', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 08:55:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('872', '115.192.50.195', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 08:57:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('873', '223.104.20.118', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-09 08:59:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('874', '122.227.25.58', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 09:03:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('875', '61.149.254.206', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-09 09:08:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('876', '221.213.50.114', '西南', '500000', '昆明市', '530100', '中国', 'CN', '', '-1', '联通', '100026', '云南省', '530000', '2017-11-09 09:08:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('877', '124.238.218.3', '华北', '100000', '廊坊市', '131000', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-09 09:10:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('878', '61.149.254.206', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-09 09:15:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('879', '117.87.17.86', '华东', '300000', '徐州市', '320300', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-09 09:18:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('880', '114.235.139.226', '华东', '300000', '徐州市', '320300', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-09 09:18:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('881', '113.77.123.83', '华南', '800000', '东莞市', '441900', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 09:20:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('882', '115.238.56.130', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 09:21:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('883', '36.110.112.202', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-09 09:22:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('884', '110.179.80.85', '华北', '100000', '太原市', '140100', '中国', 'CN', '', '-1', '电信', '100017', '山西省', '140000', '2017-11-09 09:25:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('885', '124.193.177.202', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-09 09:30:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('886', '175.9.183.132', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-09 09:34:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('887', '61.164.46.82', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 09:38:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('888', '222.247.54.78', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-09 09:41:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('889', '183.62.251.45', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 09:42:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('890', '180.169.59.211', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-09 09:43:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('891', '180.102.211.185', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-09 09:50:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('892', '171.118.180.183', '华北', '100000', '太原市', '140100', '中国', 'CN', '', '-1', '联通', '100026', '山西省', '140000', '2017-11-09 09:51:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('893', '106.120.122.132', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-09 09:54:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('894', '101.81.132.148', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-09 09:54:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('895', '113.87.161.137', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 09:55:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('896', '124.193.193.25', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-09 09:56:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('897', '125.77.84.35', '华东', '300000', '福州市', '350100', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-09 09:56:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('898', '1.192.33.233', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-09 09:58:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('899', '61.149.254.206', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-09 09:59:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('900', '183.62.251.45', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 10:00:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('901', '101.81.135.246', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-09 10:01:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('902', '36.48.17.107', '东北', '200000', '长春市', '220100', '中国', 'CN', '', '-1', '电信', '100017', '吉林省', '220000', '2017-11-09 10:03:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('903', '183.14.133.31', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 10:03:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('904', '116.192.33.180', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-09 10:06:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('905', '125.77.84.35', '华东', '300000', '福州市', '350100', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-09 10:07:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('906', '183.62.251.45', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 10:11:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('907', '218.70.17.122', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-09 10:13:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('908', '119.39.90.127', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '联通', '100026', '湖南省', '430000', '2017-11-09 10:15:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('909', '61.50.130.246', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-09 10:16:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('910', '171.214.223.57', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-09 10:16:45', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('911', '171.214.223.57', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-09 10:17:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('912', '124.239.138.164', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-09 10:17:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('913', '124.207.129.194', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-09 10:18:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('914', '183.194.100.134', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '移动', '100025', '上海市', '310000', '2017-11-09 10:18:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('915', '61.156.219.211', '华东', '300000', '东营市', '370500', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-09 10:19:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('916', '27.191.9.143', '华北', '100000', '唐山市', '130200', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-09 10:21:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('917', '221.10.49.11', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '联通', '100026', '四川省', '510000', '2017-11-09 10:22:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('918', '61.149.254.206', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-09 10:23:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('919', '171.15.157.107', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-09 10:24:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('920', '218.17.197.114', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 10:26:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('921', '119.136.112.29', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 10:27:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('922', '27.17.216.47', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 10:28:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('923', '61.150.60.178', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-09 10:29:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('924', '14.221.98.239', '华南', '800000', '东莞市', '441900', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 10:31:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('925', '223.72.62.146', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '移动', '100025', '北京市', '110000', '2017-11-09 10:32:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('926', '36.48.17.107', '东北', '200000', '长春市', '220100', '中国', 'CN', '', '-1', '电信', '100017', '吉林省', '220000', '2017-11-09 10:34:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('927', '106.6.161.27', '华东', '300000', '南昌市', '360100', '中国', 'CN', '', '-1', '电信', '100017', '江西省', '360000', '2017-11-09 10:35:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('928', '106.6.161.27', '华东', '300000', '南昌市', '360100', '中国', 'CN', '', '-1', '电信', '100017', '江西省', '360000', '2017-11-09 10:35:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('929', '1.194.165.217', '华中', '400000', '开封市', '410200', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-09 10:39:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('930', '110.84.147.24', '华东', '300000', '福州市', '350100', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-09 10:40:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('931', '116.226.173.240', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-09 10:40:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('932', '120.33.238.236', '华东', '300000', '莆田市', '350300', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-09 10:41:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('933', '112.26.168.118', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '移动', '100025', '安徽省', '340000', '2017-11-09 10:43:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('934', '115.236.91.15', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 10:43:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('935', '122.227.25.58', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 10:43:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('936', '122.227.25.58', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 10:44:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('937', '122.227.25.58', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 10:44:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('938', '122.227.25.58', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 10:44:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('939', '222.66.141.74', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-09 10:48:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('940', '125.71.215.213', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-09 10:51:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('941', '36.5.27.239', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '电信', '100017', '安徽省', '340000', '2017-11-09 10:54:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('942', '218.72.51.158', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 10:55:08', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('943', '122.227.25.58', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 10:55:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('944', '122.227.25.58', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 10:56:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('945', '117.91.0.35', '华东', '300000', '扬州市', '321000', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-09 10:56:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('946', '122.227.25.58', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 10:56:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('947', '114.80.169.19', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-09 10:58:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('948', '123.144.2.25', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '联通', '100026', '重庆市', '500000', '2017-11-09 11:01:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('949', '113.139.120.221', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-09 11:03:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('950', '113.139.120.221', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-09 11:04:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('951', '123.160.165.71', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-09 11:04:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('952', '61.140.235.39', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 11:04:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('953', '58.22.122.38', '华东', '300000', '福州市', '350100', '中国', 'CN', '', '-1', '联通', '100026', '福建省', '350000', '2017-11-09 11:10:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('954', '119.130.113.186', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 11:10:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('955', '27.17.7.70', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 11:10:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('956', '1.204.117.59', '西南', '500000', '贵阳市', '520100', '中国', 'CN', '', '-1', '电信', '100017', '贵州省', '520000', '2017-11-09 11:11:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('957', '219.138.228.4', '华中', '400000', '鄂州市', '420700', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 11:12:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('958', '125.119.14.241', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 11:14:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('959', '125.118.85.100', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 11:14:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('960', '14.109.97.237', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-09 11:15:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('961', '115.217.163.32', '华东', '300000', '宁波市', '330200', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 11:15:20', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('962', '119.146.152.146', '华南', '800000', '梅州市', '441400', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 11:17:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('963', '61.155.110.90', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-09 11:18:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('964', '60.216.119.210', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-09 11:20:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('965', '123.145.14.130', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '联通', '100026', '重庆市', '500000', '2017-11-09 11:21:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('966', '116.24.66.6', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 11:24:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('967', '61.149.254.206', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-09 11:35:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('968', '113.206.15.10', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '联通', '100026', '重庆市', '500000', '2017-11-09 11:40:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('969', '43.224.47.123', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '皓宽网络', '1000337', '北京市', '110000', '2017-11-09 11:42:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('970', '61.139.95.185', '西南', '500000', '绵阳市', '510700', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-09 11:45:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('971', '125.77.84.35', '华东', '300000', '福州市', '350100', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-09 11:49:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('972', '220.165.246.14', '西南', '500000', '昆明市', '530100', '中国', 'CN', '', '-1', '电信', '100017', '云南省', '530000', '2017-11-09 11:54:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('973', '116.6.195.50', '华南', '800000', '惠州市', '441300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 12:01:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('974', '219.145.113.11', '西北', '600000', '咸阳市', '610400', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-09 12:03:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('975', '218.199.141.2', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-09 12:26:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('976', '59.173.94.180', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 12:26:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('977', '59.173.94.180', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 12:27:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('978', '59.173.94.180', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 12:27:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('979', '218.3.166.210', '华东', '300000', '徐州市', '320300', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-09 12:28:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('980', '115.236.176.66', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 12:34:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('981', '112.26.130.105', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '移动', '100025', '安徽省', '340000', '2017-11-09 12:40:20', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('982', '122.4.89.99', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-09 12:47:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('983', '222.181.174.24', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-09 12:51:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('984', '113.76.171.34', '华南', '800000', '珠海市', '440400', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 12:53:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('985', '120.42.89.192', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-09 12:53:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('986', '113.67.124.44', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 13:01:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('987', '42.226.119.15', '华中', '400000', '新乡市', '410700', '中国', 'CN', '', '-1', '联通', '100026', '河南省', '410000', '2017-11-09 13:08:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('988', '218.199.141.2', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-09 13:09:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('989', '110.89.19.142', '华东', '300000', '莆田市', '350300', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-09 13:10:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('990', '221.6.33.150', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-09 13:14:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('991', '1.202.12.93', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-09 13:18:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('992', '116.52.19.235', '西南', '500000', '昆明市', '530100', '中国', 'CN', '', '-1', '电信', '100017', '云南省', '530000', '2017-11-09 13:19:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('993', '222.181.174.24', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-09 13:23:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('994', '116.226.129.31', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-09 13:23:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('995', '171.113.207.83', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 13:26:45', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('996', '218.88.21.177', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-09 13:27:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('997', '183.185.219.80', '华北', '100000', '太原市', '140100', '中国', 'CN', '', '-1', '联通', '100026', '山西省', '140000', '2017-11-09 13:30:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('998', '113.204.204.202', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '联通', '100026', '重庆市', '500000', '2017-11-09 13:33:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('999', '39.71.0.65', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-09 13:37:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1000', '222.171.139.213', '东北', '200000', '哈尔滨市', '230100', '中国', 'CN', '', '-1', '电信', '100017', '黑龙江省', '230000', '2017-11-09 13:37:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1001', '220.171.106.115', '西北', '600000', '乌鲁木齐市', '650100', '中国', 'CN', '', '-1', '电信', '100017', '新疆维吾尔自治区', '650000', '2017-11-09 13:38:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1002', '218.6.198.251', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-09 13:39:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1003', '183.67.61.249', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-09 13:40:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1004', '125.71.162.230', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-09 13:41:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1005', '14.154.30.167', '华南', '800000', '佛山市', '440600', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 13:42:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1006', '61.160.70.90', '华东', '300000', '无锡市', '320200', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-09 13:45:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1007', '183.11.65.211', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 13:45:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1008', '113.247.228.202', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-09 13:50:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1009', '36.110.49.98', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-09 13:52:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1010', '222.174.167.195', '华东', '300000', '临沂市', '371300', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-09 13:53:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1011', '219.155.85.196', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '联通', '100026', '河南省', '410000', '2017-11-09 13:53:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1012', '110.179.141.58', '华北', '100000', '太原市', '140100', '中国', 'CN', '', '-1', '电信', '100017', '山西省', '140000', '2017-11-09 13:54:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1013', '222.174.167.195', '华东', '300000', '临沂市', '371300', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-09 13:55:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1014', '183.14.28.53', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 13:56:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1015', '114.244.137.179', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-09 13:56:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1016', '27.17.43.14', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 13:58:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1017', '119.41.196.103', '华南', '800000', '海口市', '460100', '中国', 'CN', '', '-1', '电信', '100017', '海南省', '460000', '2017-11-09 14:00:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1018', '183.204.64.77', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '移动', '100025', '河南省', '410000', '2017-11-09 14:01:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1019', '183.204.64.77', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '移动', '100025', '河南省', '410000', '2017-11-09 14:01:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1020', '183.204.64.77', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '移动', '100025', '河南省', '410000', '2017-11-09 14:02:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1021', '219.139.229.208', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 14:07:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1022', '125.46.245.158', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '联通', '100026', '河南省', '410000', '2017-11-09 14:14:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1023', '183.16.193.59', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 14:18:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1024', '183.4.41.96', '华南', '800000', '汕头市', '440500', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 14:20:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1025', '218.199.141.2', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-09 14:22:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1026', '36.5.27.239', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '电信', '100017', '安徽省', '340000', '2017-11-09 14:23:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1027', '36.149.64.168', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '移动', '100025', '江苏省', '320000', '2017-11-09 14:28:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1028', '125.46.245.158', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '联通', '100026', '河南省', '410000', '2017-11-09 14:30:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1029', '27.115.36.78', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-09 14:30:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1030', '14.209.66.202', '华南', '800000', '肇庆市', '441200', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 14:31:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1031', '58.212.75.123', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-09 14:31:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1032', '219.134.105.141', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 14:34:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1033', '60.190.13.66', '华东', '300000', '宁波市', '330200', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 14:36:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1034', '180.175.162.64', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-09 14:38:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1035', '61.133.171.59', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '电信', '100017', '安徽省', '340000', '2017-11-09 14:40:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1036', '164.52.7.158', '', '-1', '', '-1', '日本', 'JP', '', '-1', '', '-1', '', '-1', '2017-11-09 14:44:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1037', '113.204.227.234', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '联通', '100026', '重庆市', '500000', '2017-11-09 14:50:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1038', '125.76.165.122', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-09 14:51:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1039', '61.153.205.130', '华东', '300000', '台州市', '331000', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 14:52:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1040', '211.99.216.18', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-09 14:53:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1041', '124.193.176.208', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-09 14:56:08', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1042', '113.128.76.186', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-09 14:58:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1043', '211.99.216.18', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-09 14:58:54', '8888');
-INSERT INTO `af_logininfo` VALUES ('1044', '211.99.216.18', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-09 14:59:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1045', '120.198.67.143', '华南', '800000', '江门市', '440700', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-09 15:01:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1046', '59.46.75.36', '东北', '200000', '沈阳市', '210100', '中国', 'CN', '', '-1', '电信', '100017', '辽宁省', '210000', '2017-11-09 15:04:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1047', '119.137.54.172', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 15:05:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1048', '222.223.250.198', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-09 15:11:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1049', '121.69.54.202', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-09 15:11:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1050', '110.184.163.230', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-09 15:12:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1051', '27.154.79.201', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-09 15:12:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1052', '119.41.54.97', '华南', '800000', '海口市', '460100', '中国', 'CN', '', '-1', '电信', '100017', '海南省', '460000', '2017-11-09 15:14:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1053', '111.3.176.134', '华东', '300000', '湖州市', '330500', '中国', 'CN', '', '-1', '移动', '100025', '浙江省', '330000', '2017-11-09 15:15:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1054', '111.3.176.134', '华东', '300000', '湖州市', '330500', '中国', 'CN', '', '-1', '移动', '100025', '浙江省', '330000', '2017-11-09 15:15:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1055', '111.3.176.134', '华东', '300000', '湖州市', '330500', '中国', 'CN', '', '-1', '移动', '100025', '浙江省', '330000', '2017-11-09 15:16:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1056', '111.3.176.134', '华东', '300000', '湖州市', '330500', '中国', 'CN', '', '-1', '移动', '100025', '浙江省', '330000', '2017-11-09 15:16:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1057', '111.3.176.134', '华东', '300000', '湖州市', '330500', '中国', 'CN', '', '-1', '移动', '100025', '浙江省', '330000', '2017-11-09 15:17:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1058', '124.250.39.27', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-09 15:17:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1059', '119.119.68.68', '东北', '200000', '沈阳市', '210100', '中国', 'CN', '', '-1', '联通', '100026', '辽宁省', '210000', '2017-11-09 15:28:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1060', '123.139.17.124', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '联通', '100026', '陕西省', '610000', '2017-11-09 15:29:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1061', '222.173.42.146', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-09 15:31:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1062', '113.143.158.123', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-09 15:32:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1063', '123.232.129.199', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-09 15:41:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1064', '163.179.125.54', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-09 15:43:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1065', '219.145.113.11', '西北', '600000', '咸阳市', '610400', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-09 15:44:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1066', '1.192.80.166', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-09 15:46:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1067', '218.15.201.146', '华南', '800000', '云浮市', '445300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 15:48:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1068', '45.64.120.10', '', '-1', '', '-1', '菲律宾', 'PH', '', '-1', '', '-1', '', '-1', '2017-11-09 15:48:24', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1069', '112.26.201.222', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '移动', '100025', '安徽省', '340000', '2017-11-09 15:51:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1070', '117.158.213.62', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '移动', '100025', '河南省', '410000', '2017-11-09 15:54:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1071', '222.247.54.19', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-09 15:54:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1072', '101.81.4.169', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-09 15:55:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1073', '115.60.58.153', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '联通', '100026', '河南省', '410000', '2017-11-09 15:56:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1074', '218.66.157.70', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-09 15:57:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1075', '180.139.213.247', '华南', '800000', '梧州市', '450400', '中国', 'CN', '', '-1', '电信', '100017', '广西壮族自治区', '450000', '2017-11-09 16:03:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1076', '113.57.28.39', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '联通', '100026', '湖北省', '420000', '2017-11-09 16:06:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1077', '183.62.230.118', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 16:06:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1078', '113.57.28.39', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '联通', '100026', '湖北省', '420000', '2017-11-09 16:06:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1079', '113.57.28.39', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '联通', '100026', '湖北省', '420000', '2017-11-09 16:07:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1080', '113.57.28.39', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '联通', '100026', '湖北省', '420000', '2017-11-09 16:07:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1081', '113.57.28.39', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '联通', '100026', '湖北省', '420000', '2017-11-09 16:08:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1082', '113.57.28.39', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '联通', '100026', '湖北省', '420000', '2017-11-09 16:08:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1083', '113.57.28.39', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '联通', '100026', '湖北省', '420000', '2017-11-09 16:09:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1084', '113.57.28.39', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '联通', '100026', '湖北省', '420000', '2017-11-09 16:09:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1085', '113.57.28.39', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '联通', '100026', '湖北省', '420000', '2017-11-09 16:13:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1086', '118.26.65.34', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-09 16:13:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1087', '221.10.49.11', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '联通', '100026', '四川省', '510000', '2017-11-09 16:13:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1088', '120.39.52.14', '华东', '300000', '福州市', '350100', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-09 16:15:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1089', '183.13.228.196', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 16:23:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1090', '218.199.141.2', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-09 16:32:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1091', '112.28.174.227', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '移动', '100025', '安徽省', '340000', '2017-11-09 16:32:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1092', '1.85.6.158', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-09 16:32:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1093', '218.199.141.2', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-09 16:34:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1094', '1.202.220.182', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-09 16:36:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1095', '218.17.139.196', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 16:37:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1096', '49.74.70.6', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-09 16:40:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1097', '60.219.151.226', '东北', '200000', '哈尔滨市', '230100', '中国', 'CN', '', '-1', '联通', '100026', '黑龙江省', '230000', '2017-11-09 16:41:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1098', '58.20.114.229', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '联通', '100026', '湖南省', '430000', '2017-11-09 16:42:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1099', '114.135.10.197', '西南', '500000', '遵义市', '520300', '中国', 'CN', '', '-1', '电信', '100017', '贵州省', '520000', '2017-11-09 16:43:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1100', '125.89.29.241', '华南', '800000', '珠海市', '440400', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 16:43:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1101', '222.18.127.97', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '教育网', '100027', '四川省', '510000', '2017-11-09 16:47:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1102', '218.199.141.2', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-09 16:48:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1103', '221.10.49.11', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '联通', '100026', '四川省', '510000', '2017-11-09 16:49:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1104', '221.10.49.11', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '联通', '100026', '四川省', '510000', '2017-11-09 16:49:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1105', '221.10.49.11', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '联通', '100026', '四川省', '510000', '2017-11-09 16:50:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1106', '60.208.20.62', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-09 16:50:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1107', '218.86.196.129', '西南', '500000', '贵阳市', '520100', '中国', 'CN', '', '-1', '电信', '100017', '贵州省', '520000', '2017-11-09 16:53:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1108', '1.83.125.218', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-09 16:56:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1109', '144.0.45.46', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-09 16:59:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1110', '218.17.161.51', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 16:59:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1111', '144.0.45.46', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-09 17:00:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1112', '122.247.146.37', '华东', '300000', '宁波市', '330200', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 17:02:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1113', '101.95.110.106', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-09 17:04:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1114', '114.221.124.242', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-09 17:04:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1115', '223.166.204.137', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-09 17:04:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1116', '14.221.98.239', '华南', '800000', '东莞市', '441900', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 17:05:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1117', '124.204.59.157', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-09 17:07:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1118', '123.139.19.101', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '联通', '100026', '陕西省', '610000', '2017-11-09 17:08:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1119', '123.139.19.101', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '联通', '100026', '陕西省', '610000', '2017-11-09 17:08:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1120', '123.139.19.101', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '联通', '100026', '陕西省', '610000', '2017-11-09 17:09:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1121', '123.139.19.101', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '联通', '100026', '陕西省', '610000', '2017-11-09 17:09:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1122', '42.84.153.159', '东北', '200000', '大连市', '210200', '中国', 'CN', '', '-1', '联通', '100026', '辽宁省', '210000', '2017-11-09 17:09:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1123', '110.181.102.215', '华北', '100000', '大同市', '140200', '中国', 'CN', '', '-1', '电信', '100017', '山西省', '140000', '2017-11-09 17:11:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1124', '218.72.51.158', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 17:14:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1125', '218.3.132.177', '华东', '300000', '镇江市', '321100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-09 17:14:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1126', '117.184.200.38', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '移动', '100025', '上海市', '310000', '2017-11-09 17:16:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1127', '114.242.25.40', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-09 17:17:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1128', '59.172.56.170', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 17:17:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1129', '112.65.125.194', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-09 17:21:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1130', '175.154.211.132', '西南', '500000', '德阳市', '510600', '中国', 'CN', '', '-1', '联通', '100026', '四川省', '510000', '2017-11-09 17:22:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1131', '112.65.125.194', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-09 17:23:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1132', '112.65.125.194', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-09 17:23:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1133', '27.156.28.220', '华东', '300000', '福州市', '350100', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-09 17:27:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1134', '116.52.34.114', '西南', '500000', '昆明市', '530100', '中国', 'CN', '', '-1', '电信', '100017', '云南省', '530000', '2017-11-09 17:33:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1135', '118.122.132.124', '西南', '500000', '绵阳市', '510700', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-09 17:37:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1136', '124.74.138.254', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-09 17:41:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1137', '218.199.141.2', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-09 17:46:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1138', '223.72.236.68', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '移动', '100025', '北京市', '110000', '2017-11-09 17:50:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1139', '125.84.90.40', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-09 17:56:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1140', '183.11.72.177', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 17:58:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1141', '219.139.229.208', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 17:58:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1142', '117.173.133.152', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '移动', '100025', '四川省', '510000', '2017-11-09 17:58:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1143', '113.139.106.237', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-09 18:01:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1144', '220.112.14.50', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '鹏博士', '1000143', '广东省', '440000', '2017-11-09 18:25:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1145', '123.11.119.67', '华中', '400000', '南阳市', '411300', '中国', 'CN', '', '-1', '联通', '100026', '河南省', '410000', '2017-11-09 18:35:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1146', '171.12.10.168', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-09 18:37:24', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1147', '58.56.79.24', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-09 18:38:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1148', '116.226.90.165', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-09 18:39:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1149', '116.226.90.165', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-09 18:39:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1150', '116.226.90.165', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-09 18:40:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1151', '116.226.90.165', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-09 18:40:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1152', '116.226.90.165', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-09 18:40:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1153', '223.85.163.251', '西南', '500000', '泸州市', '510500', '中国', 'CN', '', '-1', '移动', '100025', '四川省', '510000', '2017-11-09 18:44:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1154', '121.229.145.133', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-09 18:44:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1155', '112.65.125.194', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-09 18:51:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1156', '223.93.134.52', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '移动', '100025', '浙江省', '330000', '2017-11-09 19:02:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1157', '218.199.141.2', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-09 19:06:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1158', '202.109.249.26', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-09 19:19:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1159', '221.215.97.84', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-09 19:23:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1160', '171.13.242.12', '华中', '400000', '洛阳市', '410300', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-09 19:30:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1161', '163.125.150.29', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-09 19:31:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1162', '111.225.240.101', '华北', '100000', '保定市', '130600', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-09 19:55:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1163', '117.89.51.51', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-09 19:57:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1164', '180.170.234.58', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-09 20:01:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1165', '124.236.151.248', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-09 20:02:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1166', '175.0.208.205', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-09 20:04:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1167', '171.217.59.208', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-09 20:08:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1168', '113.118.187.125', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 20:17:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1169', '222.173.68.46', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-09 20:21:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1170', '219.134.216.235', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 20:21:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1171', '219.134.216.235', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 20:22:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1172', '14.223.163.206', '华南', '800000', '佛山市', '440600', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 20:22:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1173', '219.134.216.235', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 20:22:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1174', '219.134.216.235', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 20:23:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1175', '219.134.216.235', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 20:23:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1176', '219.134.216.235', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 20:24:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1177', '219.134.216.235', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 20:25:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1178', '219.134.216.235', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 20:25:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1179', '219.134.216.235', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 20:26:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1180', '219.134.216.235', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 20:26:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1181', '112.64.141.26', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-09 20:40:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1182', '39.82.111.143', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-09 20:48:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1183', '219.137.190.122', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 21:02:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1184', '27.37.189.67', '华南', '800000', '东莞市', '441900', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-09 21:02:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1185', '118.206.186.1', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '山东省', '370000', '2017-11-09 21:04:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1186', '58.100.156.159', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '华数传媒', '1000333', '浙江省', '330000', '2017-11-09 21:04:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1187', '58.48.110.175', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 21:08:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1188', '117.141.98.67', '华南', '800000', '钦州市', '450700', '中国', 'CN', '', '-1', '移动', '100025', '广西壮族自治区', '450000', '2017-11-09 21:09:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1189', '59.174.51.184', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 21:12:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1190', '112.11.196.123', '华东', '300000', '湖州市', '330500', '中国', 'CN', '', '-1', '移动', '100025', '浙江省', '330000', '2017-11-09 21:13:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1191', '112.11.196.123', '华东', '300000', '湖州市', '330500', '中国', 'CN', '', '-1', '移动', '100025', '浙江省', '330000', '2017-11-09 21:13:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1192', '112.11.196.123', '华东', '300000', '湖州市', '330500', '中国', 'CN', '', '-1', '移动', '100025', '浙江省', '330000', '2017-11-09 21:14:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1193', '112.11.196.123', '华东', '300000', '湖州市', '330500', '中国', 'CN', '', '-1', '移动', '100025', '浙江省', '330000', '2017-11-09 21:15:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1194', '125.120.160.3', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-09 21:30:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1195', '117.140.168.9', '华南', '800000', '玉林市', '450900', '中国', 'CN', '', '-1', '移动', '100025', '广西壮族自治区', '450000', '2017-11-09 21:32:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1196', '42.49.126.37', '华中', '400000', '湘潭市', '430300', '中国', 'CN', '', '-1', '联通', '100026', '湖南省', '430000', '2017-11-09 21:32:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1197', '122.96.73.19', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-09 21:41:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1198', '117.175.128.124', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '移动', '100025', '四川省', '510000', '2017-11-09 21:42:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1199', '106.116.41.208', '华北', '100000', '唐山市', '130200', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-09 21:47:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1200', '58.48.110.175', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 22:06:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1201', '39.168.136.126', '华东', '300000', '九江市', '360400', '中国', 'CN', '', '-1', '移动', '100025', '江西省', '360000', '2017-11-09 22:20:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1202', '121.35.188.187', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-09 22:29:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1203', '58.48.110.175', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 22:34:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1204', '1.204.69.38', '西南', '500000', '贵阳市', '520100', '中国', 'CN', '', '-1', '电信', '100017', '贵州省', '520000', '2017-11-09 22:49:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1205', '122.189.204.18', '华中', '400000', '宜昌市', '420500', '中国', 'CN', '', '-1', '联通', '100026', '湖北省', '420000', '2017-11-09 22:52:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1206', '183.228.61.166', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '移动', '100025', '重庆市', '500000', '2017-11-09 22:54:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1207', '27.18.210.123', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 23:07:24', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1208', '171.113.114.113', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-09 23:07:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1209', '223.87.246.117', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '移动', '100025', '四川省', '510000', '2017-11-09 23:09:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1210', '171.221.136.74', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-09 23:12:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1211', '60.26.3.86', '华北', '100000', '天津市', '120100', '中国', 'CN', '', '-1', '联通', '100026', '天津市', '120000', '2017-11-09 23:31:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1212', '183.67.58.182', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-10 00:04:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1213', '58.101.206.12', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '华数传媒', '1000333', '浙江省', '330000', '2017-11-10 00:16:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1214', '114.249.255.247', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-10 01:06:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1215', '114.249.255.247', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-10 01:12:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1216', '113.222.208.58', '华中', '400000', '株洲市', '430200', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-10 01:52:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1217', '115.60.14.63', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '联通', '100026', '河南省', '410000', '2017-11-10 02:48:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1218', '115.205.156.147', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 05:07:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1219', '223.104.172.19', '华东', '300000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '江西省', '360000', '2017-11-10 07:38:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1220', '58.48.110.168', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-10 07:49:45', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1221', '222.132.60.65', '华东', '300000', '潍坊市', '370700', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-10 08:28:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1222', '112.5.102.13', '华东', '300000', '三明市', '350400', '中国', 'CN', '', '-1', '移动', '100025', '福建省', '350000', '2017-11-10 08:31:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1223', '61.139.95.185', '西南', '500000', '绵阳市', '510700', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-10 08:33:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1224', '36.57.150.248', '华东', '300000', '马鞍山市', '340500', '中国', 'CN', '', '-1', '电信', '100017', '安徽省', '340000', '2017-11-10 08:34:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1225', '125.77.51.57', '华东', '300000', '福州市', '350100', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-10 08:36:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1226', '122.227.25.58', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 08:43:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1227', '60.213.7.196', '华东', '300000', '临沂市', '371300', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-10 08:43:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1228', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-10 08:43:45', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1229', '1.83.125.218', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-10 08:44:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1230', '123.234.83.186', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-10 08:51:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1231', '60.208.82.13', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-10 08:58:55', 'sys2');
-INSERT INTO `af_logininfo` VALUES ('1232', '122.227.25.58', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 09:00:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1233', '119.139.197.218', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 09:03:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1234', '210.22.92.162', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-10 09:03:53', '1');
-INSERT INTO `af_logininfo` VALUES ('1235', '119.139.197.218', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 09:04:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1236', '222.173.59.6', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-10 09:05:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1237', '120.1.247.208', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '联通', '100026', '河北省', '130000', '2017-11-10 09:12:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1238', '123.185.86.90', '东北', '200000', '大连市', '210200', '中国', 'CN', '', '-1', '电信', '100017', '辽宁省', '210000', '2017-11-10 09:13:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1239', '120.1.247.208', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '联通', '100026', '河北省', '130000', '2017-11-10 09:14:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1240', '120.12.164.67', '华北', '100000', '张家口市', '130700', '中国', 'CN', '', '-1', '联通', '100026', '河北省', '130000', '2017-11-10 09:26:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1241', '114.221.189.140', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-10 09:27:13', '1');
-INSERT INTO `af_logininfo` VALUES ('1242', '125.70.79.129', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-10 09:28:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1243', '117.14.93.149', '华北', '100000', '天津市', '120100', '中国', 'CN', '', '-1', '联通', '100026', '天津市', '120000', '2017-11-10 09:29:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1244', '180.118.173.254', '华东', '300000', '镇江市', '321100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-10 09:29:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1245', '218.205.169.194', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '移动', '100025', '北京市', '110000', '2017-11-10 09:36:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1246', '219.133.100.16', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 09:38:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1247', '221.0.28.176', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-10 09:46:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1248', '124.128.33.106', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-10 09:49:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1249', '113.70.181.157', '华南', '800000', '佛山市', '440600', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 09:53:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1250', '106.38.115.37', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-10 10:01:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1251', '114.243.4.200', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-10 10:04:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1252', '223.93.132.200', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '移动', '100025', '浙江省', '330000', '2017-11-10 10:06:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1253', '124.160.18.186', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '联通', '100026', '浙江省', '330000', '2017-11-10 10:09:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1254', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-10 10:12:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1255', '112.81.51.126', '华东', '300000', '苏州市', '320500', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-10 10:13:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1256', '1.81.247.162', '西北', '600000', '汉中市', '610700', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-10 10:14:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1257', '115.195.175.137', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 10:15:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1258', '115.195.175.137', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 10:15:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1259', '115.195.175.137', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 10:16:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1260', '106.83.244.48', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-10 10:17:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1261', '218.80.213.58', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 10:18:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1262', '58.214.7.166', '华东', '300000', '无锡市', '320200', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-10 10:23:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1263', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-10 10:26:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1264', '119.2.6.91', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-10 10:30:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1265', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-10 10:32:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1266', '180.167.34.210', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 10:33:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1267', '180.167.34.210', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 10:33:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1268', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-10 10:36:45', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1269', '124.207.239.6', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-10 10:36:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1270', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-10 10:38:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1271', '114.218.166.70', '华东', '300000', '苏州市', '320500', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-10 10:43:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1272', '218.2.110.117', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-10 10:43:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1273', '125.70.79.129', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-10 10:44:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1274', '218.2.110.117', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-10 10:44:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1275', '218.2.110.117', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-10 10:44:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1276', '43.224.45.73', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '皓宽网络', '1000337', '北京市', '110000', '2017-11-10 10:46:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1277', '114.251.235.14', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-10 10:46:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1278', '122.227.25.58', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 10:47:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1279', '202.106.49.22', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-10 10:52:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1280', '58.16.63.158', '西南', '500000', '贵阳市', '520100', '中国', 'CN', '', '-1', '联通', '100026', '贵州省', '520000', '2017-11-10 10:54:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1281', '183.207.217.225', '华东', '300000', '南通市', '320600', '中国', 'CN', '', '-1', '移动', '100025', '江苏省', '320000', '2017-11-10 10:58:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1282', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-10 11:03:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1283', '218.80.213.58', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 11:06:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1284', '58.246.27.114', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-10 11:08:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1285', '112.66.75.186', '华南', '800000', '海口市', '460100', '中国', 'CN', '', '-1', '电信', '100017', '海南省', '460000', '2017-11-10 11:15:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1286', '1.199.79.160', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-10 11:15:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1287', '101.17.211.76', '华北', '100000', '唐山市', '130200', '中国', 'CN', '', '-1', '联通', '100026', '河北省', '130000', '2017-11-10 11:17:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1288', '106.38.55.22', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-10 11:21:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1289', '61.133.171.59', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '电信', '100017', '安徽省', '340000', '2017-11-10 11:22:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1290', '112.54.84.218', '华东', '300000', '潍坊市', '370700', '中国', 'CN', '', '-1', '移动', '100025', '山东省', '370000', '2017-11-10 11:23:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1291', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-10 11:34:08', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1292', '1.204.230.76', '西南', '500000', '贵阳市', '520100', '中国', 'CN', '', '-1', '电信', '100017', '贵州省', '520000', '2017-11-10 11:34:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1293', '119.146.189.30', '华南', '800000', '珠海市', '440400', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 11:40:20', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1294', '183.184.200.115', '华北', '100000', '太原市', '140100', '中国', 'CN', '', '-1', '联通', '100026', '山西省', '140000', '2017-11-10 11:44:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1295', '121.35.186.128', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 11:49:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1296', '222.74.27.98', '华北', '100000', '呼和浩特市', '150100', '中国', 'CN', '', '-1', '电信', '100017', '内蒙古自治区', '150000', '2017-11-10 11:51:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1297', '223.166.86.205', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-10 11:56:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1298', '36.57.156.198', '华东', '300000', '马鞍山市', '340500', '中国', 'CN', '', '-1', '电信', '100017', '安徽省', '340000', '2017-11-10 11:57:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1299', '1.192.32.170', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-10 11:58:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1300', '116.8.54.160', '华南', '800000', '河池市', '451200', '中国', 'CN', '', '-1', '电信', '100017', '广西壮族自治区', '450000', '2017-11-10 12:03:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1301', '113.88.199.188', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 12:17:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1302', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-10 12:32:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1303', '222.93.240.32', '华东', '300000', '苏州市', '320500', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-10 12:43:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1304', '122.227.25.58', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 13:00:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1305', '219.142.140.210', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-10 13:08:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1306', '221.213.50.114', '西南', '500000', '昆明市', '530100', '中国', 'CN', '', '-1', '联通', '100026', '云南省', '530000', '2017-11-10 13:14:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1307', '220.189.207.22', '华东', '300000', '舟山市', '330900', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 13:32:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1308', '121.35.181.61', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 13:34:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1309', '119.2.4.202', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-10 13:42:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1310', '122.227.25.58', '华东', '300000', '金华市', '330700', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 13:52:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1311', '218.12.33.118', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '联通', '100026', '河北省', '130000', '2017-11-10 13:55:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1312', '115.198.243.87', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 13:57:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1313', '115.198.243.87', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 14:00:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1314', '180.168.57.138', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 14:02:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1315', '49.5.11.82', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '方正宽带', '100063', '北京市', '110000', '2017-11-10 14:05:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1316', '220.112.224.52', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '鹏博士', '1000143', '广东省', '440000', '2017-11-10 14:11:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1317', '61.241.196.90', '华东', '300000', '福州市', '350100', '中国', 'CN', '', '-1', '联通', '100026', '福建省', '350000', '2017-11-10 14:12:45', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1318', '27.154.169.158', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-10 14:13:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1319', '101.254.243.99', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-10 14:13:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1320', '120.42.82.40', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-10 14:13:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1321', '27.154.169.158', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-10 14:13:45', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1322', '120.42.82.40', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-10 14:14:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1323', '120.42.82.40', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-10 14:14:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1324', '180.173.43.223', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 14:14:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1325', '27.154.168.232', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-10 14:15:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1326', '218.247.253.241', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-10 14:17:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1327', '113.109.42.53', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 14:24:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1328', '60.191.78.236', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 14:31:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1329', '218.247.253.241', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-10 14:39:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1330', '180.173.43.223', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 14:40:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1331', '119.137.55.170', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 14:41:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1332', '219.142.102.162', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-10 14:43:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1333', '183.39.127.12', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 14:45:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1334', '61.178.32.26', '西北', '600000', '兰州市', '620100', '中国', 'CN', '', '-1', '电信', '100017', '甘肃省', '620000', '2017-11-10 14:47:24', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1335', '121.69.5.178', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-10 14:48:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1336', '115.173.87.230', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '重庆市', '500000', '2017-11-10 14:54:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1337', '61.164.75.234', '华东', '300000', '宁波市', '330200', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 14:58:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1338', '180.110.155.114', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-10 15:01:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1339', '113.76.168.205', '华南', '800000', '珠海市', '440400', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 15:03:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1340', '124.192.156.166', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-10 15:03:24', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1341', '183.39.233.20', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 15:04:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1342', '112.65.137.210', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-10 15:06:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1343', '58.211.69.206', '华东', '300000', '苏州市', '320500', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-10 15:06:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1344', '183.157.162.137', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 15:08:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1345', '218.59.187.28', '华东', '300000', '东营市', '370500', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-10 15:12:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1346', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-10 15:12:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1347', '223.166.187.212', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-10 15:13:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1348', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-10 15:13:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1349', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-10 15:14:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1350', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-10 15:14:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1351', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-10 15:15:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1352', '58.250.165.74', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-10 15:15:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1353', '116.24.81.176', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 15:15:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1354', '116.21.130.208', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 15:16:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1355', '171.221.128.242', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-10 15:16:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1356', '116.21.130.208', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 15:23:08', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1357', '218.2.110.117', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-10 15:23:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1358', '221.2.160.130', '华东', '300000', '威海市', '371000', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-10 15:26:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1359', '116.21.130.208', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 15:28:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1360', '221.2.160.130', '华东', '300000', '威海市', '371000', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-10 15:28:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1361', '223.104.20.99', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-10 15:28:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1362', '125.71.203.164', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-10 15:28:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1363', '125.71.203.164', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-10 15:29:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1364', '106.38.130.221', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-10 15:30:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1365', '116.21.130.244', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 15:30:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1366', '123.126.70.237', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-10 15:31:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1367', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-10 15:31:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1368', '116.21.130.208', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 15:34:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1369', '219.143.212.49', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-10 15:40:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1370', '171.214.215.161', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-10 15:45:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1371', '60.7.28.60', '华北', '100000', '秦皇岛市', '130300', '中国', 'CN', '', '-1', '联通', '100026', '河北省', '130000', '2017-11-10 15:48:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1372', '49.77.127.210', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-10 15:48:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1373', '115.171.233.122', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-10 15:53:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1374', '219.143.212.49', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-10 15:53:45', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1375', '116.21.130.244', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 15:58:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1376', '211.136.253.229', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-10 16:00:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1377', '116.21.130.208', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 16:04:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1378', '157.0.31.2', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-10 16:07:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1379', '119.79.155.96', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '科技网', '1000114', '湖北省', '420000', '2017-11-10 16:11:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1380', '58.243.17.26', '华东', '300000', '亳州市', '341600', '中国', 'CN', '', '-1', '联通', '100026', '安徽省', '340000', '2017-11-10 16:15:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1381', '183.16.188.97', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 16:17:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1382', '61.139.95.185', '西南', '500000', '绵阳市', '510700', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-10 16:17:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1383', '113.118.26.193', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 16:17:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1384', '113.118.26.193', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 16:18:20', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1385', '101.24.189.2', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '联通', '100026', '河北省', '130000', '2017-11-10 16:18:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1386', '118.242.16.9', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 16:18:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1387', '118.242.16.9', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 16:19:20', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1388', '113.118.25.107', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 16:19:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1389', '116.226.108.171', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 16:19:47', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1390', '118.242.16.9', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 16:19:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1391', '118.242.16.9', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 16:19:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1392', '58.216.138.250', '华东', '300000', '常州市', '320400', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-10 16:20:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1393', '183.157.162.138', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 16:20:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1394', '219.146.255.202', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-10 16:20:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1395', '118.242.16.9', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 16:20:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1396', '113.105.84.249', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 16:20:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1397', '58.243.17.26', '华东', '300000', '亳州市', '341600', '中国', 'CN', '', '-1', '联通', '100026', '安徽省', '340000', '2017-11-10 16:20:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1398', '118.242.16.9', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 16:20:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1399', '124.74.75.206', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 16:21:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1400', '113.246.89.209', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-10 16:21:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1401', '118.112.197.198', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-10 16:22:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1402', '183.133.230.14', '华东', '300000', '宁波市', '330200', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 16:22:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1403', '183.133.230.14', '华东', '300000', '宁波市', '330200', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 16:23:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1404', '180.169.3.178', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 16:23:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1405', '183.133.230.14', '华东', '300000', '宁波市', '330200', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 16:23:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1406', '183.133.230.14', '华东', '300000', '宁波市', '330200', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 16:24:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1407', '183.133.230.14', '华东', '300000', '宁波市', '330200', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 16:24:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1408', '58.212.209.149', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-10 16:24:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1409', '58.212.209.149', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-10 16:25:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1410', '61.150.43.173', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-10 16:26:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1411', '116.226.225.23', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 16:27:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1412', '180.102.21.123', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-10 16:27:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1413', '114.219.105.5', '华东', '300000', '苏州市', '320500', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-10 16:28:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1414', '111.196.145.151', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-10 16:30:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1415', '222.69.94.29', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 16:30:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1416', '61.145.173.11', '华南', '800000', '东莞市', '441900', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 16:30:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1417', '61.145.173.11', '华南', '800000', '东莞市', '441900', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 16:31:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1418', '182.42.65.187', '华东', '300000', '烟台市', '370600', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-10 16:33:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1419', '49.118.219.23', '西北', '600000', '乌鲁木齐市', '650100', '中国', 'CN', '', '-1', '电信', '100017', '新疆维吾尔自治区', '650000', '2017-11-10 16:34:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1420', '182.42.65.187', '华东', '300000', '烟台市', '370600', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-10 16:34:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1421', '117.36.23.220', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-10 16:36:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1422', '116.30.223.67', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 16:36:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1423', '183.230.162.7', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '移动', '100025', '重庆市', '500000', '2017-11-10 16:36:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1424', '117.36.23.220', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-10 16:38:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1425', '106.114.247.43', '华北', '100000', '石家庄市', '130100', '中国', 'CN', '', '-1', '电信', '100017', '河北省', '130000', '2017-11-10 16:39:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1426', '106.38.130.221', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-10 16:40:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1427', '180.169.41.94', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 16:42:24', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1428', '119.136.35.163', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 16:42:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1429', '116.16.105.36', '华南', '800000', '清远市', '441800', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 16:43:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1430', '221.237.152.81', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-10 16:47:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1431', '117.89.79.0', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-10 16:49:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1432', '124.128.33.50', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-10 16:53:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1433', '59.174.3.39', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-10 17:01:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1434', '61.186.220.246', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-10 17:03:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1435', '36.5.227.36', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '电信', '100017', '安徽省', '340000', '2017-11-10 17:05:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1436', '36.149.64.168', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '移动', '100025', '江苏省', '320000', '2017-11-10 17:09:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1437', '218.247.253.241', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-10 17:13:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1438', '61.141.82.63', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 17:14:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1439', '116.231.156.30', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 17:22:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1440', '120.41.236.244', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-10 17:23:20', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1441', '14.28.167.0', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 17:25:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1442', '219.134.115.15', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 17:30:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1443', '219.134.115.15', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 17:31:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1444', '219.134.115.15', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 17:31:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1445', '223.167.7.94', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-10 17:32:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1446', '120.193.5.99', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '移动', '100025', '浙江省', '330000', '2017-11-10 17:34:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1447', '182.148.57.131', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-10 17:35:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1448', '1.198.219.248', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-10 17:36:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1449', '180.173.136.98', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 17:39:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1450', '223.166.15.96', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-10 17:42:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1451', '124.126.149.135', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-10 17:42:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1452', '27.154.25.252', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-10 17:47:24', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1453', '221.205.136.32', '华北', '100000', '太原市', '140100', '中国', 'CN', '', '-1', '联通', '100026', '山西省', '140000', '2017-11-10 18:05:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1454', '222.249.239.83', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '皓宽网络', '1000337', '北京市', '110000', '2017-11-10 18:11:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1455', '223.104.20.99', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-10 18:27:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1456', '61.135.169.76', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-10 18:40:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1457', '113.111.5.156', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 18:44:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1458', '116.231.52.38', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 19:09:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1459', '61.132.138.216', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '电信', '100017', '安徽省', '340000', '2017-11-10 19:17:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1460', '114.242.249.181', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-10 19:20:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1461', '117.136.100.85', '华东', '300000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '安徽省', '340000', '2017-11-10 19:23:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1462', '60.119.14.237', '', '-1', '', '-1', '日本', 'JP', '', '-1', '', '-1', '', '-1', '2017-11-10 19:25:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1463', '111.47.245.197', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-10 19:26:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1464', '1.94.73.117', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-10 19:36:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1465', '117.136.100.85', '华东', '300000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '安徽省', '340000', '2017-11-10 19:51:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1466', '61.165.16.3', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 19:51:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1467', '183.38.249.5', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 19:57:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1468', '115.201.122.218', '华东', '300000', '台州市', '331000', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 20:43:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1469', '218.199.141.2', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-10 20:50:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1470', '113.120.54.31', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-10 21:05:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1471', '58.35.36.197', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 21:21:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1472', '60.176.175.145', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-10 21:27:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1473', '58.247.0.10', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-10 21:35:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1474', '111.202.177.110', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-10 22:08:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1475', '183.193.165.47', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '移动', '100025', '上海市', '310000', '2017-11-10 22:16:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1476', '58.48.110.168', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-10 22:39:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1477', '113.69.41.8', '华南', '800000', '佛山市', '440600', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 22:43:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1478', '58.48.110.168', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-10 22:43:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1479', '58.48.44.117', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-10 22:46:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1480', '103.13.245.215', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 22:46:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1481', '106.38.130.221', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-10 22:51:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1482', '106.38.130.221', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-10 22:52:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1483', '119.122.246.183', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-10 23:00:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1484', '180.171.239.132', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-10 23:23:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1485', '1.81.247.162', '西北', '600000', '汉中市', '610700', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-10 23:35:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1486', '223.11.118.188', '华北', '100000', '太原市', '140100', '中国', 'CN', '', '-1', '电信', '100017', '山西省', '140000', '2017-11-10 23:44:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1487', '180.139.113.12', '华南', '800000', '梧州市', '450400', '中国', 'CN', '', '-1', '电信', '100017', '广西壮族自治区', '450000', '2017-11-11 00:03:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1488', '125.118.251.59', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-11 00:09:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1489', '125.82.184.107', '西南', '500000', '重庆市', '500100', '中国', 'CN', '', '-1', '电信', '100017', '重庆市', '500000', '2017-11-11 00:28:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1490', '171.221.140.125', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-11 01:02:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1491', '223.104.20.82', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-11 01:03:12', 'admin');
-INSERT INTO `af_logininfo` VALUES ('1492', '219.217.246.26', '东北', '200000', '哈尔滨市', '230100', '中国', 'CN', '', '-1', '教育网', '100027', '黑龙江省', '230000', '2017-11-11 01:10:17', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1493', '182.201.173.178', '东北', '200000', '大连市', '210200', '中国', 'CN', '', '-1', '电信', '100017', '辽宁省', '210000', '2017-11-11 01:11:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1494', '112.96.33.52', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-11 03:11:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1495', '111.121.40.167', '西南', '500000', '贵阳市', '520100', '中国', 'CN', '', '-1', '电信', '100017', '贵州省', '520000', '2017-11-11 04:05:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1496', '115.171.94.193', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-11 07:07:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1497', '124.128.36.38', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-11 09:12:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1498', '124.128.36.38', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-11 09:12:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1499', '124.128.36.38', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-11 09:13:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1500', '124.128.36.38', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-11 09:13:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1501', '124.128.36.38', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-11 09:14:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1502', '124.128.36.38', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-11 09:14:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1503', '60.174.223.54', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '电信', '100017', '安徽省', '340000', '2017-11-11 09:32:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1504', '125.75.123.113', '西北', '600000', '天水市', '620500', '中国', 'CN', '', '-1', '电信', '100017', '甘肃省', '620000', '2017-11-11 09:41:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1505', '183.252.17.24', '华东', '300000', '福州市', '350100', '中国', 'CN', '', '-1', '移动', '100025', '福建省', '350000', '2017-11-11 09:57:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1506', '180.169.28.213', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-11 10:02:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1507', '120.41.17.243', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-11 10:07:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1508', '58.243.17.26', '华东', '300000', '亳州市', '341600', '中国', 'CN', '', '-1', '联通', '100026', '安徽省', '340000', '2017-11-11 10:11:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1509', '183.11.39.239', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-11 10:17:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1510', '220.191.161.30', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-11 10:23:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1511', '58.48.110.168', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-11 10:25:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1512', '120.230.68.114', '华南', '800000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-11 10:33:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1513', '222.174.177.229', '华东', '300000', '临沂市', '371300', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-11 10:34:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1514', '27.211.101.173', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-11 10:41:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1515', '61.164.46.82', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-11 10:49:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1516', '64.185.233.66', '西部', 'US_WT', '', '-1', '美国', 'US', '', '-1', '', '-1', '加利福尼亚州', 'US_CA', '2017-11-11 10:50:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1517', '115.220.45.88', '华东', '300000', '宁波市', '330200', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-11 10:53:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1518', '202.108.31.55', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-11 10:59:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1519', '118.120.83.148', '西南', '500000', '南充市', '511300', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-11 11:35:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1520', '117.136.79.46', '华南', '800000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-11 11:41:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1521', '223.104.20.82', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-11 11:41:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1522', '223.104.20.82', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-11 11:41:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1523', '119.80.184.129', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '皓宽网络', '1000337', '北京市', '110000', '2017-11-11 11:49:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1524', '202.108.31.55', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-11 11:51:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1525', '36.7.144.27', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '电信', '100017', '安徽省', '340000', '2017-11-11 11:58:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1526', '211.97.11.160', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-11 12:01:57', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1527', '114.249.231.24', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-11 12:02:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1528', '110.177.5.244', '华北', '100000', '太原市', '140100', '中国', 'CN', '', '-1', '电信', '100017', '山西省', '140000', '2017-11-11 12:08:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1529', '223.72.94.112', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '移动', '100025', '北京市', '110000', '2017-11-11 12:29:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1530', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-11 12:42:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1531', '61.164.46.82', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-11 13:03:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1532', '218.201.111.122', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '移动', '100025', '山东省', '370000', '2017-11-11 13:09:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1533', '58.57.192.174', '华东', '300000', '菏泽市', '371700', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-11 13:34:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1534', '60.174.223.54', '华东', '300000', '合肥市', '340100', '中国', 'CN', '', '-1', '电信', '100017', '安徽省', '340000', '2017-11-11 13:41:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1535', '111.121.73.9', '西南', '500000', '贵阳市', '520100', '中国', 'CN', '', '-1', '电信', '100017', '贵州省', '520000', '2017-11-11 13:42:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1536', '120.85.130.182', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-11 13:57:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1537', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-11 13:57:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1538', '183.238.25.252', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-11 14:00:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1539', '110.53.89.6', '华中', '400000', '衡阳市', '430400', '中国', 'CN', '', '-1', '联通', '100026', '湖南省', '430000', '2017-11-11 14:02:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1540', '120.230.70.121', '华南', '800000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-11 14:14:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1541', '123.112.101.44', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-11 14:14:58', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1542', '183.204.65.233', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '移动', '100025', '河南省', '410000', '2017-11-11 14:22:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1543', '119.181.24.249', '华东', '300000', '济宁市', '370800', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-11 14:27:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1544', '118.26.16.188', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-11 14:33:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1545', '182.18.73.162', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '皓宽网络', '1000337', '北京市', '110000', '2017-11-11 14:34:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1546', '61.136.118.8', '华中', '400000', '安阳市', '410500', '中国', 'CN', '', '-1', '联通', '100026', '河南省', '410000', '2017-11-11 14:38:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1547', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-11 15:00:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1548', '182.244.184.100', '西南', '500000', '曲靖市', '530300', '中国', 'CN', '', '-1', '电信', '100017', '云南省', '530000', '2017-11-11 15:01:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1549', '119.164.15.209', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-11 15:12:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1550', '182.119.198.87', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '联通', '100026', '河南省', '410000', '2017-11-11 15:29:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1551', '113.132.9.245', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-11 15:33:24', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1552', '111.113.5.110', '西北', '600000', '银川市', '640100', '中国', 'CN', '', '-1', '电信', '100017', '宁夏回族自治区', '640000', '2017-11-11 15:34:50', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1553', '125.70.254.70', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '电信', '100017', '四川省', '510000', '2017-11-11 15:42:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1554', '113.134.72.100', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-11 15:53:34', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1555', '111.77.228.63', '华东', '300000', '赣州市', '360700', '中国', 'CN', '', '-1', '电信', '100017', '江西省', '360000', '2017-11-11 15:55:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1556', '120.230.70.121', '华南', '800000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-11 16:04:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1557', '180.102.117.5', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-11 16:06:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1558', '120.230.70.121', '华南', '800000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '广东省', '440000', '2017-11-11 16:13:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1559', '112.94.26.71', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-11 16:17:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1560', '125.95.207.159', '华南', '800000', '佛山市', '440600', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-11 16:29:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1561', '124.65.197.66', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-11 16:40:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1562', '121.69.72.170', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-11 16:48:53', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1563', '211.161.240.233', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '上海市', '310000', '2017-11-11 16:54:06', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1564', '211.161.248.194', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '上海市', '310000', '2017-11-11 16:55:40', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1565', '117.36.75.174', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-11 16:59:56', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1566', '113.132.9.245', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-11 17:29:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1567', '59.56.123.170', '华东', '300000', '福州市', '350100', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-11 17:47:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1568', '117.88.35.97', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-11 17:58:07', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1569', '101.233.151.114', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '鹏博士', '1000143', '广东省', '440000', '2017-11-11 19:16:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1570', '111.221.177.248', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '天威', '100076', '广东省', '440000', '2017-11-11 19:39:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1571', '61.174.171.34', '华东', '300000', '宁波市', '330200', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-11 19:48:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1572', '111.221.177.248', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '天威', '100076', '广东省', '440000', '2017-11-11 19:50:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1573', '61.174.171.34', '华东', '300000', '宁波市', '330200', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-11 19:50:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1574', '120.42.169.8', '华东', '300000', '泉州市', '350500', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-11 19:53:24', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1575', '113.57.245.176', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '联通', '100026', '湖北省', '420000', '2017-11-11 20:35:48', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1576', '183.62.254.108', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-11 20:36:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1577', '183.62.254.108', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-11 20:40:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1578', '61.174.171.34', '华东', '300000', '宁波市', '330200', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-11 20:44:08', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1579', '180.102.213.27', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-11 20:51:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1580', '120.37.221.18', '华东', '300000', '莆田市', '350300', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-11 21:17:05', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1581', '27.37.188.183', '华南', '800000', '东莞市', '441900', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-11 21:42:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1582', '110.52.17.24', '华中', '400000', '益阳市', '430900', '中国', 'CN', '', '-1', '联通', '100026', '湖南省', '430000', '2017-11-11 21:43:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1583', '113.138.55.61', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-11 21:46:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1584', '112.86.254.31', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-11 21:57:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1585', '183.11.38.247', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-11 22:00:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1586', '112.5.238.188', '华东', '300000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '福建省', '350000', '2017-11-11 22:02:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1587', '58.48.110.172', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-11 22:06:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1588', '117.69.52.60', '华东', '300000', '淮南市', '340400', '中国', 'CN', '', '-1', '电信', '100017', '安徽省', '340000', '2017-11-11 22:40:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1589', '101.227.102.14', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-11 22:41:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1590', '113.132.9.245', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-11 22:42:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1591', '61.174.171.34', '华东', '300000', '宁波市', '330200', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-11 22:50:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1592', '27.38.9.94', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-11 22:50:39', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1593', '124.126.17.107', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '电信', '100017', '北京市', '110000', '2017-11-11 22:51:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1594', '223.167.141.57', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '联通', '100026', '上海市', '310000', '2017-11-11 23:01:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1595', '111.196.240.43', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-11 23:35:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1596', '123.171.3.179', '华东', '300000', '聊城市', '371500', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-11 23:46:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1597', '1.25.148.69', '华北', '100000', '呼和浩特市', '150100', '中国', 'CN', '', '-1', '联通', '100026', '内蒙古自治区', '150000', '2017-11-11 23:56:20', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1598', '58.251.231.60', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-12 00:08:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1599', '61.140.232.167', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-12 00:14:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1600', '119.129.73.101', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-12 00:20:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1601', '125.79.46.3', '华东', '300000', '漳州市', '350600', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-12 01:03:27', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1602', '112.96.109.203', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '联通', '100026', '广东省', '440000', '2017-11-12 01:53:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1603', '183.11.38.247', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-12 02:29:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1604', '14.223.160.175', '华南', '800000', '佛山市', '440600', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-12 08:25:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1605', '14.153.76.174', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-12 09:33:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1606', '223.104.20.69', '华中', '400000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '湖北省', '420000', '2017-11-12 09:42:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1607', '118.247.43.27', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-12 10:16:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1608', '114.244.87.148', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-12 10:20:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1609', '111.58.93.116', '华南', '800000', '柳州市', '450200', '中国', 'CN', '', '-1', '移动', '100025', '广西壮族自治区', '450000', '2017-11-12 10:40:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1610', '180.171.215.79', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-12 11:02:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1611', '180.171.215.79', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-12 11:05:31', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1612', '36.36.114.241', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '天威', '100076', '广东省', '440000', '2017-11-12 11:07:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1613', '175.167.154.32', '东北', '200000', '沈阳市', '210100', '中国', 'CN', '', '-1', '联通', '100026', '辽宁省', '210000', '2017-11-12 11:11:30', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1614', '222.88.142.161', '华中', '400000', '安阳市', '410500', '中国', 'CN', '', '-1', '电信', '100017', '河南省', '410000', '2017-11-12 11:28:52', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1615', '113.140.249.80', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '电信', '100017', '陕西省', '610000', '2017-11-12 11:49:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1616', '221.229.242.98', '华东', '300000', '徐州市', '320300', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-12 12:12:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1617', '183.11.38.247', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-12 12:23:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1618', '180.124.138.180', '华东', '300000', '徐州市', '320300', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-12 12:37:09', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1619', '124.164.241.29', '华北', '100000', '晋城市', '140500', '中国', 'CN', '', '-1', '联通', '100026', '山西省', '140000', '2017-11-12 12:48:24', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1620', '220.112.14.11', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '鹏博士', '1000143', '广东省', '440000', '2017-11-12 12:53:42', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1621', '117.136.64.85', '西南', '500000', '', '-1', '中国', 'CN', '', '-1', '移动', '100025', '四川省', '510000', '2017-11-12 13:12:21', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1622', '119.122.247.215', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-12 13:44:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1623', '27.17.72.46', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-12 14:30:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1624', '123.113.56.11', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-12 14:39:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1625', '123.113.56.11', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-12 14:44:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1626', '183.204.86.120', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '移动', '100025', '河南省', '410000', '2017-11-12 14:52:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1627', '113.116.51.117', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-12 14:57:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1628', '115.60.81.65', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '联通', '100026', '河南省', '410000', '2017-11-12 14:59:29', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1629', '101.88.228.129', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '电信', '100017', '上海市', '310000', '2017-11-12 15:02:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1630', '125.79.46.3', '华东', '300000', '漳州市', '350600', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-12 15:11:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1631', '119.41.208.169', '华南', '800000', '海口市', '460100', '中国', 'CN', '', '-1', '电信', '100017', '海南省', '460000', '2017-11-12 15:17:15', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1632', '118.76.179.17', '华北', '100000', '晋城市', '140500', '中国', 'CN', '', '-1', '联通', '100026', '山西省', '140000', '2017-11-12 15:27:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1633', '101.104.55.55', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '广东省', '440000', '2017-11-12 15:39:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1634', '59.44.224.229', '东北', '200000', '铁岭市', '211200', '中国', 'CN', '', '-1', '电信', '100017', '辽宁省', '210000', '2017-11-12 15:41:23', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1635', '27.29.12.189', '华中', '400000', '黄冈市', '421100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-12 15:45:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1636', '118.206.227.146', '华中', '400000', '长沙市', '430100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '湖南省', '430000', '2017-11-12 15:49:24', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1637', '121.32.122.96', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-12 16:22:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1638', '183.132.196.183', '华东', '300000', '宁波市', '330200', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-12 16:23:01', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1639', '124.207.129.194', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '北京市', '110000', '2017-11-12 16:48:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1640', '180.110.61.101', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-12 16:52:19', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1641', '61.140.183.240', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-12 17:18:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1642', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-12 18:18:00', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1643', '110.152.236.232', '西北', '600000', '乌鲁木齐市', '650100', '中国', 'CN', '', '-1', '电信', '100017', '新疆维吾尔自治区', '650000', '2017-11-12 19:11:10', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1644', '60.222.128.172', '华北', '100000', '运城市', '140800', '中国', 'CN', '', '-1', '联通', '100026', '山西省', '140000', '2017-11-12 19:24:43', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1645', '113.222.211.62', '华中', '400000', '株洲市', '430200', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-12 19:50:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1646', '211.161.245.29', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '上海市', '310000', '2017-11-12 20:21:46', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1647', '101.244.77.86', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '鹏博士', '1000143', '上海市', '310000', '2017-11-12 20:46:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1648', '123.171.250.164', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '电信', '100017', '山东省', '370000', '2017-11-12 20:57:41', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1649', '218.26.72.126', '华北', '100000', '晋中市', '140700', '中国', 'CN', '', '-1', '联通', '100026', '山西省', '140000', '2017-11-12 21:06:36', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1650', '116.22.1.25', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-12 21:07:20', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1651', '218.199.141.15', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-12 21:12:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1652', '218.26.72.126', '华北', '100000', '晋中市', '140700', '中国', 'CN', '', '-1', '联通', '100026', '山西省', '140000', '2017-11-12 21:17:22', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1653', '117.158.220.93', '华中', '400000', '郑州市', '410100', '中国', 'CN', '', '-1', '移动', '100025', '河南省', '410000', '2017-11-12 21:20:49', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1654', '36.24.241.136', '华东', '300000', '杭州市', '330100', '中国', 'CN', '', '-1', '电信', '100017', '浙江省', '330000', '2017-11-12 21:22:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1655', '112.86.254.31', '华东', '300000', '南京市', '320100', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-12 21:27:54', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1656', '117.73.144.79', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '方正宽带', '100063', '北京市', '110000', '2017-11-12 21:28:03', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1657', '180.116.61.247', '华东', '300000', '常州市', '320400', '中国', 'CN', '', '-1', '电信', '100017', '江苏省', '320000', '2017-11-12 21:38:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1658', '112.231.58.75', '华东', '300000', '济南市', '370100', '中国', 'CN', '', '-1', '联通', '100026', '山东省', '370000', '2017-11-12 21:45:20', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1659', '222.35.129.139', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '铁通', '100020', '北京市', '110000', '2017-11-12 21:54:28', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1660', '117.174.30.99', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '移动', '100025', '四川省', '510000', '2017-11-12 22:07:33', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1661', '117.174.30.99', '西南', '500000', '成都市', '510100', '中国', 'CN', '', '-1', '移动', '100025', '四川省', '510000', '2017-11-12 22:14:25', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1662', '14.25.38.11', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-12 22:20:20', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1663', '120.41.212.131', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-12 22:49:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1664', '58.48.110.174', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-12 22:54:51', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1665', '171.113.252.209', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '电信', '100017', '湖北省', '420000', '2017-11-12 22:57:13', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1666', '183.52.107.87', '华南', '800000', '江门市', '440700', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-12 22:57:44', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1667', '183.52.107.87', '华南', '800000', '江门市', '440700', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-12 22:58:14', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1668', '106.122.196.185', '华东', '300000', '厦门市', '350200', '中国', 'CN', '', '-1', '电信', '100017', '福建省', '350000', '2017-11-12 23:39:37', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1669', '125.37.144.29', '华北', '100000', '天津市', '120100', '中国', 'CN', '', '-1', '联通', '100026', '天津市', '120000', '2017-11-12 23:52:32', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1670', '113.91.143.6', '华南', '800000', '深圳市', '440300', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-12 23:53:04', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1671', '180.139.176.34', '华南', '800000', '南宁市', '450100', '中国', 'CN', '', '-1', '电信', '100017', '广西壮族自治区', '450000', '2017-11-13 01:07:59', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1672', '114.254.132.245', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '联通', '100026', '北京市', '110000', '2017-11-13 02:44:55', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1673', '58.62.92.33', '华南', '800000', '广州市', '440100', '中国', 'CN', '', '-1', '电信', '100017', '广东省', '440000', '2017-11-13 02:57:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1674', '59.46.211.141', '东北', '200000', '大连市', '210200', '中国', 'CN', '', '-1', '电信', '100017', '辽宁省', '210000', '2017-11-13 07:49:11', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1675', '59.46.211.141', '东北', '200000', '大连市', '210200', '中国', 'CN', '', '-1', '电信', '100017', '辽宁省', '210000', '2017-11-13 07:59:35', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1676', '220.170.143.3', '华中', '400000', '郴州市', '431000', '中国', 'CN', '', '-1', '电信', '100017', '湖南省', '430000', '2017-11-13 08:17:12', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1677', '58.240.220.166', '华东', '300000', '苏州市', '320500', '中国', 'CN', '', '-1', '联通', '100026', '江苏省', '320000', '2017-11-13 08:18:26', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1678', '58.132.169.69', '华北', '100000', '北京市', '110100', '中国', 'CN', '', '-1', '皓宽网络', '1000337', '北京市', '110000', '2017-11-13 08:24:38', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1679', '223.81.139.233', '华东', '300000', '青岛市', '370200', '中国', 'CN', '', '-1', '移动', '100025', '山东省', '370000', '2017-11-13 08:31:16', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1680', '202.120.23.78', '华东', '300000', '上海市', '310100', '中国', 'CN', '', '-1', '教育网', '100027', '上海市', '310000', '2017-11-13 08:45:02', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1681', '123.139.22.71', '西北', '600000', '西安市', '610100', '中国', 'CN', '', '-1', '联通', '100026', '陕西省', '610000', '2017-11-13 08:49:18', 'sys1');
-INSERT INTO `af_logininfo` VALUES ('1682', '211.69.197.177', '华中', '400000', '武汉市', '420100', '中国', 'CN', '', '-1', '教育网', '100027', '湖北省', '420000', '2017-11-13 08:51:58', 'sys1');
+  `ip` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `area` varchar(8) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `area_id` varchar(8) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `city` varchar(8) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `city_id` varchar(8) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `country` varchar(8) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `country_id` varchar(8) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `county` varchar(8) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `county_id` varchar(8) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `isp` varchar(8) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `isp_id` varchar(8) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `region` varchar(8) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `region_id` varchar(8) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `visit_time` datetime(0) NULL DEFAULT NULL,
+  `user_login_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `type` int(8) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5229 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for af_plugin
 -- ----------------------------
 DROP TABLE IF EXISTS `af_plugin`;
-CREATE TABLE `af_plugin` (
+CREATE TABLE `af_plugin`  (
   `id` int(8) NOT NULL AUTO_INCREMENT COMMENT '主键，自增',
-  `sys` varchar(8) COLLATE utf8_bin NOT NULL COMMENT '系统号',
-  `name` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '名称',
-  `namee` varchar(16) COLLATE utf8_bin DEFAULT NULL COMMENT '英文名',
-  `namec` varchar(16) COLLATE utf8_bin DEFAULT NULL COMMENT '中文名',
-  `titlee` varchar(16) COLLATE utf8_bin DEFAULT NULL COMMENT '英文标题',
-  `titlec` varchar(16) COLLATE utf8_bin DEFAULT NULL COMMENT '中文标题',
+  `sys` varchar(8) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '系统号',
+  `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '名称',
+  `namee` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '英文名',
+  `namec` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '中文名',
+  `titlee` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '英文标题',
+  `titlec` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '中文标题',
   `autorun` int(4) NOT NULL COMMENT '是否自动运行',
-  `plugin` varchar(128) COLLATE utf8_bin NOT NULL COMMENT '插件名',
-  `dir` varchar(128) COLLATE utf8_bin NOT NULL COMMENT '相对路径',
-  `jsurl` varchar(128) COLLATE utf8_bin NOT NULL COMMENT 'js名称',
-  `htmleurl` varchar(128) COLLATE utf8_bin DEFAULT NULL COMMENT 'htmle名称',
-  `htmlcurl` varchar(128) COLLATE utf8_bin DEFAULT NULL COMMENT 'htmlc名称',
-  `icon` varchar(64) COLLATE utf8_bin DEFAULT NULL COMMENT '图标',
+  `plugin` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '插件名',
+  `dir` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '相对路径',
+  `jsurl` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'js名称',
+  `htmleurl` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT 'htmle名称',
+  `htmlcurl` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT 'htmlc名称',
+  `icon` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '图标',
   `status` int(4) NOT NULL COMMENT '状态',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- ----------------------------
--- Records of af_plugin
--- ----------------------------
-INSERT INTO `af_plugin` VALUES ('1', '01', 'LeftMenuManage', null, null, null, null, '0', 'Fv.plugin.LeftMenuManage', '/Sys/plugin/SysConfig/LeftMenuManage/', 'LeftMenuManage.js', null, 'LeftMenuManage.html', null, '1');
-INSERT INTO `af_plugin` VALUES ('2', '01', '登陆日志管理', null, null, null, null, '0', 'Fv.plugin.LoginInfoManage', '/Sys/plugin/SysConfig/LoginInfoManage/', 'LoginInfoManage.js', null, 'LoginInfoManage.html', null, '1');
-INSERT INTO `af_plugin` VALUES ('3', '01', '系统更新日志管理', null, null, null, null, '0', 'Fv.plugin.SysUpdateLogManage', '/Sys/plugin/SysConfig/SysUpdateLogManage/', 'SysUpdateLogManage.js', null, 'SysUpdateLogManage.html', null, '1');
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `name`(`name`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for af_resource
 -- ----------------------------
 DROP TABLE IF EXISTS `af_resource`;
-CREATE TABLE `af_resource` (
+CREATE TABLE `af_resource`  (
   `id` int(8) NOT NULL AUTO_INCREMENT COMMENT '主键，自增',
-  `parent_id` int(8) DEFAULT NULL COMMENT '父id',
-  `namee` varchar(32) COLLATE utf8_bin DEFAULT NULL COMMENT '英文名',
-  `namec` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '中文名',
+  `parent_id` int(8) NULL DEFAULT NULL COMMENT '父id',
+  `namee` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '英文名',
+  `namec` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '中文名',
   `status` int(4) NOT NULL COMMENT '状态：1表示有效，0表示无效',
-  `link_address` varchar(128) COLLATE utf8_bin DEFAULT NULL COMMENT '请求接口',
-  `icon` varchar(64) COLLATE utf8_bin DEFAULT NULL COMMENT '图标',
-  `level` int(4) DEFAULT NULL COMMENT '级别',
-  `type` int(4) DEFAULT NULL COMMENT '类型',
-  `remark` varchar(128) COLLATE utf8_bin DEFAULT NULL COMMENT '备注',
-  `creator` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '创建者',
+  `link_address` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '请求接口',
+  `icon` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '图标',
+  `level` int(4) NULL DEFAULT NULL COMMENT '级别',
+  `type` int(4) NULL DEFAULT NULL COMMENT '类型',
+  `remark` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '备注',
+  `creator` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
   `creator_id` int(8) NOT NULL COMMENT '创建者id',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
-  `modifier` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '修改者',
+  `create_time` datetime(0) NOT NULL COMMENT '创建时间',
+  `modifier` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '修改者',
   `modifier_id` int(16) NOT NULL COMMENT '修改者id',
-  `modifier_time` datetime NOT NULL COMMENT '修改时间',
-  PRIMARY KEY (`id`),
-  KEY `user_id_FK_ID_resource_creator_id` (`creator_id`),
-  KEY `user_id_FK_ID_resource_modifier_id` (`modifier_id`),
-  CONSTRAINT `user_id_FK_ID_resource_creator_id` FOREIGN KEY (`creator_id`) REFERENCES `af_user` (`id`),
-  CONSTRAINT `user_id_FK_ID_resource_modifier_id` FOREIGN KEY (`modifier_id`) REFERENCES `af_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- ----------------------------
--- Records of af_resource
--- ----------------------------
-INSERT INTO `af_resource` VALUES ('3', null, null, '获取系统菜单', '1', '/sys/getMenu/*', null, null, null, null, 'admin', '-1', '2017-10-29 11:04:19', 'admin', '-1', '2017-10-29 11:04:19');
-INSERT INTO `af_resource` VALUES ('4', null, null, '获取菜单列表', '1', '/menu/getMenuList/', null, null, null, null, 'admin', '-1', '2017-10-29 11:04:19', 'admin', '-1', '2017-10-29 11:04:19');
-INSERT INTO `af_resource` VALUES ('5', null, null, '删除菜单', '1', '/menu/deleteMenu/', null, null, null, null, 'admin', '-1', '2017-10-31 15:38:06', 'admin', '-1', '2017-10-31 15:38:06');
-INSERT INTO `af_resource` VALUES ('6', null, null, '获取所有登录日志', '1', '/log/allLoginLog/', null, null, null, null, 'admin', '-1', '2017-10-31 20:16:13', 'admin', '-1', '2017-10-31 20:16:13');
-INSERT INTO `af_resource` VALUES ('7', null, null, '获取某用户登录日志', '1', '/log/userLoginLog/', null, null, null, null, 'admin', '-1', '2017-10-31 20:16:13', 'admin', '-1', '2017-10-31 20:16:13');
-INSERT INTO `af_resource` VALUES ('8', null, null, '登录信息图表', '1', '/log/loginInfoCharts/', null, null, null, null, 'admin', '-1', '2017-11-02 17:25:33', 'admin', '-1', '2017-11-02 17:25:33');
+  `modifier_time` datetime(0) NOT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `user_id_FK_ID_resource_creator_id`(`creator_id`) USING BTREE,
+  INDEX `user_id_FK_ID_resource_modifier_id`(`modifier_id`) USING BTREE,
+  CONSTRAINT `user_id_FK_ID_resource_creator_id` FOREIGN KEY (`creator_id`) REFERENCES `af_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `user_id_FK_ID_resource_modifier_id` FOREIGN KEY (`modifier_id`) REFERENCES `af_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for af_role
 -- ----------------------------
 DROP TABLE IF EXISTS `af_role`;
-CREATE TABLE `af_role` (
+CREATE TABLE `af_role`  (
   `id` int(8) NOT NULL AUTO_INCREMENT COMMENT '主键自增',
-  `role_name` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '角色名称',
+  `role_name` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '角色名称',
   `status` int(1) NOT NULL COMMENT '表示角色的状态，0无效， 1表示有效',
-  `creator` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '创建者',
+  `creator` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
   `creator_id` int(8) NOT NULL COMMENT '创建者id',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
-  `modifier` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '修改者',
+  `create_time` datetime(0) NOT NULL COMMENT '创建时间',
+  `modifier` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '修改者',
   `mofifier_id` int(16) NOT NULL COMMENT '修改者id',
-  `modifier_time` datetime NOT NULL COMMENT '修改时间',
-  PRIMARY KEY (`id`),
-  KEY `user_id_FK_KEY_creator_id` (`creator_id`),
-  KEY `user_id_FK_KEY_modifier_id` (`mofifier_id`),
-  CONSTRAINT `user_id_FK_KEY_creator_id` FOREIGN KEY (`creator_id`) REFERENCES `af_user` (`id`),
-  CONSTRAINT `user_id_FK_KEY_modifier_id` FOREIGN KEY (`mofifier_id`) REFERENCES `af_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- ----------------------------
--- Records of af_role
--- ----------------------------
-INSERT INTO `af_role` VALUES ('1', 'administrator', '1', 'admin', '-1', '2017-10-25 14:50:16', 'admin', '-1', '2017-10-25 14:50:16');
-INSERT INTO `af_role` VALUES ('2', 'sys', '1', 'admin', '-1', '2017-10-29 15:49:41', 'admin', '-1', '2017-10-29 15:49:41');
+  `modifier_time` datetime(0) NOT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `user_id_FK_KEY_creator_id`(`creator_id`) USING BTREE,
+  INDEX `user_id_FK_KEY_modifier_id`(`mofifier_id`) USING BTREE,
+  CONSTRAINT `user_id_FK_KEY_creator_id` FOREIGN KEY (`creator_id`) REFERENCES `af_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `user_id_FK_KEY_modifier_id` FOREIGN KEY (`mofifier_id`) REFERENCES `af_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for af_role_plugin
 -- ----------------------------
 DROP TABLE IF EXISTS `af_role_plugin`;
-CREATE TABLE `af_role_plugin` (
+CREATE TABLE `af_role_plugin`  (
   `id` int(8) NOT NULL AUTO_INCREMENT COMMENT '主键，自增',
   `role_id` int(8) NOT NULL COMMENT '角色id',
   `plugin_id` int(8) NOT NULL COMMENT '资源id',
-  `creator` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '创建者',
+  `creator` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
   `creator_id` int(8) NOT NULL COMMENT '创建者id',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
-  `modifier` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '修改者',
+  `create_time` datetime(0) NOT NULL COMMENT '创建时间',
+  `modifier` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '修改者',
   `modifier_id` int(8) NOT NULL COMMENT '修改者id',
-  `modifier_time` datetime NOT NULL COMMENT '修改时间',
-  PRIMARY KEY (`id`),
-  KEY `plugin_id_FK_ID_role_plugin_plugin_id` (`plugin_id`),
-  KEY `role_id_FK_ID_role_plugin_role_id` (`role_id`),
-  KEY `user_id_FK_ID_role_plugin_creator_id` (`creator_id`),
-  KEY `user_id_FK_ID_role_plugin_modifier_id` (`modifier_id`),
-  CONSTRAINT `plugin_id_FK_ID_role_plugin_plugin_id` FOREIGN KEY (`plugin_id`) REFERENCES `af_plugin` (`id`),
-  CONSTRAINT `role_id_FK_ID_role_plugin_role_id` FOREIGN KEY (`role_id`) REFERENCES `af_role` (`id`),
-  CONSTRAINT `user_id_FK_ID_role_plugin_creator_id` FOREIGN KEY (`creator_id`) REFERENCES `af_user` (`id`),
-  CONSTRAINT `user_id_FK_ID_role_plugin_modifier_id` FOREIGN KEY (`modifier_id`) REFERENCES `af_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- ----------------------------
--- Records of af_role_plugin
--- ----------------------------
-INSERT INTO `af_role_plugin` VALUES ('1', '1', '1', 'admin', '-1', '2017-10-30 21:00:44', 'admin', '-1', '2017-10-30 21:00:44');
-INSERT INTO `af_role_plugin` VALUES ('2', '1', '2', 'admin', '-1', '2017-10-31 21:14:47', 'admin', '-1', '2017-10-31 21:14:47');
-INSERT INTO `af_role_plugin` VALUES ('3', '1', '3', 'admin', '-1', '2017-11-01 16:26:25', 'admin', '-1', '2017-11-01 16:26:25');
-INSERT INTO `af_role_plugin` VALUES ('4', '2', '1', 'admin', '-1', '2017-11-02 10:25:02', 'admin', '-1', '2017-11-02 10:25:02');
-INSERT INTO `af_role_plugin` VALUES ('5', '2', '2', 'admin', '-1', '2017-11-02 15:32:08', 'admin', '-1', '2017-11-02 15:32:08');
-INSERT INTO `af_role_plugin` VALUES ('6', '2', '3', 'admin', '-1', '2017-11-02 15:32:08', 'admin', '-1', '2017-11-02 15:32:08');
+  `modifier_time` datetime(0) NOT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `plugin_id_FK_ID_role_plugin_plugin_id`(`plugin_id`) USING BTREE,
+  INDEX `role_id_FK_ID_role_plugin_role_id`(`role_id`) USING BTREE,
+  INDEX `user_id_FK_ID_role_plugin_creator_id`(`creator_id`) USING BTREE,
+  INDEX `user_id_FK_ID_role_plugin_modifier_id`(`modifier_id`) USING BTREE,
+  CONSTRAINT `plugin_id_FK_ID_role_plugin_plugin_id` FOREIGN KEY (`plugin_id`) REFERENCES `af_plugin` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `role_id_FK_ID_role_plugin_role_id` FOREIGN KEY (`role_id`) REFERENCES `af_role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `user_id_FK_ID_role_plugin_creator_id` FOREIGN KEY (`creator_id`) REFERENCES `af_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `user_id_FK_ID_role_plugin_modifier_id` FOREIGN KEY (`modifier_id`) REFERENCES `af_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for af_role_resource
 -- ----------------------------
 DROP TABLE IF EXISTS `af_role_resource`;
-CREATE TABLE `af_role_resource` (
+CREATE TABLE `af_role_resource`  (
   `id` int(8) NOT NULL AUTO_INCREMENT COMMENT '主键，自增',
   `role_id` int(8) NOT NULL COMMENT '角色id',
   `resource_id` int(8) NOT NULL COMMENT '资源id',
-  `creator` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '创建者',
+  `creator` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
   `creator_id` int(8) NOT NULL COMMENT '创建者id',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
-  `modifier` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '修改者',
+  `create_time` datetime(0) NOT NULL COMMENT '创建时间',
+  `modifier` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '修改者',
   `modifier_id` int(8) NOT NULL COMMENT '修改者id',
-  `modifier_time` datetime NOT NULL COMMENT '修改时间',
-  PRIMARY KEY (`id`),
-  KEY `resource_id_FK_ID_role_resource_resource_id` (`resource_id`),
-  KEY `role_id_FK_ID_role_resource_role_id` (`role_id`),
-  KEY `user_id_FK_ID_role_resource_creator_id` (`creator_id`),
-  KEY `user_id_FK_ID_role_resource_modifier_id` (`modifier_id`),
-  CONSTRAINT `resource_id_FK_ID_role_resource_resource_id` FOREIGN KEY (`resource_id`) REFERENCES `af_resource` (`id`),
-  CONSTRAINT `role_id_FK_ID_role_resource_role_id` FOREIGN KEY (`role_id`) REFERENCES `af_role` (`id`),
-  CONSTRAINT `user_id_FK_ID_role_resource_creator_id` FOREIGN KEY (`creator_id`) REFERENCES `af_user` (`id`),
-  CONSTRAINT `user_id_FK_ID_role_resource_modifier_id` FOREIGN KEY (`modifier_id`) REFERENCES `af_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- ----------------------------
--- Records of af_role_resource
--- ----------------------------
-INSERT INTO `af_role_resource` VALUES ('1', '1', '3', 'admin', '-1', '2017-10-29 11:42:42', 'admin', '-1', '2017-10-29 11:42:42');
-INSERT INTO `af_role_resource` VALUES ('2', '1', '4', 'admin', '-1', '2017-10-29 11:42:42', 'admin', '-1', '2017-10-29 11:42:42');
-INSERT INTO `af_role_resource` VALUES ('3', '2', '3', 'admin', '-1', '2017-10-29 15:52:37', 'admin', '-1', '2017-10-29 15:52:37');
-INSERT INTO `af_role_resource` VALUES ('5', '1', '6', 'admin', '-1', '2017-10-31 20:17:10', 'admin', '-1', '2017-10-31 20:17:10');
-INSERT INTO `af_role_resource` VALUES ('6', '1', '7', 'admin', '-1', '2017-10-31 20:17:11', 'admin', '-1', '2017-10-31 20:17:11');
-INSERT INTO `af_role_resource` VALUES ('7', '2', '4', 'admin', '-1', '2017-11-02 11:07:29', 'admin', '-1', '2017-11-02 11:07:29');
-INSERT INTO `af_role_resource` VALUES ('8', '2', '6', 'admin', '-1', '2017-11-02 15:34:13', 'admin', '-1', '2017-11-02 15:34:13');
-INSERT INTO `af_role_resource` VALUES ('9', '1', '8', 'admin', '-1', '2017-11-02 17:26:57', 'admin', '-1', '2017-11-02 17:26:57');
-INSERT INTO `af_role_resource` VALUES ('11', '2', '8', 'admin', '-1', '2017-11-09 12:36:49', 'admin', '-1', '2017-11-09 12:36:49');
+  `modifier_time` datetime(0) NOT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `resource_id_FK_ID_role_resource_resource_id`(`resource_id`) USING BTREE,
+  INDEX `role_id_FK_ID_role_resource_role_id`(`role_id`) USING BTREE,
+  INDEX `user_id_FK_ID_role_resource_creator_id`(`creator_id`) USING BTREE,
+  INDEX `user_id_FK_ID_role_resource_modifier_id`(`modifier_id`) USING BTREE,
+  CONSTRAINT `resource_id_FK_ID_role_resource_resource_id` FOREIGN KEY (`resource_id`) REFERENCES `af_resource` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `role_id_FK_ID_role_resource_role_id` FOREIGN KEY (`role_id`) REFERENCES `af_role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `user_id_FK_ID_role_resource_creator_id` FOREIGN KEY (`creator_id`) REFERENCES `af_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `user_id_FK_ID_role_resource_modifier_id` FOREIGN KEY (`modifier_id`) REFERENCES `af_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for af_user
 -- ----------------------------
 DROP TABLE IF EXISTS `af_user`;
-CREATE TABLE `af_user` (
+CREATE TABLE `af_user`  (
   `id` int(8) NOT NULL AUTO_INCREMENT COMMENT '主键，自增',
-  `user_login_name` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '用户登录名，唯一',
-  `username` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '用户姓名',
-  `password` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '用户密码，加密',
+  `user_login_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '用户登录名，唯一',
+  `username` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '用户姓名',
+  `password` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '用户密码，加密',
   `status` int(1) NOT NULL COMMENT '用户状态：0表示无效，1表示有效',
-  `creator` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '创建者',
+  `creator` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
   `creator_id` int(8) NOT NULL COMMENT '创建者id',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
-  `modifier` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '修改者',
+  `create_time` datetime(0) NOT NULL COMMENT '创建时间',
+  `modifier` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '修改者',
   `modifier_id` int(8) NOT NULL COMMENT '修改者id',
-  `modifier_time` datetime NOT NULL COMMENT '修改时间',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user_login_name` (`user_login_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- ----------------------------
--- Records of af_user
--- ----------------------------
-INSERT INTO `af_user` VALUES ('-1', 'admin', 'admin', 'BBAD8D72C1FAC1D081727158807A8798', '1', 'admin', '-1', '2017-10-25 14:49:57', 'admin', '-1', '2017-10-25 14:49:57');
-INSERT INTO `af_user` VALUES ('1', 'sys1', 'sys1', '2A394798A5EA52F6F7358EAB170D277C', '1', 'admin', '-1', '2017-10-29 15:49:12', 'admin', '-1', '2017-10-29 15:49:12');
-INSERT INTO `af_user` VALUES ('6', 'sys2', 'sys2', 'D59673F49914792B4B7637A66471E366', '1', 'sys1', '1', '2017-11-07 16:49:32', 'sys1', '1', '2017-11-07 16:49:32');
-INSERT INTO `af_user` VALUES ('7', 'erer', 'werwer', '818F9C45CFA30EEFF277EF38BCBE9910', '0', 'sys1', '1', '2017-11-07 16:53:52', 'sys1', '1', '2017-11-07 16:53:52');
-INSERT INTO `af_user` VALUES ('8', 'we', 'wewe', '1365FFADE9F5AF7DEAA2856389C966F4', '1', 'admin', '-1', '2017-11-07 17:16:49', 'admin', '-1', '2017-11-07 17:16:49');
-INSERT INTO `af_user` VALUES ('9', 'wesee', 'wewe', '1365FFADE9F5AF7DEAA2856389C966F4', '1', 'admin', '-1', '2017-11-07 17:16:57', 'admin', '-1', '2017-11-07 17:16:57');
-INSERT INTO `af_user` VALUES ('10', 'wwww', 'wwww', 'E34A8899EF6468B74F8A1048419CCC8B', '1', 'sys1', '1', '2017-11-07 18:40:37', 'sys1', '1', '2017-11-07 18:40:37');
-INSERT INTO `af_user` VALUES ('11', 'sys3', 'sys3', '712BFECF34B7F72BCDEDF4AE2A1A69D2', '1', 'sys1', '1', '2017-11-08 00:50:29', 'sys1', '1', '2017-11-08 00:50:29');
-INSERT INTO `af_user` VALUES ('12', 'eee', 'wewe', '4EAE35F1B35977A00EBD8086C259D4C9', '1', 'admin', '-1', '2017-11-08 08:50:36', 'admin', '-1', '2017-11-08 08:50:36');
-INSERT INTO `af_user` VALUES ('13', 'john', 'john', '527BD5B5D689E2C32AE974C6229FF785', '1', 'sys1', '1', '2017-11-08 09:50:35', 'sys1', '1', '2017-11-08 09:50:35');
-INSERT INTO `af_user` VALUES ('14', 'adf', 'asd', '4297F44B13955235245B2497399D7A93', '1', 'sys1', '1', '2017-11-08 10:18:54', 'sys1', '1', '2017-11-08 10:18:54');
-INSERT INTO `af_user` VALUES ('15', 'rwer', 'werqwer', '202CB962AC59075B964B07152D234B70', '1', 'sys1', '1', '2017-11-08 11:14:09', 'sys1', '1', '2017-11-08 11:14:09');
-INSERT INTO `af_user` VALUES ('16', 'erwer', 'wrsdfsdf', 'E369853DF766FA44E1ED0FF613F563BD', '1', 'sys1', '1', '2017-11-08 11:28:06', 'sys1', '1', '2017-11-08 11:28:06');
-INSERT INTO `af_user` VALUES ('17', '4535', '235235', '818F9C45CFA30EEFF277EF38BCBE9910', '1', 'sys1', '1', '2017-11-08 11:29:26', 'sys1', '1', '2017-11-08 11:29:26');
-INSERT INTO `af_user` VALUES ('18', 'erer45345', 'werwerew', '202CB962AC59075B964B07152D234B70', '1', 'sys1', '1', '2017-11-08 11:32:05', 'sys1', '1', '2017-11-08 11:32:05');
-INSERT INTO `af_user` VALUES ('19', 'fsdfdasf', '23', '202CB962AC59075B964B07152D234B70', '1', 'sys1', '1', '2017-11-08 11:34:19', 'sys1', '1', '2017-11-08 11:34:19');
-INSERT INTO `af_user` VALUES ('20', '34234', '234', 'E369853DF766FA44E1ED0FF613F563BD', '1', 'sys1', '1', '2017-11-08 11:35:04', 'sys1', '1', '2017-11-08 11:35:04');
-INSERT INTO `af_user` VALUES ('21', '234234234', '234234', '006D2143154327A64D86A264AEA225F3', '1', 'sys1', '1', '2017-11-08 11:36:56', 'sys1', '1', '2017-11-08 11:36:56');
-INSERT INTO `af_user` VALUES ('22', 'hjq', '1', 'C4CA4238A0B923820DCC509A6F75849B', '1', 'sys1', '1', '2017-11-08 12:05:00', 'sys1', '1', '2017-11-08 12:05:00');
-INSERT INTO `af_user` VALUES ('23', 'sunshine', '理工松岛枫', '202CB962AC59075B964B07152D234B70', '1', 'sys1', '1', '2017-11-08 15:39:48', 'sys1', '1', '2017-11-08 15:39:48');
-INSERT INTO `af_user` VALUES ('24', '1', '1', 'C4CA4238A0B923820DCC509A6F75849B', '1', 'sys1', '1', '2017-11-08 17:25:33', 'sys1', '1', '2017-11-08 17:25:33');
-INSERT INTO `af_user` VALUES ('25', '13', '123', '202CB962AC59075B964B07152D234B70', '1', 'sys1', '1', '2017-11-08 17:36:17', 'sys1', '1', '2017-11-08 17:36:17');
-INSERT INTO `af_user` VALUES ('26', '1111', '11111111111', 'B59C67BF196A4758191E42F76670CEBA', '1', 'sys1', '1', '2017-11-09 10:50:09', 'sys1', '1', '2017-11-09 10:50:09');
-INSERT INTO `af_user` VALUES ('27', '24324', '234234', 'C20AD4D76FE97759AA27A0C99BFF6710', '1', 'sys1', '1', '2017-11-09 13:06:29', 'sys1', '1', '2017-11-09 13:06:29');
-INSERT INTO `af_user` VALUES ('28', '7777', '7777', 'D79C8788088C2193F0244D8F1F36D2DB', '1', 'sys1', '1', '2017-11-09 14:55:56', 'sys1', '1', '2017-11-09 14:55:56');
-INSERT INTO `af_user` VALUES ('29', '8888', '8888', 'CF79AE6ADDBA60AD018347359BD144D2', '1', 'sys1', '1', '2017-11-09 14:58:25', 'sys1', '1', '2017-11-09 14:58:25');
-INSERT INTO `af_user` VALUES ('30', '11', '11', '6512BD43D9CAA6E02C990B0A82652DCA', '1', 'sys1', '1', '2017-11-09 17:30:07', 'sys1', '1', '2017-11-09 17:30:07');
-INSERT INTO `af_user` VALUES ('31', '44', '44', 'F7177163C833DFF4B38FC8D2872F1EC6', '1', 'sys1', '1', '2017-11-09 17:30:37', 'sys1', '1', '2017-11-09 17:30:37');
-INSERT INTO `af_user` VALUES ('32', 'twt', 'tet', 'C4CA4238A0B923820DCC509A6F75849B', '1', 'sys1', '1', '2017-11-09 20:09:27', 'sys1', '1', '2017-11-09 20:09:27');
-INSERT INTO `af_user` VALUES ('33', 'test', 'test', '098F6BCD4621D373CADE4E832627B4F6', '1', 'sys1', '1', '2017-11-10 08:39:04', 'sys1', '1', '2017-11-10 08:39:04');
-INSERT INTO `af_user` VALUES ('34', '111', '111', '698D51A19D8A121CE581499D7B701668', '1', 'sys1', '1', '2017-11-10 10:56:47', 'sys1', '1', '2017-11-10 10:56:47');
-INSERT INTO `af_user` VALUES ('35', '137', '111', '698D51A19D8A121CE581499D7B701668', '1', 'sys1', '1', '2017-11-10 10:56:55', 'sys1', '1', '2017-11-10 10:56:55');
-INSERT INTO `af_user` VALUES ('36', 'asdf', 'dsfasdf', '60D31EB37595DD44584BE5EF363283E3', '1', 'sys1', '1', '2017-11-10 11:24:56', 'sys1', '1', '2017-11-10 11:24:56');
-INSERT INTO `af_user` VALUES ('37', 'ASDF', 'ASDF', '6D87A19F011653459575CEB722DB3B69', '1', 'sys1', '1', '2017-11-10 14:41:07', 'sys1', '1', '2017-11-10 14:41:07');
-INSERT INTO `af_user` VALUES ('38', 'asd', 'asd', '6226F7CBE59E99A90B5CEF6F94F966FD', '1', 'sys1', '1', '2017-11-10 15:16:08', 'sys1', '1', '2017-11-10 15:16:08');
-INSERT INTO `af_user` VALUES ('39', '213', '123', '202CB962AC59075B964B07152D234B70', '1', 'sys1', '1', '2017-11-12 00:22:10', 'sys1', '1', '2017-11-12 00:22:10');
-INSERT INTO `af_user` VALUES ('40', '333', '33', '182BE0C5CDCD5072BB1864CDEE4D3D6E', '1', 'sys1', '1', '2017-11-12 00:22:32', 'sys1', '1', '2017-11-12 00:22:32');
-INSERT INTO `af_user` VALUES ('41', '23', '23', '37693CFC748049E45D87B8C7D8B9AACD', '1', 'sys1', '1', '2017-11-12 00:22:59', 'sys1', '1', '2017-11-12 00:22:59');
+  `modifier_time` datetime(0) NOT NULL COMMENT '修改时间',
+  `email` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `user_login_name`(`user_login_name`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 391 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for af_user_role
 -- ----------------------------
 DROP TABLE IF EXISTS `af_user_role`;
-CREATE TABLE `af_user_role` (
+CREATE TABLE `af_user_role`  (
   `id` int(8) NOT NULL AUTO_INCREMENT COMMENT '主键，自增',
   `user_id` int(8) NOT NULL COMMENT '用户id',
   `role_id` int(8) NOT NULL COMMENT '角色id',
-  `creator` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '创建者',
+  `creator` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
   `creator_id` int(8) NOT NULL COMMENT '创建者id',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
-  `modifier` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '修改者',
+  `create_time` datetime(0) NOT NULL COMMENT '创建时间',
+  `modifier` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '修改者',
   `modifier_id` int(8) NOT NULL COMMENT '修改者id',
-  `modifier_time` datetime NOT NULL COMMENT '修改时间',
-  PRIMARY KEY (`id`),
-  KEY `user_id_FK_ID` (`user_id`),
-  KEY `role_id_FK_ID` (`role_id`),
-  KEY `user_id_FK_ID_creator_id` (`creator_id`),
-  KEY `user_id_FK_ID_modifier_id` (`modifier_id`),
-  CONSTRAINT `role_id_FK_ID` FOREIGN KEY (`role_id`) REFERENCES `af_role` (`id`),
-  CONSTRAINT `user_id_FK_ID` FOREIGN KEY (`user_id`) REFERENCES `af_user` (`id`),
-  CONSTRAINT `user_id_FK_ID_creator_id` FOREIGN KEY (`creator_id`) REFERENCES `af_user` (`id`),
-  CONSTRAINT `user_id_FK_ID_modifier_id` FOREIGN KEY (`modifier_id`) REFERENCES `af_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `modifier_time` datetime(0) NOT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `user_id_FK_ID`(`user_id`) USING BTREE,
+  INDEX `role_id_FK_ID`(`role_id`) USING BTREE,
+  INDEX `user_id_FK_ID_creator_id`(`creator_id`) USING BTREE,
+  INDEX `user_id_FK_ID_modifier_id`(`modifier_id`) USING BTREE,
+  CONSTRAINT `role_id_FK_ID` FOREIGN KEY (`role_id`) REFERENCES `af_role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `user_id_FK_ID` FOREIGN KEY (`user_id`) REFERENCES `af_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `user_id_FK_ID_creator_id` FOREIGN KEY (`creator_id`) REFERENCES `af_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `user_id_FK_ID_modifier_id` FOREIGN KEY (`modifier_id`) REFERENCES `af_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
--- ----------------------------
--- Records of af_user_role
--- ----------------------------
-INSERT INTO `af_user_role` VALUES ('2', '-1', '1', 'admin', '-1', '2017-10-25 14:51:17', 'admin', '-1', '2017-10-25 14:51:17');
-INSERT INTO `af_user_role` VALUES ('3', '1', '2', 'admin', '-1', '2017-10-29 15:50:35', 'admin', '-1', '2017-10-29 15:50:35');
-SET FOREIGN_KEY_CHECKS=1;
+SET FOREIGN_KEY_CHECKS = 1;
