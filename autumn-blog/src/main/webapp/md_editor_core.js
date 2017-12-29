@@ -244,7 +244,7 @@ $(function() {
             MarkdownStyle : getConfigValue("MarkdownStyle", "WizDefault"),
             ReadTheme : getConfigValue("ReadTheme", "default"),
             EditToolbarButton : getConfigValue("EditToolbarButton", "default"),
-            EditToolbarTheme : getConfigValue("EditToolbarTheme", "default"),
+            EditToolbarTheme : getConfigValue("EditToolbarTheme", "dark"),
             EditEditorTheme : getConfigValue("EditEditorTheme", "default"),
             EditPreviewTheme : getConfigValue("EditPreviewTheme", "default"),
             EmojiSupport : getConfigValue("EmojiSupport", "1"),
