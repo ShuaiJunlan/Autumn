@@ -36,6 +36,14 @@ $(function() {
         id : "1D524E25C80F2CABD8621053928F77B8"
     }
     Fv.ajax.get("blog/getBlogById/"+pa.id, {}, function (data) {
+        addEditor(data);
+
+    }, function () {
+        addEditor("");
+    })
+    // 配置编辑器功能
+
+    var addEditor = function (data) {
         wizEditor = editormd("test-editormd", {
             theme           : optionSettings.EditToolbarTheme,        // 工具栏区域主题样式，见editormd.themes定义，夜间模式dark
             editorTheme     : optionSettings.EditEditorTheme,         // 编辑器区域主题样式，见editormd.editorThemes定义，夜间模式pastel-on-dark
@@ -204,11 +212,7 @@ $(function() {
             }
         });
 
-    }, function () {
-
-    })
-    // 配置编辑器功能
-
+    }
 
     ////////////////////////////////////////////////
     // 获得配置值
@@ -394,7 +398,7 @@ $(function() {
         catch (err) {
         }
         return pluginPath;
-    };
+    }
 
     ////////////////////////////////////////////////
     // 截取屏幕
