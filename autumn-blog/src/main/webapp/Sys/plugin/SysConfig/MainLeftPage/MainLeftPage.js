@@ -41,7 +41,6 @@ Fv.plugin.MainLeftPage.start = function () {
 
 
         });
-        // alert(JSON.stringify(data));
     }
     ,function () {
 
