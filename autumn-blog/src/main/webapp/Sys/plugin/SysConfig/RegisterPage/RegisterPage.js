@@ -17,7 +17,7 @@ Fv.plugin.RegisterPage.start = function () {
     Fv.config.form.render();
     //监听提交
     Fv.config.form.on('submit(RegisterPage)', function(data){
-        if (data.field.password != data.field.repassword){
+        if (data.field.password !== data.field.repassword){
             layer.msg("密码不一致")
         }else {
             var user = {
@@ -31,12 +31,12 @@ Fv.plugin.RegisterPage.start = function () {
                 ,status : 2
             }
             Fv.ajax.post("register/userRegister/", user, function (data) {
-                    if (data.code == '1111'){
+                    if (data.code === '1111'){
                         Fv.config.layer.closeAll("page");
                         layer.msg("添加成功，请刷新表格查看新添加的记录");
                         // Fv.config.form.render(null, "RegisterPage");
 
-                    }else if (data.code == '5000'){
+                    }else if (data.code === '5000'){
                         layer.msg("登录名已存在")
                     }else {
                         layer.msg("注册失败，请稍后再试");
