@@ -19,8 +19,12 @@
                 /css/**=anon
                 /js/**=anon
                 /img/**=anon
+
+                <!--autumn-blog config-->
                 /Sys/plugin/SysConfig/RegisterPage/RegisterPage.html=anon
                 /blog/getBlogByIdD/**=anon
+                /mainPage.html=anon
+
                 <!--test add-->
                 <!--/sys/**=anon-->
                 /BasePlu/**=anon
