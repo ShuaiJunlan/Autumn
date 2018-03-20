@@ -5,6 +5,9 @@ import com.autumnframework.blog.dao.mongo.CommonRepository;
 import com.autumnframework.blog.model.document.Blog;
 import com.autumnframework.blog.model.document.BlogDetail;
 import com.autumnframework.blog.service.impl.BlogManageImpl;
+import com.autumnframework.common.architect.constant.ResponseCode;
+import com.autumnframework.common.architect.utils.ResponseMsgUtil;
+import com.autumnframework.common.model.bo.DataPageResponseMsg;
 import com.autumnframework.common.model.bo.ResponseMsg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -54,6 +58,13 @@ public class BlogManageController {
         return blogManage.shareBlog(blogDetail);
     }
 
+    @RequestMapping(value = "list/")
+    @ResponseBody
+    public DataPageResponseMsg getArticleList(){
+        List<BlogDetail> list = blogRepository.findAll();
+        int count = list.size();
+        return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_SUCCESS, list, count);
+    }
     @RequestMapping(value = "getBlogByIdD/{id}", method = RequestMethod.GET)
     public String getBlogDetail(@PathVariable("id") String id, Model model){
 
@@ -90,4 +101,5 @@ public class BlogManageController {
         }
         return "detail";
     }
+
 }

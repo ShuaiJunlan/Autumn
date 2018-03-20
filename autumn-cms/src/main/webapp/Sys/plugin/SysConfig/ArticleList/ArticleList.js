@@ -26,7 +26,7 @@ Fv.plugin.ArticleList.start = function () {
                 }finally {
                     $("#" + a.id).html(data);
                 }
-                if (data1 != undefined && data1.code != undefined && data1.code == "3333"){
+                if (data1 !== undefined && data1.code !== undefined && data1.code === "3333"){
                     Fv.config.layer.close(loading);
                     main.unauthorized();
                     return;
