@@ -12,6 +12,7 @@ html,body{overflow-x: hidden;}
 html body{margin-top: 61px;}
 html{background-color: #F2F2F2;}
 i{font-style: normal;}
+li:hover{background-color: #f7f5e0}
 
 /* 图标 */
 
@@ -551,4 +552,12 @@ body .fly-user-main{position: relative; min-height: 600px;}
   .site-mobile .site-tree-mobile{display: none !important;}
   .site-mobile .fly-user-main>.layui-nav{left: 0;}
   .site-mobile .site-mobile-shade{content: ''; position: fixed; top: 0; bottom: 0; left: 0; right: 0; background-color: rgba(0,0,0,.9); z-index: 999;}
+}
+
+/*文章列表item*/
+.article_item_title{
+  font-size: 20px !important;
+  color: #5a8fac;
+  font-weight: normal;
+  text-shadow: 0 1px 0 #ffffff;
 }
