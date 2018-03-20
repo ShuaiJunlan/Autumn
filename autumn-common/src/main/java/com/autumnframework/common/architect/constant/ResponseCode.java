@@ -15,7 +15,7 @@ public enum ResponseCode {
     //  邮件发送成功
     MAIL_SEND_SUCCESS(  "1001", "send mail successfully"),
     //  认证成功
-    AUTH_SUCCESS(       "1002", "auth successfully(账号已激活)"),
+    AUTH_SUCCESS(       "1002", "auth successfully(账号激活成功)"),
     //  已认证
     HAVE_AUTH(          "1003", "have authentication"),
     //  邮箱验证成功
