@@ -27,7 +27,7 @@ $(function() {
                 icon : 2
             })
         }
-    )
+    );
     Fv.login = function () {
 
         layui.$.post('Sys/plugin/SysConfig/LoginPage/LoginPage.html', {}, function (str) {
@@ -47,7 +47,7 @@ $(function() {
     };
     Fv.logout = function () {
         window.top.location.href="logout.do";;
-    }
+    };
     Fv.share = function () {
         layui.$.post('Sys/plugin/SysConfig/ShareArticle/ShareArticle.html', {}, function (str) {
             Fv.config.layer.open({
@@ -59,11 +59,11 @@ $(function() {
                 , content: str
                 , shade: 0.3
                 , skin: 'layui-layer-molv'
-            })
+            });
             Fv.config.form.render();
 
         });
 
     }
 
-})
+});
