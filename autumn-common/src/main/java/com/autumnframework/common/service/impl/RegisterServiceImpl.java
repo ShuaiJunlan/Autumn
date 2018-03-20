@@ -111,8 +111,10 @@ public class RegisterServiceImpl implements IRegisterService {
 
     @Override
     public ResponseMsg registerAuth(String user_login_name, String activation_code, String time) {
+
         logger.info("Register authentication start[user_login_name:{}-activation_code:{}-time:{}]", user_login_name, activation_code, time);
         long current_time = System.currentTimeMillis();
+
         //  判断链接是否失效（超24小时失效）
         if (((current_time-Long.valueOf(time))/(1000.0*60*60)) > 24.0){
             logger.info("Register authentication end! Reason:{}", ResponseCode.AUTH_LINK_TIMEOUT.getMsg());

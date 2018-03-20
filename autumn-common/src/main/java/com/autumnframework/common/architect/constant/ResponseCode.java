@@ -15,7 +15,7 @@ public enum ResponseCode {
     //  邮件发送成功
     MAIL_SEND_SUCCESS(  "1001", "send mail successfully"),
     //  认证成功
-    AUTH_SUCCESS(       "1002", "auth successfully"),
+    AUTH_SUCCESS(       "1002", "auth successfully(账号已激活)"),
     //  已认证
     HAVE_AUTH(          "1003", "have authentication"),
     //  邮箱验证成功
@@ -31,7 +31,7 @@ public enum ResponseCode {
     //  邮件发送失败
     MAIL_SEND_FAIL(     "4001", "send mail fairly"),
     //  认证失败
-    AUTH_FAIL(          "4002", "auth fairly"),
+    AUTH_FAIL(          "4002", "auth fairly(激活失败，请重新注册)"),
     //  链接失效
     AUTH_LINK_TIMEOUT(  "4003", "link failure"),
     //  邮箱验证失败
