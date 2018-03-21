@@ -1,11 +1,14 @@
 ![logo](https://github.com/shuaijunlan/Autumn-Framework/raw/master/Autumn.png)
 ## Autumn-Framework
-[![Build Status](https://travis-ci.org/shuaijunlan/Autumn-Framework.svg?branch=master)](https://travis-ci.org/shuaijunlan/Autumn-Framework)  [![LICENSE](https://img.shields.io/aur/license/yaourt.svg)](https://github.com/shuaijunlan/Autumn-Framework/blob/master/LICENSE) ![](https://img.shields.io/github/stars/shuaijunlan/Autumn-Framework.svg) ![](https://img.shields.io/github/tag/shuaijunlan/Autumn-Framework.svg) ![](https://img.shields.io/github/release/shuaijunlan/Autumn-Framework.svg)</br>
+[![Build Status](https://travis-ci.org/shuaijunlan/Autumn-Framework.svg?branch=master)](https://travis-ci.org/shuaijunlan/Autumn-Framework)  [![LICENSE](https://img.shields.io/aur/license/yaourt.svg)](https://github.com/shuaijunlan/Autumn-Framework/blob/master/LICENSE) ![](https://img.shields.io/github/stars/shuaijunlan/Autumn-Framework.svg) ![](https://img.shields.io/github/tag/shuaijunlan/Autumn-Framework.svg) ![](https://img.shields.io/github/release/shuaijunlan/Autumn-Framework.svg)
 
 ![dynamic](https://github.com/shuaijunlan/Autumn-Framework/raw/master/dynamic.gif)
 
-*Autumn-Framework* is a collection of web sub-system, aimes to provide universal web system solution. It is scalable and stable, you can develop your own web system  basing on it. Also, you can join us to maintain it together, if only you are interested in it.</br>
-[Autumn-CMS Live Demo](https://shuaijunlan.cn/autumn-cms/) </br>
+
+
+*Autumn-Framework* is a collection of web sub-system, aimes to provide universal web system solution. It is scalable and stable, you can develop your own web system  basing on it. Also, you can join us to maintain it together, if only you are interested in it.
+
+[Autumn-CMS Live Demo](https://shuaijunlan.cn/autumn-cms/) 
 [Autumn-Blog Live Demo](https://shuaijunlan.cn/autumn-blog/)
 
 Please submit issues to corresponding projects, that'll help us make issues tracking easier so that we can provide timely help to you.
@@ -27,9 +30,16 @@ The project requires at minimum 512MB memory to run. Please ensure you have corr
 * Enter the project root directory `cd Autumn-Framework`
 * Install dependencies:
     `mvn install`
-* Enter sub-system, e.g.`cd autumn-cms`
-* Run server:
-    `mvn tomcat7:run`. Server runs on port 8081 by default, visit `localhost:8081/autumn-cms` to check it out.
+
+> If you want to run autumu-cms sub-system,
+
+* Enter autumn-cms, `cd autumn-cms`
+* Run server:`mvn tomcat7:run`. Server runs on port **8081** by default, visit `http://localhost:8081/autumn-cms` to check it out.
+
+> If you want to run autumn-blog sub-system,
+
+* Enter autumn-blog, `cd autumn-blog`
+* Run server:`mvn tomcat7:run -Dspring.profiles.active="prod"`. Server runs on port **8082** by default, visit `http://localhost:8082/autumn-blog` to check it out.
 
 ### License
 
