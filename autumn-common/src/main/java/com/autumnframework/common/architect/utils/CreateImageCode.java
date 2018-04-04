@@ -1,35 +1,3 @@
-/**
- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- *
- * Copyright 2017 © yangxiaobing, 873559947@qq.com
- *
- * This file is part of contentManagerSystem.
- * contentManagerSystem is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * contentManagerSystem is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with contentManagerSystem.  If not, see <http://www.gnu.org/licenses/>.
- *
- * 这个文件是contentManagerSystem的一部分。
- * 您可以单独使用或分发这个文件，但请不要移除这个头部声明信息.
- * contentManagerSystem是一个自由软件，您可以自由分发、修改其中的源代码或者重新发布它，
- * 新的任何修改后的重新发布版必须同样在遵守GPL3或更后续的版本协议下发布.
- * 关于GPL协议的细则请参考COPYING文件，
- * 您可以在contentManagerSystem的相关目录中获得GPL协议的副本，
- * 如果没有找到，请连接到 http://www.gnu.org/licenses/ 查看。
- *
- * - Author: yangxiaobing
- * - Contact: 873559947@qq.com
- * - License: GNU Lesser General Public License (GPL)
- * - source code availability: http://git.oschina.net/yangxiaobing_175/contentManagerSystem
- */
 package com.autumnframework.common.architect.utils;
 
 import javax.imageio.ImageIO;
@@ -44,35 +12,45 @@ import java.util.Random;
  * @date Created on 15:55 2017/9/5.
  */
 public class CreateImageCode {
-    // 图片的宽度。
+    /**
+     * 图片的宽度
+     */
     private int width = 160;
-    // 图片的高度。
+    /**
+     * 图片的高度
+     */
     private int height = 40;
-    // 验证码字符个数
+    /**
+     * 验证码字符个数
+     */
     private int codeCount = 4;
-    // 验证码干扰线数
+    /**
+     * 验证码干扰线数
+     */
     private int lineCount = 20;
-    // 验证码
+    /**
+     * 验证码
+     */
     private String code = null;
-    // 验证码图片Buffer
+
     private BufferedImage buffImg = null;
     Random random = new Random();
 
     public CreateImageCode() {
-        creatImage();
+        createImage();
     }
 
     public CreateImageCode(int width, int height) {
         this.width = width;
         this.height = height;
-        creatImage();
+        createImage();
     }
 
     public CreateImageCode(int width, int height, int codeCount) {
         this.width = width;
         this.height = height;
         this.codeCount = codeCount;
-        creatImage();
+        createImage();
     }
 
     public CreateImageCode(int width, int height, int codeCount, int lineCount) {
@@ -80,19 +58,24 @@ public class CreateImageCode {
         this.height = height;
         this.codeCount = codeCount;
         this.lineCount = lineCount;
-        creatImage();
+        createImage();
     }
 
-    // 生成图片
-    private void creatImage() {
-        int fontWidth = width / codeCount;// 字体的宽度
-        int fontHeight = height - 5;// 字体的高度
+
+    /**
+     * 生成图片
+     */
+    private void createImage() {
+        // 字体的宽度
+        int fontWidth = width / codeCount;
+        // 字体的高度
+        int fontHeight = height - 5;
         int codeY = height - 8;
 
         // 图像buffer
         buffImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         Graphics g = buffImg.getGraphics();
-        //Graphics2D g = buffImg.createGraphics();
+
         // 设置背景色
         g.setColor(getRandColor(200, 250));
         g.fillRect(0, 0, width, height);
@@ -115,7 +98,7 @@ public class CreateImageCode {
         }
 
         // 添加噪点
-        float yawpRate = 0.01f;// 噪声率
+        float yawpRate = 0.01f;
         int area = (int) (yawpRate * width * height);
         for (int i = 0; i < area; i++) {
             int x = random.nextInt(width);
@@ -124,22 +107,23 @@ public class CreateImageCode {
             buffImg.setRGB(x, y, random.nextInt(255));
         }
 
-
-        String str1 = randomStr(codeCount);// 得到随机字符
+        // 得到随机字符
+        String str1 = randomStr(codeCount);
         this.code = str1;
         for (int i = 0; i < codeCount; i++) {
             String strRand = str1.substring(i, i + 1);
             g.setColor(getRandColor(1, 255));
-            // g.drawString(a,x,y);
-            // a为要画出来的东西，x和y表示要画的东西最左侧字符的基线位于此图形上下文坐标系的 (x, y) 位置处
 
+            // a为要画出来的东西，x和y表示要画的东西最左侧字符的基线位于此图形上下文坐标系的 (x, y) 位置处
             g.drawString(strRand, i*fontWidth+3, codeY);
         }
-
-
     }
 
-    // 得到随机字符
+    /**
+     * 得到随机字符串
+     * @param n
+     * @return
+     */
     private String randomStr(int n) {
         String str1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
         String str2 = "";
@@ -152,12 +136,19 @@ public class CreateImageCode {
         return str2;
     }
 
-    // 得到随机颜色
-    private Color getRandColor(int fc, int bc) {// 给定范围获得随机颜色
-        if (fc > 255)
+    /**
+     * 得到随机颜色
+     * @param fc
+     * @param bc
+     * @return
+     */
+    private Color getRandColor(int fc, int bc) {
+        if (fc > 255){
             fc = 255;
-        if (bc > 255)
+        }
+        if (bc > 255){
             bc = 255;
+        }
         int r = fc + random.nextInt(bc - fc);
         int g = fc + random.nextInt(bc - fc);
         int b = fc + random.nextInt(bc - fc);
@@ -169,7 +160,7 @@ public class CreateImageCode {
      */
     private Font getFont(int size) {
         Random random = new Random();
-        Font font[] = new Font[5];
+        Font[] font = new Font[5];
         font[0] = new Font("Ravie", Font.PLAIN, size);
         font[1] = new Font("Antique Olive Compact", Font.PLAIN, size);
         font[2] = new Font("Fixedsys", Font.PLAIN, size);
@@ -178,7 +169,13 @@ public class CreateImageCode {
         return font[random.nextInt(5)];
     }
 
-    // 扭曲方法
+    /**
+     * 扭曲方法
+     * @param g
+     * @param w1
+     * @param h1
+     * @param color
+     */
     private void shear(Graphics g, int w1, int h1, Color color) {
         shearX(g, w1, h1, color);
         shearY(g, w1, h1, color);
@@ -209,7 +206,7 @@ public class CreateImageCode {
 
     private void shearY(Graphics g, int w1, int h1, Color color) {
 
-        int period = random.nextInt(40) + 10; // 50;
+        int period = random.nextInt(40) + 10;
 
         boolean borderGap = true;
         int frames = 20;

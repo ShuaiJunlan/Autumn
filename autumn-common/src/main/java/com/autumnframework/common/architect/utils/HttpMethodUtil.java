@@ -117,5 +117,4 @@ public class HttpMethodUtil {
         }
         return new String(baos.toByteArray(), "UTF-8");
     }
-
 }
