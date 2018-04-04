@@ -24,6 +24,11 @@
                 /Sys/plugin/SysConfig/RegisterPage/RegisterPage.html=anon
                 /blog/getBlogByIdD/**=anon
                 /mainPage.html=anon
+                /Sys/plugin/SysConfig/MainLeftPage/MainLeftPage.html=anon
+                /Sys/plugin/SysConfig/ArticleItem/ArticleItem.html=anon
+                /blog/list/=anon
+
+
 
                 <!--test add-->
                 <!--/sys/**=anon-->
