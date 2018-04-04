@@ -27,13 +27,14 @@ Fv.plugin.MainLeftPage.start = function () {
         Fv.ajax.loadDiv(article_item, function (item, a) {
             var str = "";
             for (var i = 0; i < data.count; i++){
+                var img_base64 = Fv.plugin.MainLeftPage.getHashByName(data.data[i].username);
                 str += item
                     .replace("{user-name}", data.data[i].username)
                     .replace("{article-title}", data.data[i].title)
                     .replace("{visit-times}", data.data[i].visit_times)
                     .replace("{time}", Fv.plugin.MainLeftPage.timeAgo(data.data[i].time))
                     .replace("{article-link}", "blog/getBlogByIdD/" + data.data[i].id)
-                    .replace("{user-image-link}", "https://avatars3.githubusercontent.com/u/13015473?s=460&v=4")
+                    .replace("{user-image-base64}", img_base64)
                     .replace("{zan-times}", 0)
                     .replace("{comment-times}", 0);
             }
@@ -48,7 +49,8 @@ Fv.plugin.MainLeftPage.start = function () {
 
     });
 }();
-Fv.plugin.MainLeftPage.timeAgo = function(dateTimeStamp){   //dateTimeStamp是一个时间毫秒，注意时间戳是秒的形式，在这个毫秒的基础上除以1000，就是十位数的时间戳。13位数的都是时间毫秒。
+//dateTimeStamp是一个时间毫秒，注意时间戳是秒的形式，在这个毫秒的基础上除以1000，就是十位数的时间戳。13位数的都是时间毫秒。
+Fv.plugin.MainLeftPage.timeAgo = function(dateTimeStamp){
     var minute = 1000 * 60;      //把分，时，天，周，半个月，一个月用毫秒表示
     var hour = minute * 60;
     var day = hour * 24;
@@ -91,4 +93,14 @@ Fv.plugin.MainLeftPage.timeAgo = function(dateTimeStamp){   //dateTimeStamp是�
         result = Nyear + "-" + Nmonth + "-" + Ndate
     }
     return result;
-}
+};
+Fv.plugin.MainLeftPage.getHashByName = function (username) {
+    var salt = 0;
+    var rounds = 1;
+    var size = 168;
+    var shaObj = new jsSHA(username+salt, "TEXT");
+    var hash = shaObj.getHash("SHA-512", "HEX",rounds);
+    var data = new Identicon(hash, size).toString();
+    console.log(hash);
+    return data;
+};
