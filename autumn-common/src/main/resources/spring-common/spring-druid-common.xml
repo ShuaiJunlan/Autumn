@@ -33,7 +33,7 @@
         <property name = "removeAbandoned" value = "${removeAbandoned}"/>
         <!-- 1800 秒，也就是 30 分钟 -->
         <property name = "removeAbandonedTimeout" value ="${removeAbandonedTimeout}"/>
-        <!-- 关闭 abanded 连接时输出错误日志 -->
+        <!-- 关闭 abandoned 连接时输出错误日志 -->
         <property name = "logAbandoned" value = "${logAbandoned}"/>
     </bean>
 </beans>
