@@ -83,7 +83,8 @@ public class LoginServiceImpl implements ILoginService {
                     //  会抛出异常
                     LoginInfo loginInfo = JSON.parseObject(detail, LoginInfo.class);
                     loginInfo.setUser_login_name(username);
-                    if (sys.equals("01")) {
+                    String sysNum = "01";
+                    if (sysNum.equals(sys)) {
                         loginInfo.setType(1);
                     }else {
                         loginInfo.setType(2);
@@ -119,8 +120,7 @@ public class LoginServiceImpl implements ILoginService {
 
     private User getCurrentUser() {
         Subject currentUser = SecurityUtils.getSubject();
-        User user = currentUser.getPrincipals().oneByType(User.class);
-        return user;
+        return currentUser.getPrincipals().oneByType(User.class);
     }
 
 }

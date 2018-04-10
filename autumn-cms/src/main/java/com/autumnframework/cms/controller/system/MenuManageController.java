@@ -41,6 +41,4 @@ public class MenuManageController {
             return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_FAIL);
         }
     }
-
-
 }

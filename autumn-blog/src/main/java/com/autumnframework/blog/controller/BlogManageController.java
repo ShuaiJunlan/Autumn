@@ -24,7 +24,7 @@ import java.util.Optional;
  * @date Created on 15:22 2017/11/15.
  */
 @Controller
-@RequestMapping(value = "blog")
+@RequestMapping(value = "blog/")
 public class BlogManageController {
     private static final Logger logger = LoggerFactory.getLogger(BlogManageController.class);
     @Autowired
@@ -58,7 +58,7 @@ public class BlogManageController {
         return blogManage.shareBlog(blogDetail);
     }
 
-    @RequestMapping(value = "list/")
+    @RequestMapping(value = "list")
     @ResponseBody
     public DataPageResponseMsg getArticleList(){
         List<BlogDetail> list = blogRepository.findAll();
