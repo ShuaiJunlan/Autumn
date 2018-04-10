@@ -1,25 +1,10 @@
 package com.autumnframework.blog.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.autumnframework.common.model.po.LoginInfo;
-import com.autumnframework.common.architect.constant.BussinessCode;
 import com.autumnframework.common.architect.constant.Constants;
 import com.autumnframework.common.architect.utils.CreateImageCode;
-import com.autumnframework.common.architect.utils.IpInfoUtil;
-import com.autumnframework.common.architect.utils.MD5Util;
-import com.autumnframework.common.architect.utils.ResponseMsgUtil;
 import com.autumnframework.common.model.bo.ResponseMsg;
 import com.autumnframework.common.model.po.User;
-import com.autumnframework.common.service.impl.LogManageImpl;
 import com.autumnframework.common.service.impl.LoginServiceImpl;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AccountException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
