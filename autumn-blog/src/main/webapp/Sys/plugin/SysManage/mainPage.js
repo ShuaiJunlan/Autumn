@@ -60,7 +60,7 @@ $(function() {
                 //登陆成功
                 if (ajaxReturnData.code == 0000) {
                     Fv.ajax.get("init.do", {}, function (data) {
-                            $("#username").append(data.username);
+                            $("#username").html(data.username);
                             Fv.config.user = data;
                         }
                         ,function () {
@@ -102,7 +102,7 @@ $(function() {
                 , skin: 'layui-layer-molv'
                 ,success: function(layero){
                 }
-            })
+            });
             Fv.config.form.render();
             Fv.config.form.on('submit(RegisterPage)', function(data){
                 var loginLoading = layer.msg('注册中，请稍候...', {icon: 16, time: false, shade: 0.8});
