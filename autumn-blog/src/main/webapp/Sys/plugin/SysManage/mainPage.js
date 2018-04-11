@@ -73,7 +73,7 @@ $(function() {
                     Fv.config.layer.close(index);
                     return false;
                 } else if (ajaxReturnData.code == 4005){
-                    layer.confirm('此账号没有进行验证，为保证您的数据安全，请您注册新的账号。', {icon: 1, title:'提示'});
+                    layer.confirm('此账号没有进行验证，为保证您的数据安全，请您注册新的账号。', {icon: 3, title:'提示'});
                     reqCaptcha();
                     return false;
                 } else {
@@ -123,7 +123,7 @@ $(function() {
                     Fv.ajax.post("register/userRegister/", user, function (data) {
                             if (data.code === '1111'){
                                 layer.closeAll("page");
-                                layer.confirm('请查收您的激活邮件(可能在垃圾箱中)，点击链接激活，否则无法使用此账号登录?', {icon: 3, title:'提示'});
+                                layer.confirm('请查收您的激活邮件(可能在垃圾箱中)，点击链接激活，否则无法使用此账号登录?', {icon: 1, title:'提示'});
                             }else if (data.code === '4001'){
                                 layer.msg("邮件发送失败");
                             }else if (data.code === '5000'){
