@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
     <title th:text="${title}"></title>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
     <link rel="stylesheet" href="//autumnblog-1251679769.file.myqcloud.com/blogdetail/editor.md/css/editormd.preview.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Autumn-Blog">
+    <meta name="description" content="">
     <link rel="shortcut icon" href="https://github.com/shuaijunlan/Autumn-Framework/raw/master/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all" />
+    <link rel="stylesheet" href="/autumn-blog/Lib/layui_v2.2.3/css/layui.css">
+    <link rel="stylesheet" href="/autumn-blog/css/global.css">
+
     <style>
-        body {padding: 1%; background-color: #c7edcc
+        .main_body {
+            padding: 1%;
+            background-color: #c7edcc
         }
 
         .layout {
@@ -71,7 +77,7 @@
         @media all and (max-width: 420px) {
             #test-editormd-view {
                 margin: auto;
-                width: 90%;
+                width: 100%;
             }
             header h1{
                 font-size: 1rem;
@@ -111,39 +117,96 @@
     </style>
 </head>
 <body>
-<div class="layout">
-    <header style="width: 80%;text-align: center">
-        <h1 class="fontsize_h"><span th:text="${title}"></span></h1>
-        <p class="fontsize_d">
+<!--顶部主标题栏-->
+<div class="fly-header layui-bg-black">
+    <div class="layui-container">
+        <a class="fly-logo" href="/autumn-blog/mainPage.html" style="font-size: 30px; color: #ff4500;">
+            <!--<img src="../res/images/logo.png" alt="layui">-->
+            Autumn-Blog
+        </a>
+        <ul class="layui-nav fly-nav layui-hide-xs">
+            <!--<li class="layui-nav-item layui-this">-->
+            <!--<a href="/"><i class="iconfont icon-jiaoliu"></i>交流</a>-->
+            <!--</li>-->
+            <!--<li class="layui-nav-item">-->
+            <!--<a href="case/case.html"><i class="iconfont icon-iconmingxinganli"></i>案例</a>-->
+            <!--</li>-->
+            <!--<li class="layui-nav-item">-->
+            <!--<a href="http://www.layui.com/" target="_blank"><i class="iconfont icon-ui"></i>框架</a>-->
+            <!--</li>-->
+        </ul>
+
+        <ul class="layui-nav fly-nav-user">
+
+            <!-- 未登入的状态 -->
+            <li class="layui-nav-item">
+                <a class="iconfont icon-touxiang layui-hide-xs" href="#"></a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="#">登入</a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="#">注册</a>
+            </li>
+            <li class="layui-nav-item" style="margin-left: 20px;">
+                <a href="/autumn-blog/index.do" class="layui-btn layui-btn-lg layui-btn-radius layui-btn-normal" style="font-size: 18px"><i class="layui-icon">&#xe608;</i>写文章</a>
+            </li>
+            <!--<li class="layui-nav-item layui-hide-xs">-->
+            <!--<a href="#" onclick="layer.msg('正在通过QQ登入', {icon:16, shade: 0.1, time:0})" title="QQ登入" class="iconfont icon-qq"></a>-->
+            <!--</li>-->
+
+            <!-- 登入后的状态 -->
+            <!--
+            <li class="layui-nav-item">
+              <a class="fly-nav-avatar" href="javascript:;">
+                <cite class="layui-hide-xs">贤心</cite>
+                <i class="iconfont icon-renzheng layui-hide-xs" title="认证信息：layui 作者"></i>
+                <i class="layui-badge fly-badge-vip layui-hide-xs">VIP3</i>
+                <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg">
+              </a>
+              <dl class="layui-nav-child">
+                <dd><a href="user/set.html"><i class="layui-icon">&#xe620;</i>基本设置</a></dd>
+                <dd><a href="user/message.html"><i class="iconfont icon-tongzhi" style="top: 4px;"></i>我的消息</a></dd>
+                <dd><a href="user/home.html"><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的主页</a></dd>
+                <hr style="margin: 5px 0;">
+                <dd><a href="/user/logout/" style="text-align: center;">退出</a></dd>
+              </dl>
+            </li>
+            -->
+        </ul>
+    </div>
+</div>
+
+<div class="layui-container">
+    <div class="layout main_body">
+        <header style="width: 80%;text-align: center">
+            <h1 class="fontsize_h"><span th:text="${title}"></span></h1>
+            <p class="fontsize_d">
             <span>
                 <span>作者：</span>
                 <span th:text="${username}"></span>
             </span>|
-            <span>
+                <span>
                 <span>发布时间：</span>
                 <span th:text="${time}"></span>
             </span>|
-            <span>
+                <span>
                 <span>访问量：</span>
                 <span th:text="${visit_times}"></span>
             </span>
-        </p>
-    </header>
-    <i class="sidebar-button" id="menu_list">Sidebar</i>
-    <div id="sidebar">
-        <h1>Table of Contents</h1>
-        <div class="markdown-body editormd-preview-container" id="custom-toc-container" style="background-color: #cce8cf">#custom-toc-container</div>
-    </div>
-    <div id="test-editormd-view">
-        <textarea style="display:none;" name="test-editormd-markdown-doc" th:text="${content}"></textarea>
-    </div>
+            </p>
+        </header>
+        <i class="sidebar-button" id="menu_list">Sidebar</i>
+        <div id="sidebar">
+            <h1>Table of Contents</h1>
+            <div class="markdown-body editormd-preview-container" id="custom-toc-container" style="background-color: #cce8cf">#custom-toc-container</div>
+        </div>
+        <div id="test-editormd-view">
+            <textarea style="display:none;" name="test-editormd-markdown-doc" th:text="${content}"></textarea>
+        </div>
 
+    </div>
 </div>
-<!-- <script src="js/zepto.min.js"></script>
-<script>
-    var jQuery = Zepto;  // 为了避免修改flowChart.js和sequence-diagram.js的源码，所以使用Zepto.js时想支持flowChart/sequenceDiagram就得加上这一句
-</script> -->
-
 
 
 <script src="//autumnblog-1251679769.file.myqcloud.com/blogdetail/editor.md/examples/js/jquery.min.js"></script>
