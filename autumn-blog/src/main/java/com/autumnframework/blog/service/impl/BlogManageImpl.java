@@ -1,7 +1,6 @@
 package com.autumnframework.blog.service.impl;
 
 import com.autumnframework.blog.dao.mongo.BlogRepository;
-import com.autumnframework.blog.dao.mongo.CommonRepository;
 import com.autumnframework.blog.model.document.BlogDetail;
 import com.autumnframework.blog.service.interfaces.IBlogManage;
 import com.autumnframework.common.architect.constant.ResponseCode;
