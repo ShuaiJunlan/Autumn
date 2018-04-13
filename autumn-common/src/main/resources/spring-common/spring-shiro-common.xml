@@ -24,7 +24,7 @@
                 /Sys/plugin/SysConfig/RegisterPage/RegisterPage.html=anon
                 /Sys/plugin/SysConfig/LoginPage/LoginPage.html=anon
                 /blog/getBlogByIdD/**=anon
-                /mainPage.html=anon
+                /main.html=anon
                 /Sys/plugin/SysConfig/MainLeftPage/MainLeftPage.html=anon
                 /Sys/plugin/SysConfig/MainLeftPage/MainLeftPage.js=anon
                 /Sys/plugin/SysConfig/ArticleItem/ArticleItem.html=anon

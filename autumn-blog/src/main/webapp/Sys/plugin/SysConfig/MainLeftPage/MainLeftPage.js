@@ -11,7 +11,10 @@ Fv.plugin.MainLeftPage.init = function () {
     };
 }();
 Fv.plugin.MainLeftPage.start = function () {
-
+    var loading = Fv.config.layer.msg('加载中', {
+        icon: 16
+        ,shade: 0.5
+    });
     var div = {url : "Sys/plugin/SysConfig/MainLeftPage/MainLeftPage.html", js: [], css: [], id: "mainPageLeft"}
 
     Fv.ajax.loadDiv(
@@ -19,7 +22,7 @@ Fv.plugin.MainLeftPage.start = function () {
         ,function (data, a) {
             $("#" + a.id).html(data);
 
-            Fv.ajax.get("blog/list", {},function (data) {
+            Fv.ajax.syncGet("blog/list", {},function (data) {
                     var article_item = {url : "Sys/plugin/SysConfig/ArticleItem/ArticleItem.html", js: [], css: [], id: "article_item"}
                     Fv.ajax.loadDiv(article_item, function (item, a) {
                             var str = "";
@@ -38,20 +41,17 @@ Fv.plugin.MainLeftPage.start = function () {
                             $("#" + a.id).html(str);
                         }
                         ,function () {
-
-
                         });
                 }
                 ,function () {
                 }
             );
+            Fv.config.layer.close(loading);
         }
         ,function () {
-
+            Fv.config.layer.close(loading);
         }
     );
-
-
 }();
 //dateTimeStamp是一个时间毫秒，注意时间戳是秒的形式，在这个毫秒的基础上除以1000，就是十位数的时间戳。13位数的都是时间毫秒。
 Fv.plugin.MainLeftPage.timeAgo = function(dateTimeStamp){

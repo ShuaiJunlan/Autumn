@@ -1,8 +1,6 @@
 package com.autumnframework.blog.controller;
 
 import com.autumnframework.blog.dao.mongo.BlogRepository;
-import com.autumnframework.blog.dao.mongo.CommonRepository;
-import com.autumnframework.blog.model.document.Blog;
 import com.autumnframework.blog.model.document.BlogDetail;
 import com.autumnframework.blog.service.impl.BlogManageImpl;
 import com.autumnframework.common.architect.constant.ResponseCode;
@@ -12,6 +10,7 @@ import com.autumnframework.common.model.bo.ResponseMsg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +26,7 @@ import java.util.Optional;
 @RequestMapping(value = "blog/")
 public class BlogManageController {
     private static final Logger logger = LoggerFactory.getLogger(BlogManageController.class);
+
     @Autowired
     private BlogRepository blogRepository;
 
@@ -58,10 +58,12 @@ public class BlogManageController {
         return blogManage.shareBlog(blogDetail);
     }
 
-    @RequestMapping(value = "list")
+    @RequestMapping(value = "list", method = RequestMethod.GET)
     @ResponseBody
     public DataPageResponseMsg getArticleList(){
-        List<BlogDetail> list = blogRepository.findAll();
+        //按访问次数降序查询
+        Sort sort = new Sort(Sort.Direction.DESC, "visit_times");
+        List<BlogDetail> list = blogRepository.findAll(sort);
         int count = list.size();
         return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_SUCCESS, list, count);
     }
