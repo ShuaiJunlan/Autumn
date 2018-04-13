@@ -11,10 +11,7 @@ Fv.plugin.MainLeftPage.init = function () {
     };
 }();
 Fv.plugin.MainLeftPage.start = function () {
-    var loading = Fv.config.layer.msg('加载中', {
-        icon: 16
-        ,shade: 0.5
-    });
+    var loading = Fv.config.layer.load(2, {shade: [0.3, '#fff']});
     var div = {url : "Sys/plugin/SysConfig/MainLeftPage/MainLeftPage.html", js: [], css: [], id: "mainPageLeft"}
 
     Fv.ajax.loadDiv(
