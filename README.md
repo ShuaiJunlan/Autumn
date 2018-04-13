@@ -10,7 +10,7 @@
 **Autumn** is a collection of web sub-system, aimes to provide universal web system solution. It is scalable and stable, you can develop your own web system  basing on it. Also, you can join us to maintain it together, if only you are interested in it.
 
 [Autumn-CMS Live Demo](https://shuaijunlan.cn/autumn-cms/) 
-[Autumn-Blog Live Demo](https://shuaijunlan.cn/autumn-blog/mainPage.html)
+[Autumn-Blog Live Demo](https://shuaijunlan.cn/autumn-blog/)
 
 Please submit issues to corresponding projects, that'll help us make issues tracking easier so that we can provide timely help to you.
 
