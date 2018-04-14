@@ -97,8 +97,6 @@ public class BlogManageController {
             model.addAttribute("time", blogDetail.getTime());
             model.addAttribute("visit_times", blogDetail.getVisit_times());
             model.addAttribute("content", blogDetail.getContent_md());
-        }else {
-            return "detail";
         }
         return "detail";
     }
