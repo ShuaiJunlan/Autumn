@@ -38,11 +38,10 @@ public class BlogManageController {
     public BlogDetail getBlogById(@PathVariable("id") String id){
 
         Optional<BlogDetail> blog =  blogRepository.findById(id);
-        if (blog.isPresent()){
-            return blog.get();
-        }else {
+        if (!blog.isPresent()){
             return null;
         }
+        return blog.get();
     }
 
     @RequestMapping(value = "insertBlog/")
@@ -67,7 +66,7 @@ public class BlogManageController {
         int count = list.size();
         return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_SUCCESS, list, count);
     }
-    @RequestMapping(value = "getBlogByIdD/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "article/{id}", method = RequestMethod.GET)
     public String getBlogDetail(@PathVariable("id") String id, Model model){
 
         Optional<BlogDetail> blog =  blogRepository.findById(id);
