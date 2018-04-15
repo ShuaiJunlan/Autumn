@@ -11,7 +11,7 @@ Fv.plugin.MainLeftPage.init = function () {
     };
 }();
 Fv.plugin.MainLeftPage.start = function () {
-    var loading = Fv.config.layer.load(2, {shade: [0.3, '#fff']});
+    var loading = Fv.config.layer.load(2, {shade: [0.01, '#fff']});
     var div = {url : "Sys/plugin/SysConfig/MainLeftPage/MainLeftPage.html", js: [], css: [], id: "mainPageLeft"}
 
     Fv.ajax.loadDiv(
@@ -70,6 +70,7 @@ Fv.plugin.MainLeftPage.timeAgo = function(dateTimeStamp){
     var dayC = diffValue/day;
     var weekC = diffValue/week;
     var monthC = diffValue/month;
+    var result;
     if(monthC >= 1 && monthC <= 12){
         result = " " + parseInt(monthC) + "月前"
     }else if(weekC >= 1 && weekC <= 4){
