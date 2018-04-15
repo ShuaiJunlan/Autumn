@@ -9,7 +9,6 @@ import com.autumnframework.common.model.bo.DataPageResponseMsg;
 import com.autumnframework.common.model.bo.ResponseMsg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,11 +26,14 @@ import java.util.Optional;
 public class BlogManageController {
     private static final Logger logger = LoggerFactory.getLogger(BlogManageController.class);
 
-    @Autowired
     private BlogRepository blogRepository;
 
-    @Autowired
     private BlogManageImpl blogManage;
+
+    public BlogManageController(BlogRepository blogRepository, BlogManageImpl blogManage){
+        this.blogRepository = blogRepository;
+        this.blogManage = blogManage;
+    }
 
     @RequestMapping(value = "getBlogById/{id}")
     @ResponseBody
@@ -84,7 +86,7 @@ public class BlogManageController {
 //                    blogDetail.getByte_count(),
 //                    blogDetail.getVisit_times(),
 //                    blogDetail.getComment_times(),
-//                    blogDetail.getState());
+///                    blogDetail.getState());
             long times = blogDetail.getVisit_times();
 
             times++;
