@@ -14,6 +14,8 @@ $(function() {
                 Fv.ajax.loadJs(["Sys/plugin/SysConfig/RegisterPage/RegisterPage.js"]);
                 Fv.ajax.loadJs(["Sys/plugin/SysConfig/LoginPage/LoginPage.js"]);
                 Fv.ajax.loadJs(["Sys/plugin/SysConfig/ShareArticle/ShareArticle.js"]);
+                layer.msg('编辑器只支持Markdown语法,且无法在手机端编写文章', {time: 6000, icon:6});
+
             }
         )
     }();
@@ -21,6 +23,7 @@ $(function() {
     Fv.ajax.get("init.do", {}, function (data) {
             $("#username").append(data.username);
             Fv.config.user = data;
+
         }
         ,function () {
             layer.alert("System Exception, Please contact manager!", {
@@ -28,23 +31,9 @@ $(function() {
             })
         }
     );
-    Fv.login = function () {
 
-        layui.$.post('Sys/plugin/SysConfig/LoginPage/LoginPage.html', {}, function (str) {
-            var index = layer.open({
-                type: 1
-                , title: '登录窗口'
-                , offset: 'auto'
-                , area: []
-                , id: 'makeSuggestion'
-                , content: str
-                , shade: 0
-                , skin: 'layui-layer-molv'
-            });
-            Fv.config.form.render();
 
-        });
-    };
+
     Fv.logout = function () {
         window.top.location.href="logout.do";;
     };
@@ -57,7 +46,7 @@ $(function() {
                 , area: []
                 , id: 'shareArticle'
                 , content: str
-                , shade: 0.3
+                , shade: 0.4
                 , skin: 'layui-layer-molv'
             });
             Fv.config.form.render();
