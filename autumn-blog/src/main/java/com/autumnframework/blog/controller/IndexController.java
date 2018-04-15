@@ -22,18 +22,9 @@ public class IndexController extends BasicController {
      *跳转到主页
      * @return
      */
-    @RequestMapping("/index.do")
+    @RequestMapping("/editor")
     public String toIndexPage() {
-        return "main/main";
-    }
-
-    /**
-     * 跳转到欢迎页
-     * @return
-     */
-    @RequestMapping("/home.do")
-    public String toHomePage() {
-        return "main/main";
+        return "main/editor";
     }
 
     /**
