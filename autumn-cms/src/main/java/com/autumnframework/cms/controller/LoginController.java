@@ -37,7 +37,7 @@ public class LoginController{
     /**
      * 跳转到登录页面
      *
-     * @return
+     * @return login page
      */
     @RequestMapping("/login.do")
     public String toLoginPage()  {
@@ -58,7 +58,7 @@ public class LoginController{
      *  登录验证处理
      * @param username 用户名
      * @param password 密码
-     * @return
+     * @return data
      */
     @RequestMapping("/loginCheck.do")
     @ResponseBody

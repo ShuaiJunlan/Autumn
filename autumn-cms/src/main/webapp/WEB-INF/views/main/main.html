@@ -121,7 +121,6 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('container'));
         Fv.ajax.get("log/loginInfoCharts/", {}, function (data) {
                 // 指定图表的配置项和数据

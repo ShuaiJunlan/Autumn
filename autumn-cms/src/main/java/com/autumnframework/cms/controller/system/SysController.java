@@ -19,7 +19,7 @@ import java.util.List;
 public class SysController {
     @Autowired
     private ISysService iSysService;
-    @RequestMapping(value = "/getMenu/{sys}")
+    @RequestMapping(value = "getMenu/{sys}")
     @ResponseBody
     public List<SysMenu> getMenuBySys(@PathVariable("sys") String sys){
         return iSysService.getMenuBySys(sys);

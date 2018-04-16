@@ -20,13 +20,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UserManageController {
     @Autowired
     private UserServiceImpl userService;
-    @RequestMapping(value = "/getAllUser/")
+    @RequestMapping(value = "getAllUser/")
     @ResponseBody
     public DataPageResponseMsg getAllUser(@RequestParam("page") int page, @RequestParam("limit") int limit){
         return userService.selectAllUser(page, limit);
     }
 
-    @RequestMapping(value = "/insert/")
+    @RequestMapping(value = "insert/")
     @ResponseBody
     public ResponseMsg insertUser(User user){
 
