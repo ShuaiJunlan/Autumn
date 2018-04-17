@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * @date 2017/7/6
  */
 @Controller
-public class IndexController extends BasicController {
+public class IndexController {
 
     /**
      *跳转到主页
@@ -24,15 +24,6 @@ public class IndexController extends BasicController {
      */
     @RequestMapping("/index.do")
     public String toIndexPage() {
-        return "main/main";
-    }
-
-    /**
-     * 跳转到欢迎页
-     * @return
-     */
-    @RequestMapping("/home.do")
-    public String toHomePage() {
         return "main/main";
     }
 

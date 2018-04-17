@@ -27,7 +27,7 @@ public class MessageController {
      * @param email
      * @return
      */
-    @RequestMapping(value = "/admin/")
+    @RequestMapping(value = "admin/")
     @ResponseBody
     public ResponseMsg sendMessToAdmin(@RequestParam("content") String content, @RequestParam("email")String email){
         webEmail.send("用户反馈意见", email + "<br>" + content);

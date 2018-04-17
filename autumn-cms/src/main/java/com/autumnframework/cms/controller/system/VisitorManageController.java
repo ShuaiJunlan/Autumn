@@ -29,7 +29,7 @@ public class VisitorManageController {
             detail = IpInfoUtil.getIpInforByReq(request).getString("data");
             //  会抛出异常
             LoginInfo loginInfo = JSON.parseObject(detail, LoginInfo.class);
-//            loginInfo.setUser_login_name(username);
+///            loginInfo.setUser_login_name(username);
 
             loginInfo.setType(3);
             logManage.insertLoginInfo(loginInfo);

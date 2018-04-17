@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class RoleManageController {
     @Autowired
     private RoleServiceImpl roleService;
-    @RequestMapping(value = "/getAllRole/")
+    @RequestMapping(value = "getAllRole/")
     @ResponseBody
     public DataPageResponseMsg getAllRole(@RequestParam("page") int page, @RequestParam("limit") int limit){
         return roleService.selectAllRole(page, limit);

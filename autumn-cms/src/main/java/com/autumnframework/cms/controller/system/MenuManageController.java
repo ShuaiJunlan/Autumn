@@ -25,13 +25,13 @@ public class MenuManageController {
 
     @Autowired
     private IResourceService iResourceService;
-    @RequestMapping(value = "/getMenuList/")
+    @RequestMapping(value = "getMenuList/")
     @ResponseBody
     public DataPageResponseMsg getMenuList(@RequestParam("page") int page, @RequestParam("limit") int limit, @RequestParam int level, @RequestParam String type, @RequestParam String sys){
         return this.iMenuManageService.getMenuByPage(page, limit, level, type, sys);
     }
 
-    @RequestMapping(value = "/deleteMenu/")
+    @RequestMapping(value = "deleteMenu/")
     @ResponseBody
     public ResponseMsg deleteMenuById(@RequestParam("id") int id, @RequestParam("level") int level){
         if (iResourceService.deleteResById(id, level) == 1){

@@ -92,9 +92,7 @@
                         </div>
                     </div>
                 </div>
-                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-                    <legend>图表</legend>
-                </fieldset>
+                <blockquote class="layui-elem-quote">系统统计信息</blockquote>
                 <div class="layui-tab-item layui-show">
                     <div id="container" style="min-width: 250px; height: 300px; margin: 0 auto"></div>
                 </div>
@@ -121,7 +119,6 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('container'));
         Fv.ajax.get("log/loginInfoCharts/", {}, function (data) {
                 // 指定图表的配置项和数据

@@ -20,25 +20,25 @@ import java.util.List;
 public class LogManageController {
     @Autowired
     private LogManageImpl logManage;
-    @RequestMapping(value = "/allLoginLog/")
+    @RequestMapping(value = "allLoginLog/")
     @ResponseBody
     public DataPageResponseMsg getAllLoginInfo(int page, int limit){
         return logManage.selectAllLoginInfo(page, limit);
     }
 
-    @RequestMapping(value = "/userLoginLog/")
+    @RequestMapping(value = "userLoginLog/")
     @ResponseBody
     public DataPageResponseMsg getAllLoginInfo(String username, int page, int limit){
         return logManage.selectLoginInfoByUserName(username, page, limit);
     }
 
-    @RequestMapping(value = "/loginInfoCharts/")
+    @RequestMapping(value = "loginInfoCharts/")
     @ResponseBody
     public JSONObject getLoginInfoCharts(){
         return logManage.getLoginInfoCharts();
     }
 
-    @RequestMapping(value = "/loginInfoArea/")
+    @RequestMapping(value = "loginInfoArea/")
     @ResponseBody
     public List<AreaView> getLoginInfoArea(){
         return logManage.getLoginInfoArea();
