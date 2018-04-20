@@ -19,18 +19,18 @@ Fv.plugin.MainLeftPage.start = function () {
         ,function (data, a) {
             $("#" + a.id).html(data);
 
-            Fv.ajax.syncGet("blog/list", {},function (data) {
+            Fv.ajax.syncGet("article/list", {},function (data) {
                     var article_item = {url : "Sys/plugin/SysConfig/ArticleItem/ArticleItem.html", js: [], css: [], id: "article_item"}
                     Fv.ajax.loadDiv(article_item, function (item, a) {
                             var str = "";
                             for (var i = 0; i < data.count; i++){
-                                var img_base64 = Fv.plugin.MainLeftPage.getHashByName(data.data[i].username);
+                                var img_base64 = Fv.plugin.MainLeftPage.getHashByName(data.data[i].user_name);
                                 str += item
-                                    .replace("{user-name}", data.data[i].username)
+                                    .replace("{user-name}", data.data[i].user_name)
                                     .replace("{article-title}", data.data[i].title)
                                     .replace("{visit-times}", data.data[i].visit_times)
-                                    .replace("{time}", Fv.plugin.MainLeftPage.timeAgo(data.data[i].time))
-                                    .replace("{article-link}", "article/" + data.data[i].id)
+                                    .replace("{time}", Fv.plugin.MainLeftPage.timeAgo(data.data[i].post_time))
+                                    .replace("{article-link}", "article/" + data.data[i].visit_id)
                                     .replace("{user-image-base64}", img_base64)
                                     .replace("{zan-times}", 0)
                                     .replace("{comment-times}", 0);

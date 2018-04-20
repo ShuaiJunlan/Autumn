@@ -7,6 +7,8 @@ import com.autumnframework.common.architect.constant.ResponseCode;
 import com.autumnframework.common.architect.utils.ResponseMsgUtil;
 import com.autumnframework.common.model.bo.DataPageResponseMsg;
 import com.autumnframework.common.model.bo.ResponseMsg;
+import com.autumnframework.common.model.po.ArticleInfo;
+import com.autumnframework.common.service.impl.ArticleServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Sort;
@@ -56,16 +58,4 @@ public class BlogManageController {
 
         return blogManage.shareBlog(blogDetail);
     }
-
-    @RequestMapping(value = "list", method = RequestMethod.GET)
-    @ResponseBody
-    public DataPageResponseMsg getArticleList(){
-        //按访问次数降序查询
-        Sort sort = new Sort(Sort.Direction.DESC, "visit_times");
-        List<BlogDetail> list = blogRepository.findAll(sort);
-        int count = list.size();
-        return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_SUCCESS, list, count);
-    }
-
-
 }
