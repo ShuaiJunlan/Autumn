@@ -30,7 +30,7 @@ Fv.plugin.MainLeftPage.start = function () {
                                     .replace("{article-title}", data.data[i].title)
                                     .replace("{visit-times}", data.data[i].visit_times)
                                     .replace("{time}", Fv.plugin.MainLeftPage.timeAgo(data.data[i].time))
-                                    .replace("{article-link}", "blog/article/" + data.data[i].id)
+                                    .replace("{article-link}", "article/" + data.data[i].id)
                                     .replace("{user-image-base64}", img_base64)
                                     .replace("{zan-times}", 0)
                                     .replace("{comment-times}", 0);
