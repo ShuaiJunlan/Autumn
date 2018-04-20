@@ -137,7 +137,7 @@
                             ,modifier : init.username
                             ,modifier_id : init.id
                             ,status : 2
-                        }
+                        };
                         Fv.ajax.post("register/userRegister/", user, function (data) {
                                 if (data.code == '1111'){
                                     layer.closeAll("page");
