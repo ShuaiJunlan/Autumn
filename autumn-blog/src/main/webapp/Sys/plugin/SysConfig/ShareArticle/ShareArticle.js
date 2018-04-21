@@ -27,7 +27,7 @@ Fv.plugin.ShareArticle.start = function () {
             Fv.ajax.post("blog/shareBlog/", blogDetail, function (data) {
                     if (data.code == '1111'){
                         Fv.config.layer.closeAll("page");
-                        layer.confirm("https://shuaijunlan.cn/autumn-blog/blog/getBlogByIdD/" + data.data, {icon: 1, title:'访问链接', btn: []}, function(index){
+                        layer.confirm("https://shuaijunlan.cn/autumn-blog/article/" + data.data, {icon: 1, title:'访问链接', btn: []}, function(index){
                             layer.close(index);
                         });
 

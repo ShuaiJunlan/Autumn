@@ -33,7 +33,7 @@ Fv.plugin.ArticleList.start = function () {
                 }
                 Fv.plugin.ArticleList.addElementModule();
                 Fv.plugin.ArticleList.addFormModule();
-                Fv.plugin.ArticleList.addArticleData('article/list/');
+                Fv.plugin.ArticleList.addArticleData('manage/article/list/');
                 layui.$('.layui-inline .layui-btn').on('click', function(){
                     var type = $(this).data('type');
                     Fv.plugin.ArticleList.init.active[type] ? Fv.plugin.ArticleList.init.active[type].call(this) : '';
@@ -70,9 +70,9 @@ Fv.plugin.ArticleList.addArticleData = function (url) {
         }
         ,cols: [[
             {checkbox: true, LAY_CHECKED: true}
-            ,{field: 'id', title:'ID', width: 200, sort:true}
-            ,{field: 'username', title:'作者', width:100}
-            ,{field: 'time', title:'发表时间', width:150}
+            ,{field: 'visit_id', title:'ID', width: 200, sort:true}
+            ,{field: 'user_name', title:'作者', width:100}
+            ,{field: 'post_time', title:'发表时间', width:150}
             ,{field: 'title', title:'标题', width:200}
             ,{field: 'visit_times', title:'访问次数', width:160}
             ,{field: 'state', title:'状态', width:70}
@@ -89,7 +89,7 @@ Fv.plugin.ArticleList.addArticleData = function (url) {
             // layer.close(loading);
             layer.msg('数据加载完成');
         }
-    })
+    });
 
     //监听表格复选框选择
     Fv.config.table.on('checkbox(article)', function(obj){
@@ -101,7 +101,7 @@ Fv.plugin.ArticleList.addArticleData = function (url) {
         var data = obj.data;
         if(obj.event === 'detail'){
 
-            window.open('https://shuaijunlan.cn/autumn-blog/blog/getBlogByIdD/' + data.id);
+            window.open('https://shuaijunlan.cn/autumn-blog/article/' + data.visit_id);
         } else if(obj.event === 'del'){
             layer.confirm('确定删除么？', function(index){
                 layer.close(index);

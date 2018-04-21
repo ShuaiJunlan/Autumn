@@ -3,19 +3,16 @@ package com.autumnframework.blog.controller;
 import com.autumnframework.blog.dao.mongo.BlogRepository;
 import com.autumnframework.blog.model.document.BlogDetail;
 import com.autumnframework.blog.service.impl.BlogManageImpl;
-import com.autumnframework.common.architect.constant.ResponseCode;
-import com.autumnframework.common.architect.utils.ResponseMsgUtil;
-import com.autumnframework.common.model.bo.DataPageResponseMsg;
 import com.autumnframework.common.model.bo.ResponseMsg;
-import com.autumnframework.common.model.po.ArticleInfo;
 import com.autumnframework.common.service.impl.ArticleServiceImpl;
+import com.autumnframework.common.service.impl.UserServiceImpl;
+import com.autumnframework.common.service.interfaces.IArticleService;
+import com.autumnframework.common.service.interfaces.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -25,7 +22,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping(value = "blog/")
 public class BlogManageController {
-    private static final Logger logger = LoggerFactory.getLogger(BlogManageController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BlogManageController.class);
 
     private BlogRepository blogRepository;
     private BlogManageImpl blogManage;
