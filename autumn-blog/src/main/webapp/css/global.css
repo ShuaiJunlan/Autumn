@@ -503,6 +503,14 @@ body .fly-user-main{position: relative; min-height: 600px;}
 .fly-none p{margin-top: 50px; padding: 0 15px; font-size: 20px; color: #999; font-weight: 300;}
 .fly-list-one .fly-none{min-height: 70px;}
 
+/*文章列表item*/
+.article_item_title{
+  font-size: 20px !important;
+  color: #5a8fac;
+  font-weight: normal;
+  text-shadow: 0 1px 0 #ffffff;
+}
+.fly-list li:hover{background-color: #f7f5e0}
 
 @media screen and (max-width: 768px) {
 	.fly-main{width: 100%;}
@@ -510,9 +518,38 @@ body .fly-user-main{position: relative; min-height: 600px;}
   /* 顶边距 */
   .fly-marginTop{margin-top: 0;}
 
+  /*头像*/
+  .fly-avatar {
+    position: absolute;
+    left: 5px;
+    top: 15px;
+  }
+  .fly-list li {
+    position: relative;
+    height: 45px;
+    line-height: 22px;
+    padding: 15px 15px 15px 55px;
+    border-bottom: 1px dotted #e2e2e2;
+  }
+  .article_item_title {
+    font-size: 15px !important;
+    color: #5a8fac;
+    font-weight: normal;
+    text-shadow: 0 1px 0 #ffffff;
+  }
+
   /* 头部 */
+  .fly-header {
+    /*height: 45px;*/
+  }
+  .layui-nav .layui-nav-item {
+    position: relative;
+    display: inline-block;
+    margin-top:7%;
+  }
   .fly-header .fly-nav-user li .fly-nav-avatar{padding-right: 15px;}
   .fly-header .fly-nav-user{margin-right: 5px;}
+
 
   /* 专栏 */
   .fly-column{height: auto;}
@@ -531,7 +568,9 @@ body .fly-user-main{position: relative; min-height: 600px;}
   .laypage-main .laypage-next{display: inline-block;}
 
   /* 列表 */
-  .fly-list li h2 a{max-width: 72%;}
+  .fly-list li h2 a{
+    max-width: 72%;
+  }
 
   /* Detail 页 */
 	.fly-admin-box{display: block; margin: 0; margin-top: 10px;}
@@ -554,11 +593,3 @@ body .fly-user-main{position: relative; min-height: 600px;}
   .site-mobile .site-mobile-shade{content: ''; position: fixed; top: 0; bottom: 0; left: 0; right: 0; background-color: rgba(0,0,0,.9); z-index: 999;}
 }
 
-/*文章列表item*/
-.article_item_title{
-  font-size: 20px !important;
-  color: #5a8fac;
-  font-weight: normal;
-  text-shadow: 0 1px 0 #ffffff;
-}
-.fly-list li:hover{background-color: #f7f5e0}
