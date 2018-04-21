@@ -7,6 +7,9 @@ import com.autumnframework.common.architect.constant.ResponseCode;
 import com.autumnframework.common.architect.utils.MD5Util;
 import com.autumnframework.common.architect.utils.ResponseMsgUtil;
 import com.autumnframework.common.model.bo.ResponseMsg;
+import com.autumnframework.common.model.po.ArticleInfo;
+import com.autumnframework.common.service.interfaces.IArticleService;
+import com.autumnframework.common.service.interfaces.IUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +29,10 @@ public class BlogManageImpl implements IBlogManage{
 
     @Autowired
     private BlogRepository blogRepository;
+    @Autowired
+    private IArticleService articleService;
+    @Autowired
+    private IUserService userService;
 
     @Override
     public BlogDetail getBlogById(String id) {
@@ -64,6 +71,22 @@ public class BlogManageImpl implements IBlogManage{
         blogDetail.setComment_times(0);
         blogDetail.setVisit_times(0);
         blogDetail.setState(1);
+
+        ArticleInfo articleInfo = new ArticleInfo();
+        articleInfo.setTitle(blogDetail.getTitle());
+        articleInfo.setPost_time(blogDetail.getTime());
+        articleInfo.setPrivilege(1);
+        articleInfo.setState(1);
+        articleInfo.setVisit_id(blogDetail.getId());
+        articleInfo.setVisit_times(0);
+        articleInfo.setUser_name(blogDetail.getUsername());
+        articleInfo.setModification_time(blogDetail.getTime());
+        articleInfo.setType(1);
+        articleInfo.setComment_times(0);
+        articleInfo.setUp_vote(0);
+        articleInfo.setDown_vote(0);
+        articleInfo.setUser_id(userService.selectUserByloginName(blogDetail.getUsername()).getId());
+        articleService.insrt(articleInfo);
 
         blogRepository.save(blogDetail);
         return ResponseMsgUtil.returnCodeMessage(ResponseCode.REQUEST_SUCCESS, blogDetail.getId());
