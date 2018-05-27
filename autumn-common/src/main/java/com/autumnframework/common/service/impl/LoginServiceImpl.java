@@ -59,7 +59,7 @@ public class LoginServiceImpl implements ILoginService {
             }
             // wrong code
             String sessionCode = (String) request.getSession().getAttribute("code");
-            if(!code.toLowerCase().equals(sessionCode)) {
+            if(!code.equalsIgnoreCase(sessionCode)) {
                 log.error("Login failed, reason:{}[enter-code:{},session-code:{}]", BussinessCode.GLOBAL_CAPTCHA_ERROR.getMsg(), code, sessionCode);
                 return ResponseMsgUtil.returnCodeMessage(BussinessCode.GLOBAL_CAPTCHA_ERROR);
             }

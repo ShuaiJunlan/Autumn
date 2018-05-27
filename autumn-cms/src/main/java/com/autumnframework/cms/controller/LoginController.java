@@ -3,14 +3,17 @@ package com.autumnframework.cms.controller;
 
 
 import com.autumnframework.common.architect.constant.Constants;
-import com.autumnframework.common.architect.utils.CreateImageCode;
 import com.autumnframework.common.model.bo.ResponseMsg;
 import com.autumnframework.common.model.po.User;
 import com.autumnframework.common.service.impl.LoginServiceImpl;
+import io.github.shuaijunlan.core.VerificationList;
+import io.github.shuaijunlan.core.VerificationModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -49,9 +52,13 @@ public class LoginController{
      */
     @RequestMapping("/captcha.do")
     public void Captcha(HttpServletResponse response, HttpSession session)throws IOException {
-        CreateImageCode vCode = new CreateImageCode(116,36,5,10);
-        session.setAttribute("code", vCode.getCode());
-        vCode.write(response.getOutputStream());
+        VerificationList verificationList = new VerificationList();
+        VerificationModel verificationModel = verificationList.pop();
+        session.setAttribute("code", verificationModel.getText());
+        String formatName = "jpg";
+        ImageIO.write(verificationModel.getBufferedImage(),
+                formatName,
+                response.getOutputStream());
     }
 
     /**
