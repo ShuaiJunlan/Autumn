@@ -32,7 +32,15 @@
         <javamail.version>1.4.5</javamail.version>
         <spring.thymeleaf.version>3.0.9.RELEASE</spring.thymeleaf.version>
         <slf4j.version>1.7.25</slf4j.version>
+        <nkaptcha.version>1.0.0</nkaptcha.version>
     </properties>
+    <repositories>
+        <repository>
+            <id>shuaijunlan-github-maven-repository</id>
+            <name>shuaijunlan-github-maven-repository</name>
+            <url>https://raw.githubusercontent.com/shuaijunlan/shuaijunlan.github.io/master</url>
+        </repository>
+    </repositories>
     <dependencyManagement>
         <dependencies>
             <!--modules dependencies-->
@@ -297,12 +305,11 @@
                 <artifactId>thymeleaf-spring5</artifactId>
                 <version>${spring.thymeleaf.version}</version>
             </dependency>
-
-            <!--腾讯云对象存储服务-->
+            <!--验证码开源库-->
             <dependency>
-                <groupId>com.qcloud</groupId>
-                <artifactId>cos_api</artifactId>
-                <version>5.2.4</version>
+                <artifactId>nkaptcha</artifactId>
+                <groupId>io.github.shuaijunlan</groupId>
+                <version>${nkaptcha.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

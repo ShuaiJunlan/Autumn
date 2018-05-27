@@ -221,6 +221,11 @@
             <artifactId>thymeleaf-spring5</artifactId>
         </dependency>
 
+        <dependency>
+            <artifactId>nkaptcha</artifactId>
+            <groupId>io.github.shuaijunlan</groupId>
+        </dependency>
+
 
     </dependencies>
     <build>
