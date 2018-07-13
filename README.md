@@ -26,7 +26,7 @@ The project requires at minimum 512MB memory to run. Please ensure you have corr
 
 ### Get Started
 * Clone from github.com:
-    `git clone git@github.com:shuaijunlan/Autumn.git`
+    `git clone https://github.com/shuaijunlan/Autumn.git`
 * Import [autumn_framework.sql](https://github.com/shuaijunlan/Autumn-Framework/blob/master/autumn_framework.sql) to your MySQL Database, and must alter username and password in `druid-pool.properties`, the password is encrypted by Druid
 * Enter the project root directory `cd Autumn`
 * Install dependencies:
