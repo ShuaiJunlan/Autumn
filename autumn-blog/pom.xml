@@ -30,7 +30,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <port>8082</port>
+                    <port>8088</port>
                     <path>/autumn-blog</path>
                     <uriEncoding>UTF-8</uriEncoding>
                     <server>tomcat</server>

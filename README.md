@@ -40,7 +40,7 @@ The project requires at minimum 512MB memory to run. Please ensure you have corr
 > If you want to run autumn-blog sub-system,
 
 * Enter autumn-blog, `cd autumn-blog`
-* Run server:`mvn tomcat7:run -Dspring.profiles.active="prod"`. Server runs on port **8082** by default, visit `http://localhost:8082/autumn-blog` to check it out.
+* Run server:`mvn tomcat7:run -Dspring.profiles.active="prod"`. Server runs on port **8088** by default, visit `http://localhost:8088/autumn-blog` to check it out.
 
 ### License
 
