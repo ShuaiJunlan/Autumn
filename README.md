@@ -27,12 +27,12 @@ The project requires at minimum 512MB memory to run. Please ensure you have corr
 ### Get Started
 * Clone from github.com:
     `git clone https://github.com/shuaijunlan/Autumn.git`
-* Import [autumn_framework.sql](https://github.com/shuaijunlan/Autumn-Framework/blob/master/autumn_framework.sql) to your MySQL Database, and must alter username and password in `druid-pool.properties`, the password is encrypted by Druid
-* Enter the project root directory `cd Autumn`
+* Enter the project root directory `cd Autumn`;
+* Import [autumn_framework.sql](https://github.com/shuaijunlan/Autumn-Framework/blob/master/autumn_framework.sql) to your MySQL Database or MariaDB, and must modify the username and password in `autumn-common/src/main/resources/properties-common/druid-pool.properties` basing on your own database settings, the password is encrypted , you can run `com.autumnframework.common.architect.utils.PasswordEncrypt` to generate `publicKey` and `password`, and replace them in the `druid-pool.properties` file;
 * Install dependencies:
-    `mvn install`
+    `mvn install`;
 
-> If you want to run autumu-cms sub-system,
+> If you want to run autumu-cms sub-system
 
 * Enter autumn-cms, `cd autumn-cms`
 * Run server:`mvn tomcat7:run -Dspring.profiles.active="prod"`. Server runs on port **8081** by default, visit `http://localhost:8081/autumn-cms` to check it out.

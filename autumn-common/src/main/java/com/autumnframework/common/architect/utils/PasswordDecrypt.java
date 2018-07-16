@@ -11,7 +11,7 @@ public class PasswordDecrypt {
         String publickey = "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJBMyqWCAu3arw9FIlmO+9rPjo+Djve6krSgVHVHAPIPPXvaxvzVSLTuBLUQJU5gBv7rjd7+IJjGukCcThzrzHcCAwEAAQ==";
         String password = "V77ro97aG18B5i3GG/71UUuSDPuNTluZzMcFxAjP7TmTxJu6HN5BXPJqeQBC9vE//RyZIe3ccAlem3mAP80iPg==";
 
-        System.out.println( ConfigTools.decrypt(publickey, password) );
+        System.out.println(ConfigTools.decrypt(publickey, password) );
 
     }
 }
