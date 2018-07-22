@@ -2,6 +2,8 @@ FROM openjdk:8
 FROM maven
 MAINTAINER Junlan Shuai <shuaijunlan@gmail.com>
 
+RUN cd Autumn
+
 RUN mvn clean
 RUN mvn install -Dmaven.test.skip=true
 
