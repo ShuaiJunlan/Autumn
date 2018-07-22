@@ -1,5 +1,5 @@
-FROM openjdk:8
-FROM maven
+FROM registry.cn-hangzhou.aliyuncs.com/aliware2018/debian-jdk8-devel
+
 MAINTAINER Junlan Shuai <shuaijunlan@gmail.com>
 
 COPY . /root/workspace/agent
