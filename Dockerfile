@@ -5,6 +5,8 @@ MAINTAINER Junlan Shuai <shuaijunlan@gmail.com>
 COPY . /root/workspace/agent
 WORKDIR /root/workspace/agent
 
+COPY docker-entrypoint.sh /usr/local/bin
+
 RUN mvn clean
 RUN mvn install -Dmaven.test.skip=true
 
