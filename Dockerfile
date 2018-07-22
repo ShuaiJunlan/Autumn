@@ -14,4 +14,4 @@ RUN mvn install -Dmaven.test.skip=true
 EXPOSE 8081
 EXPOSE 8088
 
-CMD docker-entrypoint.sh
+ENTRYPOINT ["docker-entrypoint.sh"]

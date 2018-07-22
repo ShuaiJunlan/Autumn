@@ -1,4 +1,4 @@
 cd /root/workspace/agent/autumn-blog/
 nohup mvn tomcat7:run &
 cd /root/workspace/agent/autumn-cms/
-nohup mvn tomcat7:run &
+mvn tomcat7:run
