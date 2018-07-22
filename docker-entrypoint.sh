@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-cd autumn-blog/
+cd /root/workspace/agent/autumn-blog/
 nohup mvn tomcat7:run &
-cd ../autumn-cms/
+cd /root/workspace/agent/autumn-cms/
 nohup mvn tomcat7:run &
