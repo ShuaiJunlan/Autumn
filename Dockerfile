@@ -5,7 +5,7 @@ MAINTAINER Junlan Shuai <shuaijunlan@gmail.com>
 COPY . /root/workspace/agent
 WORKDIR /root/workspace/agent
 
-COPY docker-entrypoint.sh $PATH
+#COPY docker-entrypoint.sh $PATH
 
 RUN mvn clean
 RUN mvn install -Dmaven.test.skip=true
@@ -13,4 +13,4 @@ RUN mvn install -Dmaven.test.skip=true
 EXPOSE 8081
 EXPOSE 8088
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT bash docker-entrypoint.sh
