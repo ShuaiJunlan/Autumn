@@ -1,15 +1,11 @@
 package com.autumnframework.cms.controller.system;
 
-import com.autumnframework.cms.dao.mongo.BlogRepository;
 import com.autumnframework.common.architect.constant.ResponseCode;
 import com.autumnframework.common.architect.utils.ResponseMsgUtil;
 import com.autumnframework.common.model.bo.DataPageResponseMsg;
-import com.autumnframework.common.model.bo.ResponseMsg;
 import com.autumnframework.common.model.po.ArticleInfo;
-import com.autumnframework.common.model.po.BlogDetail;
 import com.autumnframework.common.service.impl.ArticleServiceImpl;
 import com.autumnframework.common.service.interfaces.IArticleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,11 +19,9 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "manage/article")
 public class ArticleManageController {
-    private BlogRepository blogRepository;
     private IArticleService iArticleService;
 
-    public ArticleManageController(BlogRepository blogRepository, ArticleServiceImpl articleService){
-        this.blogRepository = blogRepository;
+    public ArticleManageController(ArticleServiceImpl articleService){
         this.iArticleService = articleService;
     }
 
