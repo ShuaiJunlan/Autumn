@@ -35,7 +35,7 @@ The project requires at minimum 512MB memory to run. Please ensure you have corr
 > If you want to run autumu-cms sub-system
 
 * Enter autumn-cms, `cd autumn-cms`
-* Run server:`mvn tomcat7:run -Dspring.profiles.active="prod"`. Server runs on port **8081** by default, visit `http://localhost:8081/autumn-cms` to check it out.
+* Run server:`mvn tomcat7:run`. Server runs on port **8081** by default, visit `http://localhost:8081/autumn-cms` to check it out.
 
 > If you want to run autumn-blog sub-system,
 
