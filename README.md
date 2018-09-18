@@ -9,15 +9,17 @@
 
 **Autumn** is a collection of web sub-system, aimes to provide universal web system solution. It is scalable and stable, you can develop your own web system  basing on it. Also, you can join us to maintain it together, if only you are interested in it.
 
-[Autumn-CMS Live Demo](https://shuaijunlan.cn/autumn-cms/) 
+[Autumn-CMS Live Demo](https://shuaijunlan.cn/autumn-cms/)
+
+
 [Autumn-Blog Live Demo](https://shuaijunlan.cn/autumn-blog/)
 
 Please submit issues to corresponding projects, that'll help us make issues tracking easier so that we can provide timely help to you.
 
 ### Modules
-* [AUTUMN-CMS](https://github.com/shuaijunlan/Autumn-Framework/tree/master/autumn-cms)
-* [AUTUMN-BLOG](https://github.com/shuaijunlan/Autumn-Framework/tree/master/autumn-blog)
-* [AUTUMN-COMMON](https://github.com/shuaijunlan/Autumn-Framework/tree/master/autumn-common)
+* [autumn-cms](https://github.com/shuaijunlan/Autumn-Framework/tree/master/autumn-cms)
+* [autumn-blog](https://github.com/shuaijunlan/Autumn-Framework/tree/master/autumn-blog)
+* [autumn-common](https://github.com/shuaijunlan/Autumn-Framework/tree/master/autumn-common)
 
 ### Environment
 *Autumn-Framework* requires `java8` and `maven3` as bulid enviroment.
