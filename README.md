@@ -42,7 +42,7 @@ The project requires at minimum 512MB memory to run. Please ensure you have corr
 * Enter autumn-blog, `cd autumn-blog`
 * Run server:`mvn tomcat7:run -Dspring.profiles.active="prod"`. Server runs on port **8088** by default, visit `http://localhost:8088/autumn-blog` to check it out
 
-### Contribue
+### Contribute
 
 If you are interested in this project, and you have any ideas or issues, you can commit a [pull request](https://github.com/shuaijunlan/Autumn/pulls) or [issue](https://github.com/shuaijunlan/Autumn/issues).
 
