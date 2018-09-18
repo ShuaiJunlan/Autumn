@@ -28,9 +28,9 @@ The project requires at minimum 512MB memory to run. Please ensure you have corr
 * Clone from github.com:
     `git clone https://github.com/shuaijunlan/Autumn.git`
 * Enter the project root directory `cd Autumn`
-* Import [autumn_framework.sql](https://github.com/shuaijunlan/Autumn-Framework/blob/master/autumn_framework.sql) to your MySQL Database or MariaDB, and must modify the username and password in `autumn-common/src/main/resources/properties-common/druid-pool.properties` basing on your own database settings, the password is encrypted , you can run `com.autumnframework.common.architect.utils.PasswordEncrypt` to generate `publicKey` and `password`, and replace them in the `druid-pool.properties` file
+* Import [autumn_framework.sql](https://github.com/shuaijunlan/Autumn-Framework/blob/master/autumn_framework.sql) to your MySQL Database or MariaDB, and must modify the username and password in `autumn-common/src/main/resources/properties-common/druid-pool.properties` basing on your own database settings, the password is encrypted , you can run `com.autumnframework.common.architect.utils.PasswordEncrypt` to generate `publicKey` and `password`, and then replace them in the `druid-pool.properties` file
 * Install dependencies:
-    `mvn install`
+    `mvn install -Dmaven.test.skip=true`
 
 > If you want to run autumu-cms sub-system
 
@@ -41,6 +41,10 @@ The project requires at minimum 512MB memory to run. Please ensure you have corr
 
 * Enter autumn-blog, `cd autumn-blog`
 * Run server:`mvn tomcat7:run -Dspring.profiles.active="prod"`. Server runs on port **8088** by default, visit `http://localhost:8088/autumn-blog` to check it out
+
+### Contribue
+
+If you are interested in this project, and you have any ideas or issues, you can commit a [pull request](https://github.com/shuaijunlan/Autumn/pulls) or [issue](https://github.com/shuaijunlan/Autumn/issues).
 
 ### License
 
