@@ -80,7 +80,7 @@
         <logger name="org.mybatis" level="INFO"></logger>
         <logger name="com.mongodb" level="INFO"></logger>
         <!--<logger name="org.apache" level="INFO"></logger>-->
-        <root level="all">
+        <root level="INFO">
             <appender-ref ref="log"/>
             <appender-ref ref="Console"/>
             <appender-ref ref="RollingFileInfo"/>

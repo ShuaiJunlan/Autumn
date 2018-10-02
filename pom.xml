@@ -33,6 +33,11 @@
         <spring.thymeleaf.version>3.0.9.RELEASE</spring.thymeleaf.version>
         <slf4j.version>1.7.25</slf4j.version>
         <nkaptcha.version>1.0.0</nkaptcha.version>
+        <!--project properties-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+
     </properties>
     <repositories>
         <repository>
@@ -65,8 +70,9 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
-                <!--<scope>test</scope>-->
+                <scope>test</scope>
             </dependency>
+
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
@@ -311,6 +317,7 @@
                 <groupId>io.github.shuaijunlan</groupId>
                 <version>${nkaptcha.version}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 

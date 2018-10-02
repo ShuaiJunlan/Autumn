@@ -21,23 +21,26 @@ import java.util.Map;
  */
 @Component
 public class RegisterAuth {
+    /**
+     * 第三方邮箱验证接口
+     */
+    private static final String URL = "http://tool.chacuo.net/mailverify";
 
     public int checkEmailIsValid(String email){
 
-        //  第三方邮箱验证接口
-        String url = "http://tool.chacuo.net/mailverify";
+
 
         Map<String, String> map = new HashMap<>();
         map.put("data", email);
         map.put("type", "verify");
         map.put("arg", "");
 
-        String str = HttpMethodUtil.doPost(url ,map);
+        String str = HttpMethodUtil.doPost(URL ,map);
         JSONObject jsonObject = JSONObject.parseObject(str);
         //  判断邮箱是否有效
-        if (jsonObject.get("status").toString().equals("1")
-                && jsonObject.get("info").toString().equals("ok")
-                && jsonObject.get("data").toString().indexOf("验证成功") != -1){
+        if ("1".equals(jsonObject.get("status").toString())
+                && "ok".equals(jsonObject.get("info").toString())
+                && jsonObject.get("data").toString().contains("验证成功")){
 
             return 1;
         }

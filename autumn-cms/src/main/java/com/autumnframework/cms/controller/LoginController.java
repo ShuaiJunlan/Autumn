@@ -51,7 +51,7 @@ public class LoginController{
      * 生成验证码
      */
     @RequestMapping("/captcha.do")
-    public void Captcha(HttpServletResponse response, HttpSession session)throws IOException {
+    public void captcha(HttpServletResponse response, HttpSession session)throws IOException {
         VerificationList verificationList = new VerificationList();
         VerificationModel verificationModel = verificationList.pop();
         session.setAttribute("code", verificationModel.getText());

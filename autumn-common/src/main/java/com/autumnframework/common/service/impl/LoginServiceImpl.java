@@ -80,6 +80,10 @@ public class LoginServiceImpl implements ILoginService {
                 //  record user login ip information
                 try {
                     String detail = IpInfoUtil.getIpInforByReq(request).getString("data");
+
+                    if (log.isInfoEnabled()){
+                        log.info("User login ip information: " + detail);
+                    }
                     //  会抛出异常
                     LoginInfo loginInfo = JSON.parseObject(detail, LoginInfo.class);
                     loginInfo.setUser_login_name(username);
@@ -90,9 +94,9 @@ public class LoginServiceImpl implements ILoginService {
                         loginInfo.setType(2);
                     }
                     logManage.insertLoginInfo(loginInfo);
+                    return ResponseMsgUtil.returnCodeMessage(BussinessCode.GLOBAL_SUCCESS);
                 }catch (Exception e){
                     log.error("Invalid ip, exception{}", e);
-                }finally {
                     return ResponseMsgUtil.returnCodeMessage(BussinessCode.GLOBAL_SUCCESS);
                 }
             }
