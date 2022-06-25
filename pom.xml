@@ -27,7 +27,7 @@
         <javax.servlet.version>3.1.0</javax.servlet.version>
         <aspectj.version>1.8.9</aspectj.version>
         <fastjson.version>1.2.35</fastjson.version>
-        <spring.data.version>2.0.1.RELEASE</spring.data.version>
+        <spring.data.version>3.3.5</spring.data.version>
         <ehcache.version>3.4.0</ehcache.version>
         <javamail.version>1.4.5</javamail.version>
         <spring.thymeleaf.version>3.0.9.RELEASE</spring.thymeleaf.version>
